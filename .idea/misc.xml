@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/OpaynHrms/app/src/main/res/drawable-v24/circle_stroke.xml" value="0.35625" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/OpaynHrms/app/src/main/res/drawable-v24/ic_dashboard.xml" value="0.35625" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/OpaynHrms/app/src/main/res/drawable-v24/ic_dashboard_active.xml" value="0.35625" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/OpaynHrms/app/src/main/res/drawable-v24/ic_drawable_setting.xml" value="0.35625" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/OpaynHrms/app/src/main/res/drawable-v24/ic_drawable_setting_active.xml" value="0.35625" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/OpaynHrms/app/src/main/res/drawable-v24/ic_email.xml" value="0.35625" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/OpaynHrms/app/src/main/res/drawable-v24/ic_notifications_active.xml" value="0.35625" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/OpaynHrms/app/src/main/res/drawable-v24/ic_notifications_bell_active.xml" value="0.35625" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/OpaynHrms/app/src/main/res/drawable-v24/ic_profile_active.xml" value="0.35625" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/OpaynHrms/app/src/main/res/drawable/background_auth.xml" value="0.35625" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/OpaynHrms/app/src/main/res/drawable/ic_baseline_female_24.xml" value="0.35625" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/OpaynHrms/app/src/main/res/drawable/ic_male_symbol.xml" value="0.35625" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/activity_forgot_password.xml" value="0.3359375" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/activity_home.xml" value="0.3359375" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/activity_login.xml" value="0.3359375" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/activity_otp_verify.xml" value="0.3359375" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/activity_reset_password.xml" value="0.3359375" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/activity_signup.xml" value="0.3359375" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/bg_layout.xml" value="0.3359375" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/bottom_nav_bar.xml" value="0.3359375" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/custom_drawer_layout.xml" value="0.33611255862428346" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/drawable_emp_login.xml" value="0.3359375" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/fragment_home_fragement.xml" value="0.3359375" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/fragment_notification.xml" value="0.3359375" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/nointernetconnection.xml" value="0.3359375" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/progress_dialog.xml" value="0.3359375" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
