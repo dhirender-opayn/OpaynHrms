@@ -13,6 +13,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OpaynHrms">
         <activity
+            android:name=".ui.ChangePassword"
+            android:exported="true" />
+        <activity
+            android:name=".ui.EditProfile"
+            android:exported="true" />
+        <activity
+            android:name=".ui.LeaveManagement"
+            android:exported="true" />
+        <activity
             android:name=".ui.Home"
             android:exported="true" />
         <activity

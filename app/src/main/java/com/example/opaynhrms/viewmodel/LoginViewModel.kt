@@ -26,7 +26,7 @@ class LoginViewModel(application: Application) : AppViewModel(application), Item
         this.binder.viewModel = this
 
         click()
-        genderselction()
+
     }
 
 
@@ -42,22 +42,22 @@ class LoginViewModel(application: Application) : AppViewModel(application), Item
         }
     }
 
-    private fun genderselction() {
-        baseActivity.customSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
-            if (isChecked) {
-                baseActivity.customSwitch.setThumbResource(R.drawable.ic_male_symbol)
-                msg = "Switch Button is Checked"
-            } else {
-                baseActivity.customSwitch.setThumbResource(R.drawable.ic_baseline_female_24)
-                msg = "Switch Button is UnChecked"
-            }
-
-
-
-            Log.e("ddedeeeeeeee", msg.toString())
-
-        }
-    }
+//    private fun genderselction() {
+//        baseActivity.customSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
+//            if (isChecked) {
+//                baseActivity.customSwitch.setThumbResource(R.drawable.ic_male_symbol)
+//                msg = "Switch Button is Checked"
+//            } else {
+//                baseActivity.customSwitch.setThumbResource(R.drawable.ic_baseline_female_24)
+//                msg = "Switch Button is UnChecked"
+//            }
+//
+//
+//
+//            Log.e("ddedeeeeeeee", msg.toString())
+//
+//        }
+//    }
 
     override fun onItemViewClicked(position: Int, type: String) {
 

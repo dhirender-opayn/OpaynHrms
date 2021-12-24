@@ -224,7 +224,6 @@
         <item name="textAllCaps">false</item>
         <item name="cornerRadius">@dimen/_15sdp</item>
         <item name="android:textSize">@dimen/_12sdp</item>
-
         <item name="fontFamily">@font/asap_semibold</item>
     </style>
 

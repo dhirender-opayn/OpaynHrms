@@ -75,21 +75,51 @@
                 app:layout_constraintTop_toBottomOf="@+id/view1" />
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/email_wrap"
-                style="@style/edittextlogintitleparent"
+                android:id="@+id/otpemail_wrap"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_50sdp"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_60sdp"
                 android:hint="@string/enter_otp"
-                app:layout_constraintTop_toBottomOf="@+id/forgetlabel">
+                android:textColorHint="@color/dark_grey"
+                app:hintTextColor="@color/pinky_red"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/forgetlabel"
+                app:layout_goneMarginEnd="@dimen/_32sdp"
+                app:layout_goneMarginStart="@dimen/_32sdp">
+
                 <!--this is the actual edit text which takes the input-->
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tvEmail"
-                    style="@style/edittextlogintitle"
-                    android:inputType="number" />
+                    android:id="@+id/tvotpEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:singleLine="true"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12sdp" />
 
             </com.google.android.material.textfield.TextInputLayout>
+
+
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/loginbtn"
@@ -103,7 +133,7 @@
                 android:paddingTop="@dimen/_10sdp"
                 android:paddingBottom="@dimen/_10sdp"
                 android:text="@string/submit"
-                app:layout_constraintTop_toBottomOf="@+id/email_wrap" />
+                app:layout_constraintTop_toBottomOf="@+id/otpemail_wrap" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

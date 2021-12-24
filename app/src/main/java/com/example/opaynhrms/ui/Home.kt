@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.opaynhrms.R
 import com.example.opaynhrms.base.KotlinBaseActivity
 import com.example.opaynhrms.databinding.ActivityHomeBinding
+import com.example.opaynhrms.fragment.HomeFragement
 import com.example.opaynhrms.viewmodel.HomeViewModel
 
 class Home : KotlinBaseActivity(R.id.container) {
@@ -15,7 +16,7 @@ class Home : KotlinBaseActivity(R.id.container) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_home)
         viewmodel = ViewModelProvider(this).get(HomeViewModel::class.java)
+//        navigateToFragment(HomeFragement(baseActivity = this))
         viewmodel.setBinder(binding, this)
-
     }
 }

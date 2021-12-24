@@ -20,18 +20,11 @@
             android:src="@drawable/ic_dashboard" />
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/notification"
+            android:id="@+id/statistics"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:src="@drawable/ic_notifications" />
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/setting"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:src="@drawable/ic_drawable_setting" />
+            android:src="@drawable/ic_statistics" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/profile"

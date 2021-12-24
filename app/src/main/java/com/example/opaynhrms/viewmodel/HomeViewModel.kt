@@ -10,9 +10,8 @@ import com.example.opaynhrms.extensions.gone
 import com.example.opaynhrms.extensions.invisible
 import com.example.opaynhrms.extensions.visible
 import com.example.opaynhrms.fragment.HomeFragement
-import com.example.opaynhrms.fragment.NotificationFragment
+import com.example.opaynhrms.fragment.StatisticsFragment
 import com.example.opaynhrms.fragment.ProfileFragment
-import com.example.opaynhrms.fragment.SettingFragment
 import com.ieltslearning.base.AppViewModel
 import kotlinx.android.synthetic.main.bottom_nav_bar.view.*
  import kotlinx.android.synthetic.main.nointernetconnection.view.*
@@ -169,16 +168,11 @@ class HomeViewModel(application: Application) : AppViewModel(application) {
                         binder.bottomNav.home.performClick()
                     }
                     1 -> {
-                        binder.bottomNav.notification.performClick()
+                        binder.bottomNav.statistics.performClick()
                     }
                     2 -> {
-                        binder.bottomNav.setting.performClick()
-                    }
-                    3 -> {
                         binder.bottomNav.profile.performClick()
-
                     }
-
 
                 }
             }
@@ -191,8 +185,7 @@ class HomeViewModel(application: Application) : AppViewModel(application) {
 
             changeIcon(
                 R.drawable.ic_dashboard_active,
-                R.drawable.ic_notifications,
-                R.drawable.ic_drawable_setting,
+                R.drawable.ic_statistics,
                 R.drawable.ic_profile
             )
             if (baseActivity.networkcheck.isNetworkAvailable()) {
@@ -202,42 +195,27 @@ class HomeViewModel(application: Application) : AppViewModel(application) {
             }
 
         }
-        binder.bottomNav.notification.setOnClickListener {
+        binder.bottomNav.statistics.setOnClickListener {
             selpos = 1
             changeIcon(
                 R.drawable.ic_dashboard,
-                R.drawable.ic_notifications_active,
-                R.drawable.ic_drawable_setting,
+                R.drawable.ic_statistics_active,
                 R.drawable.ic_profile
             )
             if (baseActivity.networkcheck.isNetworkAvailable()) {
-                baseActivity.navigateToFragment(NotificationFragment(baseActivity), bundle, false)
+                baseActivity.navigateToFragment(StatisticsFragment(baseActivity), bundle, false)
 
             } else {
                 nointertnetview()
             }
         }
-        binder.bottomNav.setting.setOnClickListener {
+
+
+        binder.bottomNav.profile.setOnClickListener {
             selpos = 2
             changeIcon(
                 R.drawable.ic_dashboard,
-                R.drawable.ic_notifications,
-                R.drawable.ic_drawable_setting_active,
-                R.drawable.ic_profile
-            )
-            if (baseActivity.networkcheck.isNetworkAvailable()) {
-                baseActivity.navigateToFragment(SettingFragment(baseActivity), bundle, false)
-            } else {
-                nointertnetview()
-            }
-        }
-
-        binder.bottomNav.profile.setOnClickListener {
-            selpos = 3
-            changeIcon(
-                R.drawable.ic_dashboard,
-                R.drawable.ic_notifications,
-                R.drawable.ic_drawable_setting,
+                R.drawable.ic_statistics,
                 R.drawable.ic_profile_active
 
             )
@@ -256,11 +234,10 @@ class HomeViewModel(application: Application) : AppViewModel(application) {
         binder.container.invisible()
     }
 
-    private fun changeIcon(home: Int, notification: Int, setting: Int, profile: Int) {
+    private fun changeIcon(home: Int, notification: Int, profile: Int) {
 
         binder.bottomNav.home.setImageResource(home)
-        binder.bottomNav.notification.setImageResource(notification)
-        binder.bottomNav.setting.setImageResource(setting)
+        binder.bottomNav.statistics.setImageResource(notification)
         binder.bottomNav.profile.setImageResource(profile)
 
 

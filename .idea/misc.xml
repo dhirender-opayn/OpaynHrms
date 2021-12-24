@@ -12,11 +12,30 @@
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/OpaynHrms/app/src/main/res/drawable-v24/ic_notifications_active.xml" value="0.35625" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/OpaynHrms/app/src/main/res/drawable-v24/ic_notifications_bell_active.xml" value="0.35625" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/OpaynHrms/app/src/main/res/drawable-v24/ic_profile_active.xml" value="0.35625" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/OpaynHrms/app/src/main/res/drawable-v24/ic_statistics_active.xml" value="0.35625" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/OpaynHrms/app/src/main/res/drawable-v24/rectangle_border.xml" value="0.35625" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/OpaynHrms/app/src/main/res/drawable-v24/rectangle_border_fill.xml" value="0.35625" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/OpaynHrms/app/src/main/res/drawable-v24/round_shape_yellow.xml" value="0.35625" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/OpaynHrms/app/src/main/res/drawable/background_auth.xml" value="0.35625" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/OpaynHrms/app/src/main/res/drawable/ic_baseline_female_24.xml" value="0.35625" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/OpaynHrms/app/src/main/res/drawable/ic_baseline_watch_later_24.xml" value="0.35625" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/OpaynHrms/app/src/main/res/drawable/ic_booking_confirmed.xml" value="0.35625" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/OpaynHrms/app/src/main/res/drawable/ic_calendar_line.xml" value="0.35625" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/OpaynHrms/app/src/main/res/drawable/ic_clock_line.xml" value="0.35625" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/OpaynHrms/app/src/main/res/drawable/ic_edit_square_line.xml" value="0.35625" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/OpaynHrms/app/src/main/res/drawable/ic_employee.xml" value="0.35625" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/OpaynHrms/app/src/main/res/drawable/ic_male_symbol.xml" value="0.35625" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/OpaynHrms/app/src/main/res/drawable/ic_outsourcing.xml" value="0.35625" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/OpaynHrms/app/src/main/res/drawable/ic_passport_ticket.xml" value="0.35625" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/OpaynHrms/app/src/main/res/drawable/ic_right_arrow.xml" value="0.35625" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/OpaynHrms/app/src/main/res/drawable/ic_statistics.xml" value="0.35625" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/OpaynHrms/app/src/main/res/drawable/rectangle_black_border.xml" value="0.35625" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/OpaynHrms/app/src/main/res/drawable/round_shape.xml" value="0.35625" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/activity_change_password.xml" value="0.3359375" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/activity_edit_profile.xml" value="0.3359375" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/activity_forgot_password.xml" value="0.3359375" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/activity_home.xml" value="0.3359375" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/activity_leave_management.xml" value="0.3359375" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/activity_login.xml" value="0.3359375" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/activity_otp_verify.xml" value="0.3359375" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/activity_reset_password.xml" value="0.3359375" />
@@ -27,9 +46,19 @@
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/drawable_emp_login.xml" value="0.3359375" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/fragment_home_fragement.xml" value="0.3359375" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/fragment_notification.xml" value="0.3359375" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/fragment_profile.xml" value="0.3359375" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/item_home_tab.xml" value="0.3359375" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/item_img_holder.xml" value="0.3359375" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/item_leave_detail_cart.xml" value="0.3359375" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/item_leave_request.xml" value="0.3359375" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/item_statistics.xml" value="0.3359375" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/item_statistics_img.xml" value="0.3359375" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/item_statistics_notification.xml" value="0.3359375" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/item_statistics_progress.xml" value="0.3359375" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/item_total_leaves.xml" value="0.3359375" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/nointernetconnection.xml" value="0.3359375" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/progress_dialog.xml" value="0.3359375" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/statistics_notification.xml" value="0.3359375" />
       </map>
     </option>
   </component>

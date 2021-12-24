@@ -24,24 +24,30 @@
             style="@style/semiboldfont"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
             android:text="@string/signup"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="@dimen/_20sdp"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintBottom_toTopOf="@+id/clsingupcontainer"
+
+            />
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clsingupcontainer"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_40sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cvContainer"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="@dimen/_20sdp"
-                android:layout_marginTop="@dimen/_80sdp"
+
                 android:layout_marginEnd="@dimen/_20sdp"
                 android:layout_marginBottom="@dimen/_50sdp"
                 app:cardCornerRadius="@dimen/_10sdp"
@@ -55,51 +61,100 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:paddingBottom="@dimen/_20sdp">
 
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/name_wrap"
-                        style="@style/edittextlogintitleparent"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_50sdp"
-                        android:hint="Name"
-                        app:layout_constraintTop_toTopOf="parent">
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_60sdp"
+                        android:layout_marginEnd="@dimen/_20sdp"
+                        android:hint="@string/name"
+                        android:textColorHint="@color/dark_grey"
+                        app:hintTextColor="@color/pinky_red"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_goneMarginEnd="@dimen/_32sdp"
+                        app:layout_goneMarginStart="@dimen/_32sdp">
+
                         <!--this is the actual edit text which takes the input-->
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/tvName"
-                            style="@style/edittextlogintitle" />
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="text"
+                            android:singleLine="true"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_12sdp" />
 
                     </com.google.android.material.textfield.TextInputLayout>
+
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/email_wrap"
-                        style="@style/edittextlogintitleparent"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="E-mail"
-                        app:layout_constraintTop_toBottomOf="@+id/name_wrap">
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/_20sdp"
+                        android:hint="@string/e_mail"
+                        android:textColorHint="@color/dark_grey"
+                        app:hintTextColor="@color/pinky_red"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/name_wrap"
+                        app:layout_goneMarginEnd="@dimen/_32sdp"
+                        app:layout_goneMarginStart="@dimen/_32sdp">
+
                         <!--this is the actual edit text which takes the input-->
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/tvEmail"
-                            style="@style/edittextlogintitle" />
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textEmailAddress"
+                            android:singleLine="true"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_12sdp" />
 
                     </com.google.android.material.textfield.TextInputLayout>
+
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/reEmpIddWrap"
-                        style="@style/edittextlogintitleparent"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Enter Emp-id"
-                        app:layout_constraintTop_toBottomOf="@+id/email_wrap">
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/_20sdp"
+                        android:hint="@string/enter_emp_id"
+                        android:textColorHint="@color/dark_grey"
+                        app:hintTextColor="@color/pinky_red"
+                        app:layout_constraintEnd_toEndOf="parent"
+
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/email_wrap"
+                        app:layout_goneMarginEnd="@dimen/_32sdp"
+                        app:layout_goneMarginStart="@dimen/_32sdp">
+
                         <!--this is the actual edit text which takes the input-->
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/tvReEnterPassword"
-                            style="@style/edittextlogintitle" />
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="number"
+                            android:singleLine="true"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_12sdp" />
 
                     </com.google.android.material.textfield.TextInputLayout>
+
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/singupbtn"
@@ -107,7 +162,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_20sdp"
                         android:backgroundTint="@color/pinky_red"
-                        android:text="@string/signup"
+                        android:paddingTop="@dimen/_10sdp"
+                        android:paddingBottom="@dimen/_10sdp"
+                        android:text="@string/make_request"
                         app:layout_constraintTop_toBottomOf="@+id/reEmpIddWrap" />
 
 
@@ -144,37 +201,6 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </com.google.android.material.card.MaterialCardView>
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <RelativeLayout
-            android:id="@+id/rlphoto"
-            android:layout_width="@dimen/_80sdp"
-            android:layout_height="@dimen/_80sdp"
-            android:layout_gravity="center"
-            android:layout_marginTop="@dimen/_55sdp"
-            android:background="@drawable/circle_stroke"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-
-            app:layout_constraintTop_toTopOf="parent">
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/ivprofile"
-                android:layout_width="@dimen/_96sdp"
-                android:layout_height="@dimen/_96sdp"
-                android:layout_centerInParent="true"
-                android:scaleType="centerCrop"
-                android:src="@drawable/userwhite" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="@dimen/_20sdp"
-                android:layout_height="@dimen/_20sdp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="@dimen/_3sdp"
-                android:layout_marginBottom="@dimen/_15sdp"
-                android:src="@drawable/ic_edit" />
-
-        </RelativeLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

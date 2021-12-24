@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout>
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.opaynhrms.viewmodel.LeaveManagmentViewModel" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.LeaveManagement">
+
+        <include layout="@layout/bg_layout" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_totalleavestatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_60sdp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:listitem="@layout/item_total_leaves" />
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_leaveDatailcart"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rv_totalleavestatus"
+                tools:listitem="@layout/item_leave_detail_cart" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -17,7 +17,6 @@ class OtpVerify : KotlinBaseActivity() {
     private fun click(){
        binding.loginbtn.setOnClickListener {
             openA(Login::class)
-            finishAffinity()
         }
     }
 }
