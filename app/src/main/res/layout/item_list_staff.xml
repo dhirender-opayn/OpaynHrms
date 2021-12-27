@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="wrap_content"
-    android:id="@+id/hometabcontianer"
-    android:layout_height="wrap_content">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/light_grey">
 
 
     <androidx.cardview.widget.CardView
-        android:layout_width="@dimen/_100sdp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="@dimen/_10sdp"
-        app:cardElevation="@dimen/_1sdp"
+        app:cardElevation="@dimen/_3sdp"
         app:cardPreventCornerOverlap="true"
-
         app:cardUseCompatPadding="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,36 +20,52 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/light_grey"
-            android:padding="@dimen/_5sdp">
+            android:id="@+id/clstaftListcontainer"
+            android:padding="@dimen/_10sdp">
+
 
             <com.makeramen.roundedimageview.RoundedImageView
-                android:id="@+id/ivprofile"
+                android:id="@+id/ivStaffProfile"
                 android:layout_width="@dimen/_50sdp"
                 android:layout_height="@dimen/_50sdp"
                 android:layout_centerInParent="true"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:src="@drawable/userwhite"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:src="@drawable/meeting"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/leave_type"
+                android:id="@+id/tvStaffleave_days"
                 style="@style/semiboldfont"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:maxLength="50"
                 android:singleLine="true"
-                android:text="Attendance"
+                android:text="Alex Shaw"
                 android:textColor="@color/dark_grey"
-                android:textSize="@dimen/_10sdp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:textSize="@dimen/_12sdp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ivprofile" />
+                app:layout_constraintStart_toEndOf="@+id/ivStaffProfile"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvStaffleave_type"
+                style="@style/semiboldfont"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_3sdp"
+                android:maxLength="50"
+                android:singleLine="true"
+                android:text="Android Developer"
+                android:textColor="@color/light_gre1"
+                android:textSize="@dimen/_10sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/ivStaffProfile"
+                app:layout_constraintTop_toBottomOf="@+id/tvStaffleave_days" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

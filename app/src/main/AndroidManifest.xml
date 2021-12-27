@@ -9,9 +9,22 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:hardwareAccelerated="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.OpaynHrms">
+        <activity
+            android:name=".ui.Calendar"
+            android:exported="true" />
+        <activity
+            android:name=".ui.StaffDetail"
+            android:exported="true" />
+        <activity
+            android:name=".ui.AttendanceList"
+            android:exported="true" />
+        <activity
+            android:name=".ui.StaffListing"
+            android:exported="true" />
         <activity
             android:name=".ui.ChangePassword"
             android:exported="true" />
@@ -35,6 +48,12 @@
             android:exported="true" />
         <activity
             android:name=".auth.Signup"
+            android:exported="true" />
+        <activity
+            android:name=".ui.RequestLeave"
+            android:exported="true" />
+        <activity
+            android:name=".ui.Payslip"
             android:exported="true" />
         <activity
             android:name=".auth.Login"

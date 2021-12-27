@@ -6,19 +6,75 @@
     android:layout_height="match_parent"
     tools:context=".fragment.StatisticsFragment">
 
+    <include layout="@layout/bg_layout" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_statistics"
-        android:layout_width="match_parent"
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/common_toolbar" />
+
+
+    <include
+        android:id="@+id/st_notification"
+        layout="@layout/item_statistics_notification"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_60sdp"
-        android:orientation="horizontal"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:layout_constraintTop_toTopOf="parent"
-        app:spanCount="1"
-        tools:listitem="@layout/item_statistics" />
+        android:layout_marginTop="@dimen/_30sdp"
+        app:layout_constraintEnd_toStartOf="@+id/st_request"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+    <include
+        android:id="@+id/st_request"
+        layout="@layout/item_statistics_request"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_30sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toEndOf="@+id/st_notification"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
 
+    <include
+        android:id="@+id/st_leaves"
+        layout="@layout/item_statistics_progress"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toStartOf="@+id/st_request"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/st_notification" />
+
+    <include
+        android:id="@+id/st_attendance"
+        layout="@layout/item_statistics_attendance"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toEndOf="@+id/st_notification"
+        app:layout_constraintTop_toBottomOf="@+id/st_notification" />
+
+    <include
+        android:id="@+id/st_payslip"
+        layout="@layout/item_statistics_payslip"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toStartOf="@+id/st_team"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/st_leaves" />
+
+    <include
+        android:id="@+id/st_team"
+        layout="@layout/item_statistics_team"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toEndOf="@+id/st_payslip"
+        app:layout_constraintTop_toBottomOf="@+id/st_leaves" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -165,6 +165,7 @@ class HomeViewModel(application: Application) : AppViewModel(application) {
                 binder.container.visible()
                 when (selpos) {
                     0 -> {
+
                         binder.bottomNav.home.performClick()
                     }
                     1 -> {

@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cvContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="@dimen/_10sdp"
+        app:cardElevation="@dimen/_3sdp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/_15sdp">
+
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvDate"
+                style="@style/boldfont"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/date"
+                android:textColor="@color/cool_green"
+                android:textSize="@dimen/_16sdp"
+                app:layout_constraintEnd_toStartOf="@+id/basicSalaryddDate"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/basicSalaryddDate"
+                style="@style/boldfont"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="01 Jan 2022"
+                android:textAlignment="viewEnd"
+                android:textColor="@color/cool_green"
+                android:textSize="@dimen/_16sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintStart_toEndOf="@+id/tvDate"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <View
+                android:id="@+id/dividerdate"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@color/blue"
+                app:layout_constraintTop_toBottomOf="@+id/tvDate" />
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/basicSalary"
+                style="@style/boldfont"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="@string/basic_salary"
+                android:textColor="@color/dark_grey"
+                android:textSize="@dimen/_16sdp"
+                app:layout_constraintEnd_toStartOf="@+id/basicSalarydigit"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/dividerdate" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/basicSalarydigit"
+                style="@style/boldfont"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="27,500,00"
+                android:textAlignment="viewEnd"
+                android:textColor="@color/dark_grey"
+                android:textSize="@dimen/_16sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintStart_toEndOf="@+id/basicSalary"
+                app:layout_constraintTop_toBottomOf="@+id/dividerdate" />
+
+            <View
+                android:id="@+id/dividerbasicsalary"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@color/light_gre1"
+                app:layout_constraintTop_toBottomOf="@+id/basicSalarydigit" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/attendancepay"
+                style="@style/semiboldfont"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="@string/attendance_pay"
+                android:textColor="@color/light_gre1"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintEnd_toStartOf="@+id/basicSalarydigit"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/dividerbasicsalary" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/attendancepaydigit"
+                style="@style/boldfont"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="5,000,00"
+                android:textAlignment="viewEnd"
+                android:textColor="@color/light_gre1"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintStart_toEndOf="@+id/attendancepay"
+                app:layout_constraintTop_toBottomOf="@+id/dividerbasicsalary" />
+
+            <View
+                android:id="@+id/divider2"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@color/light_gre1"
+                app:layout_constraintTop_toBottomOf="@+id/attendancepay" />
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/sickleavepay"
+                style="@style/semiboldfont"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="@string/sick_leave_pay"
+                android:textColor="@color/light_gre1"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintEnd_toStartOf="@+id/sickleavepaydigit"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider2" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/sickleavepaydigit"
+                style="@style/boldfont"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="1,000,00"
+                android:textAlignment="viewEnd"
+                android:textColor="@color/light_gre1"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintStart_toEndOf="@+id/sickleavepay"
+                app:layout_constraintTop_toBottomOf="@+id/divider2" />
+
+            <View
+                android:id="@+id/divider3"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@color/light_gre1"
+                app:layout_constraintTop_toBottomOf="@+id/sickleavepay" />
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/maternitypay"
+                style="@style/semiboldfont"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="@string/maternity_leave_pay"
+                android:textColor="@color/light_gre1"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintEnd_toStartOf="@+id/maternitypaydigit"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider3" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/maternitypaydigit"
+                style="@style/boldfont"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="1,000,00"
+                android:textAlignment="viewEnd"
+                android:textColor="@color/light_gre1"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintStart_toEndOf="@+id/maternitypay"
+                app:layout_constraintTop_toBottomOf="@+id/divider3" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

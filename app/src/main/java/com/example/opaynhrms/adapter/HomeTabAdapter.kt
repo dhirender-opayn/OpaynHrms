@@ -1,10 +1,15 @@
 package com.example.opaynhrms.adapter
 
+
  import com.bumptech.glide.Glide
  import com.bumptech.glide.load.engine.DiskCacheStrategy
  import com.example.opaynhrms.R
 import com.example.opaynhrms.base.KotlinBaseActivity
  import com.example.opaynhrms.model.ListingModel
+ import com.example.opaynhrms.ui.AttendanceList
+ import com.example.opaynhrms.ui.LeaveManagement
+ import com.example.opaynhrms.ui.Payslip
+ import com.example.opaynhrms.ui.StaffListing
  import com.ieltslearning.base.BaseAdapter
  import kotlinx.android.synthetic.main.item_home_tab.view.*
 
@@ -16,9 +21,27 @@ class HomeTabAdapter (val baseActivity: KotlinBaseActivity, val itemClick: (Int)
     {
         holder.itemView.apply {
             leave_type.setText(list[position].type.toString())
+
             Glide.with(baseActivity).load(list[position].value).diskCacheStrategy(DiskCacheStrategy.NONE)
                 .skipMemoryCache(true).into(ivprofile)
 
+            hometabcontianer.setOnClickListener {
+
+                if (list[position].type.equals("Employees")){
+                    baseActivity.openA(StaffListing::class)
+                }
+                if (list[position].type.equals("Leave")){
+                    baseActivity.openA(LeaveManagement::class)
+                }
+                if (list[position].type.equals("Salary")){
+                    baseActivity.openA(Payslip::class)
+                }
+                if (list[position].type.equals("Attendance List")){
+                    baseActivity.openA(AttendanceList::class)
+                }
+                itemClick(position)
+
+            }
         }
 
     }

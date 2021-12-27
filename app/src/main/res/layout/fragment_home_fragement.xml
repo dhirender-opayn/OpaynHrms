@@ -8,54 +8,59 @@
 
     <include layout="@layout/bg_layout" />
 
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/common_toolbar" />
+
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/ivprofile"
-        android:layout_width="@dimen/_70sdp"
-        android:layout_height="@dimen/_70sdp"
+        android:layout_width="@dimen/_60sdp"
+        android:layout_height="@dimen/_60sdp"
         android:layout_centerInParent="true"
-        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_50sdp"
         android:scaleType="centerCrop"
         android:src="@drawable/userwhite"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/name"
         style="@style/boldfont"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_20sdp"
         android:text="Alex Shaw"
-        android:layout_marginTop="@dimen/_10sdp"
         android:textColor="@color/white"
         android:textSize="@dimen/_14sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivprofile" />
+
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/post_name"
         style="@style/semiboldfont"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Android Developer"
         android:layout_marginTop="@dimen/_5sdp"
+        android:text="Android Developer"
         android:textColor="@color/white"
         android:textSize="@dimen/_12sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/name" />
 
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_request"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_30sdp"
         android:orientation="horizontal"
-        android:layout_marginTop="@dimen/_60sdp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintTop_toBottomOf="@+id/post_name"
-        tools:listitem="@layout/item_leave_request"/>
-
-
+        tools:listitem="@layout/item_leave_request" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_tabs"
@@ -63,11 +68,11 @@
         android:layout_height="0dp"
         android:orientation="horizontal"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:spanCount="2"
-        app:layout_constraintTop_toBottomOf="@+id/rv_request"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:listitem="@layout/item_home_tab"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rv_request"
+        app:spanCount="2"
+        tools:listitem="@layout/item_home_tab" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
