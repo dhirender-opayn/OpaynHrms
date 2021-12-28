@@ -75,6 +75,40 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
 
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tvLeaveTitle"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:hint="@string/title"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:textColorHint="@color/dark_grey"
+                    app:hintTextColor="@color/pinky_red"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/leavetypewrap"
+                    app:layout_goneMarginEnd="@dimen/_32sdp"
+                    app:layout_goneMarginStart="@dimen/_32sdp">
+
+                    <!--this is the actual edit text which takes the input-->
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tvTitle"
+                        style="@style/semiboldfont"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="start"
+                        android:inputType="none"
+                        android:maxLength="500"
+                        android:singleLine="false"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:id="@+id/datecontainer"
                     android:layout_width="match_parent"
@@ -82,7 +116,7 @@
                     android:layout_marginTop="@dimen/_10sdp"
                     android:orientation="horizontal"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/leavetypewrap">
+                    app:layout_constraintTop_toBottomOf="@+id/tvLeaveTitle">
 
 
                     <com.google.android.material.textfield.TextInputLayout
@@ -226,6 +260,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_150sdp"
                         android:gravity="start"
+                        style="@style/regularfont"
                         android:inputType="none"
                         android:lines="10"
                         android:maxLength="500"
