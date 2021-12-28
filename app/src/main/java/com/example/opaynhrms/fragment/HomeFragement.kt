@@ -69,16 +69,17 @@ class HomeFragement(var baseActivity: KotlinBaseActivity) : KotlinBaseFragment()
         tablist.add(ListingModel(R.drawable.ic_payroll_salary, false, "Salary"))
         tablist.add(ListingModel(R.drawable.ic_calendar_line, false, "Calendar"))
         tablist.add(ListingModel(R.drawable.ic_employee, false, "Employees"))
+        tablist.add(ListingModel(R.drawable.family_vacation, false, "Request Leave"))
 
-        val leaveadapter = LeaveRequestAdapter(baseActivity) {
-            if (it.equals(1)) {
-                scanQrCode.launch(null)
-            }
-
-
-        }
-        rv_request.adapter = leaveadapter
-        leaveadapter.addNewList(levaelist)
+//        val leaveadapter = LeaveRequestAdapter(baseActivity) {
+//            if (it.equals(1)) {
+//                scanQrCode.launch(null)
+//            }
+//
+//
+//        }
+//        rv_request.adapter = leaveadapter
+//        leaveadapter.addNewList(levaelist)
 
         val tabAdapter = HomeTabAdapter(baseActivity) {
 

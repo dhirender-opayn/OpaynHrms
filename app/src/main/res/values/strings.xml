@@ -12,8 +12,8 @@
     <string name="signup">Signup</string>
     <string name="don_t_have_account">Don\'t have account</string>
     <string name="create_account">Create Account</string>
-    <string name="request_for_approval">Request For Approval</string>
-    <string name="request">Request</string>
+    <string name="request_for_approval">Don\'t have login Details</string>
+    <string name="request">Contact Admin</string>
     <string name="enter_the_email_associated_with_your_account_and_we_ll_send_an_email_with_6_digit_code_to_reset_your_password">Enter the email associated with your account and we\'ll send an email with <font color='#F6265F'>4-digit code </font>to reset your password.</string>
     <string name="please_enter_the_6_digit_code_receive_by_email">Please enter the <font color='#F6265F'>4-digit code </font> receive by Email.</string>
     <string name="forgot_password">Forgot Password?</string>
@@ -70,4 +70,6 @@
     <string name="station">Station</string>
     <string name="company">Company</string>
     <string name="title">Title</string>
+    <string name="first_half">First Half</string>
+    <string name="second_half">Second Half</string>
 </resources>

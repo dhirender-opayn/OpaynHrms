@@ -3,6 +3,7 @@ package com.example.opaynhrms.viewmodel
 import android.app.Application
 import android.content.Context
 import android.os.Bundle
+import com.example.opaynhrms.R
 import com.example.opaynhrms.adapter.LeaveDetailCartAdapter
 import com.example.opaynhrms.adapter.TotalLeaveStatusAdapter
 import com.example.opaynhrms.base.KotlinBaseActivity
@@ -45,6 +46,10 @@ class RequestLeaveViewModel(application: Application) : AppViewModel(application
     private fun setclicks() {
         binder.toolbar.icmenu.setOnClickListener {
             baseActivity.onBackPressed()
+        }
+
+        binder.halfday.setOnClickListener {
+            binder.halfday.setBackgroundColor(R.color.cool_green)
         }
     }
 

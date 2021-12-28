@@ -6,10 +6,7 @@ package com.example.opaynhrms.adapter
  import com.example.opaynhrms.R
 import com.example.opaynhrms.base.KotlinBaseActivity
  import com.example.opaynhrms.model.ListingModel
- import com.example.opaynhrms.ui.AttendanceList
- import com.example.opaynhrms.ui.LeaveManagement
- import com.example.opaynhrms.ui.Payslip
- import com.example.opaynhrms.ui.StaffListing
+ import com.example.opaynhrms.ui.*
  import com.ieltslearning.base.BaseAdapter
  import kotlinx.android.synthetic.main.item_home_tab.view.*
 
@@ -38,6 +35,10 @@ class HomeTabAdapter (val baseActivity: KotlinBaseActivity, val itemClick: (Int)
                 }
                 if (list[position].type.equals("Attendance List")){
                     baseActivity.openA(AttendanceList::class)
+                }
+
+                if (list[position].type.equals("Request Leave")){
+                    baseActivity.openA(RequestLeave::class)
                 }
                 itemClick(position)
 
