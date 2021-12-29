@@ -19,192 +19,134 @@
 
         <include layout="@layout/bg_layout" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/login"
-            style="@style/semiboldfont"
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/common_toolbar" />
+
+
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_20sdp"
-            android:text="@string/contact_admin"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_20sdp"
-            app:layout_constraintTop_toTopOf="parent"
-
-
-            />
-
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/clsingupcontainer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/login">
+            app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cvContainer"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clsingupcontainer"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginStart="@dimen/_20sdp"
-                android:layout_marginEnd="@dimen/_20sdp"
-                android:layout_marginBottom="@dimen/_50sdp"
-                app:cardCornerRadius="@dimen/_10sdp"
-                app:cardElevation="@dimen/_5sdp"
-                app:cardPreventCornerOverlap="true"
-                app:cardUseCompatPadding="true"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                android:layout_marginTop="@dimen/_35sdp">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cvContainer"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:paddingBottom="@dimen/_20sdp">
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginEnd="@dimen/_20sdp"
+                    app:cardCornerRadius="@dimen/_10sdp"
+                    app:cardElevation="@dimen/_5sdp"
+                    app:cardPreventCornerOverlap="true"
+                    app:cardUseCompatPadding="true"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/name_wrap"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_20sdp"
-                        android:layout_marginTop="@dimen/_20sdp"
-                        android:layout_marginEnd="@dimen/_20sdp"
-                        android:hint="@string/name"
-                        android:textColorHint="@color/dark_grey"
-                        app:hintTextColor="@color/pinky_red"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_goneMarginEnd="@dimen/_32sdp"
-                        app:layout_goneMarginStart="@dimen/_32sdp">
+                        android:layout_height="match_parent"
+                        android:paddingBottom="@dimen/_20sdp">
 
-                        <!--this is the actual edit text which takes the input-->
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/tvName"
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/name_wrap"
+                            style="@style/edittextlogintitleparent"
+                            android:hint="@string/name"
+                            app:boxStrokeColor="@color/black"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <!--this is the actual edit text which takes the input-->
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/tvName"
+                                style="@style/edittextlogintitle"
+                                android:drawableStart="@drawable/ic_baseline_person_24"
+                                android:inputType="text" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/email_wrap"
+                            style="@style/edittextlogintitleparent"
+                            android:hint="@string/e_mail"
+                            app:boxStrokeColor="@color/black"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/name_wrap">
+
+                            <!--this is the actual edit text which takes the input-->
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/tvEmail"
+                                style="@style/edittextlogintitle"
+                                android:drawableStart="@drawable/ic_email"
+                                android:inputType="textEmailAddress" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/reMobileTitile"
+                            style="@style/edittextlogintitleparent"
+                            android:hint="@string/mobile"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/email_wrap">
+                            <!--this is the actual edit text which takes the input-->
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/tvMobile"
+                                style="@style/edittextlogintitle"
+                                android:drawableStart="@drawable/ic_baseline_local_phone_24"
+                                android:inputType="phone" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/subjectTitle"
+                            style="@style/edittextlogintitleparent"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:drawableStart="@drawable/ic_baseline_person_24"
-                            android:drawablePadding="@dimen/_5sdp"
-                            android:inputType="text"
-                            android:singleLine="true"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/_12sdp" />
+                            android:hint="@string/subject"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/reMobileTitile">
 
-                    </com.google.android.material.textfield.TextInputLayout>
-
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/email_wrap"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_20sdp"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:layout_marginEnd="@dimen/_20sdp"
-                        android:hint="@string/e_mail"
-                        android:textColorHint="@color/dark_grey"
-                        app:hintTextColor="@color/pinky_red"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/name_wrap"
-                        app:layout_goneMarginEnd="@dimen/_32sdp"
-                        app:layout_goneMarginStart="@dimen/_32sdp">
-
+                            <!--this is the actual edit text which takes the input-->
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/subject"
+                                style="@style/edittextlogintitle"
+                                android:drawableStart="@drawable/ic_baseline_subject_24"
+                                android:inputType="number" />
                         <!--this is the actual edit text which takes the input-->
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/tvEmail"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:drawableStart="@drawable/ic_email"
-                            android:drawablePadding="@dimen/_5sdp"
-                            android:inputType="textEmailAddress"
-                            android:singleLine="true"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/_12sdp" />
-
-                    </com.google.android.material.textfield.TextInputLayout>
 
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/reMobileTitile"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_20sdp"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:layout_marginEnd="@dimen/_20sdp"
-                        android:hint="@string/mobile"
-                        android:textColorHint="@color/dark_grey"
-                        app:hintTextColor="@color/pinky_red"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:prefixText="+91"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/email_wrap"
-                        app:layout_goneMarginEnd="@dimen/_32sdp"
-                        app:layout_goneMarginStart="@dimen/_32sdp">
-                        <!--this is the actual edit text which takes the input-->
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/tvMobile"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:drawableStart="@drawable/ic_baseline_local_phone_24"
-                            android:drawablePadding="@dimen/_5sdp"
-                            android:inputType="phone"
-                            android:singleLine="true"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/_12sdp" />
+                        </com.google.android.material.textfield.TextInputLayout>
 
-                    </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/desTitle"
+                            style="@style/edittextlogintitleparent"
+                            android:hint="@string/description"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/subjectTitle">
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/subjectTitle"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_20sdp"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:layout_marginEnd="@dimen/_20sdp"
-                        android:hint="@string/subject"
-                        android:textColorHint="@color/dark_grey"
-                        app:hintTextColor="@color/pinky_red"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/reMobileTitile"
-                        app:layout_goneMarginEnd="@dimen/_32sdp"
-                        app:layout_goneMarginStart="@dimen/_32sdp">
-
-                        <!--this is the actual edit text which takes the input-->
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/subject"
-                             style="@style/edittextlogintitle"
-                             android:drawableStart="@drawable/ic_baseline_subject_24"
-                            android:drawablePadding="@dimen/_5sdp"
-                            android:inputType="text"
-                             />
-
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/desTitle"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_20sdp"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:layout_marginEnd="@dimen/_20sdp"
-                        android:hint="@string/description"
-                        android:textColorHint="@color/dark_grey"
-                        app:hintTextColor="@color/pinky_red"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/subjectTitle"
-                        app:layout_goneMarginEnd="@dimen/_32sdp"
-                        app:layout_goneMarginStart="@dimen/_32sdp">
-
+                            <!--this is the actual edit text which takes the input-->
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/des"
+                                style="@style/edittextlogintitle"
+                                android:drawableStart="@drawable/ic_baseline_description_24"
+                                android:gravity="start"
+                                android:inputType="none" />
                         <!--this is the actual edit text which takes the input-->
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/tvdesc"
@@ -217,55 +159,23 @@
                             android:textColor="@color/black"
                             android:textSize="@dimen/_12sdp" />
 
-                    </com.google.android.material.textfield.TextInputLayout>
+                        </com.google.android.material.textfield.TextInputLayout>
 
 
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/singupbtn"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_20sdp"
-                        android:backgroundTint="@color/pinky_red"
-                        android:paddingTop="@dimen/_10sdp"
-                        android:paddingBottom="@dimen/_10sdp"
-                        android:text="@string/make_request"
-                        app:layout_constraintTop_toBottomOf="@+id/desTitle" />
-
-
-                    <androidx.appcompat.widget.LinearLayoutCompat
-                        android:id="@+id/llcontainer"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:gravity="center"
-                        app:layout_constraintTop_toBottomOf="@+id/singupbtn">
-
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/approvalhint"
-                            style="@style/regularfont"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="@dimen/_10sdp"
-                            android:text="Already Approval"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/_10sdp" />
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/gologin"
-                            style="@style/semiboldfont"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/login"
-                            android:textColor="@color/pinky_red"
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/singupbtn"
+                            style="@style/button_style"
+                            android:text="@string/submit"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/singupbtn" />
-                    </androidx.appcompat.widget.LinearLayoutCompat>
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/desTitle" />
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </com.google.android.material.card.MaterialCardView>
-        </androidx.constraintlayout.widget.ConstraintLayout>
 
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

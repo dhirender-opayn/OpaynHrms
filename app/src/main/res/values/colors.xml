@@ -11,11 +11,10 @@
     <color name="light_gre1">#ED7D7979</color>
     <color name="light_gre2">#807D7979</color>
     <color name="black_2">#65728A</color>
+    <color name="black_3">#4D4E50</color>
     <color name="blue">#0a5688</color>
-     <color name="lt_yellow">#A9FCE18A</color>
      <color name="black_0">#00000000</color>
     <color name="black_20">#33000000</color>
-    <color name="black_3">#06000000</color>
     <color name="black_50">#80000000</color>
     <color name="black_66">#a8000000</color>
     <color name="black_70">#b3000000</color>
@@ -78,4 +77,7 @@
     <color name="white_six">#f5f5f5</color>
     <color name="white_three">#f0f0f0</color>
     <color name="white_two">#efefef</color>
+
+
+    <color name="lt_yellow">#A9FCE18A</color>
 </resources>

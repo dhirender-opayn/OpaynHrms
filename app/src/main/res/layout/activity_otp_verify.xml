@@ -14,6 +14,7 @@
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/otpcontainer"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@android:color/transparent">
@@ -32,7 +33,7 @@
                 android:layout_margin="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_20sdp"
                 android:gravity="center"
-                android:text="@string/opayn_hrms"
+                android:text="Opayn HRMS"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_20sdp"
                 app:layout_constraintTop_toBottomOf="@+id/view" />
@@ -53,79 +54,126 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/company" />
 
-            <View
-                android:id="@+id/view1"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_70sdp"
-                app:layout_constraintTop_toBottomOf="@+id/forgotmsg" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/forgetlabel"
-                style="@style/semiboldfont"
+            <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginEnd="@dimen/_10sdp"
-                android:gravity="center"
-                android:text="@string/enter_your_code"
-                android:textColor="@color/white"
-                android:textSize="@dimen/_18sdp"
+                android:layout_marginTop="@dimen/_10sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view1" />
+                app:layout_constraintTop_toBottomOf="@+id/forgotmsg">
 
-
-
-
-
-
-
-
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/otpemail_wrap"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_20sdp"
-                android:layout_marginEnd="@dimen/_20sdp"
-                android:layout_marginTop="@dimen/_60sdp"
-                android:hint="@string/enter_otp"
-                android:textColorHint="@color/dark_grey"
-                app:hintTextColor="@color/pinky_red"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/forgetlabel"
-                app:layout_goneMarginEnd="@dimen/_32sdp"
-                app:layout_goneMarginStart="@dimen/_32sdp">
-
-                <!--this is the actual edit text which takes the input-->
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tvotpEmail"
+                <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="number"
-                    android:singleLine="true"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_12sdp" />
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
 
-            </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/cvContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:layout_marginEnd="@dimen/_20sdp"
+                        android:layout_marginBottom="@dimen/_50sdp"
+                        app:cardCornerRadius="@dimen/_10sdp"
+                        app:cardElevation="@dimen/_5sdp"
+                        app:cardPreventCornerOverlap="true"
+                        app:cardUseCompatPadding="true"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:paddingBottom="@dimen/_20sdp">
 
 
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/forgetlabel"
+                                style="@style/semiboldfont"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/_10sdp"
+                                android:layout_marginEnd="@dimen/_10sdp"
+                                android:gravity="center"
+                                android:paddingTop="@dimen/_20sdp"
+                                android:paddingBottom="@dimen/_10sdp"
+                                android:text="@string/enter_your_code"
+                                android:textColor="@color/light_gre1"
+                                android:textSize="@dimen/_18sdp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/loginbtn"
-                style="@style/button_style2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_20sdp"
-                android:layout_marginTop="@dimen/_30sdp"
-                android:layout_marginEnd="@dimen/_20sdp"
-                android:backgroundTint="@color/pinky_red"
-                android:paddingTop="@dimen/_10sdp"
-                android:paddingBottom="@dimen/_10sdp"
-                android:text="@string/submit"
-                app:layout_constraintTop_toBottomOf="@+id/otpemail_wrap" />
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/otpemail_wrap"
+                                style="@style/edittextlogintitleparent"
+                                android:hint="@string/enter_otp"
+                                app:boxStrokeColor="@color/black"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/forgetlabel">
+
+                                <!--this is the actual edit text which takes the input-->
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/tvotpEmail"
+                                    style="@style/edittextlogintitle"
+                                    android:drawableStart="@drawable/ic_otp"
+                                    android:inputType="number" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/createPass_wrap"
+                                style="@style/edittextlogintitleparent"
+                                android:hint="@string/create_password"
+                                app:boxStrokeColor="@color/black"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/forgetlabel"
+                                app:passwordToggleEnabled="true">
+
+                                <!--this is the actual edit text which takes the input-->
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/tvCreatePass"
+                                    style="@style/edittextlogintitle"
+                                    android:drawableStart="@drawable/ic_baseline_create_24"
+                                    android:inputType="textPassword" />
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/ReEnterPass_wrap"
+                                style="@style/edittextlogintitleparent"
+                                android:hint="@string/re_enter_password"
+                                app:boxStrokeColor="@color/black"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:passwordToggleEnabled="true"
+                                app:layout_constraintTop_toBottomOf="@+id/forgetlabel">
+
+                                <!--this is the actual edit text which takes the input-->
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/tvReEnterPass"
+                                    style="@style/edittextlogintitle"
+                                    android:drawableStart="@drawable/ic_baseline_create_24"
+                                    android:inputType="textPassword" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/loginbtn"
+                                style="@style/button_style"
+                                android:text="@string/submit"
+                                app:layout_constraintTop_toBottomOf="@+id/otpemail_wrap" />
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+                    </com.google.android.material.card.MaterialCardView>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+            </androidx.core.widget.NestedScrollView>
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

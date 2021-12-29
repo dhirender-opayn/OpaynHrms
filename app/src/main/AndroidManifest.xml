@@ -24,6 +24,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OpaynHrms">
         <activity
+            android:name=".ui.AddAnnouncement"
+            android:exported="true" />
+        <activity
             android:name=".ui.Support"
             android:exported="true" />
         <activity

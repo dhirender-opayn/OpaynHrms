@@ -6,6 +6,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.opaynhrms.R
 import com.example.opaynhrms.base.KotlinBaseActivity
 import com.example.opaynhrms.model.ListingModel
+import com.example.opaynhrms.ui.AddAnnouncement
 import com.example.opaynhrms.ui.AddUser
 import com.example.opaynhrms.ui.RequestLeave
 import com.ieltslearning.base.BaseAdapter
@@ -29,6 +30,8 @@ class LeaveRequestAdapter(val baseActivity: KotlinBaseActivity, val itemClick: (
                     Log.e("ddfdfdfdfeeeee", "15415694521982385")
                 } else if (list[position].type.equals("Add User")){
                     baseActivity.openA(AddUser::class)
+                } else if (list[position].type.equals("Add Announcement")){
+                    baseActivity.openA(AddAnnouncement::class)
                 } else {
                     baseActivity.openA(RequestLeave::class)
                 }
