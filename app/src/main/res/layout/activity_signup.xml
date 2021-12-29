@@ -24,12 +24,13 @@
             style="@style/semiboldfont"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/_10sdp"
-            android:text="@string/signup"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:text="@string/contact_admin"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="@dimen/_20sdp"
-            app:layout_constraintBottom_toTopOf="@+id/clsingupcontainer"
+            app:layout_constraintTop_toTopOf="parent"
+
 
             />
 
@@ -38,16 +39,15 @@
             android:id="@+id/clsingupcontainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_40sdp"
+            android:layout_marginTop="@dimen/_10sdp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/login">
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cvContainer"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="@dimen/_20sdp"
-
                 android:layout_marginEnd="@dimen/_20sdp"
                 android:layout_marginBottom="@dimen/_50sdp"
                 app:cardCornerRadius="@dimen/_10sdp"
@@ -71,7 +71,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_20sdp"
-                        android:layout_marginTop="@dimen/_60sdp"
+                        android:layout_marginTop="@dimen/_20sdp"
                         android:layout_marginEnd="@dimen/_20sdp"
                         android:hint="@string/name"
                         android:textColorHint="@color/dark_grey"
@@ -87,6 +87,8 @@
                             android:id="@+id/tvName"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/ic_baseline_person_24"
+                            android:drawablePadding="@dimen/_5sdp"
                             android:inputType="text"
                             android:singleLine="true"
                             android:textColor="@color/black"
@@ -117,6 +119,8 @@
                             android:id="@+id/tvEmail"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/ic_email"
+                            android:drawablePadding="@dimen/_5sdp"
                             android:inputType="textEmailAddress"
                             android:singleLine="true"
                             android:textColor="@color/black"
@@ -126,28 +130,91 @@
 
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/reEmpIddWrap"
+                        android:id="@+id/reMobileTitile"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_20sdp"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:layout_marginEnd="@dimen/_20sdp"
-                        android:hint="@string/enter_emp_id"
+                        android:hint="@string/mobile"
                         android:textColorHint="@color/dark_grey"
                         app:hintTextColor="@color/pinky_red"
                         app:layout_constraintEnd_toEndOf="parent"
-
+                        app:prefixText="+91"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/email_wrap"
+                        app:layout_goneMarginEnd="@dimen/_32sdp"
+                        app:layout_goneMarginStart="@dimen/_32sdp">
+                        <!--this is the actual edit text which takes the input-->
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/tvMobile"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/ic_baseline_local_phone_24"
+                            android:drawablePadding="@dimen/_5sdp"
+                            android:inputType="phone"
+                            android:singleLine="true"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_12sdp" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/subjectTitle"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/_20sdp"
+                        android:hint="@string/subject"
+                        android:textColorHint="@color/dark_grey"
+                        app:hintTextColor="@color/pinky_red"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/reMobileTitile"
                         app:layout_goneMarginEnd="@dimen/_32sdp"
                         app:layout_goneMarginStart="@dimen/_32sdp">
 
                         <!--this is the actual edit text which takes the input-->
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/tvReEnterPassword"
+                            android:id="@+id/subject"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/ic_baseline_subject_24"
+                            android:drawablePadding="@dimen/_5sdp"
+                            android:inputType="number"
+                            android:singleLine="true"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_12sdp" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/desTitle"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/_20sdp"
+                        android:hint="@string/description"
+                        android:textColorHint="@color/dark_grey"
+                        app:hintTextColor="@color/pinky_red"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/subjectTitle"
+                        app:layout_goneMarginEnd="@dimen/_32sdp"
+                        app:layout_goneMarginStart="@dimen/_32sdp">
+
+                        <!--this is the actual edit text which takes the input-->
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/des"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/ic_baseline_description_24"
+                            android:drawablePadding="@dimen/_5sdp"
                             android:inputType="number"
                             android:singleLine="true"
                             android:textColor="@color/black"
@@ -165,7 +232,7 @@
                         android:paddingTop="@dimen/_10sdp"
                         android:paddingBottom="@dimen/_10sdp"
                         android:text="@string/make_request"
-                        app:layout_constraintTop_toBottomOf="@+id/reEmpIddWrap" />
+                        app:layout_constraintTop_toBottomOf="@+id/desTitle" />
 
 
                     <androidx.appcompat.widget.LinearLayoutCompat

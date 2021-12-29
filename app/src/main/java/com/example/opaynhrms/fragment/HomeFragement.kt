@@ -60,26 +60,29 @@ class HomeFragement(var baseActivity: KotlinBaseActivity) : KotlinBaseFragment()
 
     private fun setAdapter() {
         val levaelist = ArrayList<ListingModel>()
-        levaelist.add(ListingModel(R.drawable.family_vacation, false, "Request Leave"))
-        levaelist.add(ListingModel(R.drawable.attendence_machine, false, "Attendance"))
+//        levaelist.add(ListingModel(R.drawable.family_vacation, false, "Request Leave"))
+//        levaelist.add(ListingModel(R.drawable.attendence_machine, false, "Attendance"))
+        levaelist.add(ListingModel(R.drawable.ic_add_boy_user, false, "Add User"))
+        levaelist.add(ListingModel(R.drawable.announcement_svg, false, "Add Announcement"))
 
         val tablist = ArrayList<ListingModel>()
         tablist.add(ListingModel(R.drawable.ic_booking_confirmed, false, "Leave"))
-        tablist.add(ListingModel(R.drawable.ic_vacation, false, "Attendance List"))
-        tablist.add(ListingModel(R.drawable.ic_payroll_salary, false, "Salary"))
+        tablist.add(ListingModel(R.drawable.ic_attendance_list, false, "Attendance List"))
+//        tablist.add(ListingModel(R.drawable.ic_payroll_salary, false, "Salary"))
         tablist.add(ListingModel(R.drawable.ic_calendar_line, false, "Calendar"))
         tablist.add(ListingModel(R.drawable.ic_employee, false, "Employees"))
-        tablist.add(ListingModel(R.drawable.family_vacation, false, "Request Leave"))
+        tablist.add(ListingModel(R.drawable.ic_emergency, false, "Emergency Leaves"))
+//        tablist.add(ListingModel(R.drawable.family_vacation, false, "Request Leave"))
 
-//        val leaveadapter = LeaveRequestAdapter(baseActivity) {
-//            if (it.equals(1)) {
-//                scanQrCode.launch(null)
-//            }
-//
-//
-//        }
-//        rv_request.adapter = leaveadapter
-//        leaveadapter.addNewList(levaelist)
+        val leaveadapter = LeaveRequestAdapter(baseActivity) {
+            if (it.equals(1)) {
+                scanQrCode.launch(null)
+            }
+
+
+        }
+        rv_request.adapter = leaveadapter
+        leaveadapter.addNewList(levaelist)
 
         val tabAdapter = HomeTabAdapter(baseActivity) {
 

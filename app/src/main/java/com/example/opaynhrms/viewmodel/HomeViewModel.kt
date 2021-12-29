@@ -1,8 +1,9 @@
 package com.example.opaynhrms.viewmodel
 
 import android.app.Application
- import android.content.Context
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import com.example.opaynhrms.R
 import com.example.opaynhrms.base.KotlinBaseActivity
 import com.example.opaynhrms.databinding.ActivityHomeBinding
@@ -14,7 +15,7 @@ import com.example.opaynhrms.fragment.StatisticsFragment
 import com.example.opaynhrms.fragment.ProfileFragment
 import com.ieltslearning.base.AppViewModel
 import kotlinx.android.synthetic.main.bottom_nav_bar.view.*
- import kotlinx.android.synthetic.main.nointernetconnection.view.*
+import kotlinx.android.synthetic.main.nointernetconnection.view.*
 
 class HomeViewModel(application: Application) : AppViewModel(application) {
     private lateinit var binder: ActivityHomeBinding
@@ -28,6 +29,9 @@ class HomeViewModel(application: Application) : AppViewModel(application) {
         this.mContext = binder.root.context
         this.baseActivity = baseActivity
         this.binder.viewModel = this
+
+        //defalut icon set
+        changeIcon(R.drawable.ic_dashboard_active, R.drawable.ic_statistics, R.drawable.ic_profile)
 
         setclicks()
     }
@@ -168,9 +172,9 @@ class HomeViewModel(application: Application) : AppViewModel(application) {
 
                         binder.bottomNav.home.performClick()
                     }
-                    1 -> {
-                        binder.bottomNav.statistics.performClick()
-                    }
+//                    1 -> {
+//                        binder.bottomNav.statistics.performClick()
+//                    }
                     2 -> {
                         binder.bottomNav.profile.performClick()
                     }
@@ -190,26 +194,27 @@ class HomeViewModel(application: Application) : AppViewModel(application) {
                 R.drawable.ic_profile
             )
             if (baseActivity.networkcheck.isNetworkAvailable()) {
+                Log.e("chedkdfjhdf", "165615451")
                 baseActivity.navigateToFragment(HomeFragement(baseActivity), bundle, false)
             } else {
                 nointertnetview()
             }
 
         }
-        binder.bottomNav.statistics.setOnClickListener {
-            selpos = 1
-            changeIcon(
-                R.drawable.ic_dashboard,
-                R.drawable.ic_statistics_active,
-                R.drawable.ic_profile
-            )
-            if (baseActivity.networkcheck.isNetworkAvailable()) {
-                baseActivity.navigateToFragment(StatisticsFragment(baseActivity), bundle, false)
-
-            } else {
-                nointertnetview()
-            }
-        }
+//        binder.bottomNav.statistics.setOnClickListener {
+//            selpos = 1
+//            changeIcon(
+//                R.drawable.ic_dashboard,
+//                R.drawable.ic_statistics_active,
+//                R.drawable.ic_profile
+//            )
+//            if (baseActivity.networkcheck.isNetworkAvailable()) {
+//                baseActivity.navigateToFragment(StatisticsFragment(baseActivity), bundle, false)
+//
+//            } else {
+//                nointertnetview()
+//            }
+//        }
 
 
         binder.bottomNav.profile.setOnClickListener {
@@ -238,7 +243,7 @@ class HomeViewModel(application: Application) : AppViewModel(application) {
     private fun changeIcon(home: Int, notification: Int, profile: Int) {
 
         binder.bottomNav.home.setImageResource(home)
-        binder.bottomNav.statistics.setImageResource(notification)
+//        binder.bottomNav.statistics.setImageResource(notification)
         binder.bottomNav.profile.setImageResource(profile)
 
 

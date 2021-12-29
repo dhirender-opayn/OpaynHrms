@@ -6,6 +6,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.opaynhrms.R
 import com.example.opaynhrms.base.KotlinBaseActivity
 import com.example.opaynhrms.model.ListingModel
+import com.example.opaynhrms.ui.AddUser
 import com.example.opaynhrms.ui.RequestLeave
 import com.ieltslearning.base.BaseAdapter
 import kotlinx.android.synthetic.main.item_leave_request.view.*
@@ -26,6 +27,8 @@ class LeaveRequestAdapter(val baseActivity: KotlinBaseActivity, val itemClick: (
                 if (list[position].type.equals("Attendance")) {
                     itemClick(position)
                     Log.e("ddfdfdfdfeeeee", "15415694521982385")
+                } else if (list[position].type.equals("Add User")){
+                    baseActivity.openA(AddUser::class)
                 } else {
                     baseActivity.openA(RequestLeave::class)
                 }

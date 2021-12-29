@@ -9,6 +9,7 @@ import com.example.opaynhrms.base.KotlinBaseActivity
 import com.example.opaynhrms.ui.ChangePassword
 import com.example.opaynhrms.ui.EditProfile
 import com.example.opaynhrms.ui.LeaveManagement
+import com.example.opaynhrms.ui.Notification
 import com.ieltslearning.base.KotlinBaseFragment
 import kotlinx.android.synthetic.main.common_toolbar.view.*
 import kotlinx.android.synthetic.main.fragment_profile.*
@@ -44,7 +45,7 @@ class ProfileFragment(var baseActivity: KotlinBaseActivity) : KotlinBaseFragment
         leavemangement.setOnClickListener(this)
         ivedit.setOnClickListener(this)
         changepassword.setOnClickListener(this)
-
+        notification.setOnClickListener(this)
     }
 
 
@@ -62,6 +63,9 @@ class ProfileFragment(var baseActivity: KotlinBaseActivity) : KotlinBaseFragment
             }
             R.id.changepassword -> {
                 baseActivity.openA(ChangePassword::class)
+            }
+            R.id.notification -> {
+                baseActivity.openA(Notification::class)
             }
         }
 
