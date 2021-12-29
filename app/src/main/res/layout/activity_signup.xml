@@ -180,14 +180,11 @@
                         <!--this is the actual edit text which takes the input-->
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/subject"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:drawableStart="@drawable/ic_baseline_subject_24"
+                             style="@style/edittextlogintitle"
+                             android:drawableStart="@drawable/ic_baseline_subject_24"
                             android:drawablePadding="@dimen/_5sdp"
-                            android:inputType="number"
-                            android:singleLine="true"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/_12sdp" />
+                            android:inputType="text"
+                             />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -210,12 +207,12 @@
 
                         <!--this is the actual edit text which takes the input-->
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/des"
+                            android:id="@+id/tvdesc"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:drawableStart="@drawable/ic_baseline_description_24"
                             android:drawablePadding="@dimen/_5sdp"
-                            android:inputType="number"
+                            android:inputType="text"
                             android:singleLine="true"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_12sdp" />

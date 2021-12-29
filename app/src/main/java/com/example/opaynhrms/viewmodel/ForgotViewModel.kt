@@ -6,8 +6,10 @@ import android.util.Log
 import android.view.View
 import com.example.opaynhrms.R
 import com.example.opaynhrms.auth.ForgotPassword
+import com.example.opaynhrms.auth.OtpVerify
 import com.example.opaynhrms.auth.Signup
 import com.example.opaynhrms.base.KotlinBaseActivity
+import com.example.opaynhrms.databinding.ActivityForgotPasswordBinding
 import com.example.opaynhrms.databinding.ActivityLoginBinding
 import com.example.opaynhrms.extensions.isEmailValid
 import com.example.opaynhrms.extensions.isNotNull
@@ -22,26 +24,24 @@ import com.ieltslearning.base.AppViewModel
 import com.ieltslearning.listner.ItemClick
 import kotlinx.android.synthetic.main.activity_login.*
 
-class LoginViewModel(application: Application) : AppViewModel(application), ItemClick,View.OnClickListener{
+class ForgotViewModel(application: Application) : AppViewModel(application), ItemClick,View.OnClickListener{
     var msg: String = ""
     var loginSigupRepository: LoginRepository = LoginRepository(application)
-    private lateinit var binder: ActivityLoginBinding
+    private lateinit var binder: ActivityForgotPasswordBinding
     lateinit var baseActivity: KotlinBaseActivity
     private lateinit var mContext: Context
-    fun setBinder(binder: ActivityLoginBinding, baseActivity: KotlinBaseActivity)
+    fun setBinder(binder: ActivityForgotPasswordBinding, baseActivity: KotlinBaseActivity)
     {
         this.binder = binder
         this.mContext = binder.root.context
         this.baseActivity = baseActivity
-        this.binder.viewModel = this
+
         click()
     }
 
 
     private fun click() {
-        binder.createaccount.setOnClickListener(this)
-        binder.forgotpassword.setOnClickListener(this)
-        binder.loginbtn.setOnClickListener(this)
+       binder.loginbtn.setOnClickListener(this)
 
     }
     private  fun viewvalidations():Boolean
@@ -55,11 +55,7 @@ class LoginViewModel(application: Application) : AppViewModel(application), Item
             showToast(mContext.getString(R.string.v_validemail))
             return false
         }
-        if (binder.tvpassword.text.toString().isEmpty())
-        {
-            showToast(mContext.getString(R.string.v_email))
-            return false
-        }
+
         return true
     }
 
@@ -88,38 +84,23 @@ class LoginViewModel(application: Application) : AppViewModel(application), Item
     override fun onClick(p0: View?) {
          when(p0?.id)
          {
-             R.id.createaccount->{
-                 baseActivity.openA(Signup::class)
-             }
-             R.id.forgotpassword->{
-                 baseActivity.openA(ForgotPassword::class)
-             }
              R.id.loginbtn->{
                  if (viewvalidations())
                  {
-                        loginApi()
+                     forgotapi()
                  }
 
              }
 
          }
     }
-    private  fun loginApi()
+    private  fun forgotapi()
     {
         val jsonobj= JsonObject()
         jsonobj.addProperty(Keys.email,binder.tvEmail.text.toString())
-        jsonobj.addProperty(Keys.password,binder.tvpassword.text.toString())
-        jsonobj.addProperty(Keys.rememberMe,"true")
-        loginSigupRepository.getlogin(baseActivity,"",jsonobj){
-            if (it.data.isNotNull())
-            {
-                val gson = Gson()
-                val json = gson.toJson(it)
-                baseActivity.preferencemanger.saveString(USERDATA,json)
-                baseActivity.preferencemanger.saveString(TOKEN,it.data.token)
-                baseActivity.openA(Home::class)
-                baseActivity.finishAffinity()
-            }
+        loginSigupRepository.commonpost(baseActivity,Keys.FORGOTPASSWORD,jsonobj){
+            baseActivity.openA(OtpVerify::class)
+            baseActivity.finishAffinity()
         }
     }
 }

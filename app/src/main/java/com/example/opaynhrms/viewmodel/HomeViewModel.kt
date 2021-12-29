@@ -1,5 +1,6 @@
 package com.example.opaynhrms.viewmodel
 
+import android.app.Activity
 import android.app.Application
 import android.content.Context
 import android.os.Bundle
@@ -13,6 +14,11 @@ import com.example.opaynhrms.extensions.visible
 import com.example.opaynhrms.fragment.HomeFragement
 import com.example.opaynhrms.fragment.StatisticsFragment
 import com.example.opaynhrms.fragment.ProfileFragment
+import com.example.opaynhrms.model.LoginJson
+import com.example.opaynhrms.ui.Home.Companion.userModel
+import com.example.opaynhrms.utils.Keys
+import com.example.opaynhrms.utils.Utils.AUTHTOKEN
+import com.google.gson.Gson
 import com.ieltslearning.base.AppViewModel
 import kotlinx.android.synthetic.main.bottom_nav_bar.view.*
 import kotlinx.android.synthetic.main.nointernetconnection.view.*
@@ -34,133 +40,27 @@ class HomeViewModel(application: Application) : AppViewModel(application) {
         changeIcon(R.drawable.ic_dashboard_active, R.drawable.ic_statistics, R.drawable.ic_profile)
 
         setclicks()
+        getuserdata()
     }
+    fun getuserdata() {
+        baseActivity.preferencemanger.getString(Keys.USERDATA).let {
+            val gson = Gson()
+            var jsondata: String = ""
+            jsondata = it.toString()
+            userModel = gson.fromJson(jsondata, LoginJson::class.java)
 
+
+        }
+        baseActivity.preferencemanger.getString(Keys.TOKEN).let {
+
+            if (AUTHTOKEN.isEmpty()) {
+                AUTHTOKEN = "Bearer "+it.toString()
+                 Log.e("tokeeenenne", AUTHTOKEN)
+            }
+        }
+
+    }
     private fun setclicks() {
-
-//        binder.showDrawer.tvprepration.setOnClickListener {
-//            binder.drawerLayout.closeDrawers()
-//
-//        }
-
-//        binder.showDrawer.tvallcourse.setOnClickListener() {
-//            binder.drawerLayout.closeDrawers()
-//            binder.bottomNav.library.performClick()
-//            // baseActivity.openA(CourseList::class)
-//        }
-//        binder.showDrawer.tvdashboard.setOnClickListener {
-//            binder.drawerLayout.closeDrawers()
-//            binder.bottomNav.profile.performClick()
-//
-//            //            baseActivity.openA(Dashboard::class)
-//        }
-//        binder.showDrawer.ivedit.setOnClickListener() {
-//            binder.drawerLayout.closeDrawers()
-//            baseActivity.openA(EditProfile::class)
-//        }
-//        binder.showDrawer.tvsetting.setOnClickListener() {
-//            binder.drawerLayout.closeDrawers()
-//            baseActivity.openA(Setting::class)
-//        }
-//
-//
-//        binder.showDrawer.tvnotification.setOnClickListener() {
-//            binder.drawerLayout.closeDrawers()
-//            bundle.putString(Keys.FRAGMENT_TYPE, Keys.NOTIFICATIONFRAG.toString())
-//            baseActivity.openA(CommonActivity::class, this.bundle)
-//        }
-//
-//
-//        binder.showDrawer.tvfab.setOnClickListener() {
-//            binder.drawerLayout.closeDrawers()
-//            bundle.putString(Keys.FRAGMENT_TYPE, Keys.FAVOURITELISTFRAG.toString())
-//            baseActivity.openA(CommonActivity::class, this.bundle)
-//        }
-//
-//
-//
-//
-//        binder.showDrawer.tvfaq.setOnClickListener {
-//            binder.drawerLayout.closeDrawers()
-//            baseActivity.openA(Faq::class)
-//        }
-//        binder.showDrawer.tvaboutus.setOnClickListener {
-//            binder.drawerLayout.closeDrawers()
-//            bundle.putString(Keys.FROM, baseActivity.getString(R.string.aboutus))
-//            baseActivity.openA(Aboutus::class, bundle)
-//        }
-//        binder.showDrawer.tvprivacy_Policy.setOnClickListener {
-//            binder.drawerLayout.closeDrawers()
-//            bundle.putString(Keys.FROM, baseActivity.getString(R.string.privacypolicy))
-//            baseActivity.openA(Aboutus::class, bundle)
-//        }
-//        binder.showDrawer.tv_term_condition.setOnClickListener {
-//            binder.drawerLayout.closeDrawers()
-//            bundle.putString(Keys.FROM, baseActivity.getString(R.string.termsconditions))
-//            baseActivity.openA(Aboutus::class, bundle)
-//        }
-//        binder.showDrawer.tvcontactus.setOnClickListener {
-//            binder.drawerLayout.closeDrawers()
-//            bundle.putString(Keys.FROM, "Contact Us")
-//            baseActivity.openA(ContactUs::class, bundle)
-//        }
-//
-//
-//        binder.showDrawer.llfreetrial.setOnClickListener {
-//            binder.showDrawer.ivservice.setImageResource(R.drawable.ivdown)
-//            if (freetrial) {
-//                freetrial = false
-//                binder.showDrawer.ivfreetrail.setImageResource(R.drawable.ivup)
-//                binder.showDrawer.llfreetrial_container.visible()
-//
-//            } else {
-//                freetrial = true
-//                binder.showDrawer.ivfreetrail.setImageResource(R.drawable.ivdown)
-//                binder.showDrawer.llfreetrial_container.gone()
-//            }
-//        }
-//
-//        binder.showDrawer.llservice.setOnClickListener {
-//
-//
-//            if (service) {
-//                service = false
-//                binder.showDrawer.ivservice.setImageResource(R.drawable.ivup)
-//
-//
-//            } else {
-//                service = true
-//                binder.showDrawer.ivservice.setImageResource(R.drawable.ivdown)
-//
-//
-//            }
-//        }
-//
-//        binder.showDrawer.llmocktest.setOnClickListener {
-//            if (service) {
-//                service = false
-//                binder.showDrawer.iv_mock_test.setImageResource(R.drawable.ivup)
-//
-//
-//            } else {
-//                service = true
-//                binder.showDrawer.iv_mock_test.setImageResource(R.drawable.ivdown)
-//
-//
-//            }
-//        }
-//
-//        binder.showDrawer.tvprepration.setOnClickListener {
-//            binder.drawerLayout.closeDrawers()
-//            //  baseActivity.openA(IeltsPreprations::class)
-//        }
-//        binder.showDrawer.tv_login.setOnClickListener {
-//            baseActivity.openA(Login::class)
-//        }
-//        binder.showDrawer.tvieltspreference.setOnClickListener {
-//            val dialog = ReadingTypeDailog(baseActivity, "")
-//            dialog.show(baseActivity.supportFragmentManager, dialog.getTag())
-//        }
 
 
         binder.nointernet.reconnectbutton.setOnClickListener {

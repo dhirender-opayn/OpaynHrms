@@ -27,6 +27,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
 import com.example.opaynhrms.MainActivity
 import com.example.opaynhrms.R
+import com.example.opaynhrms.auth.Login
 import com.example.opaynhrms.utils.NetworkCheck
 import com.example.opaynhrms.utils.SharedPreferenceManager
 import com.google.gson.Gson
@@ -104,6 +105,15 @@ open class KotlinBaseActivity(@IdRes private val container: Int = 0) : AppCompat
                     WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN
                 )
         }
+    }
+       fun logout()
+    {
+        Utils.AUTHTOKEN =""
+        preferencemanger.saveString(Keys.TOKEN, "")
+        preferencemanger.saveString(Keys.USERDATA, "")
+        openA(Login::class)
+        finishAffinity()
+
     }
 
 

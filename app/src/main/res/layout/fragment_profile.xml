@@ -1,212 +1,213 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white"
-    tools:context=".fragment.ProfileFragment">
-
-    <include layout="@layout/bg_layout" />
-
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/common_toolbar" />
-
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+<layout>
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:padding="@dimen/_10sdp"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar">
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        tools:context=".fragment.ProfileFragment">
+
+        <include layout="@layout/bg_layout" />
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/common_toolbar" />
+
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/llcontainer"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_20sdp"
-            android:layout_marginEnd="@dimen/_10sdp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_height="0dp"
+            android:padding="@dimen/_10sdp"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/ivprofile"
-                android:layout_width="@dimen/_50sdp"
-                android:layout_height="@dimen/_50sdp"
-                android:layout_centerInParent="true"
-                android:scaleType="centerCrop"
-                android:src="@drawable/userwhite"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/hello"
-                style="@style/regularfont"
-                android:layout_width="wrap_content"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/llcontainer"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:text="Hello"
-                android:textColor="@color/white"
-                android:textSize="@dimen/_11sdp"
-                app:layout_constraintStart_toEndOf="@+id/ivprofile"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/ivprofile"
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_centerInParent="true"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/userwhite"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/hello"
+                    style="@style/regularfont"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:text="Hello"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_11sdp"
+                    app:layout_constraintStart_toEndOf="@+id/ivprofile"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/name"
+                    style="@style/semiboldfont"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                     android:textColor="@color/white"
+                    android:textSize="@dimen/_12sdp"
+                    app:layout_constraintStart_toEndOf="@+id/ivprofile"
+                    app:layout_constraintTop_toBottomOf="@+id/hello" />
+
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivedit"
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:padding="@dimen/_2sdp"
+                    android:src="@drawable/ic_edit_square_line"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivcancel"
+                android:layout_width="@dimen/_60sdp"
+                android:layout_height="@dimen/_55sdp"
+                android:layout_marginTop="@dimen/_50sdp"
+                android:background="@drawable/rectangle_border_fill"
+                android:paddingStart="@dimen/_10sdp"
+                android:paddingTop="@dimen/_5sdp"
+                android:paddingEnd="@dimen/_10sdp"
+                android:paddingBottom="@dimen/_5sdp"
+                android:src="@drawable/ic_baseline_settings_power_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/llcontainer" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/name"
+                android:id="@+id/off"
                 style="@style/semiboldfont"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:text="Alex shaw"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="@string/off_emergency"
                 android:textColor="@color/white"
-                android:textSize="@dimen/_12sdp"
-                app:layout_constraintStart_toEndOf="@+id/ivprofile"
-                app:layout_constraintTop_toBottomOf="@+id/hello" />
-
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/ivedit"
-                android:layout_width="@dimen/_30sdp"
-                android:layout_height="@dimen/_30sdp"
-                android:padding="@dimen/_2sdp"
-                android:src="@drawable/ic_edit_square_line"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:textSize="@dimen/_10sdp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ivcancel" />
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/leavemangement"
+                style="@style/semiboldfont"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_80sdp"
+                android:drawableEnd="@drawable/ic_right_arrow"
+                android:text="Leave Management"
+                android:textColor="@color/dark_grey"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/off" />
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@color/light_grey"
+                app:layout_constraintTop_toBottomOf="@+id/leavemangement" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/changepassword"
+                style="@style/semiboldfont"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:drawableEnd="@drawable/ic_right_arrow"
+                android:text="@string/change_password"
+                android:textColor="@color/dark_grey"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+            <View
+                android:id="@+id/divider1"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@color/light_grey"
+                app:layout_constraintTop_toBottomOf="@+id/changepassword" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/notification"
+                style="@style/semiboldfont"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:drawableEnd="@drawable/ic_right_arrow"
+                android:text="Notification"
+                android:textColor="@color/dark_grey"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider1" />
+
+            <View
+                android:id="@+id/divider2"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@color/light_grey"
+                app:layout_constraintTop_toBottomOf="@+id/notification" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/support"
+                style="@style/semiboldfont"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:drawableEnd="@drawable/ic_right_arrow"
+                android:text="Support"
+                android:textColor="@color/dark_grey"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider2" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/loginbtn"
+                style="@style/button_style2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:backgroundTint="@color/pinky_red"
+                android:paddingTop="@dimen/_10sdp"
+                android:paddingBottom="@dimen/_10sdp"
+                android:text="@string/logout"
+                app:layout_constraintTop_toBottomOf="@+id/support" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/ivcancel"
-            android:layout_width="@dimen/_60sdp"
-            android:layout_height="@dimen/_55sdp"
-            android:layout_marginTop="@dimen/_50sdp"
-            android:background="@drawable/rectangle_border_fill"
-            android:paddingStart="@dimen/_10sdp"
-            android:paddingTop="@dimen/_5sdp"
-            android:paddingEnd="@dimen/_10sdp"
-            android:paddingBottom="@dimen/_5sdp"
-            android:src="@drawable/ic_baseline_settings_power_24"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/llcontainer" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/off"
-            style="@style/semiboldfont"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:text="@string/off_emergency"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_10sdp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ivcancel" />
-
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/leavemangement"
-            style="@style/semiboldfont"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_80sdp"
-            android:drawableEnd="@drawable/ic_right_arrow"
-            android:text="Leave Management"
-            android:textColor="@color/dark_grey"
-            android:textSize="@dimen/_12sdp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/off" />
-
-        <View
-            android:id="@+id/divider"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_1sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:background="@color/light_grey"
-            app:layout_constraintTop_toBottomOf="@+id/leavemangement" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/changepassword"
-            style="@style/semiboldfont"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:drawableEnd="@drawable/ic_right_arrow"
-            android:text="@string/change_password"
-            android:textColor="@color/dark_grey"
-            android:textSize="@dimen/_12sdp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/divider" />
-
-        <View
-            android:id="@+id/divider1"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_1sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:background="@color/light_grey"
-            app:layout_constraintTop_toBottomOf="@+id/changepassword" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/notification"
-            style="@style/semiboldfont"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:drawableEnd="@drawable/ic_right_arrow"
-            android:text="Notification"
-            android:textColor="@color/dark_grey"
-            android:textSize="@dimen/_12sdp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/divider1" />
-
-        <View
-            android:id="@+id/divider2"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_1sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:background="@color/light_grey"
-            app:layout_constraintTop_toBottomOf="@+id/notification" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/support"
-            style="@style/semiboldfont"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:drawableEnd="@drawable/ic_right_arrow"
-            android:text="Support"
-            android:textColor="@color/dark_grey"
-            android:textSize="@dimen/_12sdp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/divider2" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/loginbtn"
-            style="@style/button_style2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_20sdp"
-            android:layout_marginTop="@dimen/_30sdp"
-            android:layout_marginEnd="@dimen/_20sdp"
-            android:backgroundTint="@color/pinky_red"
-            android:paddingTop="@dimen/_10sdp"
-            android:paddingBottom="@dimen/_10sdp"
-            android:text="@string/logout"
-            app:layout_constraintTop_toBottomOf="@+id/support" />
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

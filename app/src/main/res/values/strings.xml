@@ -79,4 +79,26 @@
     <string name="select_date">Select Date</string>
     <string name="add_user">Add User</string>
 
+
+    <string name="v_email">Please enter email</string>
+    <string name="v_validemail">Please enter valid email</string>
+    <string name="v_password">Please enter password</string>
+    <string name="opayn_hrms">Opayn HRMS</string>
+    <string name="v_otp">Please enter otp</string>
+    <string name="v_otp_length">Otp length must be four characters</string>
+    <string name="otpverified_sucess">Otp Verified Successfully</string>
+    <string name="v_entername">Please enter name</string>
+    <string name="v_phonenumber">Please enter phone number</string>
+    <string name="v_subject">Please enter subject</string>
+    <string name="v_desc">Please enter description</string>
+    <string name="v_enwconfirmpassword">Please enter confirm password</string>
+    <string name="v_newpassword">Please enter new password</string>
+    <string name="v_currentpassword">Please enter current password</string>
+     <string name="passwordlength">Password must contain atleast 6 characters</string>
+    <string name="passwormatcherror">Password does not match</string>
+
+    <string name="profileupdate">Profile has been updated successfully</string>
+
+
+
 </resources>

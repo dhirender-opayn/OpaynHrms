@@ -5,11 +5,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import com.example.opaynhrms.R
 import com.example.opaynhrms.adapter.HomeTabAdapter
 import com.example.opaynhrms.adapter.LeaveRequestAdapter
 import com.example.opaynhrms.base.KotlinBaseActivity
+import com.example.opaynhrms.databinding.FragmentHomeFragementBinding
 import com.example.opaynhrms.model.ListingModel
+import com.example.opaynhrms.viewmodel.FragmentHomeViewModel
+import com.example.opaynhrms.viewmodel.HomeViewModel
+import com.example.opaynhrms.viewmodel.LoginViewModel
 import com.ieltslearning.base.KotlinBaseFragment
 import kotlinx.android.synthetic.main.fragment_home_fragement.*
 import io.github.g00fy2.quickie.QRResult
@@ -23,7 +29,8 @@ import kotlinx.android.synthetic.main.statistics_notification.*
 
 class HomeFragement(var baseActivity: KotlinBaseActivity) : KotlinBaseFragment(),
     View.OnClickListener {
-
+    lateinit var binding:FragmentHomeFragementBinding
+    lateinit var viewModel: FragmentHomeViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,13 +42,15 @@ class HomeFragement(var baseActivity: KotlinBaseActivity) : KotlinBaseFragment()
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home_fragement, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home_fragement, container, false)
+        return binding.root
 
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        viewModel = ViewModelProvider(this).get(FragmentHomeViewModel::class.java)
+        viewModel.setBinder(binding,baseActivity)
         setAdapter()
 
         settoolbar()
