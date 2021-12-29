@@ -4,12 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import com.example.opaynhrms.R
 import com.example.opaynhrms.base.KotlinBaseActivity
+import com.example.opaynhrms.databinding.FragmentProfileBinding
 import com.example.opaynhrms.ui.ChangePassword
 import com.example.opaynhrms.ui.EditProfile
 import com.example.opaynhrms.ui.LeaveManagement
 import com.example.opaynhrms.ui.Notification
+import com.example.opaynhrms.viewmodel.FragmentHomeViewModel
+import com.example.opaynhrms.viewmodel.ProfileViewModel
 import com.ieltslearning.base.KotlinBaseFragment
 import kotlinx.android.synthetic.main.common_toolbar.view.*
 import kotlinx.android.synthetic.main.fragment_profile.*
@@ -17,7 +22,8 @@ import kotlinx.android.synthetic.main.fragment_profile.*
 
 class ProfileFragment(var baseActivity: KotlinBaseActivity) : KotlinBaseFragment(),
     View.OnClickListener {
-
+    lateinit var binding:FragmentProfileBinding
+    lateinit var viewModel: ProfileViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,23 +35,28 @@ class ProfileFragment(var baseActivity: KotlinBaseActivity) : KotlinBaseFragment
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_profile, container, false)
+        return binding.root
 
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
+        viewModel.setBinder(binding,baseActivity)
         click()
         settoolbar()
 
 
     }
 
-    private fun click() {
-        leavemangement.setOnClickListener(this)
-        ivedit.setOnClickListener(this)
-        changepassword.setOnClickListener(this)
-        notification.setOnClickListener(this)
+    private fun click()
+    {
+        binding.leavemangement.setOnClickListener(this)
+        binding.ivedit.setOnClickListener(this)
+        binding.changepassword.setOnClickListener(this)
+        binding.notification.setOnClickListener(this)
+        binding.loginbtn.setOnClickListener(this)
     }
 
 
@@ -66,6 +77,9 @@ class ProfileFragment(var baseActivity: KotlinBaseActivity) : KotlinBaseFragment
             }
             R.id.notification -> {
                 baseActivity.openA(Notification::class)
+            }
+            R.id.loginbtn -> {
+                baseActivity.logout()
             }
         }
 

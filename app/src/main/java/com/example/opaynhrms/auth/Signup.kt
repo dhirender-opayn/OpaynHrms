@@ -15,7 +15,6 @@ class Signup : KotlinBaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = DataBindingUtil.setContentView(this, R.layout.activity_signup)
         viewModel = ViewModelProvider(this).get(SignupViewModel::class.java)
         viewModel.setBinder(binding,this)
