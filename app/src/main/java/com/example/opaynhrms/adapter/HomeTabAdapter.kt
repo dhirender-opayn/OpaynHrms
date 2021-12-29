@@ -40,6 +40,9 @@ class HomeTabAdapter (val baseActivity: KotlinBaseActivity, val itemClick: (Int)
                 if (list[position].type.equals("Request Leave")){
                     baseActivity.openA(RequestLeave::class)
                 }
+                if (list[position].type.equals("Emergency Leaves")){
+                    baseActivity.openA(EmergencyLeaveList::class)
+                }
                 itemClick(position)
 
             }

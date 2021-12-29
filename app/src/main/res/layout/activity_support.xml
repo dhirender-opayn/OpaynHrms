@@ -1,35 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.Support">
+<layout>
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.opaynhrms.viewmodel.SupportViewModel" />
+    </data>
 
 
-    <include layout="@layout/bg_layout" />
-
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/common_toolbar" />
-
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/faq_container"
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="@dimen/_10sdp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar">
+        android:layout_height="match_parent"
+        tools:context=".ui.Support">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_faq"
+
+        <include layout="@layout/bg_layout" />
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/common_toolbar" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/faq_container"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/_10sdp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar"
-            tools:listitem="@layout/item_notification" />
-    </androidx.appcompat.widget.LinearLayoutCompat>
+            app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_support"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar"
+                tools:listitem="@layout/item_notification" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

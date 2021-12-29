@@ -3,6 +3,7 @@ package com.example.opaynhrms.viewmodel
 import android.app.Application
 import android.content.Context
 import android.os.Bundle
+import com.example.opaynhrms.R
 import com.example.opaynhrms.adapter.AttendanceListAdapter
 import com.example.opaynhrms.base.KotlinBaseActivity
 import com.example.opaynhrms.databinding.ActivityAttendenceListBinding
@@ -26,6 +27,8 @@ class AttendenceListViewModel(application: Application) : AppViewModel(applicati
 
 
     private fun settoolbar() {
+        binder.toolbar.tvtitle.setTextColor(R.color.black)
+        binder.toolbar.icmenu.setImageResource(R.drawable.icback_black)
         binder.toolbar.tvtitle.text = "Attendance List"
     }
 

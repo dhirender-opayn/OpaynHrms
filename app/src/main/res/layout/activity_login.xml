@@ -9,8 +9,7 @@
             type="com.example.opaynhrms.viewmodel.LoginViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
@@ -58,7 +57,6 @@
                 android:paddingBottom="@dimen/_20sdp">
 
 
-
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/view"
                     style="@style/boldfont"
@@ -76,31 +74,16 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/email_wrap"
                     style="@style/edittextlogintitleparent"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_20sdp"
-                    android:layout_marginTop="@dimen/_20sdp"
-                    android:layout_marginEnd="@dimen/_20sdp"
                     android:hint="@string/e_mail"
-
-                    android:textColorHint="@color/dark_grey"
-                    app:hintTextColor="@color/pinky_red"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/view"
-                    app:layout_goneMarginEnd="@dimen/_32sdp"
-                    app:layout_goneMarginStart="@dimen/_32sdp">
+                    app:layout_constraintTop_toBottomOf="@+id/view">
 
                     <!--this is the actual edit text which takes the input-->
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/tvEmail"
                         style="@style/edittextlogintitle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="textEmailAddress"
-                        android:singleLine="true"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/_12sdp" />
+                        android:inputType="textEmailAddress" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -108,38 +91,24 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/password_wrap"
                     style="@style/edittextlogintitleparent"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_20sdp"
-                    android:layout_marginTop="@dimen/_20sdp"
-                    android:layout_marginEnd="@dimen/_20sdp"
                     android:hint="@string/password"
-                    android:textColorHint="@color/dark_grey"
-                    app:hintTextColor="@color/pinky_red"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/email_wrap"
-                    app:layout_goneMarginEnd="@dimen/_32sdp"
-                    app:layout_goneMarginStart="@dimen/_32sdp"
                     app:passwordToggleEnabled="true">
 
                     <!--this is the actual edit text which takes the input-->
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/tvpassword"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="textPassword"
-                        android:singleLine="true"
                         style="@style/edittextlogintitle"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/_12sdp" />
+                        android:inputType="textPassword" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/loginbtn"
-                    style="@style/button_style2"
+                    style="@style/button_style"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_20sdp"
@@ -171,8 +140,8 @@
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:layout_marginTop="@dimen/_10sdp"
+            android:gravity="center"
             android:orientation="horizontal"
             app:layout_constraintTop_toBottomOf="@+id/cvContainer">
 

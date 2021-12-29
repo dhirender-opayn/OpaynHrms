@@ -9,10 +9,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.opaynhrms.R
 import com.example.opaynhrms.base.KotlinBaseActivity
 import com.example.opaynhrms.databinding.FragmentProfileBinding
-import com.example.opaynhrms.ui.ChangePassword
-import com.example.opaynhrms.ui.EditProfile
-import com.example.opaynhrms.ui.LeaveManagement
-import com.example.opaynhrms.ui.Notification
+import com.example.opaynhrms.extensions.invisible
+import com.example.opaynhrms.ui.*
 import com.example.opaynhrms.viewmodel.FragmentHomeViewModel
 import com.example.opaynhrms.viewmodel.ProfileViewModel
 import com.ieltslearning.base.KotlinBaseFragment
@@ -57,11 +55,13 @@ class ProfileFragment(var baseActivity: KotlinBaseActivity) : KotlinBaseFragment
         binding.changepassword.setOnClickListener(this)
         binding.notification.setOnClickListener(this)
         binding.loginbtn.setOnClickListener(this)
+        binding.support.setOnClickListener(this)
     }
 
 
     private fun settoolbar(){
-        toolbar.tvtitle.text = "Profile"
+        binding.toolbar.icmenu.invisible()
+        binding.toolbar.tvtitle.text = getString(R.string.profile)
     }
 
     override fun onClick(p0: View?) {
@@ -77,6 +77,9 @@ class ProfileFragment(var baseActivity: KotlinBaseActivity) : KotlinBaseFragment
             }
             R.id.notification -> {
                 baseActivity.openA(Notification::class)
+            }
+            R.id.support->{
+                baseActivity.openA(Support::class)
             }
             R.id.loginbtn -> {
                 baseActivity.logout()

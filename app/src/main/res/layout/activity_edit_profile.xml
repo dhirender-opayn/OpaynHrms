@@ -74,6 +74,7 @@
                             <!--this is the actual edit text which takes the input-->
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/tvusername"
+                                style="@style/edittextlogintitle"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:textColor="@color/black"

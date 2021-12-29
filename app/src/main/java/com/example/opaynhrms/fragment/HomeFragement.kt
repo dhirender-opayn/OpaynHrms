@@ -12,6 +12,8 @@ import com.example.opaynhrms.adapter.HomeTabAdapter
 import com.example.opaynhrms.adapter.LeaveRequestAdapter
 import com.example.opaynhrms.base.KotlinBaseActivity
 import com.example.opaynhrms.databinding.FragmentHomeFragementBinding
+import com.example.opaynhrms.extensions.gone
+import com.example.opaynhrms.extensions.invisible
 import com.example.opaynhrms.model.ListingModel
 import com.example.opaynhrms.viewmodel.FragmentHomeViewModel
 import com.example.opaynhrms.viewmodel.HomeViewModel
@@ -63,7 +65,8 @@ class HomeFragement(var baseActivity: KotlinBaseActivity) : KotlinBaseFragment()
 
 
     private fun settoolbar(){
-        toolbar.tvtitle.text = "Home"
+       binding.toolbar.tvtitle.text = getString(R.string.home)
+        binding.toolbar.icmenu.invisible()
     }
 
 

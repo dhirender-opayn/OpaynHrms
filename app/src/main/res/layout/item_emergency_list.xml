@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cvContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            app:cardCornerRadius="@dimen/_10sdp"
+            app:cardElevation="@dimen/_5sdp"
+            app:cardPreventCornerOverlap="true"
+            app:cardUseCompatPadding="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="@dimen/_10sdp">
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/leavetitle"
+                    style="@style/boldfont"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_15sdp"
+                    android:text="Alex Shaw"
+                    android:textAlignment="center"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="@dimen/_14sdp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/notification_count"
+                    style="@style/semiboldfont"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/round_shape_yellow"
+                    android:drawableLeft="@drawable/ic_clock_line"
+                    android:drawablePadding="@dimen/_5sdp"
+                    android:paddingStart="@dimen/_6sdp"
+                    android:paddingTop="@dimen/_3sdp"
+                    android:paddingEnd="@dimen/_6sdp"
+                    android:paddingBottom="@dimen/_3sdp"
+                    android:text="Pending"
+                    android:textColor="@color/golden_yellow"
+                    android:textSize="@dimen/_10sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/leave_type"
+                    style="@style/semiboldfont"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginBottom="@dimen/_15sdp"
+                    android:text="Emergency Leave"
+                    android:textAlignment="center"
+                    android:textColor="@color/pinky_red"
+                    android:textSize="@dimen/_10sdp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/leavetitle" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/datecontainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    app:layout_constraintTop_toBottomOf="@+id/leave_type">
+
+
+                    <com.makeramen.roundedimageview.RoundedImageView
+                        android:id="@+id/ivprofile"
+                        android:layout_width="@dimen/_15sdp"
+                        android:layout_height="@dimen/_15sdp"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/logout"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/leave_date"
+                        style="@style/semiboldfont"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:maxLength="50"
+                        android:singleLine="true"
+                        android:text="OutTiming"
+                        android:textColor="@color/grey_blue"
+                        android:textSize="@dimen/_10sdp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/ivprofile"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/dateformat"
+                        style="@style/semiboldfont"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:maxLength="50"
+                        android:singleLine="true"
+                        android:text="12:00PM"
+                        android:textColor="@color/dark_grey"
+                        android:textSize="@dimen/_10sdp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/leave_date"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clpersonalcontainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    app:layout_constraintTop_toBottomOf="@+id/datecontainer">
+
+
+                    <com.makeramen.roundedimageview.RoundedImageView
+                        android:id="@+id/ivmanagerimg"
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/userwhite"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvpost"
+                        style="@style/semiboldfont"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:maxLength="50"
+                        android:singleLine="true"
+                        android:text="Manager: "
+                        android:textColor="@color/grey_blue"
+                        android:textSize="@dimen/_10sdp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/ivmanagerimg"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvname"
+                        style="@style/semiboldfont"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:maxLength="50"
+                        android:singleLine="true"
+                        android:text="Alex Shaw"
+                        android:textColor="@color/dark_grey"
+                        android:textSize="@dimen/_10sdp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/tvpost"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvmsg"
+                    style="@style/semiboldfont"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:lines="2"
+                    android:text="This leave message is auto generated, for emergency leave."
+                    android:textColor="@color/grey_blue"
+                    android:textSize="@dimen/_10sdp"
+                    android:textStyle="italic"
+                    app:layout_constraintTop_toBottomOf="@+id/clpersonalcontainer" />
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/tvmsg">
+
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/cancelbutton"
+                        style="@style/semiboldfont"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_10sdp"
+                        android:background="@drawable/rectangle_black_border"
+                        android:paddingStart="@dimen/_10sdp"
+                        android:paddingTop="@dimen/_5sdp"
+                        android:paddingEnd="@dimen/_10sdp"
+                        android:paddingBottom="@dimen/_5sdp"
+                        android:text="@string/cancel"
+                        android:textAlignment="center"
+                        android:textSize="@dimen/_14sdp"
+                        app:layout_constraintEnd_toStartOf="@+id/editbutton"
+                        app:layout_constraintHorizontal_weight="1"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/editbutton"
+                        style="@style/semiboldfont"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_10sdp"
+                        android:background="@drawable/rectangle_black_border"
+                        android:backgroundTint="@color/cool_green"
+                        android:paddingStart="@dimen/_10sdp"
+                        android:paddingTop="@dimen/_5sdp"
+                        android:paddingEnd="@dimen/_10sdp"
+                        android:paddingBottom="@dimen/_5sdp"
+                        android:text="@string/approved"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_14sdp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_weight="1"
+                        app:layout_constraintStart_toEndOf="@+id/cancelbutton"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>

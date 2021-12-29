@@ -3,6 +3,7 @@ package com.example.opaynhrms.viewmodel
 import android.app.Application
 import android.content.Context
 import android.os.Bundle
+import com.example.opaynhrms.R
 import com.example.opaynhrms.adapter.LeaveDetailCartAdapter
 import com.example.opaynhrms.adapter.StaffListingAdapter
 import com.example.opaynhrms.adapter.TotalLeaveStatusAdapter
@@ -34,7 +35,9 @@ class StaffListingViewModel(application: Application) : AppViewModel(application
 
 
     private fun settoolbar(){
+        binder.toolbar.tvtitle.setTextColor(R.color.black)
         binder.toolbar.tvtitle.text = "Staff Listing"
+        binder.toolbar.icmenu.setImageResource(R.drawable.icback_black)
     }
 
     private fun setAdapter(){

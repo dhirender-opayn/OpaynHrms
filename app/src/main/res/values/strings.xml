@@ -80,8 +80,6 @@
     <string name="add_user">Add User</string>
     <string name="add_announcement">Add Announcement</string>
     <string name="select_role">Select Role</string>
-
-
     <string name="v_email">Please enter email</string>
     <string name="v_validemail">Please enter valid email</string>
     <string name="v_password">Please enter password</string>
@@ -96,11 +94,15 @@
     <string name="v_enwconfirmpassword">Please enter confirm password</string>
     <string name="v_newpassword">Please enter new password</string>
     <string name="v_currentpassword">Please enter current password</string>
-     <string name="passwordlength">Password must contain atleast 6 characters</string>
+    <string name="passwordlength">Password must contain atleast 6 characters</string>
     <string name="passwormatcherror">Password does not match</string>
 
     <string name="profileupdate">Profile has been updated successfully</string>
-
+    <string name="dummyDes">I am going for a trip to Goa with my Firends, Kindley grant me leave for same</string>
+    <string name="emergencyleavemanagement">Emergency Leave</string>
+    <string name="home">Home</string>
+    <string name="profile">Profile</string>
+    <string name="approved">Approved</string>
 
 
 </resources>

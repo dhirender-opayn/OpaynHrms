@@ -35,48 +35,29 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/msg"
                 style="@style/semiboldfont"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:maxWidth="@dimen/_200sdp"
                 android:singleLine="true"
                 android:text="Alex shaw is announcement somethings"
                 android:textColor="@color/light_gre1"
                 android:textSize="@dimen/_12sdp"
                 app:layout_constraintBottom_toTopOf="@+id/timing"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/timing"
                 style="@style/semiboldfont"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_5sdp"
-                android:maxWidth="@dimen/_200sdp"
-                android:singleLine="true"
-                android:text="8 Min ago"
+                android:text="@string/longdes"
                 android:textColor="@color/light_gre2"
-                android:textSize="@dimen/_8sdp"
+                android:textSize="@dimen/_10sdp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/msg" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/newnotification"
-                style="@style/semiboldfont"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:layout_marginEnd="@dimen/_5sdp"
-                android:background="@drawable/rectangle_border_fill"
-                android:maxWidth="@dimen/_200sdp"
-                android:padding="@dimen/_3sdp"
-                android:singleLine="true"
-                android:text="New"
-                android:textColor="@color/white"
-                android:textSize="@dimen/_8sdp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
