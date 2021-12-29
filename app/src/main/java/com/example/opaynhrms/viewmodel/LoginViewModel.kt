@@ -22,14 +22,14 @@ import com.ieltslearning.base.AppViewModel
 import com.ieltslearning.listner.ItemClick
 import kotlinx.android.synthetic.main.activity_login.*
 
-class LoginViewModel(application: Application) : AppViewModel(application), ItemClick,View.OnClickListener{
+class LoginViewModel(application: Application) : AppViewModel(application), ItemClick,
+    View.OnClickListener {
     var msg: String = ""
     var loginSigupRepository: LoginRepository = LoginRepository(application)
     private lateinit var binder: ActivityLoginBinding
     lateinit var baseActivity: KotlinBaseActivity
     private lateinit var mContext: Context
-    fun setBinder(binder: ActivityLoginBinding, baseActivity: KotlinBaseActivity)
-    {
+    fun setBinder(binder: ActivityLoginBinding, baseActivity: KotlinBaseActivity) {
         this.binder = binder
         this.mContext = binder.root.context
         this.baseActivity = baseActivity
@@ -44,19 +44,17 @@ class LoginViewModel(application: Application) : AppViewModel(application), Item
         binder.loginbtn.setOnClickListener(this)
 
     }
-    private  fun viewvalidations():Boolean
-    {
-        if (binder.tvEmail.text.toString().isEmpty())
-        {
+
+    private fun viewvalidations(): Boolean {
+        if (binder.tvEmail.text.toString().isEmpty()) {
             showToast(mContext.getString(R.string.v_email))
             return false
         }
-        if (!isEmailValid(binder.tvEmail.text!!.trim().toString())){
+        if (!isEmailValid(binder.tvEmail.text!!.trim().toString())) {
             showToast(mContext.getString(R.string.v_validemail))
             return false
         }
-        if (binder.tvpassword.text.toString().isEmpty())
-        {
+        if (binder.tvpassword.text.toString().isEmpty()) {
             showToast(mContext.getString(R.string.v_email))
             return false
         }
@@ -80,43 +78,39 @@ class LoginViewModel(application: Application) : AppViewModel(application), Item
 //        }
 //    }
 
-    override fun onItemViewClicked(position: Int, type: String)
-    {
+    override fun onItemViewClicked(position: Int, type: String) {
 
     }
 
     override fun onClick(p0: View?) {
-         when(p0?.id)
-         {
-             R.id.createaccount->{
-                 baseActivity.openA(Signup::class)
-             }
-             R.id.forgotpassword->{
-                 baseActivity.openA(ForgotPassword::class)
-             }
-             R.id.loginbtn->{
-                 if (viewvalidations())
-                 {
-                        loginApi()
-                 }
+        when (p0?.id) {
+            R.id.createaccount -> {
+                baseActivity.openA(Signup::class)
+            }
+            R.id.forgotpassword -> {
+                baseActivity.openA(ForgotPassword::class)
+            }
+            R.id.loginbtn -> {
+                if (viewvalidations()) {
+                    loginApi()
+                }
 
-             }
+            }
 
-         }
+        }
     }
-    private  fun loginApi()
-    {
-        val jsonobj= JsonObject()
-        jsonobj.addProperty(Keys.email,binder.tvEmail.text.toString())
-        jsonobj.addProperty(Keys.password,binder.tvpassword.text.toString())
-        jsonobj.addProperty(Keys.rememberMe,"true")
-        loginSigupRepository.getlogin(baseActivity,"",jsonobj){
-            if (it.data.isNotNull())
-            {
+
+    private fun loginApi() {
+        val jsonobj = JsonObject()
+        jsonobj.addProperty(Keys.email, binder.tvEmail.text.toString())
+        jsonobj.addProperty(Keys.password, binder.tvpassword.text.toString())
+        jsonobj.addProperty(Keys.rememberMe, "true")
+        loginSigupRepository.getlogin(baseActivity, "", jsonobj) {
+            if (it.data.isNotNull()) {
                 val gson = Gson()
                 val json = gson.toJson(it)
-                baseActivity.preferencemanger.saveString(USERDATA,json)
-                baseActivity.preferencemanger.saveString(TOKEN,it.data.token)
+                baseActivity.preferencemanger.saveString(USERDATA, json)
+                baseActivity.preferencemanger.saveString(TOKEN, it.data.token)
                 baseActivity.openA(Home::class)
                 baseActivity.finishAffinity()
             }

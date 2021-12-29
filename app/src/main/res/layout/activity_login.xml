@@ -66,7 +66,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_25sdp"
                     android:text="Opayn HRMS"
-                    android:textColor="@color/black"
+                    android:textColor="@color/light_gre1"
                     android:textSize="@dimen/_20sdp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -75,13 +75,14 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/email_wrap"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    style="@style/edittextlogintitleparent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_20sdp"
                     android:layout_marginTop="@dimen/_20sdp"
                     android:layout_marginEnd="@dimen/_20sdp"
                     android:hint="@string/e_mail"
+
                     android:textColorHint="@color/dark_grey"
                     app:hintTextColor="@color/pinky_red"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -93,6 +94,7 @@
                     <!--this is the actual edit text which takes the input-->
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/tvEmail"
+                        style="@style/edittextlogintitle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textEmailAddress"
@@ -105,7 +107,7 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/password_wrap"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    style="@style/edittextlogintitleparent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_20sdp"
@@ -128,6 +130,7 @@
                         android:layout_height="wrap_content"
                         android:inputType="textPassword"
                         android:singleLine="true"
+                        style="@style/edittextlogintitle"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_12sdp" />
 

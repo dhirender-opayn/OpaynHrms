@@ -26,69 +26,52 @@ class SignupViewModel(application: Application) : AppViewModel(application) {
         this.binder.viewModel = this
         clicks()
     }
-    private   fun clicks()
-    {
-        
-        binder.singupbtn.setOnClickListener { 
-            if (validations())
-            {
+
+    private fun clicks() {
+
+        binder.singupbtn.setOnClickListener {
+            if (validations()) {
                 contacAdmin()
             }
         }
     }
-    private  fun validations():Boolean
-    {
-        if (binder.tvName.text!!.trim().isEmpty())
-        {
+
+    private fun validations(): Boolean {
+        if (binder.tvName.text!!.trim().isEmpty()) {
             baseActivity.showtoast(baseActivity.getString(R.string.v_entername))
             return false
-        }
-
-        else if (binder.tvEmail.text.toString().isEmpty())
-        {
+        } else if (binder.tvEmail.text.toString().isEmpty()) {
             showToast(mContext.getString(R.string.v_email))
             return false
-        }
-
-       else if (!isEmailValid(binder.tvEmail.text!!.trim().toString())){
+        } else if (!isEmailValid(binder.tvEmail.text!!.trim().toString())) {
             showToast(mContext.getString(R.string.v_validemail))
             return false
-        }
-        else if (binder.tvMobile.text.toString().isEmpty())
-        {
+        } else if (binder.tvMobile.text.toString().isEmpty()) {
             showToast(mContext.getString(R.string.v_phonenumber))
             return false
-        }
-        else if (binder.subject.text.toString().isEmpty())
-        {
+        } else if (binder.subject.text.toString().isEmpty()) {
             showToast(mContext.getString(R.string.v_subject))
             return false
-        }
-        else if (binder.tvdesc.text.toString().isEmpty())
-        {
+        } else if (binder.tvdesc.text.toString().isEmpty()) {
             showToast(mContext.getString(R.string.v_desc))
             return false
         }
         return true
     }
 
-    private  fun  contacAdmin()
-    {
-        val jsonobj= JsonObject()
-        jsonobj.addProperty(Keys.email,binder.tvEmail.text.toString())
-        jsonobj.addProperty(Keys.name,binder.tvName.text.toString())
-        jsonobj.addProperty(Keys.subject,binder.subject.text.toString())
-        jsonobj.addProperty(Keys.mobile,binder.tvMobile.text.toString())
-        jsonobj.addProperty(Keys.description,binder.tvdesc.text.toString())
-        jsonobj.addProperty(Keys.user_id,"")
-        loginSigupRepository.commonpost(baseActivity, Keys.TICKET,jsonobj){
-          baseActivity.showtoast("Admin will contact you shortly")
+    private fun contacAdmin() {
+        val jsonobj = JsonObject()
+        jsonobj.addProperty(Keys.email, binder.tvEmail.text.toString())
+        jsonobj.addProperty(Keys.name, binder.tvName.text.toString())
+        jsonobj.addProperty(Keys.subject, binder.subject.text.toString())
+        jsonobj.addProperty(Keys.mobile, binder.tvMobile.text.toString())
+        jsonobj.addProperty(Keys.description, binder.tvdesc.text.toString())
+        jsonobj.addProperty(Keys.user_id, "")
+        loginSigupRepository.commonpost(baseActivity, Keys.TICKET, jsonobj) {
+            baseActivity.showtoast("Admin will contact you shortly")
         }
 
     }
 
-     
 
-
-    
 }

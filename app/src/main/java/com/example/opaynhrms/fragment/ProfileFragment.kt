@@ -22,7 +22,7 @@ import kotlinx.android.synthetic.main.fragment_profile.*
 
 class ProfileFragment(var baseActivity: KotlinBaseActivity) : KotlinBaseFragment(),
     View.OnClickListener {
-    lateinit var binding:FragmentProfileBinding
+    lateinit var binding: FragmentProfileBinding
     lateinit var viewModel: ProfileViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,15 +43,14 @@ class ProfileFragment(var baseActivity: KotlinBaseActivity) : KotlinBaseFragment
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
-        viewModel.setBinder(binding,baseActivity)
+        viewModel.setBinder(binding, baseActivity)
         click()
         settoolbar()
 
 
     }
 
-    private fun click()
-    {
+    private fun click() {
         binding.leavemangement.setOnClickListener(this)
         binding.ivedit.setOnClickListener(this)
         binding.changepassword.setOnClickListener(this)
@@ -60,7 +59,7 @@ class ProfileFragment(var baseActivity: KotlinBaseActivity) : KotlinBaseFragment
     }
 
 
-    private fun settoolbar(){
+    private fun settoolbar() {
         toolbar.tvtitle.text = "Profile"
     }
 

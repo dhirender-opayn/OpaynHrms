@@ -1,4 +1,5 @@
 package com.example.opaynhrms.ui
+
 import android.graphics.Bitmap
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
@@ -28,6 +29,7 @@ class EditProfile : KotlinBaseActivity() {
             startCrop()
         }
     }
+
     private val cropImage = registerForActivityResult(CropImageContract()) { result ->
         if (result.isSuccessful) {
             // use the returned uri
@@ -36,7 +38,7 @@ class EditProfile : KotlinBaseActivity() {
             val fi = File(uriFilePath.toString())
 
             fi.let {
-                if (it .isNotNull()) {
+                if (it.isNotNull()) {
                     viewmodel.setfile(it)
 
                     // Glide.with(this).load(it).into(binding.ivprofile)
@@ -54,6 +56,7 @@ class EditProfile : KotlinBaseActivity() {
 
         }
     }
+
     private fun startCrop() {
 //        ImagePicker.with(this)
 //            .compress(1024)

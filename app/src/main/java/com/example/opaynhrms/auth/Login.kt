@@ -12,17 +12,15 @@ import com.example.opaynhrms.ui.Home
 import com.example.opaynhrms.utils.Keys
 import com.example.opaynhrms.viewmodel.LoginViewModel
 
-class Login : KotlinBaseActivity()
-{
-    lateinit var binding:ActivityLoginBinding
-    lateinit var viewModel:LoginViewModel
+class Login : KotlinBaseActivity() {
+    lateinit var binding: ActivityLoginBinding
+    lateinit var viewModel: LoginViewModel
 
-    override fun onCreate(savedInstanceState: Bundle?)
-    {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this,R.layout.activity_login)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
         viewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
-        viewModel.setBinder(binding,this)
+        viewModel.setBinder(binding, this)
         Handler(Looper.getMainLooper()).postDelayed({
             //openA(SpeakingTest::class)
             getuserdata()
@@ -36,8 +34,8 @@ class Login : KotlinBaseActivity()
 
 
             } else {
-                bundle.putString(Keys.FROM,"1")
-                openA(Home::class,bundle)
+                bundle.putString(Keys.FROM, "1")
+                openA(Home::class, bundle)
                 finishAffinity()
             }
 
