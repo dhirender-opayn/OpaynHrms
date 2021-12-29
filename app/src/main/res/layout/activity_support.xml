@@ -13,7 +13,6 @@
         android:id="@+id/toolbar"
         layout="@layout/common_toolbar" />
 
-
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/faq_container"
         android:layout_width="match_parent"

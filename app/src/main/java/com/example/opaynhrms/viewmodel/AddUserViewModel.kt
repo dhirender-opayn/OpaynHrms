@@ -21,13 +21,11 @@ class AddUserViewModel (application: Application) : AppViewModel(application) {
         this.binder.viewModel = this
         setclicks()
         setAdapter()
-        settoolbar()
+
     }
 
 
-    private fun settoolbar() {
-        binder.toolbar.tvtitle.text = "Add User"
-    }
+
 
     private fun setAdapter() {
 

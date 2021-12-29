@@ -7,6 +7,7 @@ import com.example.opaynhrms.base.KotlinBaseActivity
 import com.example.opaynhrms.databinding.ActivitySignupBinding
 import com.ieltslearning.base.AppViewModel
 import com.ieltslearning.listner.ItemClick
+import kotlinx.android.synthetic.main.common_toolbar.view.*
 
 class SignupViewModel(application: Application) : AppViewModel(application), ItemClick {
 
@@ -20,12 +21,23 @@ class SignupViewModel(application: Application) : AppViewModel(application), Ite
         this.binder.viewModel = this
 
         click()
+        settoolbar()
+        setclicks()
 
     }
 
     private fun click() {
-        binder.gologin.setOnClickListener {
-            baseActivity.openA(Login::class)
+
+    }
+
+    private fun settoolbar() {
+        binder.toolbar.tvtitle.text = "Contact Admin"
+    }
+
+
+    private fun setclicks() {
+        binder.toolbar.icmenu.setOnClickListener {
+            baseActivity.onBackPressed()
         }
     }
 

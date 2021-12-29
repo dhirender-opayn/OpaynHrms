@@ -5,6 +5,7 @@ import androidx.databinding.DataBindingUtil
 import com.example.opaynhrms.R
 import com.example.opaynhrms.base.KotlinBaseActivity
 import com.example.opaynhrms.databinding.ActivityForgotPasswordBinding
+ import com.example.opaynhrms.extensions.hideKeyboard
 
 class ForgotPassword : KotlinBaseActivity() {
     lateinit var binding: ActivityForgotPasswordBinding
@@ -15,6 +16,11 @@ class ForgotPassword : KotlinBaseActivity() {
     }
 
     private fun click() {
+
+        binding.forgotcontainer.setOnClickListener {
+            hideKeyboard()
+        }
+
         binding.loginbtn.setOnClickListener {
             openA(OtpVerify::class)
             finishAffinity()

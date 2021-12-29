@@ -5,6 +5,7 @@ import androidx.databinding.DataBindingUtil
 import com.example.opaynhrms.R
 import com.example.opaynhrms.base.KotlinBaseActivity
 import com.example.opaynhrms.databinding.ActivityOtpVerifyBinding
+import com.example.opaynhrms.extensions.hideKeyboard
 
 class OtpVerify : KotlinBaseActivity() {
     lateinit var binding:ActivityOtpVerifyBinding
@@ -15,6 +16,11 @@ class OtpVerify : KotlinBaseActivity() {
     }
 
     private fun click(){
+
+        binding.otpcontainer.setOnClickListener {
+            hideKeyboard()
+        }
+
        binding.loginbtn.setOnClickListener {
             openA(Login::class)
         }
