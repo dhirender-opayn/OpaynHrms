@@ -8,8 +8,12 @@ import com.example.opaynhrms.R
 import com.example.opaynhrms.base.KotlinBaseActivity
 import com.example.opaynhrms.databinding.FragmentHomeFragementBinding
 import com.example.opaynhrms.extensions.isNotNull
+import com.example.opaynhrms.extensions.visible
+import com.example.opaynhrms.model.ListingModel
 import com.example.opaynhrms.repository.HomeRepository
 import com.example.opaynhrms.ui.Home
+import com.example.opaynhrms.utils.Keys
+import com.example.opaynhrms.utils.Utils
 
 import com.ieltslearning.base.AppViewModel
 import com.squareup.picasso.Picasso
@@ -21,6 +25,7 @@ class FragmentHomeViewModel(application: Application) : AppViewModel(application
     private lateinit var binder: FragmentHomeFragementBinding
     lateinit var baseActivity: KotlinBaseActivity
     private lateinit var mContext: Context
+
     fun setBinder(binder: FragmentHomeFragementBinding, baseActivity: KotlinBaseActivity) {
         this.binder = binder
         this.mContext = binder.root.context
@@ -31,10 +36,7 @@ class FragmentHomeViewModel(application: Application) : AppViewModel(application
 
     private fun setdata() {
         binder.name.text = Home.userModel?.data?.user!!.name
-        if (Home.userModel?.data?.user!!.roles.size > 0) {
 
-            binder.postName.text = Home.userModel?.data?.user!!.roles[0].name
-        }
         if (Home.userModel!!.data.user.profile.isNotNull() && Home.userModel!!.data.user.profile.image.isNotNull())
         {
             Picasso.get().load(Home.userModel!!.data.user.profile.image).placeholder(R.drawable.userwhite).into(binder.ivprofile)

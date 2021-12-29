@@ -25,7 +25,7 @@ import com.ieltslearning.base.AppViewModel
 import com.ieltslearning.listner.ItemClick
 import kotlinx.android.synthetic.main.activity_login.*
 
-class VerifyOtpViewModel(application: Application) : AppViewModel(application), ItemClick,View.OnClickListener{
+class VerifyOtpViewModel(application: Application) : AppViewModel(application),View.OnClickListener{
     var msg: String = ""
     var loginSigupRepository: LoginRepository = LoginRepository(application)
     private lateinit var binder: ActivityOtpVerifyBinding
@@ -57,16 +57,36 @@ class VerifyOtpViewModel(application: Application) : AppViewModel(application), 
             baseActivity.showtoast(baseActivity.getString(R.string.v_otp_length))
             return false
         }
+        if (binder.tvCreatePass.text.toString().trim().isEmpty())
+        {
+            showToast(mContext.getString(R.string.v_newpassword))
+            return false
+        }
+        if (binder.tvCreatePass.text.toString().trim().length<6)
+        {
+            showToast(mContext.getString(R.string.passwordlength))
+            return false
+        }
+        if (binder.tvReEnterPass.text.toString().trim().isEmpty())
+        {
+            showToast(mContext.getString(R.string.v_enwconfirmpassword))
+            return false
+        }
+        if (binder.tvReEnterPass.text.toString().trim().length<6)
+        {
+            showToast(mContext.getString(R.string.passwordlength))
+            return false
+        }
+        if (!binder.tvReEnterPass.text.toString().trim().equals(binder.tvCreatePass.text.toString().trim()))
+        {
+            showToast(mContext.getString(R.string.passwormatcherror))
+            return false
+        }
 
         return true
     }
 
 
-
-    override fun onItemViewClicked(position: Int, type: String)
-    {
-
-    }
 
     override fun onClick(p0: View?) {
          when(p0?.id)
@@ -85,8 +105,8 @@ class VerifyOtpViewModel(application: Application) : AppViewModel(application), 
     {
         val jsonobj= JsonObject()
         jsonobj.addProperty(Keys.code,binder.tvotpEmail.text.toString().trim())
-        jsonobj.addProperty(Keys.password,"7837338287k")
-        jsonobj.addProperty(Keys.confirm_password,"7837338287k")
+        jsonobj.addProperty(Keys.password,binder.tvCreatePass.text.toString().trim())
+        jsonobj.addProperty(Keys.confirm_password,binder.tvReEnterPass.text.toString().trim())
         loginSigupRepository.commonpost(baseActivity,Keys.RESETPASSWORD,jsonobj){
            baseActivity.showtoast(baseActivity.getString(R.string.otpverified_sucess))
             baseActivity.onBackPressed()

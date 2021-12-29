@@ -101,6 +101,7 @@
                                     android:src="@drawable/userwhite" />
 
                                 <androidx.appcompat.widget.AppCompatImageView
+                                    android:id="@+id/ivedit"
                                     android:layout_width="@dimen/_20sdp"
                                     android:layout_height="@dimen/_20sdp"
                                     android:layout_alignParentEnd="true"
@@ -157,6 +158,7 @@
                                 <!--this is the actual edit text which takes the input-->
                                 <com.google.android.material.textfield.TextInputEditText
                                     android:id="@+id/tvMobile"
+                                    android:inputType="phone"
                                     style="@style/edittextlogintitle"
                                     android:drawableStart="@drawable/ic_baseline_local_phone_24" />
 
@@ -166,16 +168,17 @@
                                 android:id="@+id/passwordWrap"
                                 style="@style/edittextlogintitleparent"
                                 android:hint="@string/password"
+                                app:passwordToggleEnabled="true"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toBottomOf="@+id/reMobileTitile">
 
                                 <!--this is the actual edit text which takes the input-->
                                 <com.google.android.material.textfield.TextInputEditText
-                                    android:id="@+id/subject"
+                                    android:id="@+id/tvnewpassord"
                                     style="@style/edittextlogintitle"
                                     android:drawableStart="@drawable/ic_baseline_lock_24"
-                                    android:inputType="text" />
+                                    android:inputType="textPassword" />
 
                             </com.google.android.material.textfield.TextInputLayout>
 
@@ -196,7 +199,7 @@
                                       an auto complete text view
                                         and make its input type to none-->
                                 <AutoCompleteTextView
-                                    android:id="@+id/leavetype"
+                                    android:id="@+id/auto_role"
                                     style="@style/semiboldfont"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
@@ -224,7 +227,7 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/singupbtn"
             style="@style/button_style"
-            android:text="@string/add_user"
+            android:text="@string/submit"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

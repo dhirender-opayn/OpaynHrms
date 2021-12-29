@@ -1,6 +1,7 @@
 package com.example.opaynhrms.network
 
  import com.example.opaynhrms.model.LoginJson
+ import com.example.opaynhrms.repository.RolesJson
  import com.google.gson.JsonObject
  import okhttp3.MultipartBody
 
@@ -22,12 +23,22 @@ interface APIInterface
     @POST("")
     fun commonpostwithtoken(@Url url:String,@Header("Authorization") token: String,@Body jsonObject: JsonObject?): Call<ResponseBody>
     @Headers("Accept: application/json")
+
     @Multipart
     @POST("user/update")
     fun updateuser(
-
         @Header("Authorization") token: String,
-        @Part fields: ArrayList<MultipartBody.Part>
-    ): Call<LoginJson>
+        @Part fields: ArrayList<MultipartBody.Part>): Call<LoginJson>
+
+    @Headers("Accept: application/json")
+    @Multipart
+    @POST("user")
+    fun createuser(
+        @Header("Authorization") token: String,
+        @Part fields: ArrayList<MultipartBody.Part>): Call<LoginJson>
+
+    @Headers("Accept: application/json")
+    @GET("roles")
+    fun roles(@Header("Authorization") token: String): Call<RolesJson>
 
 }

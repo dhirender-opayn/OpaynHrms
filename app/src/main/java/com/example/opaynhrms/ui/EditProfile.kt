@@ -58,13 +58,7 @@ class EditProfile : KotlinBaseActivity() {
     }
 
     private fun startCrop() {
-//        ImagePicker.with(this)
-//            .compress(1024)
-//            .crop()//Final image size will be less than 1 MB(Optional)
-//            .maxResultSize(1080, 1080)  //Final image resolution will be less than 1080 x 1080(Optional)
-//            .createIntent { intent ->
-//                startForProfileImageResult.launch(intent)
-//            }
+
         // start picker to get image for cropping and then use the image in cropping activity
         cropImage.launch(
             options {

@@ -84,7 +84,6 @@ class EditProfileViewModel(application: Application) : AppViewModel(application)
             getMultiPart(Keys.image, file!!)?.let { fields.add(it) }
         }
         loginSigupRepository.updateprofile(baseActivity, fields) {
-
             if (!it.data.isNull()) {
                 val gson = Gson()
                 val json = gson.toJson(it)

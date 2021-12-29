@@ -6,8 +6,8 @@
     <string name="login">Login</string>
     <string name="name">Name</string>
 
-    <string name="create_password">Create Password</string>
-    <string name="re_enter_password">Re-Enter Password</string>
+    <string name="create_password">New Password</string>
+    <string name="re_enter_password">Confirm Password</string>
     <string name="gender">Gender</string>
     <string name="signup">Signup</string>
     <string name="don_t_have_account">Don\'t have account</string>
@@ -96,8 +96,11 @@
     <string name="v_enwconfirmpassword">Please enter confirm password</string>
     <string name="v_newpassword">Please enter new password</string>
     <string name="v_currentpassword">Please enter current password</string>
+    <string name="v_role">Please select role</string>
      <string name="passwordlength">Password must contain atleast 6 characters</string>
     <string name="passwormatcherror">Password does not match</string>
+    <string name="manualpermission">You need to allow necessary permissions in Settings manually</string>
+    <string name="permisionmsgfirst">Core fundamental are based on these permissions</string>
 
     <string name="profileupdate">Profile has been updated successfully</string>
 

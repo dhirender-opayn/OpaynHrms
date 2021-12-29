@@ -40,6 +40,7 @@ object Keys
     const val subject="subject"
     const val mobile="mobile"
     const val user_id="user_id"
+    const val role_id="role_id"
     const val id="id"
     const val image="image"
     const val clockify_key="clockify_key"

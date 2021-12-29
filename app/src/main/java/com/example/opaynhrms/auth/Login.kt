@@ -32,7 +32,6 @@ class Login : KotlinBaseActivity() {
         preferencemanger.getString(Keys.USERDATA).let {
             if (it == null || it.toString().isEmpty()) {
 
-
             } else {
                 bundle.putString(Keys.FROM, "1")
                 openA(Home::class, bundle)

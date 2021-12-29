@@ -82,17 +82,9 @@ dependencies {
 
     // permission library android
     implementation 'com.guolindev.permissionx:permissionx:1.6.1'
+    //locations
+    implementation 'com.github.prabhat1707:EasyWayLocation:2.4'
 
-
-
-//    // CameraX
-//
-//    implementation "androidx.camera:camera-core:${camerax_version}"
-//    implementation "androidx.camera:camera-camera2:${camerax_version}"
-//    implementation "androidx.camera:camera-lifecycle:${camerax_version}"
-//
-//    // CameraX View classroun
-//    implementation "androidx.camera:camera-view:1.0.0-alpha20"
 
     implementation "com.airbnb.android:lottie:$lottieVersion"
 

@@ -26,11 +26,7 @@ import java.util.concurrent.TimeUnit
 
 object Utils
 {
-    var ABOUTUS = 1
-    var PRIVACY = 2
-    var TERMS = 3
-    var FAQ = 4
-    var HEADERTOPMARGIN=35
+    const val SUPERADMIN="Super Admin";
     const val REQUEST_FOREGROUND_ONLY_PERMISSIONS_REQUEST_CODE = 34
     const val DATETIMEFORMAT="yyyy-MM-dd HH:mm:ss"
     const val TIMEFORMAT="hh:mm aa"
