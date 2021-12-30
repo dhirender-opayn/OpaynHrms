@@ -24,12 +24,18 @@
             layout="@layout/common_toolbar" />
 
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/clsingupcontainer"
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintBottom_toTopOf="@+id/singupbtn"
             app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clsingupcontainer"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+           >
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cvContainer"
@@ -221,6 +227,7 @@
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
 
 
         <com.google.android.material.button.MaterialButton

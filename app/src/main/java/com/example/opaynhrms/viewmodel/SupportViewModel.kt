@@ -36,28 +36,30 @@ class SupportViewModel(application: Application) : AppViewModel(application) {
         this.binder = binder
         this.mContext = binder.root.context
         this.baseActivity = baseActivity
-        settoolbar()
-        setAdapter()
         click()
     }
 
+//    // TODO: 30-12-2021 support recycler view desgin adapter
+//    private fun setAdapter() {
+//
+//        val supportAdapterView = SupportAdapter(baseActivity) {
+//
+//        }
+//        binder.rvSupport.adapter = supportAdapterView
+//
+//    }
 
-    private fun setAdapter() {
 
-        val supportAdapterView = SupportAdapter(baseActivity) {
-
-        }
-        binder.rvSupport.adapter = supportAdapterView
-
-    }
-
-    private fun settoolbar() {
-        binder.toolbar.tvtitle.text = "Support"
-    }
+//    private fun settoolbar() {
+//        binder.toolbar.tvtitle.text = "Support"
+//    }
     private fun click(){
         binder.toolbar.icmenu.setOnClickListener {
             baseActivity.onBackPressed()
         }
+    binder.loginbtn.setOnClickListener {
+        baseActivity.showtoast("Thanks for contact Us, Team will contact you soon. Please check your mail for more details.")
+    }
     }
 
 

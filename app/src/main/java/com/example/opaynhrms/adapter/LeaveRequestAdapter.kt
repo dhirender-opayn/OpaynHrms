@@ -1,6 +1,5 @@
 package com.example.opaynhrms.adapter
 
-import android.util.Log
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.opaynhrms.R
@@ -35,7 +34,7 @@ class LeaveRequestAdapter(val baseActivity: KotlinBaseActivity, val itemClick: (
                         baseActivity.openA(AddUser::class)
                     }
                     "Add Announcement"->{
-                        baseActivity.openA(AddUser::class)
+                        baseActivity.openA(AddAnnouncement::class)
                     }
                     "Check in"->{
                         itemClick(-1)

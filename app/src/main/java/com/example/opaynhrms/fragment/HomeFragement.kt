@@ -17,6 +17,7 @@ import com.example.opaynhrms.adapter.HomeTabAdapter
 import com.example.opaynhrms.adapter.LeaveRequestAdapter
 import com.example.opaynhrms.base.KotlinBaseActivity
 import com.example.opaynhrms.databinding.FragmentHomeFragementBinding
+import com.example.opaynhrms.extensions.gone
 import com.example.opaynhrms.extensions.isNotNull
 import com.example.opaynhrms.extensions.visible
 import com.example.opaynhrms.model.ListingModel
@@ -37,31 +38,33 @@ import kotlinx.android.synthetic.main.item_statistics_notification.*
 import kotlinx.android.synthetic.main.statistics_notification.*
 
 
-class HomeFragement(var baseActivity: KotlinBaseActivity) : KotlinBaseFragment(), View.OnClickListener,
-    Listener
-{
+class HomeFragement(var baseActivity: KotlinBaseActivity) : KotlinBaseFragment(),
+    View.OnClickListener,
+    Listener {
     lateinit var binding: FragmentHomeFragementBinding
     lateinit var viewModel: FragmentHomeViewModel
     val levaelist = ArrayList<ListingModel>()
     lateinit var location: EasyWayLocation
-    var inout=""
-    var lat=""
-    var lng=""
+    var inout = ""
+    var lat = ""
+    var lng = ""
 
-    override fun onCreate(savedInstanceState: Bundle?)
-    {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View
-    {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         // Inflate the layout for this fragment
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home_fragement, container, false)
+        binding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_home_fragement, container, false)
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?)
-    {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this).get(FragmentHomeViewModel::class.java)
         location = EasyWayLocation(baseActivity, false, false, this)
@@ -70,15 +73,33 @@ class HomeFragement(var baseActivity: KotlinBaseActivity) : KotlinBaseFragment()
         setsubheaderAdapter()
     }
 
-    private fun setAdapter()
-    {
-
+    private fun setAdapter() {
         val tablist = ArrayList<ListingModel>()
-        tablist.add(ListingModel(R.drawable.ic_booking_confirmed, false, "Leave"))
-        tablist.add(ListingModel(R.drawable.ic_attendance_list, false, "Attendance List"))
-         tablist.add(ListingModel(R.drawable.ic_calendar_line, false, "Calendar"))
-        tablist.add(ListingModel(R.drawable.ic_employee, false, "Employees"))
-        tablist.add(ListingModel(R.drawable.ic_emergency, false, "Emergency Leaves"))
+        if (Home.userModel?.data?.user!!.roles.size > 0) {
+            binding.postName.text = Home.userModel?.data?.user!!.roles[0].name
+            binding.rvRequest.visible()
+            if (binding.postName.text.toString().equals(Utils.SUPERADMIN))
+            {
+                tablist.add(ListingModel(R.drawable.ic_add_boy_user, false, "Add User"))
+                tablist.add(ListingModel(R.drawable.announcement_svg, false, "Add Announcement"))
+                tablist.add(ListingModel(R.drawable.ic_booking_confirmed, false, "Leave"))
+                tablist.add(ListingModel(R.drawable.ic_calendar_line, false, "Calendar"))
+                tablist.add(ListingModel(R.drawable.ic_employee, false, "View Employees"))
+                tablist.add(ListingModel(R.drawable.ic_emergency, false, "Emergency Leaves"))
+            } else
+            {
+                tablist.add(ListingModel(R.drawable.ic_booking_confirmed, false, "Leave"))
+                tablist.add(ListingModel(R.drawable.ic_attendance_list, false, "Attendance List"))
+                tablist.add(ListingModel(R.drawable.ic_calendar_line, false, "Calendar"))
+                tablist.add(ListingModel(R.drawable.family_vacation, false, "Request Leave"))
+                tablist.add(ListingModel(R.drawable.announcement_svg, false, "Announcement"))
+                tablist.add(ListingModel(R.drawable.ic_payroll_salary, false, "Salary"))
+            }
+        }
+
+
+
+
         val tabAdapter = HomeTabAdapter(baseActivity) {
 
         }
@@ -86,13 +107,12 @@ class HomeFragement(var baseActivity: KotlinBaseActivity) : KotlinBaseFragment()
         tabAdapter.addNewList(tablist)
 
     }
-    private fun setsubheaderAdapter()
-    {
+
+    private fun setsubheaderAdapter() {
         if (Home.userModel?.data?.user!!.roles.size > 0) {
             binding.postName.text = Home.userModel?.data?.user!!.roles[0].name
             binding.rvRequest.visible()
             if (binding.postName.text.toString().equals(Utils.SUPERADMIN)) {
-
                 levaelist.add(ListingModel(R.drawable.ic_add_boy_user, false, "Add User"))
                 levaelist.add(ListingModel(R.drawable.announcement_svg, false, "Add Announcement"))
 
@@ -101,7 +121,7 @@ class HomeFragement(var baseActivity: KotlinBaseActivity) : KotlinBaseFragment()
                 levaelist.add(ListingModel(R.drawable.logout, false, "Check out"))
             }
             val leaveadapter = LeaveRequestAdapter(baseActivity) {
-                if (it.equals(-1)||it.equals(-2)) {
+                if (it.equals(-1) || it.equals(-2)) {
                     askpermission(it)
                     //  scanQrCode.launch(null)
                 }
@@ -110,8 +130,8 @@ class HomeFragement(var baseActivity: KotlinBaseActivity) : KotlinBaseFragment()
             leaveadapter.addNewList(levaelist)
         }
     }
-    private fun   askpermission(type:Int)
-    {
+
+    private fun askpermission(type: Int) {
         val permissonList = ArrayList<String>()
         permissonList.add(Manifest.permission.ACCESS_FINE_LOCATION)
         permissonList.add(Manifest.permission.ACCESS_COARSE_LOCATION)
@@ -134,27 +154,24 @@ class HomeFragement(var baseActivity: KotlinBaseActivity) : KotlinBaseFragment()
                 )
             }
             .request { allGranted, grantedList, deniedList ->
-                if (allGranted)
-                {
-                    when(type)
-                    {
-                        -1->{
-                            inout="IN"
+                if (allGranted) {
+                    when (type) {
+                        -1 -> {
+                            inout = "IN"
 
 
                         }
-                        -2->{
-                            inout="OUT"
+                        -2 -> {
+                            inout = "OUT"
 
 
                         }
                     }
-                    if (lat.isEmpty())
-                    {
+                    if (lat.isEmpty()) {
                         showtoast("Location is needed")
                         return@request
                     }
-                    viewModel.addorupdateAttandance(lat,lng,Utils.getcurrentdate(),inout)
+                    viewModel.addorupdateAttandance(lat, lng, Utils.getcurrentdate(), inout)
 
                 }
             }
@@ -171,10 +188,10 @@ class HomeFragement(var baseActivity: KotlinBaseActivity) : KotlinBaseFragment()
         location.endUpdates()
 
     }
+
     val scanQrCode = registerForActivityResult(ScanQRCode(), ::handleResult)
 
-    fun handleResult(result: QRResult)
-    {
+    fun handleResult(result: QRResult) {
 
     }
 
@@ -186,14 +203,12 @@ class HomeFragement(var baseActivity: KotlinBaseActivity) : KotlinBaseFragment()
 
     }
 
-    override fun currentLocation(location: Location?)
-    {
+    override fun currentLocation(location: Location?) {
 
-        if (location.isNotNull())
-        {
+        if (location.isNotNull()) {
 
-            lat=location?.latitude.toString()
-            lng=location?.longitude.toString()
+            lat = location?.latitude.toString()
+            lng = location?.longitude.toString()
         }
 
     }

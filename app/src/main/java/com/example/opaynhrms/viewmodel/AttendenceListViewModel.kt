@@ -3,10 +3,13 @@ package com.example.opaynhrms.viewmodel
 import android.app.Application
 import android.content.Context
 import android.os.Bundle
+import androidx.core.content.ContextCompat
 import com.example.opaynhrms.R
 import com.example.opaynhrms.adapter.AttendanceListAdapter
 import com.example.opaynhrms.base.KotlinBaseActivity
 import com.example.opaynhrms.databinding.ActivityAttendenceListBinding
+import com.example.opaynhrms.extensions.toast
+import com.example.opaynhrms.extensions.visible
 import com.ieltslearning.base.AppViewModel
 import kotlinx.android.synthetic.main.common_toolbar.view.*
 
@@ -27,9 +30,12 @@ class AttendenceListViewModel(application: Application) : AppViewModel(applicati
 
 
     private fun settoolbar() {
-        binder.toolbar.tvtitle.setTextColor(R.color.black)
+
+        binder.toolbar.tvtitle.setTextColor(ContextCompat.getColor(baseActivity , R.color.black))
         binder.toolbar.icmenu.setImageResource(R.drawable.icback_black)
         binder.toolbar.tvtitle.text = "Attendance List"
+        binder.toolbar.ivcart.visible()
+        binder.toolbar.ivcart.setImageResource(R.drawable.ic_baseline_filter_alt_24)
     }
 
     private fun setAdapter() {

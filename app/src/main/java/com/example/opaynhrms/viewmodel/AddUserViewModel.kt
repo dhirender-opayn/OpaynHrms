@@ -12,6 +12,7 @@ import com.example.opaynhrms.R
 import com.example.opaynhrms.adapter.AttendanceListAdapter
 import com.example.opaynhrms.base.KotlinBaseActivity
 import com.example.opaynhrms.databinding.ActivityAddUserBinding
+import com.example.opaynhrms.extensions.hideKeyboard
 import com.example.opaynhrms.extensions.isEmailValid
 import com.example.opaynhrms.extensions.isNull
 import com.example.opaynhrms.repository.LoginRepository
@@ -105,10 +106,9 @@ class AddUserViewModel (application: Application) : AppViewModel(application),Vi
     }
 
     private fun setclicks() {
-        binder.toolbar.icmenu.setOnClickListener {
-            baseActivity.onBackPressed()
-        }
+        binder.toolbar.icmenu.setOnClickListener(this)
         binder.singupbtn.setOnClickListener(this)
+        binder.clsingupcontainer.setOnClickListener(this)
 
     }
     private  fun createUser()
@@ -136,6 +136,9 @@ class AddUserViewModel (application: Application) : AppViewModel(application),Vi
     {
         when(p0!!.id)
         {
+            R.id.icmenu -> {
+                baseActivity.onBackPressed()
+            }
             R.id.auto_role->{
                 baseActivity.showDropDown(binder.autoRole)
             }
@@ -144,6 +147,9 @@ class AddUserViewModel (application: Application) : AppViewModel(application),Vi
                 {
                     createUser()
                 }
+            }
+            R.id.clsingupcontainer->{
+                baseActivity.hideKeyboard()
             }
         }
 
