@@ -15,6 +15,7 @@ class NotificationAdapter(val baseActivity: KotlinBaseActivity, val itemClick: (
         }
     }
 
+
     override fun getItemCount(): Int {
         return 25
     }
