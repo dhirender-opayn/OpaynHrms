@@ -23,26 +23,29 @@ class HomeTabAdapter (val baseActivity: KotlinBaseActivity, val itemClick: (Int)
                 .skipMemoryCache(true).into(ivprofile)
 
             hometabcontianer.setOnClickListener {
+                when(list[position].type)
+                {
+                    baseActivity.getString(R.string.employees)->{
+                        baseActivity.openA(StaffListing::class)
+                    }
+                    baseActivity.getString(R.string.leave)->{
+                        baseActivity.openA(LeaveManagement::class)
+                    }
+                    baseActivity.getString(R.string.salary)->{
+                        baseActivity.openA(Payslip::class)
+                    }
+                    baseActivity.getString(R.string.requestleave)->{
+                        baseActivity.openA(RequestLeave::class)
+                    }
+                    baseActivity.getString(R.string.emergencyleave)->{
+                        baseActivity.openA(EmergencyLeaveList::class)
+                    }
+                    baseActivity.getString(R.string.attandancelist)->{
+                        baseActivity.openA(AttendanceList::class)
+                    }
+                }
 
-                if (list[position].type.equals("Employees")){
-                    baseActivity.openA(StaffListing::class)
-                }
-                if (list[position].type.equals("Leave")){
-                    baseActivity.openA(LeaveManagement::class)
-                }
-                if (list[position].type.equals("Salary")){
-                    baseActivity.openA(Payslip::class)
-                }
-                if (list[position].type.equals("Attendance List")){
-                    baseActivity.openA(AttendanceList::class)
-                }
 
-                if (list[position].type.equals("Request Leave")){
-                    baseActivity.openA(RequestLeave::class)
-                }
-                if (list[position].type.equals("Emergency Leaves")){
-                    baseActivity.openA(EmergencyLeaveList::class)
-                }
                 itemClick(position)
 
             }
