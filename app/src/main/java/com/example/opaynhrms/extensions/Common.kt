@@ -2,9 +2,7 @@ package com.example.opaynhrms.extensions
 
 import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
-import android.app.Activity
-import android.app.AlertDialog
-import android.app.Dialog
+import android.app.*
 import android.content.*
 import android.content.ClipboardManager
 import android.content.res.Resources
@@ -44,9 +42,10 @@ import java.math.RoundingMode
 import java.net.URLDecoder
 import java.text.DecimalFormat
 import java.text.SimpleDateFormat
+import java.time.OffsetDateTime
 import java.util.*
 import java.util.regex.Pattern
-
+import kotlin.coroutines.suspendCoroutine
 
 
 /*fun Activity.startHomeActivity(action: Intent.() -> Unit = {}) {
@@ -92,6 +91,9 @@ inline fun <reified T> Fragment.openActivity(extras: Intent.() -> Unit = {}) {
     intent.extras()
     startActivity(intent)
 }
+
+
+
 fun <T> LiveData<T>.observeOnce(owner: LifecycleOwner, observer: (T) -> Unit)
 {
     observe(owner, object: Observer<T>
