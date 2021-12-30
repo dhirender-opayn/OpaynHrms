@@ -184,6 +184,13 @@ object Utils
         }
         return  data
     }
+    fun getcurrentdate():String
+    {
+        val c = Calendar.getInstance()
+        val sdf = SimpleDateFormat(DATETIMEFORMAT)
+        val strDate = sdf.format(c.time)
+        return strDate
+    }
     fun shareintent(context: Context)
     {
         val shareIntent = Intent()

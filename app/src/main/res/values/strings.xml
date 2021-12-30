@@ -101,7 +101,7 @@
     <string name="passwormatcherror">Password does not match</string>
     <string name="manualpermission">You need to allow necessary permissions in Settings manually</string>
     <string name="permisionmsgfirst">Core fundamental are based on these permissions</string>
-
+    <string name="permissiondenied">Permission denied</string>
     <string name="profileupdate">Profile has been updated successfully</string>
 
 

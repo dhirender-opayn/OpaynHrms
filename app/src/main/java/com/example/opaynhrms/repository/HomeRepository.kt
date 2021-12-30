@@ -20,8 +20,6 @@ class HomeRepository(private val baseActivity: Application)
 {
     var retrofitClient: APIInterface? = null
     private val mutableLiveData = MutableLiveData<ResponseBody>()
-
-
     fun commonpost(baseActivity: KotlinBaseActivity, url:String, jsonobject: JsonObject, itemClick: (ResponseBody) -> Unit)
     {
 
@@ -116,8 +114,6 @@ class HomeRepository(private val baseActivity: Application)
 
 
     }
-
-
 
 
 }

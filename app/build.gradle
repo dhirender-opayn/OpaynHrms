@@ -84,6 +84,8 @@ dependencies {
     implementation 'com.guolindev.permissionx:permissionx:1.6.1'
     //locations
     implementation 'com.github.prabhat1707:EasyWayLocation:2.4'
+    implementation 'com.google.maps.android:android-maps-utils:0.5+'
+
 
 
     implementation "com.airbnb.android:lottie:$lottieVersion"
