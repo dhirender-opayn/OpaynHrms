@@ -14,6 +14,7 @@ object Keys
     const val RESETPASSWORD="reset-possword"
     const val CHANGEPASSWORD="change-password"
     const val TICKET="ticket"
+    const val ATTANDANCE="attendance"
     /*GUEST KEYS*/
     const val Coursetype = "coursetype"
 
@@ -33,13 +34,18 @@ object Keys
     /*parms Keys*/
     const val email="email"
     const val name="name"
+    const val lat="lat"
+    const val lng="lng"
+    const val time="timing"
     const val password="password"
+    const val type="type"
     const val confirm_password="confirm_password"
     const val rememberMe="rememberMe"
     const val code="code"
     const val subject="subject"
     const val mobile="mobile"
     const val user_id="user_id"
+    const val role_id="role_id"
     const val id="id"
     const val image="image"
     const val clockify_key="clockify_key"

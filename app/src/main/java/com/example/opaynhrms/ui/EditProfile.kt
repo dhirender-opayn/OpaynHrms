@@ -1,4 +1,5 @@
 package com.example.opaynhrms.ui
+
 import android.graphics.Bitmap
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
@@ -28,6 +29,7 @@ class EditProfile : KotlinBaseActivity() {
             startCrop()
         }
     }
+
     private val cropImage = registerForActivityResult(CropImageContract()) { result ->
         if (result.isSuccessful) {
             // use the returned uri
@@ -36,7 +38,7 @@ class EditProfile : KotlinBaseActivity() {
             val fi = File(uriFilePath.toString())
 
             fi.let {
-                if (it .isNotNull()) {
+                if (it.isNotNull()) {
                     viewmodel.setfile(it)
 
                     // Glide.with(this).load(it).into(binding.ivprofile)
@@ -54,14 +56,9 @@ class EditProfile : KotlinBaseActivity() {
 
         }
     }
+
     private fun startCrop() {
-//        ImagePicker.with(this)
-//            .compress(1024)
-//            .crop()//Final image size will be less than 1 MB(Optional)
-//            .maxResultSize(1080, 1080)  //Final image resolution will be less than 1080 x 1080(Optional)
-//            .createIntent { intent ->
-//                startForProfileImageResult.launch(intent)
-//            }
+
         // start picker to get image for cropping and then use the image in cropping activity
         cropImage.launch(
             options {

@@ -9,8 +9,10 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.opaynhrms.R
 import com.example.opaynhrms.base.KotlinBaseActivity
 import com.example.opaynhrms.databinding.FragmentProfileBinding
-import com.example.opaynhrms.extensions.invisible
-import com.example.opaynhrms.ui.*
+import com.example.opaynhrms.ui.ChangePassword
+import com.example.opaynhrms.ui.EditProfile
+import com.example.opaynhrms.ui.LeaveManagement
+import com.example.opaynhrms.ui.Notification
 import com.example.opaynhrms.viewmodel.FragmentHomeViewModel
 import com.example.opaynhrms.viewmodel.ProfileViewModel
 import com.ieltslearning.base.KotlinBaseFragment
@@ -20,7 +22,7 @@ import kotlinx.android.synthetic.main.fragment_profile.*
 
 class ProfileFragment(var baseActivity: KotlinBaseActivity) : KotlinBaseFragment(),
     View.OnClickListener {
-    lateinit var binding:FragmentProfileBinding
+    lateinit var binding: FragmentProfileBinding
     lateinit var viewModel: ProfileViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,27 +43,24 @@ class ProfileFragment(var baseActivity: KotlinBaseActivity) : KotlinBaseFragment
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
-        viewModel.setBinder(binding,baseActivity)
+        viewModel.setBinder(binding, baseActivity)
         click()
         settoolbar()
 
 
     }
 
-    private fun click()
-    {
+    private fun click() {
         binding.leavemangement.setOnClickListener(this)
         binding.ivedit.setOnClickListener(this)
         binding.changepassword.setOnClickListener(this)
         binding.notification.setOnClickListener(this)
         binding.loginbtn.setOnClickListener(this)
-        binding.support.setOnClickListener(this)
     }
 
 
-    private fun settoolbar(){
-        binding.toolbar.icmenu.invisible()
-        binding.toolbar.tvtitle.text = getString(R.string.profile)
+    private fun settoolbar() {
+        toolbar.tvtitle.text = "Profile"
     }
 
     override fun onClick(p0: View?) {
@@ -77,9 +76,6 @@ class ProfileFragment(var baseActivity: KotlinBaseActivity) : KotlinBaseFragment
             }
             R.id.notification -> {
                 baseActivity.openA(Notification::class)
-            }
-            R.id.support->{
-                baseActivity.openA(Support::class)
             }
             R.id.loginbtn -> {
                 baseActivity.logout()

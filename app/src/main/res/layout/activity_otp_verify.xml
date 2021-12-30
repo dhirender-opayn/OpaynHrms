@@ -128,7 +128,7 @@
                             <com.google.android.material.textfield.TextInputLayout
                                 android:id="@+id/createPass_wrap"
                                 style="@style/edittextlogintitleparent"
-                                android:hint="@string/create_password"
+                                android:hint="@string/new_password"
                                 app:boxStrokeColor="@color/black"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"

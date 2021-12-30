@@ -24,16 +24,29 @@ class LeaveRequestAdapter(val baseActivity: KotlinBaseActivity, val itemClick: (
             Glide.with(baseActivity).load(list[position].value)
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .skipMemoryCache(true).into(ivprofile)
+
             leaverequestcontainer.setOnClickListener {
-                if (list[position].type.equals("Attendance")) {
-                    itemClick(position)
-                    Log.e("ddfdfdfdfeeeee", "15415694521982385")
-                } else if (list[position].type.equals("Add User")){
-                    baseActivity.openA(AddUser::class)
-                } else if (list[position].type.equals("Add Announcement")){
-                    baseActivity.openA(AddAnnouncement::class)
-                } else {
-                    baseActivity.openA(RequestLeave::class)
+                when(list[position].type)
+                {
+                    "Attendance"->{
+                        itemClick(position)
+                    }
+                    "Add User"->{
+                        baseActivity.openA(AddUser::class)
+                    }
+                    "Add Announcement"->{
+                        baseActivity.openA(AddUser::class)
+                    }
+                    "Check in"->{
+                        itemClick(-1)
+                    }
+                    "Check out"->{
+                        itemClick(-2)
+                    }
+                    else->{
+                        baseActivity.openA(RequestLeave::class)
+                    }
+
                 }
             }
 

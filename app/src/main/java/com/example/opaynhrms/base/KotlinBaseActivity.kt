@@ -20,6 +20,8 @@ import android.view.Gravity
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
+import android.view.inputmethod.InputMethodManager
+import android.widget.AutoCompleteTextView
 import android.widget.Toast
 import androidx.annotation.IdRes
 import androidx.appcompat.app.AppCompatActivity
@@ -113,6 +115,14 @@ open class KotlinBaseActivity(@IdRes private val container: Int = 0) : AppCompat
         preferencemanger.saveString(Keys.USERDATA, "")
         openA(Login::class)
         finishAffinity()
+
+    }
+    fun showDropDown(v: View)
+    {
+
+        val `in` = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        `in`.hideSoftInputFromWindow(v.windowToken, 0)
+        (v as AutoCompleteTextView).showDropDown()
 
     }
 

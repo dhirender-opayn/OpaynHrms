@@ -31,8 +31,7 @@ class EditProfileViewModel(application: Application) : AppViewModel(application)
     val bundle = Bundle()
     var file: File? = null
 
-    fun setBinder(binder: ActivityEditProfileBinding, baseActivity: KotlinBaseActivity)
-    {
+    fun setBinder(binder: ActivityEditProfileBinding, baseActivity: KotlinBaseActivity) {
         this.binder = binder
         this.mContext = binder.root.context
         this.baseActivity = baseActivity
@@ -41,14 +40,14 @@ class EditProfileViewModel(application: Application) : AppViewModel(application)
         setData()
 
     }
-    private  fun setData()
-    {
+
+    private fun setData() {
         binder.tvusername.setText(Home.userModel!!.data.user.name)
         binder.tvemail.setText(Home.userModel!!.data.user.email)
         binder.tvmobile.setText(Home.userModel!!.data.user.mobile)
-        if (Home.userModel!!.data.user.profile.isNotNull() && Home.userModel!!.data.user.profile.image.isNotNull())
-        {
-            Picasso.get().load(Home.userModel!!.data.user.profile.image).placeholder(R.drawable.userwhite).into(binder.ivprofileimg)
+        if (Home.userModel!!.data.user.profile.isNotNull() && Home.userModel!!.data.user.profile.image.isNotNull()) {
+            Picasso.get().load(Home.userModel!!.data.user.profile.image)
+                .placeholder(R.drawable.userwhite).into(binder.ivprofileimg)
         }
     }
 
@@ -58,37 +57,36 @@ class EditProfileViewModel(application: Application) : AppViewModel(application)
         Glide.with(baseActivity).load(file).diskCacheStrategy(DiskCacheStrategy.NONE)
             .skipMemoryCache(true).into(binder.ivprofileimg)
     }
-    private  fun validations():Boolean
-    {
-        if (binder.tvusername.text!!.trim().isEmpty())
-        {
+
+    private fun validations(): Boolean {
+        if (binder.tvusername.text!!.trim().isEmpty()) {
             baseActivity.showtoast(baseActivity.getString(R.string.v_entername))
             return false
-        }
-        else if (binder.tvmobile.text.toString().isEmpty())
-        {
+        } else if (binder.tvmobile.text.toString().isEmpty()) {
             showToast(mContext.getString(R.string.v_phonenumber))
             return false
         }
         return true
     }
-    private  fun updateprofile()
-    {
+
+    private fun updateprofile() {
         val fields = ArrayList<MultipartBody.Part>()
         getMultiPart(Keys.name, binder.tvusername.text.toString())?.let { fields.add(it) }
         getMultiPart(Keys.email, binder.tvemail.text.toString())?.let { fields.add(it) }
         getMultiPart(Keys.mobile, binder.tvmobile.text.toString())?.let { fields.add(it) }
         getMultiPart(Keys.id, Home.userModel!!.data.user.id.toString())?.let { fields.add(it) }
-        getMultiPart(Keys.clockify_key, Home.userModel!!.data.user.id.toString())?.let { fields.add(it) }
+        getMultiPart(Keys.clockify_key, Home.userModel!!.data.user.id.toString())?.let {
+            fields.add(
+                it
+            )
+        }
         if (file != null) {
             getMultiPart(Keys.image, file!!)?.let { fields.add(it) }
         }
         loginSigupRepository.updateprofile(baseActivity, fields) {
-
             if (!it.data.isNull()) {
                 val gson = Gson()
                 val json = gson.toJson(it)
-                Log.e("updateddata", json.toString())
                 baseActivity.preferencemanger.saveString(Keys.USERDATA, json)
                 Home.userModel = it
 
@@ -100,11 +98,9 @@ class EditProfileViewModel(application: Application) : AppViewModel(application)
         }
     }
 
-    private fun setclicks()
-    {
+    private fun setclicks() {
         binder.loginbtn.setOnClickListener {
-            if (validations())
-            {
+            if (validations()) {
                 updateprofile()
             }
         }
