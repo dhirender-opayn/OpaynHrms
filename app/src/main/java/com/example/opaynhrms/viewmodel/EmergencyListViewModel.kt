@@ -49,7 +49,7 @@ class EmergencyListViewModel(application: Application) : AppViewModel(applicatio
 
     private fun settoolbar(){
         binder.toolbar.tvtitle.setTextColor(ContextCompat.getColor(baseActivity ,R.color.black))
-        binder.toolbar.tvtitle.text = baseActivity.getString(R.string.emergencyleavemanagement)
+        binder.toolbar.tvtitle.text = baseActivity.getString( R.string.emergencyleave)
         binder.toolbar.icmenu.setImageResource(R.drawable.icback_black)
     }
 

@@ -103,7 +103,8 @@
     <string name="permisionmsgfirst">Core fundamental are based on these permissions</string>
     <string name="permissiondenied">Permission denied</string>
     <string name="profileupdate">Profile has been updated successfully</string>
-
+    <string name="approved">Approved</string>
+    <string name="emergencyleave">Emergency Leave</string>
 
 
 </resources>
