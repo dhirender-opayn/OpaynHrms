@@ -100,7 +100,6 @@ class ForgotViewModel(application: Application) : AppViewModel(application), Ite
         jsonobj.addProperty(Keys.email,binder.tvEmail.text.toString())
         loginSigupRepository.commonpost(baseActivity,Keys.FORGOTPASSWORD,jsonobj){
             baseActivity.openA(OtpVerify::class)
-            baseActivity.finishAffinity()
         }
     }
 }

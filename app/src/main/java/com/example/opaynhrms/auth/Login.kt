@@ -25,27 +25,27 @@ class Login : KotlinBaseActivity() {
         viewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
         viewModel.setBinder(binding, this)
         askpermission()
-        Handler(Looper.getMainLooper()).postDelayed({
-            //openA(SpeakingTest::class)
-            getuserdata()
-        }, 1000)
+//        Handler(Looper.getMainLooper()).postDelayed({
+//            //openA(SpeakingTest::class)
+////            getuserdata()
+//        }, 1000)
     }
 
 
-    private fun getuserdata() {
-        preferencemanger.getString(Keys.USERDATA).let {
-            if (it == null || it.toString().isEmpty()) {
-
-            } else {
-                bundle.putString(Keys.FROM, "1")
-                openA(Home::class, bundle)
-                finishAffinity()
-            }
-
-        }
-
-    }
-    private fun   askpermission()
+//    private fun getuserdata() {
+//        preferencemanger.getString(Keys.USERDATA).let {
+//            if (it == null || it.toString().isEmpty()) {
+//
+//            } else {
+//                bundle.putString(Keys.FROM, "1")
+//                openA(Home::class, bundle)
+//                finishAffinity()
+//            }
+//
+//        }
+//
+//    }
+    private fun askpermission()
     {
         val permissonList = ArrayList<String>()
         permissonList.add(Manifest.permission.ACCESS_FINE_LOCATION)

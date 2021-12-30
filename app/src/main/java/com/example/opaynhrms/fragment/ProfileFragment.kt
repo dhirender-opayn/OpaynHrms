@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.opaynhrms.R
 import com.example.opaynhrms.base.KotlinBaseActivity
 import com.example.opaynhrms.databinding.FragmentProfileBinding
+import com.example.opaynhrms.extensions.gone
 import com.example.opaynhrms.ui.*
 import com.example.opaynhrms.viewmodel.FragmentHomeViewModel
 import com.example.opaynhrms.viewmodel.ProfileViewModel
@@ -58,7 +59,8 @@ class ProfileFragment(var baseActivity: KotlinBaseActivity) : KotlinBaseFragment
 
 
     private fun settoolbar() {
-        toolbar.tvtitle.text = "Profile"
+       binding.toolbar.tvtitle.text = "Profile"
+        binding.toolbar.icmenu.gone()
     }
 
     override fun onClick(p0: View?) {

@@ -90,7 +90,7 @@ class HomeFragement(var baseActivity: KotlinBaseActivity) : KotlinBaseFragment()
                 tablist.add(ListingModel(R.drawable.ic_booking_confirmed, false, getString(R.string.leave)))
                 tablist.add(ListingModel(R.drawable.ic_attendance_list, false, getString(R.string.attandancelist)))
                 tablist.add(ListingModel(R.drawable.ic_calendar_line, false, getString(R.string.calendar)))
-                tablist.add(ListingModel(R.drawable.family_vacation, false, getString(R.string.requestleave)))
+                tablist.add(ListingModel(R.drawable.ic_travelling, false, getString(R.string.requestleave)))
                 tablist.add(ListingModel(R.drawable.announcement_svg, false, getString(R.string.announcement)))
                 tablist.add(ListingModel(R.drawable.ic_payroll_salary, false, getString(R.string.salary)))
             }
@@ -114,7 +114,7 @@ class HomeFragement(var baseActivity: KotlinBaseActivity) : KotlinBaseFragment()
                 levaelist.add(ListingModel(R.drawable.announcement_svg, false, getString(R.string.add_announcement)))
 
             } else {
-                levaelist.add(ListingModel(R.drawable.enter, false, getString(R.string.checkin)))
+                levaelist.add(ListingModel(R.drawable.enter, false, getString(R.string.checkIn)))
                 levaelist.add(ListingModel(R.drawable.logout, false, getString(R.string.checkout)))
             }
             val leaveadapter = LeaveRequestAdapter(baseActivity) {

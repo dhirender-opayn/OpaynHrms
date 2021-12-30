@@ -63,7 +63,7 @@
     <string name="status">Status</string>
     <string name="absent">Absent</string>
     <string name="checkIn">CheckIn</string>
-    <string name="checkout">CheckOut</string>
+    <string name="checkout">Check Out</string>
     <string name="basic_information">Basic information</string>
     <string name="designation">Designation</string>
     <string name="department">Department</string>
@@ -78,7 +78,7 @@
     <string name="description">Description</string>
     <string name="select_date">Select Date</string>
     <string name="add_user">Add User</string>
-     <string name="select_role">Select Role</string>
+    <string name="select_role">Select Role</string>
 
 
     <string name="v_email">Please enter email</string>
@@ -96,7 +96,7 @@
     <string name="v_newpassword">Please enter new password</string>
     <string name="v_currentpassword">Please enter current password</string>
     <string name="v_role">Please select role</string>
-     <string name="passwordlength">Password must contain atleast 6 characters</string>
+    <string name="passwordlength">Password must contain atleast 6 characters</string>
     <string name="passwormatcherror">Password does not match</string>
     <string name="manualpermission">You need to allow necessary permissions in Settings manually</string>
     <string name="permisionmsgfirst">Core fundamental are based on these permissions</string>
@@ -114,9 +114,14 @@
     <string name="salary">Salary</string>
     <string name="requestleave">Request Leave</string>
     <string name="announcement">Announcement</string>
-    <string name="checkin">Check in</string>
     <string name="add_announcement">Add Announcement</string>
     <string name="attandance">Attendance</string>
+    <string name="enter_the_message">Enter the message</string>
+    <string name="filter">Filter</string>
+    <string name="custom">Custom</string>
+    <string name="monthly">Monthly</string>
+    <string name="weekly">Weekly</string>
+    <string name="hello">Hello</string>
 
 
 </resources>

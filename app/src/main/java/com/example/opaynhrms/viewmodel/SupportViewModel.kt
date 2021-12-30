@@ -50,16 +50,16 @@ class SupportViewModel(application: Application) : AppViewModel(application) {
 //    }
 
 
-//    private fun settoolbar() {
+    //    private fun settoolbar() {
 //        binder.toolbar.tvtitle.text = "Support"
 //    }
-    private fun click(){
+    private fun click() {
         binder.toolbar.icmenu.setOnClickListener {
             baseActivity.onBackPressed()
         }
-    binder.loginbtn.setOnClickListener {
-        baseActivity.showtoast("Thanks for contact Us, Team will contact you soon. Please check your mail for more details.")
-    }
+        binder.loginbtn.setOnClickListener {
+            baseActivity.showtoast("Thanks for contact Us, Team will contact you soon. Please check your mail for more details.")
+        }
     }
 
 

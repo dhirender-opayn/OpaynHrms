@@ -36,6 +36,7 @@ class ProfileViewModel(application: Application) : AppViewModel(application) {
         if (Home.userModel!!.data.user.profile.isNotNull() && Home.userModel!!.data.user.profile.image.isNotNull()) {
             Picasso.get().load(Home.userModel!!.data.user.profile.image)
                 .placeholder(R.drawable.userwhite).into(binder.ivprofile)
+
         }
 
     }
