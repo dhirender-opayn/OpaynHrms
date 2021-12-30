@@ -25,7 +25,6 @@ class LeaveRequestAdapter(val baseActivity: KotlinBaseActivity, val itemClick: (
             Glide.with(baseActivity).load(list[position].value)
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .skipMemoryCache(true).into(ivprofile)
-
             leaverequestcontainer.setOnClickListener {
                 when(list[position].type)
                 {

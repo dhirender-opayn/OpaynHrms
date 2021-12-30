@@ -1,5 +1,6 @@
 package com.example.opaynhrms.utils
 
+import android.app.DatePickerDialog
 import android.app.Dialog
 import android.content.Context
 import android.content.Intent
@@ -21,8 +22,16 @@ import android.os.Build
 import android.text.Html
 import android.text.Spanned
 import android.util.Log
+import android.widget.AutoCompleteTextView
+import com.example.opaynhrms.base.KotlinBaseActivity
 import java.lang.Exception
 import java.util.concurrent.TimeUnit
+import javax.xml.datatype.DatatypeConstants.MONTHS
+import android.content.DialogInterface
+
+import android.R
+import android.app.TimePickerDialog
+import com.example.opaynhrms.extensions.capitalizesLetters
 
 
 object Utils
@@ -84,6 +93,51 @@ object Utils
         } else {
             @Suppress("DEPRECATION")
             return Html.fromHtml(this)
+        }
+    }
+
+
+
+    fun shoedatepicker(baseActivity: KotlinBaseActivity,lblDate:AutoCompleteTextView,onConfirmed: () -> Unit = {})
+    {
+        val c = Calendar.getInstance()
+        val year = c.get(Calendar.YEAR)
+        var month = c.get(Calendar.MONTH)
+        val day = c.get(Calendar.DAY_OF_MONTH)
+
+
+        val dpd = DatePickerDialog(baseActivity, DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+            // Display Selected date in textbox
+            var month1=monthOfYear
+            ++month1
+            lblDate.setText("" + dayOfMonth.toString() +"-" + month1+ "-" + year.toString())
+            onConfirmed.invoke()
+
+        }, year, month, day)
+        dpd.setButton(DialogInterface.BUTTON_NEGATIVE, baseActivity.getString(R.string.cancel).capitalizesLetters(),
+            DialogInterface.OnClickListener { dialog, which ->
+                if (which == DialogInterface.BUTTON_NEGATIVE) {
+                    // Do Stuff
+                     onConfirmed.invoke()
+                }
+            })
+
+        dpd.show()
+    }
+    fun getTime(textView: AutoCompleteTextView, context: Context,onConfirmed: () -> Unit = {}){
+
+        val cal = Calendar.getInstance()
+
+        val timeSetListener = TimePickerDialog.OnTimeSetListener { timePicker, hour, minute ->
+            cal.set(Calendar.HOUR_OF_DAY, hour)
+            cal.set(Calendar.MINUTE, minute)
+
+            textView.setText(  SimpleDateFormat("HH:mm").format(cal.time))
+        }
+
+        textView.setOnClickListener {
+           // onConfirmed.invoke()
+            TimePickerDialog(context, timeSetListener, cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE), true).show()
         }
     }
     //time conversion

@@ -47,11 +47,14 @@ object Keys
     const val mobile="mobile"
     const val user_id="user_id"
     const val role_id="role_id"
+    const val reason="reason"
     const val id="id"
     const val image="image"
     const val clockify_key="clockify_key"
     const val description="description"
     const val old_password="old_password"
     const val new_password="new_password"
+    const val start_date="start_date"
+    const val end_date="end_date"
 
 }
