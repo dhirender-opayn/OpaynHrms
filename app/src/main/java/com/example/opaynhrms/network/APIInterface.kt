@@ -1,5 +1,6 @@
 package com.example.opaynhrms.network
 
+ import com.example.opaynhrms.model.AttandanceListJson
  import com.example.opaynhrms.model.LoginJson
  import com.example.opaynhrms.repository.RolesJson
  import com.google.gson.JsonObject
@@ -40,5 +41,9 @@ interface APIInterface
     @Headers("Accept: application/json")
     @GET("roles")
     fun roles(@Header("Authorization") token: String): Call<RolesJson>
+
+    @Headers("Accept: application/json")
+    @GET("")
+    fun attdancelist(@Header("Authorization") token: String,@Url url:String ): Call<AttandanceListJson>
 
 }

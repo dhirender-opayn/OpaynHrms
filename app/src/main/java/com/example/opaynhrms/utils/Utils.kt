@@ -20,6 +20,7 @@ import java.util.*
 import android.os.Build
 import android.text.Html
 import android.text.Spanned
+import android.util.Log
 import java.lang.Exception
 import java.util.concurrent.TimeUnit
 
@@ -29,6 +30,7 @@ object Utils
     const val SUPERADMIN="Super Admin";
     const val REQUEST_FOREGROUND_ONLY_PERMISSIONS_REQUEST_CODE = 34
     const val DATETIMEFORMAT="yyyy-MM-dd HH:mm:ss"
+    const val dateformatwithZ="yyyy-MM-dd'T'HH:mm:ssZ";
     const val TIMEFORMAT="hh:mm aa"
     const val DATEFORMAT="dd MMM, yyyy"
     const val DATEFORMAT2="yyyy-MM-dd"
@@ -45,6 +47,8 @@ object Utils
     const val APPLICATIONPDF="application/pdf"
     const val PDFRESOUCE="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
     var AUTHTOKEN=""
+    const val OPAYN_LAT="30.8935"
+    const val OPAYN_LNG="75.8290"
     var CHECKUSER=""
     var MCQQUESTION=1
     var TRUEFALSEQUESTION=2
@@ -209,6 +213,7 @@ object Utils
             parsed = df_input.parse(inputDate)
             outputDate = df_output.format(parsed)
         } catch (e: ParseException) {
+            Log.e("datexptions",e.message.toString())
         }
         return outputDate
     }

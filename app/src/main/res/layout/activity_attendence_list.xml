@@ -19,15 +19,34 @@
         <include
             android:id="@+id/toolbar"
             layout="@layout/common_toolbar" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvAttendenceList"
+        <com.faltenreich.skeletonlayout.SkeletonLayout
+            android:id="@+id/skeletonLayout"
             android:layout_width="match_parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar"
+            app:layout_constraintBottom_toTopOf="@id/rvprogress"
             android:layout_height="0dp"
-            android:orientation="vertical"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            >
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvAttendenceList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                 />
+
+        </com.faltenreich.skeletonlayout.SkeletonLayout>
+
+
+        <ProgressBar
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:id="@+id/rvprogress"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

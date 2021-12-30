@@ -5,6 +5,7 @@ import android.app.Application
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
+import androidx.drawerlayout.widget.DrawerLayout
 import com.example.opaynhrms.R
 import com.example.opaynhrms.base.KotlinBaseActivity
 import com.example.opaynhrms.databinding.ActivityHomeBinding
@@ -37,6 +38,7 @@ class HomeViewModel(application: Application) : AppViewModel(application) {
         this.binder.viewModel = this
 
         //defalut icon set
+        binder.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
         changeIcon(R.drawable.ic_dashboard_active, R.drawable.ic_statistics, R.drawable.ic_profile)
 
         setclicks()

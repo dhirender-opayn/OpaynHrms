@@ -78,8 +78,7 @@
     <string name="description">Description</string>
     <string name="select_date">Select Date</string>
     <string name="add_user">Add User</string>
-    <string name="add_announcement">Add Announcement</string>
-    <string name="select_role">Select Role</string>
+     <string name="select_role">Select Role</string>
 
 
     <string name="v_email">Please enter email</string>
@@ -105,6 +104,17 @@
     <string name="profileupdate">Profile has been updated successfully</string>
     <string name="approved">Approved</string>
     <string name="emergencyleave">Emergency Leave</string>
+    <string name="attandancelist">Attendance List</string>
+    <string name="distancerange">Attendance can me marked between 100 meters of distance</string>
+    <string name="leave">Leave</string>
+    <string name="calendar">Calendar</string>
+    <string name="employees">Employees</string>
+    <string name="salary">Salary</string>
+    <string name="requestleave">Request Leave</string>
+    <string name="announcement">Announcement</string>
+    <string name="checkin">Check in</string>
+    <string name="add_announcement">Add Announcement</string>
+    <string name="attandance">Attendance</string>
 
 
 </resources>

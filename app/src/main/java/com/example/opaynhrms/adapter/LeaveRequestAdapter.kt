@@ -17,7 +17,8 @@ class LeaveRequestAdapter(val baseActivity: KotlinBaseActivity, val itemClick: (
         R.layout.item_leave_request
     ) {
 
-    override fun onBindViewHolder(holder: IViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: IViewHolder, position: Int)
+    {
         holder.itemView.apply {
 
             leave_type.setText(list[position].type.toString())
@@ -28,19 +29,19 @@ class LeaveRequestAdapter(val baseActivity: KotlinBaseActivity, val itemClick: (
             leaverequestcontainer.setOnClickListener {
                 when(list[position].type)
                 {
-                    "Attendance"->{
+                    baseActivity.getString(R.string.attandance)->{
                         itemClick(position)
                     }
-                    "Add User"->{
+                    baseActivity.getString(R.string.add_user)->{
                         baseActivity.openA(AddUser::class)
                     }
-                    "Add Announcement"->{
-                        baseActivity.openA(AddUser::class)
+                    baseActivity.getString(R.string.add_announcement)->{
+                        baseActivity.openA(AddAnnouncement::class)
                     }
-                    "Check in"->{
+                    baseActivity.getString(R.string.checkin)->{
                         itemClick(-1)
                     }
-                    "Check out"->{
+                    baseActivity.getString(R.string.checkout)->{
                         itemClick(-2)
                     }
                     else->{

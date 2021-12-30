@@ -25,6 +25,8 @@ import com.example.opaynhrms.utils.Utils
 import com.example.opaynhrms.viewmodel.FragmentHomeViewModel
 import com.example.opaynhrms.viewmodel.HomeViewModel
 import com.example.opaynhrms.viewmodel.LoginViewModel
+import com.google.android.gms.maps.model.LatLng
+import com.google.maps.android.SphericalUtil
 import com.ieltslearning.base.KotlinBaseFragment
 import com.permissionx.guolindev.PermissionX
 import kotlinx.android.synthetic.main.fragment_home_fragement.*
@@ -47,6 +49,7 @@ class HomeFragement(var baseActivity: KotlinBaseActivity) : KotlinBaseFragment()
     var inout=""
     var lat=""
     var lng=""
+
 
     override fun onCreate(savedInstanceState: Bundle?)
     {
@@ -74,11 +77,24 @@ class HomeFragement(var baseActivity: KotlinBaseActivity) : KotlinBaseFragment()
     {
 
         val tablist = ArrayList<ListingModel>()
-        tablist.add(ListingModel(R.drawable.ic_booking_confirmed, false, "Leave"))
-        tablist.add(ListingModel(R.drawable.ic_attendance_list, false, "Attendance List"))
-         tablist.add(ListingModel(R.drawable.ic_calendar_line, false, "Calendar"))
-        tablist.add(ListingModel(R.drawable.ic_employee, false, "Employees"))
-        tablist.add(ListingModel(R.drawable.ic_emergency, false, "Emergency Leaves"))
+        if (Home.userModel?.data?.user!!.roles.size > 0) {
+            binding.postName.text = Home.userModel?.data?.user!!.roles[0].name
+            binding.rvRequest.visible()
+            if (binding.postName.text.toString().equals(Utils.SUPERADMIN)) {
+                tablist.add(ListingModel(R.drawable.ic_booking_confirmed, false, getString(R.string.leave)))
+                //tablist.add(ListingModel(R.drawable.ic_attendance_list, false, "Attendance List"))
+                tablist.add(ListingModel(R.drawable.ic_calendar_line, false, getString(R.string.calendar)))
+                tablist.add(ListingModel(R.drawable.ic_employee, false, getString(R.string.employees)))
+                tablist.add(ListingModel(R.drawable.ic_emergency, false, getString(R.string.emergencyleave)))
+            } else {
+                tablist.add(ListingModel(R.drawable.ic_booking_confirmed, false, getString(R.string.leave)))
+                tablist.add(ListingModel(R.drawable.ic_attendance_list, false, getString(R.string.attandancelist)))
+                tablist.add(ListingModel(R.drawable.ic_calendar_line, false, getString(R.string.calendar)))
+                tablist.add(ListingModel(R.drawable.family_vacation, false, getString(R.string.requestleave)))
+                tablist.add(ListingModel(R.drawable.announcement_svg, false, getString(R.string.announcement)))
+                tablist.add(ListingModel(R.drawable.ic_payroll_salary, false, getString(R.string.salary)))
+            }
+        }
         val tabAdapter = HomeTabAdapter(baseActivity) {
 
         }
@@ -88,17 +104,18 @@ class HomeFragement(var baseActivity: KotlinBaseActivity) : KotlinBaseFragment()
     }
     private fun setsubheaderAdapter()
     {
-        if (Home.userModel?.data?.user!!.roles.size > 0) {
+        if (Home.userModel?.data?.user!!.roles.size > 0)
+        {
             binding.postName.text = Home.userModel?.data?.user!!.roles[0].name
             binding.rvRequest.visible()
             if (binding.postName.text.toString().equals(Utils.SUPERADMIN)) {
 
-                levaelist.add(ListingModel(R.drawable.ic_add_boy_user, false, "Add User"))
-                levaelist.add(ListingModel(R.drawable.announcement_svg, false, "Add Announcement"))
+                levaelist.add(ListingModel(R.drawable.ic_add_boy_user, false, getString(R.string.add_user)))
+                levaelist.add(ListingModel(R.drawable.announcement_svg, false, getString(R.string.add_announcement)))
 
             } else {
-                levaelist.add(ListingModel(R.drawable.enter, false, "Check in"))
-                levaelist.add(ListingModel(R.drawable.logout, false, "Check out"))
+                levaelist.add(ListingModel(R.drawable.enter, false, getString(R.string.checkin)))
+                levaelist.add(ListingModel(R.drawable.logout, false, getString(R.string.checkout)))
             }
             val leaveadapter = LeaveRequestAdapter(baseActivity) {
                 if (it.equals(-1)||it.equals(-2)) {
@@ -154,7 +171,13 @@ class HomeFragement(var baseActivity: KotlinBaseActivity) : KotlinBaseFragment()
                         showtoast("Location is needed")
                         return@request
                     }
-                    viewModel.addorupdateAttandance(lat,lng,Utils.getcurrentdate(),inout)
+                    if (calculateDistance()<=100)
+                    {
+                        viewModel.addorupdateAttandance(lat,lng,Utils.getcurrentdate(),inout)
+                    }
+                    else{
+                        showtoast(getString(R.string.distancerange))
+                    }
 
                 }
             }
@@ -177,6 +200,13 @@ class HomeFragement(var baseActivity: KotlinBaseActivity) : KotlinBaseFragment()
     {
 
     }
+    private  fun calculateDistance():Int
+    {
+        val srclat=LatLng(lat.toDouble(),lng.toDouble())
+        val deslat=LatLng(Utils.OPAYN_LAT.toDouble(),Utils.OPAYN_LNG.toDouble())
+        val  distance= SphericalUtil.computeDistanceBetween(srclat, deslat);
+         return  distance.toInt()
+    }
 
     override fun onClick(p0: View?) {
 
@@ -194,6 +224,8 @@ class HomeFragement(var baseActivity: KotlinBaseActivity) : KotlinBaseFragment()
 
             lat=location?.latitude.toString()
             lng=location?.longitude.toString()
+
+            calculateDistance()
         }
 
     }

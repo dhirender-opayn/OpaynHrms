@@ -15,6 +15,7 @@ object Keys
     const val CHANGEPASSWORD="change-password"
     const val TICKET="ticket"
     const val ATTANDANCE="attendance"
+    const val ATTANDANCELIST="attendance/listing"
     /*GUEST KEYS*/
     const val Coursetype = "coursetype"
 

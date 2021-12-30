@@ -13,7 +13,8 @@ class AttendanceList : KotlinBaseActivity() {
     lateinit var binding: ActivityAttendenceListBinding
     lateinit var viewmodel: AttendenceListViewModel
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?)
+    {
         super.onCreate(savedInstanceState)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_attendence_list)
