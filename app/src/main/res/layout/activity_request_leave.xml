@@ -354,6 +354,7 @@
                                 android:layout_height="@dimen/_150sdp"
                                 android:gravity="start"
                                 android:inputType="none"
+                                android:scrollIndicators="none"
                                 android:lines="10"
                                 android:maxLength="500"
                                 android:singleLine="false"
