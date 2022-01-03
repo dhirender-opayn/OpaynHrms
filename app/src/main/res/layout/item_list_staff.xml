@@ -3,76 +3,121 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/light_grey">
+    >
 
-
-    <androidx.cardview.widget.CardView
+    <com.example.opaynhrms.utils.swipreval.SwipeRevealLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardElevation="@dimen/_3sdp"
-        app:cardPreventCornerOverlap="true"
-        app:cardUseCompatPadding="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:dragEdge="right"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:mode="same_level">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <!-- Your secondary layout here -->
+        <FrameLayout
+
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivedit"
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:padding="@dimen/_5sdp"
+                    android:src="@drawable/ic_editprofile" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivdelete"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:padding="@dimen/_5sdp"
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:src="@drawable/trash" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </FrameLayout>
+
+        <!-- Your main layout here -->
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/clstaftListcontainer"
-            android:padding="@dimen/_10sdp">
+            android:layout_height="match_parent">
 
-
-            <com.makeramen.roundedimageview.RoundedImageView
-                android:id="@+id/ivStaffProfile"
-                android:layout_width="@dimen/_50sdp"
-                android:layout_height="@dimen/_50sdp"
-                android:layout_centerInParent="true"
-                android:src="@drawable/placeholder"
-                app:riv_corner_radius="@dimen/_5sdp"
-                android:scaleType="centerCrop"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvStaffleave_days"
-                style="@style/semiboldfont"
-                android:layout_width="0dp"
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:maxLength="50"
-                android:singleLine="true"
+                app:cardCornerRadius="@dimen/_5sdp"
+                app:cardElevation="@dimen/_3sdp"
+                app:cardBackgroundColor="@color/white"
+                app:cardPreventCornerOverlap="true"
+                app:cardUseCompatPadding="true">
 
-                android:textColor="@color/dark_grey"
-                android:textSize="@dimen/_12sdp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/ivStaffProfile"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvStaffleave_type"
-                style="@style/semiboldfont"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_3sdp"
-                android:maxLength="50"
-                android:singleLine="true"
-
-                android:textColor="@color/light_gre1"
-                android:textSize="@dimen/_10sdp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/ivStaffProfile"
-                app:layout_constraintTop_toBottomOf="@+id/tvStaffleave_days" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clstaftListcontainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_10sdp">
 
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                    <com.makeramen.roundedimageview.RoundedImageView
+                        android:id="@+id/ivStaffProfile"
+                        android:layout_width="@dimen/_50sdp"
+                        android:layout_height="@dimen/_50sdp"
+                        android:layout_centerInParent="true"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/placeholder"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:riv_corner_radius="@dimen/_5sdp" />
 
 
-    </androidx.cardview.widget.CardView>
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvStaffleave_days"
+                        style="@style/semiboldfont"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:maxLength="50"
+                        android:singleLine="true"
+
+                        android:textColor="@color/dark_grey"
+                        android:textSize="@dimen/_12sdp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/ivStaffProfile"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvStaffleave_type"
+                        style="@style/semiboldfont"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_3sdp"
+                        android:maxLength="50"
+                        android:singleLine="true"
+
+                        android:textColor="@color/light_gre1"
+                        android:textSize="@dimen/_10sdp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/ivStaffProfile"
+                        app:layout_constraintTop_toBottomOf="@+id/tvStaffleave_days" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+        </FrameLayout>
+
+    </com.example.opaynhrms.utils.swipreval.SwipeRevealLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

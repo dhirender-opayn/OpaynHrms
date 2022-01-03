@@ -13,8 +13,6 @@ class StaffDetail : KotlinBaseActivity() {
     lateinit var viewmodel: StaffDetailViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
         binding = DataBindingUtil.setContentView(this, R.layout.activity_staff_detail)
         viewmodel = ViewModelProvider(this).get(StaffDetailViewModel::class.java)
         viewmodel.setBinder(binding, this)

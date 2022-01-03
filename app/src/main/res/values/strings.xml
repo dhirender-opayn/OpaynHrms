@@ -136,6 +136,8 @@
     <string name="accept">Accpet</string>
     <string name="reject">Reject</string>
     <string name="leavemanagement">LeaveManagement</string>
+    <string name="edituser">Edit User</string>
+    <string name="update">Update</string>
     <string name="leave_details">Leave Details</string>
 
 

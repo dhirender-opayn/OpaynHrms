@@ -1,12 +1,10 @@
 package com.example.opaynhrms.network
 
- import com.example.opaynhrms.model.AttandanceListJson
- import com.example.opaynhrms.model.LeaveListJson
- import com.example.opaynhrms.model.LoginJson
- import com.example.opaynhrms.model.UserListJson
+ import com.example.opaynhrms.model.*
  import com.example.opaynhrms.repository.RolesJson
  import com.google.gson.JsonObject
  import okhttp3.MultipartBody
+ import okhttp3.RequestBody
 
  import okhttp3.ResponseBody
 import retrofit2.Call
@@ -35,9 +33,10 @@ interface APIInterface
 
     @Headers("Accept: application/json")
     @Multipart
-    @POST("user")
+    @POST("")
     fun createuser(
         @Header("Authorization") token: String,
+        @Url url: String,
         @Part fields: ArrayList<MultipartBody.Part>): Call<LoginJson>
     @Headers("Accept: application/json")
     @Multipart
@@ -59,9 +58,16 @@ interface APIInterface
     @Headers("Accept: application/json")
     @GET("users")
     fun users(@Header("Authorization") token: String): Call<UserListJson>
+    @Headers("Accept: application/json")
+    @GET()
+    fun teamdata(@Url url: String,@Header("Authorization") token: String): Call<UserDetailJson>
 
     @Headers("Accept: application/json")
     @GET("")
     fun attdancelist(@Header("Authorization") token: String,@Url url:String ): Call<AttandanceListJson>
+
+    @Headers("Accept: application/json")
+    @HTTP(method = "DELETE" , hasBody = true)
+    fun deleteRequestBody(@Url url: String, @Header("Authorization") token: String,@Body map: JsonObject) : Call<ResponseBody>
 
 }
