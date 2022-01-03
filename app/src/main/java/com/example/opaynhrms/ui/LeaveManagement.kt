@@ -7,10 +7,12 @@ import com.example.opaynhrms.base.KotlinBaseActivity
 import com.example.opaynhrms.databinding.ActivityLeaveManagementBinding
 import com.example.opaynhrms.viewmodel.LeaveManagmentViewModel
 
-class LeaveManagement : KotlinBaseActivity() {
+class LeaveManagement : KotlinBaseActivity()
+{
     lateinit var binding: ActivityLeaveManagementBinding
     lateinit var viewmodel: LeaveManagmentViewModel
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?)
+    {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_leave_management)
         viewmodel = ViewModelProvider(this).get(LeaveManagmentViewModel::class.java)

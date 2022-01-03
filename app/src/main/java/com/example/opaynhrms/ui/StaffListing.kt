@@ -9,13 +9,13 @@ import com.example.opaynhrms.base.KotlinBaseActivity
 import com.example.opaynhrms.databinding.ActivityStaffListingBinding
 import com.example.opaynhrms.viewmodel.StaffListingViewModel
 
-class StaffListing : KotlinBaseActivity() {
+class StaffListing : KotlinBaseActivity()
+{
     lateinit var binding: ActivityStaffListingBinding
     lateinit var viewmodel: StaffListingViewModel
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?)
+    {
         super.onCreate(savedInstanceState)
-
-
         binding = DataBindingUtil.setContentView(this, R.layout.activity_staff_listing)
         viewmodel = ViewModelProvider(this).get(StaffListingViewModel::class.java)
         viewmodel.setBinder(binding, this)

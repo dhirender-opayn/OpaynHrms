@@ -10,13 +10,12 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import com.example.opaynhrms.R
-import com.example.opaynhrms.adapter.LeaveDetailCartAdapter
-import com.example.opaynhrms.adapter.TotalLeaveStatusAdapter
-import com.example.opaynhrms.base.KotlinBaseActivity
-import com.example.opaynhrms.databinding.ActivityLeaveManagementBinding
-import com.example.opaynhrms.databinding.ActivityRequestLeaveBinding
+ import com.example.opaynhrms.base.KotlinBaseActivity
+ import com.example.opaynhrms.databinding.ActivityRequestLeaveBinding
 import com.example.opaynhrms.extensions.gone
+import com.example.opaynhrms.extensions.isNull
 import com.example.opaynhrms.extensions.visible
+import com.example.opaynhrms.repository.UserRepository
 import com.example.opaynhrms.ui.Home
 import com.example.opaynhrms.utils.Keys
 import com.example.opaynhrms.utils.TimePickerFragment
@@ -34,9 +33,10 @@ class RequestLeaveViewModel(application: Application) : AppViewModel(application
     private lateinit var binder: ActivityRequestLeaveBinding
     private lateinit var mContext: Context
     lateinit var baseActivity: KotlinBaseActivity
+    var userRepository: UserRepository = UserRepository(application)
     var selpos = 0
     val bundle = Bundle()
-    var leavetype = ""
+    var ltype = ""
     var applyradio = ""
     var leaveid = ""
     var isdateshow = true
@@ -52,7 +52,8 @@ class RequestLeaveViewModel(application: Application) : AppViewModel(application
     }
 
 
-    private fun leavetypeAdapter() {
+    private fun leavetypeAdapter()
+    {
         val roleslist = ArrayList<String>()
         roleslist.add(baseActivity.getString(R.string.singleday))
         roleslist.add(baseActivity.getString(R.string.multipleday))
@@ -65,11 +66,11 @@ class RequestLeaveViewModel(application: Application) : AppViewModel(application
         binder.leavetype.setOnClickListener(this)
         binder.leavetype.setKeyListener(null)
         binder.leavetype.setOnItemClickListener(AdapterView.OnItemClickListener { adapterView, view, i, l ->
-            leavetype = roleslist[i]
+            ltype = roleslist[i]
             var pos = i
             ++pos
             leaveid = pos.toString()
-            when (leavetype) {
+            when (ltype) {
                 baseActivity.getString(R.string.singleday) -> {
                     binder.datecontainer.gone()
                     binder.dateWrap.visible()
@@ -100,21 +101,19 @@ class RequestLeaveViewModel(application: Application) : AppViewModel(application
         })
     }
 
-    private fun validations(): Boolean {
+    private fun validations(): Boolean
+    {
         if (binder.tvTitle.text.toString().isEmpty()) {
             showToast("Please enter title")
             return false
         }
 
-        if (leavetype.isEmpty()) {
+        if (ltype.isEmpty()) {
             showToast("Please select leave type")
             return false
         }
-        if (binder.tvreason.text.toString().isEmpty()) {
-            showToast("Please enter reason")
-            return false
-        }
-        if (leavetype.equals(baseActivity.getString(R.string.multipleday))) {
+
+        if (ltype.equals(baseActivity.getString(R.string.multipleday))) {
             if (binder.startdate.text.toString().isEmpty()) {
                 showToast("Please select start date")
                 return false
@@ -126,7 +125,12 @@ class RequestLeaveViewModel(application: Application) : AppViewModel(application
 
             }
         }
-        if (leavetype.equals(baseActivity.getString(R.string.shortleave))) {
+        if (ltype.equals(baseActivity.getString(R.string.shortleave))) {
+            if (binder.date.text.toString().isEmpty()) {
+                showToast("Please select date")
+                return false
+
+            }
             if (binder.startime.text.toString().isEmpty()) {
                 showToast("Please select start time")
                 return false
@@ -137,6 +141,26 @@ class RequestLeaveViewModel(application: Application) : AppViewModel(application
                 return false
 
             }
+        }
+        if (binder.tvreason.text.toString().isEmpty()) {
+            showToast("Please enter reason")
+            return false
+        }
+        if (ltype.equals(baseActivity.getString(R.string.half_day)) &&applyradio.isEmpty())
+        {
+            showToast("Please select  half day type")
+            return false
+        }
+        else{
+            if (ltype.equals(baseActivity.getString(R.string.singleday))||ltype.equals(baseActivity.getString(R.string.half_day)))
+            {
+                if (binder.date.text.toString().isEmpty()) {
+                    showToast("Please select date")
+                    return false
+
+                }
+            }
+
         }
 
         return true
@@ -252,7 +276,8 @@ class RequestLeaveViewModel(application: Application) : AppViewModel(application
 
     }
 
-    private fun showtimepicker(autoCompleteTextView: AutoCompleteTextView) {
+    private fun showtimepicker(autoCompleteTextView: AutoCompleteTextView)
+    {
         TimePickerFragment(baseActivity, object : TimePickerFragment.TimePickerInterface {
             override fun onTimeSelected(calendar: Calendar) {
                 autoCompleteTextView.setText(SimpleDateFormat(Utils.TIMEFORMAT).format(calendar.time))
@@ -262,45 +287,66 @@ class RequestLeaveViewModel(application: Application) : AppViewModel(application
         }).showPicker()
     }
 
-    private fun callApi() {
+    private fun callApi()
+    {
         val fields = ArrayList<MultipartBody.Part>()
         Utils.getMultiPart(Keys.user_id, Home.userModel!!.data.user.id.toString())
             ?.let { fields.add(it) }
         Utils.getMultiPart(Keys.reason, binder.tvreason.text.toString().trim())?.let { fields.add(it) }
-        if (leaveid.toInt()<4)
+       // for half dayy
+        if (leaveid.toInt()==3)
         {
-            Utils.getMultiPart(Keys.type, leaveid)?.let { fields.add(it) }
+            Utils.getMultiPart(Keys.type, applyradio)?.let { fields.add(it) }
+
         }
         else
         {
-            Utils.getMultiPart(Keys.type, applyradio)?.let { fields.add(it) }
+            Utils.getMultiPart(Keys.type, leaveid)?.let { fields.add(it) }
         }
 
-        if (leaveid.toInt() == 1 || leaveid.toInt() == 3)
+
+        when(leaveid.toInt())
         {
-            Utils.getMultiPart(Keys.start_date, binder.date.text.toString().trim())
-                ?.let { fields.add(it) }
-            Utils.getMultiPart(Keys.end_date, binder.date.text.toString().trim())
-                ?.let { fields.add(it) }
+            1->{
+                Utils.getMultiPart(Keys.start_date, Utils.formateDateFromstring(Utils.DATEFORMAT3,Utils.DATEFORMAT2,binder.date.text.toString().trim()))
+                    ?.let { fields.add(it) }
+                Utils.getMultiPart(Keys.end_date, Utils.formateDateFromstring(Utils.DATEFORMAT3,Utils.DATEFORMAT2,binder.date.text.toString().trim()))
+                    ?.let { fields.add(it) }
+            }
+            2->{
+                Utils.getMultiPart(Keys.start_date, Utils.formateDateFromstring(Utils.DATEFORMAT3,Utils.DATEFORMAT2,binder.startdate.text.toString().trim()))
+                    ?.let { fields.add(it) }
+                Utils.getMultiPart(Keys.end_date, Utils.formateDateFromstring(Utils.DATEFORMAT3,Utils.DATEFORMAT2,binder.enddate.text.toString().trim()))
+                    ?.let { fields.add(it) }
+
+
+
+            }
+            3->{
+                Utils.getMultiPart(Keys.start_date, Utils.formateDateFromstring(Utils.DATEFORMAT3,Utils.DATEFORMAT2,binder.date.text.toString().trim()))
+                    ?.let { fields.add(it) }
+                Utils.getMultiPart(Keys.end_date, Utils.formateDateFromstring(Utils.DATEFORMAT3,Utils.DATEFORMAT2,binder.date.text.toString().trim()))
+                    ?.let { fields.add(it) }
+            }
+            4->{
+
+                Utils.getMultiPart(Keys.start_date, Utils.formateDateFromstring(Utils.DATEFORMAT3,Utils.DATEFORMAT2,binder.date.text.toString().trim()
+                )+" "+ Utils.formateDateFromstring(Utils.TIMEFORMAT,Utils.TIMEFORMAT2,binder.startime.text.toString().trim()))
+                    ?.let { fields.add(it) }
+
+
+                Utils.getMultiPart(Keys.end_date, Utils.formateDateFromstring(Utils.DATEFORMAT3,Utils.DATEFORMAT2,binder.date.text.toString().trim()
+                )+" "+ Utils.formateDateFromstring(Utils.TIMEFORMAT,Utils.TIMEFORMAT2,binder.endtim.text.toString().trim()))
+                    ?.let { fields.add(it) }
+            }
 
         }
-        // short leave
-        else if (leaveid.equals("4")) {
-            Utils.getMultiPart(
-                Keys.start_date,
-                binder.date.text.toString().trim() + " " + binder.startime.text.toString()
-            )?.let { fields.add(it) }
-            Utils.getMultiPart(
-                Keys.end_date,
-                binder.date.text.toString().trim() + " " + binder.startime.text.toString()
-            )?.let { fields.add(it) }
-        }
-        // multiple day
-        else {
-            Utils.getMultiPart(Keys.start_date, binder.startdate.text.toString().trim())
-                ?.let { fields.add(it) }
-            Utils.getMultiPart(Keys.end_date, binder.enddate.text.toString().trim())
-                ?.let { fields.add(it) }
+
+        userRepository.addleave(baseActivity, fields) {
+            if (!it.data.isNull()) {
+                baseActivity.showtoast("Leave applied successfully")
+                baseActivity.finish()
+            }
 
         }
 

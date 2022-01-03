@@ -323,7 +323,7 @@
                             <RadioButton
                                 android:id="@+id/rbsecond"
                                 android:layout_weight="1"
-                                android:text="@string/first_half"
+                                android:text="@string/second_half"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"/>
 

@@ -77,7 +77,8 @@ class HomeFragement(var baseActivity: KotlinBaseActivity) : KotlinBaseFragment()
     {
 
         val tablist = ArrayList<ListingModel>()
-        if (Home.userModel?.data?.user!!.roles.size > 0) {
+        if (Home.userModel?.data?.user!!.roles.size > 0)
+        {
             binding.postName.text = Home.userModel?.data?.user!!.roles[0].name
             binding.rvRequest.visible()
             if (binding.postName.text.toString().equals(Utils.SUPERADMIN)) {
@@ -107,6 +108,7 @@ class HomeFragement(var baseActivity: KotlinBaseActivity) : KotlinBaseFragment()
         if (Home.userModel?.data?.user!!.roles.size > 0)
         {
             binding.postName.text = Home.userModel?.data?.user!!.roles[0].name
+            Home.rollname=binding.postName.text.toString()
             binding.rvRequest.visible()
             if (binding.postName.text.toString().equals(Utils.SUPERADMIN)) {
 
@@ -171,8 +173,9 @@ class HomeFragement(var baseActivity: KotlinBaseActivity) : KotlinBaseFragment()
                         showtoast("Location is needed")
                         return@request
                     }
-                    if (calculateDistance()<=100)
+                    if (calculateDistance()<=30)
                     {
+                        //showtoast("totaldistanceee${calculateDistance().toString()}")
                         viewModel.addorupdateAttandance(lat,lng,Utils.getcurrentdate(),inout)
                     }
                     else{
@@ -215,13 +218,10 @@ class HomeFragement(var baseActivity: KotlinBaseActivity) : KotlinBaseFragment()
     override fun locationOn() {
 
     }
-
     override fun currentLocation(location: Location?)
     {
-
         if (location.isNotNull())
         {
-
             lat=location?.latitude.toString()
             lng=location?.longitude.toString()
 

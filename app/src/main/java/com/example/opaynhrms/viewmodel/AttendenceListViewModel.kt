@@ -14,6 +14,7 @@ import com.example.opaynhrms.dailog.FilterDailog
 import com.example.opaynhrms.databinding.ActivityAttendenceListBinding
 import com.example.opaynhrms.extensions.gone
 import com.example.opaynhrms.extensions.visible
+import com.example.opaynhrms.listner.FilterListner
 import com.example.opaynhrms.model.AttandanceListJson
 import com.example.opaynhrms.repository.HomeRepository
 import com.faltenreich.skeletonlayout.Skeleton
@@ -21,7 +22,7 @@ import com.faltenreich.skeletonlayout.applySkeleton
 import com.ieltslearning.base.AppViewModel
 import kotlinx.android.synthetic.main.common_toolbar.view.*
 
-class AttendenceListViewModel(application: Application) : AppViewModel(application) {
+class AttendenceListViewModel(application: Application) : AppViewModel(application), FilterListner {
     private lateinit var binder: ActivityAttendenceListBinding
     private lateinit var mContext: Context
     lateinit var baseActivity: KotlinBaseActivity
@@ -36,6 +37,9 @@ class AttendenceListViewModel(application: Application) : AppViewModel(applicati
     private lateinit var skeleton2: Skeleton
     var attandancelist = ArrayList<AttandanceListJson.Data.Data>()
     var attandanceadapter: AttendanceListAdapter? = null
+    var startdate=""
+    var endate=""
+    var type=""
 
     fun setBinder(binder: ActivityAttendenceListBinding, baseActivity: KotlinBaseActivity) {
         this.binder = binder
@@ -46,7 +50,7 @@ class AttendenceListViewModel(application: Application) : AppViewModel(applicati
         setAdapter()
         settoolbar()
         showskelton()
-        attandancelist()
+        attandancelist("","","")
         scrolllistner()
     }
 
@@ -76,6 +80,17 @@ class AttendenceListViewModel(application: Application) : AppViewModel(applicati
 
 
     }
+    private  fun resetdata()
+    {
+        startdate=""
+        endate=""
+        type=""
+        pastVisiblesItems = 0
+         visibleItemCount = 0
+         totalItemCount= 0
+         totalpage = 0
+         page = 1
+    }
 
     private fun scrolllistner() {
 
@@ -99,7 +114,7 @@ class AttendenceListViewModel(application: Application) : AppViewModel(applicati
                                 Log.e("hehehehe", page.toString() + " " + totalpage.toString())
                                 binder.rvprogress.visible()
                                 page++
-                                attandancelist()
+                                attandancelist(startdate,endate,type)
 
                             }
                             Log.v("...", "Last Item Wow !")
@@ -114,13 +129,15 @@ class AttendenceListViewModel(application: Application) : AppViewModel(applicati
 
     }
 
-    private fun attandancelist() {
-        homeRepository.attandancelist(baseActivity, page.toString(), "", "", "") {
+    private fun attandancelist(startdate:String,enddate:String,type: String) {
+        homeRepository.attandancelist(baseActivity, page.toString(), startdate, enddate, type) {
             loading = true
+            binder.rvprogress2.gone()
             binder.rvprogress.gone()
-            onDataLoaded()
+
             if (totalpage.equals(0)) {
                 totalpage = it.data.last_page
+                onDataLoaded()
             }
             attandancelist.addAll(it.data.data)
             attandanceadapter?.addNewList(attandancelist)
@@ -138,10 +155,23 @@ class AttendenceListViewModel(application: Application) : AppViewModel(applicati
             baseActivity.onBackPressed()
         }
         binder.toolbar.ivcart.setOnClickListener {
-            val dialog= FilterDailog( baseActivity = baseActivity)
+            val dialog= FilterDailog( baseActivity = baseActivity,this)
             dialog.show(baseActivity.supportFragmentManager, dialog.getTag())
 
         }
 
+    }
+
+    override fun filterdata(type: String, startdate: String, endate: String)
+    {
+
+        resetdata()
+        this.startdate=startdate
+        this.endate=endate
+        this.type=type
+        attandancelist.clear()
+        attandanceadapter?.notifyDataSetChanged()
+        binder.rvprogress2.visible()
+        attandancelist(startdate,endate,type)
     }
 }

@@ -4,7 +4,9 @@ package com.example.opaynhrms.repository
 
  import androidx.lifecycle.MutableLiveData
 import com.example.opaynhrms.base.KotlinBaseActivity
+ import com.example.opaynhrms.model.LeaveListJson
  import com.example.opaynhrms.model.LoginJson
+ import com.example.opaynhrms.model.UserListJson
  import com.example.opaynhrms.network.APIInterface
 import com.example.opaynhrms.network.RetrofitClient
  import com.example.opaynhrms.ui.Home
@@ -23,7 +25,6 @@ class UserRepository(private val baseActivity: Application)
 {
     var retrofitClient: APIInterface? = null
     private val mutableLiveData = MutableLiveData<ResponseBody>()
-
 
 
     fun commonpostwithtoken(baseActivity: KotlinBaseActivity, url:String, jsonobject: JsonObject, itemClick: (ResponseBody) -> Unit)
@@ -120,6 +121,100 @@ class UserRepository(private val baseActivity: Application)
 
 
     }
+    fun leavelist(baseActivity: KotlinBaseActivity, itemClick: (LeaveListJson) -> Unit)
+    {
+
+        if (!baseActivity.networkcheck.isNetworkAvailable())
+        {
+            baseActivity.nointernershowToast()
+        }
+        else{
+            baseActivity.startProgressDialog()
+            retrofitClient = RetrofitClient.with(this.baseActivity)?.client?.create(
+                APIInterface::class.java
+            )
+
+            retrofitClient?.leavelist(Utils.AUTHTOKEN)!!.enqueue(object : Callback<LeaveListJson>
+            {
+                override fun onResponse(
+                    call: Call<LeaveListJson?>,
+                    response: Response<LeaveListJson?>
+                ) {
+                    baseActivity.stopProgressDialog()
+                    when(response.code())
+                    {
+                        Keys.RESPONSE_SUCESS->{
+                            response.body()?.let { itemClick(it) }
+                         }
+                        Keys.ERRORCODE->{
+                             baseActivity.parseError(response)
+                        }
+                        Keys.UNAUTHoRISE->{
+                            //signupmutableLiveData.setValue(response.body())
+                        }
+                    }
+
+                }
+
+                override fun onFailure(call: Call<LeaveListJson?>, t: Throwable)
+                {
+                    baseActivity.stopProgressDialog()
+                   // signupmutableLiveData.setValue(null)
+                }
+            })
+        }
+
+
+
+
+    }
+    fun userslist(baseActivity: KotlinBaseActivity, itemClick: (UserListJson) -> Unit)
+    {
+
+        if (!baseActivity.networkcheck.isNetworkAvailable())
+        {
+            baseActivity.nointernershowToast()
+        }
+        else{
+            baseActivity.startProgressDialog()
+            retrofitClient = RetrofitClient.with(this.baseActivity)?.client?.create(
+                APIInterface::class.java
+            )
+
+            retrofitClient?.users(Utils.AUTHTOKEN)!!.enqueue(object : Callback<UserListJson>
+            {
+                override fun onResponse(
+                    call: Call<UserListJson?>,
+                    response: Response<UserListJson?>
+                ) {
+                    baseActivity.stopProgressDialog()
+                    when(response.code())
+                    {
+                        Keys.RESPONSE_SUCESS->{
+                            response.body()?.let { itemClick(it) }
+                         }
+                        Keys.ERRORCODE->{
+                             baseActivity.parseError(response)
+                        }
+                        Keys.UNAUTHoRISE->{
+                            //signupmutableLiveData.setValue(response.body())
+                        }
+                    }
+
+                }
+
+                override fun onFailure(call: Call<UserListJson?>, t: Throwable)
+                {
+                    baseActivity.stopProgressDialog()
+                   // signupmutableLiveData.setValue(null)
+                }
+            })
+        }
+
+
+
+
+    }
     fun adduser(baseActivity: KotlinBaseActivity, fields: ArrayList<MultipartBody.Part>, itemClick: (LoginJson) -> Unit)
     {
 
@@ -166,6 +261,53 @@ class UserRepository(private val baseActivity: Application)
 
 
     }
+    fun addleave(baseActivity: KotlinBaseActivity, fields: ArrayList<MultipartBody.Part>, itemClick: (LoginJson) -> Unit)
+    {
+
+        if (!baseActivity.networkcheck.isNetworkAvailable())
+        {
+            baseActivity.nointernershowToast()
+        }
+        else{
+            baseActivity.startProgressDialog()
+            retrofitClient = RetrofitClient.with(this.baseActivity)?.client?.create(
+                APIInterface::class.java
+            )
+            retrofitClient?.addleave( Utils.AUTHTOKEN,fields)!!.enqueue(object : Callback<LoginJson>
+            {
+                override fun onResponse(
+                    call: Call<LoginJson?>,
+                    response: Response<LoginJson?>
+                ) {
+                    baseActivity.stopProgressDialog()
+                    when(response.code())
+                    {
+                        Keys.RESPONSE_SUCESS->{
+                            response.body()?.let { itemClick(it) }
+
+                        }
+                        Keys.ERRORCODE->{
+                            baseActivity.parseError(response)
+                        }
+                        Keys.UNAUTHoRISE->{
+                            baseActivity.unauthrizeddialog()
+                            //signupmutableLiveData.setValue(response.body())
+                        }
+                    }
+
+                }
+
+                override fun onFailure(call: Call<LoginJson?>, t: Throwable)
+                {
+                    baseActivity.stopProgressDialog()
+
+                }
+            })
+        }
+
+
+    }
+
 
 
 

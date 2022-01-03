@@ -9,15 +9,14 @@ import com.example.opaynhrms.base.KotlinBaseActivity
  import com.example.opaynhrms.databinding.ActivityRequestLeaveBinding
  import com.example.opaynhrms.viewmodel.RequestLeaveViewModel
 
-class RequestLeave : KotlinBaseActivity() {
+class RequestLeave : KotlinBaseActivity()
+{
 
     lateinit var binding: ActivityRequestLeaveBinding
     lateinit var viewmodel: RequestLeaveViewModel
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?)
+    {
         super.onCreate(savedInstanceState)
-
-
-
         binding = DataBindingUtil.setContentView(this, R.layout.activity_request_leave)
         viewmodel = ViewModelProvider(this).get(RequestLeaveViewModel::class.java)
         viewmodel.setBinder(binding, this)
