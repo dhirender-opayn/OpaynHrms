@@ -24,6 +24,7 @@ class Home : KotlinBaseActivity(R.id.container) {
 
     companion object{
         var userModel:LoginJson?=null
+        var rollname=""
 
     }
 }

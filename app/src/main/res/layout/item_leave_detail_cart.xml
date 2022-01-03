@@ -30,7 +30,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/_15sdp"
-                android:text="Going for a trip"
+                android:layout_marginStart="@dimen/_5sdp"
                 android:textAlignment="center"
                 android:textColor="@color/dark_grey"
                 android:textSize="@dimen/_14sdp"
@@ -39,7 +39,7 @@
 
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/notification_count"
+                android:id="@+id/tvStatus"
                 style="@style/semiboldfont"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -47,11 +47,12 @@
                 android:drawableLeft="@drawable/ic_clock_line"
                 android:drawablePadding="@dimen/_5sdp"
                 android:paddingStart="@dimen/_6sdp"
-                android:paddingTop="@dimen/_3sdp"
+                android:paddingTop="@dimen/_5sdp"
                 android:paddingEnd="@dimen/_6sdp"
-                android:paddingBottom="@dimen/_3sdp"
+                android:gravity="center"
+                android:paddingBottom="@dimen/_5sdp"
                 android:text="Pending"
-                android:textColor="@color/golden_yellow"
+                android:textColor="@color/white"
                 android:textSize="@dimen/_10sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -64,7 +65,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:layout_marginBottom="@dimen/_15sdp"
-                android:text="Casual Leave"
+                android:layout_marginStart="@dimen/_5sdp"
                 android:textAlignment="center"
                 android:textColor="@color/dark_grey"
                 android:textSize="@dimen/_10sdp"
@@ -83,8 +84,9 @@
                     android:id="@+id/ivprofile"
                     android:layout_width="@dimen/_20sdp"
                     android:layout_height="@dimen/_20sdp"
+                    android:padding="@dimen/_5sdp"
                     android:layout_centerInParent="true"
-                    android:src="@drawable/userwhite"
+                    android:src="@drawable/ic_calendar_line"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -106,12 +108,11 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/dateformat"
+                    android:id="@+id/tvDate"
                     style="@style/semiboldfont"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_5sdp"
-                    android:maxLength="50"
+                     android:maxLength="50"
                     android:singleLine="true"
                     android:text="29th Jan - 05th Feb"
                     android:textColor="@color/dark_grey"
@@ -127,6 +128,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/clpersonalcontainer"
                 android:layout_width="match_parent"
+                android:visibility="gone"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_5sdp"
                 app:layout_constraintTop_toBottomOf="@+id/datecontainer">
@@ -187,12 +189,12 @@
                 android:text="I am going for a trip to Goa with my Firends, Kindley grant me leave for same  "
                 android:textColor="@color/grey_blue"
                 android:textSize="@dimen/_10sdp"
-                android:textStyle="italic"
-                app:layout_constraintTop_toBottomOf="@+id/clpersonalcontainer" />
+                 app:layout_constraintTop_toBottomOf="@+id/clpersonalcontainer" />
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
+                 android:visibility="gone"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@+id/tvmsg">
 
@@ -202,8 +204,10 @@
                     style="@style/semiboldfont"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/_10sdp"
-                    android:background="@drawable/rectangle_black_border"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                     android:background="@drawable/rectangle_black_border"
                     android:paddingStart="@dimen/_10sdp"
                     android:paddingTop="@dimen/_5sdp"
                     android:paddingEnd="@dimen/_10sdp"
@@ -221,7 +225,9 @@
                     style="@style/semiboldfont"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
                     android:background="@drawable/rectangle_black_border"
                     android:backgroundTint="@color/cool_green"
                     android:paddingStart="@dimen/_10sdp"

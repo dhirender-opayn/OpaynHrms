@@ -80,4 +80,6 @@
 
 
     <color name="lt_yellow">#A9FCE18A</color>
+    <color name="lt_red">#A8F44336</color>
+    <color name="lt_green">#A84CAF50</color>
 </resources>

@@ -41,8 +41,11 @@ object Utils
     const val DATETIMEFORMAT="yyyy-MM-dd HH:mm:ss"
     const val dateformatwithZ="yyyy-MM-dd'T'HH:mm:ssZ";
     const val TIMEFORMAT="hh:mm aa"
+    const val TIMEFORMAT2="hh:mm:ss"
     const val DATEFORMAT="dd MMM, yyyy"
+    const val DATEFORMATRIMEFORMAT2="dd MMM, yyyy hh:mm aa"
     const val DATEFORMAT2="yyyy-MM-dd"
+    const val DATEFORMAT3="dd-MM-yyyy"
     const val IELSTS_PREPRATIONID=7
     const val Writing="writing"
     const val Intro="intro"
@@ -56,8 +59,9 @@ object Utils
     const val APPLICATIONPDF="application/pdf"
     const val PDFRESOUCE="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
     var AUTHTOKEN=""
-    const val OPAYN_LAT="30.8935"
-    const val OPAYN_LNG="75.8290"
+    const val OPAYN_LAT="30.8935428"
+    const val OPAYN_LNG="75.8289174"
+    //30.893460358472865, 75.82913737232002
     var CHECKUSER=""
     var MCQQUESTION=1
     var TRUEFALSEQUESTION=2

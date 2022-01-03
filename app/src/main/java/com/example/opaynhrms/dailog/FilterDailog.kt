@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioButton
@@ -14,17 +15,19 @@ import com.example.opaynhrms.base.KotlinBaseActivity
 import com.example.opaynhrms.databinding.FragmentFilterDailogBinding
 import com.example.opaynhrms.extensions.gone
 import com.example.opaynhrms.extensions.visible
+import com.example.opaynhrms.listner.FilterListner
+import com.example.opaynhrms.utils.Keys
+import com.example.opaynhrms.utils.Utils
 import com.opaynkart.ui.dialog.DialogBaseFragment
+import kotlinx.android.synthetic.main.fragment_filter_dailog.*
 
 
-
-
-
-
-class FilterDailog (var baseActivity: KotlinBaseActivity) :
-    DialogBaseFragment(), View.OnClickListener {
+class FilterDailog (var baseActivity: KotlinBaseActivity,var  filterListner: FilterListner) :
+    DialogBaseFragment()
+{
     lateinit var binding:FragmentFilterDailogBinding
-
+    var radiotype=""
+    var isdateshow=true
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -48,17 +51,24 @@ class FilterDailog (var baseActivity: KotlinBaseActivity) :
        binding.radioGroup.setOnCheckedChangeListener(
             RadioGroup.OnCheckedChangeListener { group, checkedId ->
                 val radio: RadioButton = view.findViewById(checkedId)
-//                Toast.makeText(baseActivity," On checked change :"+
-//                        " ${radio.text}",
-//                    Toast.LENGTH_SHORT).show()
-                if (radio.text.equals(getString(R.string.custom))){
-                    binding.datecontainer.visible()
-                } else {
-                    binding.datecontainer.gone()
+                 radiotype=radio.text.toString().lowercase()
+                when(radio.text.toString())
+                {
+                    baseActivity.getString(R.string.weekly)->{
+
+                        binding.datecontainer.gone()
+                    }
+                    baseActivity.getString(R.string.monthly)->{
+
+                        binding.datecontainer.gone()
+                    }
+                    baseActivity.getString(R.string.custom)->{
+
+                        binding.datecontainer.visible()
+                    }
                 }
 
-                Log.e("jekediemdidcidjded",radio.text.toString())
-            })
+             })
 
 
 
@@ -66,11 +76,78 @@ class FilterDailog (var baseActivity: KotlinBaseActivity) :
     }
 
     private fun setclick(){
+        binding.startdate.setOnTouchListener(object : View.OnTouchListener {
+            override fun onTouch(p0: View?, p1: MotionEvent?): Boolean {
+
+                return true
+            }
+
+        })
+        binding.enddate.setOnTouchListener(object : View.OnTouchListener {
+            override fun onTouch(p0: View?, p1: MotionEvent?): Boolean {
+
+                return true
+            }
+
+        })
+        binding.endwrap.setEndIconOnClickListener {
+
+            if (binding.startdate.text.toString().trim().isEmpty()) {
+                baseActivity.showtoast("Please select start date first")
+                return@setEndIconOnClickListener
+            }
+            if (isdateshow) {
+                isdateshow = false
+                Utils.shoedatepicker(baseActivity, binding.enddate, onConfirmed = {
+                    isdateshow = true
+                })
+            }
+
+        }
+        binding.startdatewrap.setEndIconOnClickListener {
+            if (isdateshow) {
+                isdateshow = false
+                Utils.shoedatepicker(baseActivity, binding.startdate, onConfirmed = {
+                    isdateshow = true
+                })
+            }
+
+        }
+        binding.loginbtn.setOnClickListener {
+            if(radiotype.equals(baseActivity.getString(R.string.custom).lowercase()))
+            {
+                if (validations())
+                {
+                    val date1=Utils.formateDateFromstring(Utils.DATEFORMAT3,Utils.DATEFORMAT2,binding.startdate.text.toString())
+                    val date2=Utils.formateDateFromstring(Utils.DATEFORMAT3,Utils.DATEFORMAT2,binding.enddate.text.toString())
+                    filterListner.filterdata(radiotype,"$date1 00:00:00","$date2 00:00:00")
+                    dismiss()
+                }
+
+            }
+            else{
+
+                filterListner.filterdata(radiotype,"00:00:00","00:00:00")
+                dismiss()
+            }
+        }
+    }
+    private  fun validations():Boolean
+    {
+        if (binding.startdate.text.toString().trim().isEmpty())
+        {
+            baseActivity.showtoast("Please select start date")
+            return false
+        }
+        if (binding.enddate.text.toString().trim().isEmpty())
+        {
+            baseActivity.showtoast("Please select end date")
+            return false
+        }
+        return true
 
     }
-    override fun onClick(p0: View?) {
 
-    }
 
 
 }

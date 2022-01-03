@@ -104,6 +104,7 @@
     <string name="permissiondenied">Permission denied</string>
     <string name="profileupdate">Profile has been updated successfully</string>
     <string name="approved">Approved</string>
+    <string name="approve">Approve</string>
     <string name="emergencyleave">Emergency Leave</string>
     <string name="support_nteam">Support\nTeam</string>
     <string name="contact_us">Contact Us</string>
@@ -131,6 +132,9 @@
     <string name="titlefield">Title Field is empty</string>
     <string name="notification">Notification</string>
     <string name="leavemanagment">Leave Management</string>
+    <string name="pending">Pending</string>
+    <string name="accept">Accpet</string>
+    <string name="reject">Reject</string>
 
 
 </resources>

@@ -15,6 +15,7 @@ object Keys
     const val CHANGEPASSWORD="change-password"
     const val TICKET="ticket"
     const val ATTANDANCE="attendance"
+    const val LEAVESTATUS="leave/status"
     const val ATTANDANCELIST="attendance/listing"
     /*GUEST KEYS*/
     const val Coursetype = "coursetype"
@@ -50,6 +51,7 @@ object Keys
     const val reason="reason"
     const val id="id"
     const val image="image"
+    const val status="status"
     const val clockify_key="clockify_key"
     const val description="description"
     const val old_password="old_password"

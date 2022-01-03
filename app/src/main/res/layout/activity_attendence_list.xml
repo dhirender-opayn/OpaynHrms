@@ -19,10 +19,19 @@
         <include
             android:id="@+id/toolbar"
             layout="@layout/common_toolbar" />
+        <ProgressBar
+            app:layout_constraintTop_toBottomOf="@id/toolbar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:id="@+id/rvprogress2"
+            android:visibility="gone"
+             android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"/>
+
         <com.faltenreich.skeletonlayout.SkeletonLayout
             android:id="@+id/skeletonLayout"
             android:layout_width="match_parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar"
+            app:layout_constraintTop_toBottomOf="@+id/rvprogress2"
             app:layout_constraintBottom_toTopOf="@id/rvprogress"
             android:layout_height="0dp"
             >
