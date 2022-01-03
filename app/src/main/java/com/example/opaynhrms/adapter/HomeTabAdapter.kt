@@ -1,12 +1,16 @@
 package com.example.opaynhrms.adapter
 
 
+ import android.os.Bundle
  import com.bumptech.glide.Glide
  import com.bumptech.glide.load.engine.DiskCacheStrategy
  import com.example.opaynhrms.R
 import com.example.opaynhrms.base.KotlinBaseActivity
+ import com.example.opaynhrms.common.CommonActivity
  import com.example.opaynhrms.model.ListingModel
  import com.example.opaynhrms.ui.*
+ import com.example.opaynhrms.utils.Keys
+ import com.google.android.gms.common.internal.service.Common
  import com.ieltslearning.base.BaseAdapter
  import kotlinx.android.synthetic.main.item_home_tab.view.*
 
@@ -42,6 +46,12 @@ class HomeTabAdapter (val baseActivity: KotlinBaseActivity, val itemClick: (Int)
                     }
                     baseActivity.getString(R.string.attandancelist)->{
                         baseActivity.openA(AttendanceList::class)
+                    }
+                    baseActivity.getString(R.string.workhistory)->{
+
+                        var bundle = Bundle()
+                        bundle.putString(Keys.FROM,context.getString(R.string.work_history))
+                        baseActivity.openA(CommonActivity::class,bundle)
                     }
                 }
 

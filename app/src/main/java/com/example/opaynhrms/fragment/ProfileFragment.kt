@@ -8,9 +8,11 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.example.opaynhrms.R
 import com.example.opaynhrms.base.KotlinBaseActivity
+import com.example.opaynhrms.common.CommonActivity
 import com.example.opaynhrms.databinding.FragmentProfileBinding
 import com.example.opaynhrms.extensions.gone
 import com.example.opaynhrms.ui.*
+import com.example.opaynhrms.utils.Keys
 import com.example.opaynhrms.viewmodel.FragmentHomeViewModel
 import com.example.opaynhrms.viewmodel.ProfileViewModel
 import com.ieltslearning.base.KotlinBaseFragment
@@ -55,6 +57,7 @@ class ProfileFragment(var baseActivity: KotlinBaseActivity) : KotlinBaseFragment
         binding.notification.setOnClickListener(this)
         binding.loginbtn.setOnClickListener(this)
         binding.support.setOnClickListener(this)
+        binding.addTicket.setOnClickListener(this)
     }
 
 
@@ -79,6 +82,11 @@ class ProfileFragment(var baseActivity: KotlinBaseActivity) : KotlinBaseFragment
             }
             R.id.support -> {
                 baseActivity.openA(Support::class)
+            }
+            R.id.add_ticket -> {
+                var bundle = Bundle()
+                bundle.putString(Keys.FROM,baseActivity.getString(R.string.add_ticket))
+                baseActivity.openA(CommonActivity::class,bundle)
             }
             R.id.loginbtn -> {
                 baseActivity.logout()

@@ -93,7 +93,9 @@ class HomeFragement(var baseActivity: KotlinBaseActivity) : KotlinBaseFragment()
                 tablist.add(ListingModel(R.drawable.ic_calendar_line, false, getString(R.string.calendar)))
                 tablist.add(ListingModel(R.drawable.ic_travelling, false, getString(R.string.requestleave)))
                 tablist.add(ListingModel(R.drawable.announcement_svg, false, getString(R.string.announcement)))
-                tablist.add(ListingModel(R.drawable.ic_payroll_salary, false, getString(R.string.salary)))
+//                tablist.add(ListingModel(R.drawable.ic_payroll_salary, false, getString(R.string.salary)))
+                tablist.add(ListingModel(R.drawable.ic_work_history, false, getString(R.string.workhistory)))
+
             }
         }
         val tabAdapter = HomeTabAdapter(baseActivity) {

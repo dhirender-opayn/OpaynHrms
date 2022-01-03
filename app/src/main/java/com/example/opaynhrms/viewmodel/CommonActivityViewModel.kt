@@ -9,6 +9,8 @@ import com.example.opaynhrms.R
 import com.example.opaynhrms.base.KotlinBaseActivity
 import com.example.opaynhrms.base.AppViewModel
 import com.example.opaynhrms.databinding.ActivityCommonBinding
+import com.example.opaynhrms.fragment.AddTicketFragment
+import com.example.opaynhrms.fragment.ClockifyWorkListing
 import com.example.opaynhrms.fragment.LeaveDetailFragment
 import com.example.opaynhrms.utils.Keys
 
@@ -37,6 +39,14 @@ class CommonActivityViewModel(application: Application) : AppViewModel(applicati
             mContext.getString(R.string.leavemanagement)->{
                 baseActivity.navigateToFragment(LeaveDetailFragment(baseActivity),bundle,false)
             }
+            mContext.getString(R.string.work_history)->{
+                baseActivity.navigateToFragment(ClockifyWorkListing(baseActivity),bundle,false)
+            }
+            mContext.getString(R.string.add_ticket)->{
+                baseActivity.navigateToFragment(AddTicketFragment(baseActivity),bundle,false)
+            }
+
+
         }
     }
 
