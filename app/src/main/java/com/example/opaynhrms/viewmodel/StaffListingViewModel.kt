@@ -4,17 +4,13 @@ import android.app.Application
 import android.content.Context
 import android.os.Bundle
 import com.example.opaynhrms.R
-import com.example.opaynhrms.adapter.LeaveDetailCartAdapter
-import com.example.opaynhrms.adapter.StaffListingAdapter
-import com.example.opaynhrms.adapter.TotalLeaveStatusAdapter
+ import com.example.opaynhrms.adapter.StaffListingAdapter
+ import com.example.opaynhrms.base.AppViewModel
 import com.example.opaynhrms.base.KotlinBaseActivity
-import com.example.opaynhrms.databinding.ActivityLeaveManagementBinding
-import com.example.opaynhrms.databinding.ActivityRequestLeaveBinding
-import com.example.opaynhrms.databinding.ActivityStaffListingBinding
+  import com.example.opaynhrms.databinding.ActivityStaffListingBinding
 import com.example.opaynhrms.model.UserListJson
 import com.example.opaynhrms.repository.UserRepository
-import com.ieltslearning.base.AppViewModel
-import kotlinx.android.synthetic.main.common_toolbar.view.*
+ import kotlinx.android.synthetic.main.common_toolbar.view.*
 
 
 class StaffListingViewModel(application: Application) : AppViewModel(application)

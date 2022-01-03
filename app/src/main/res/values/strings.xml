@@ -43,7 +43,7 @@
     <string name="current_password">Current Password</string>
     <string name="new_password">New Password</string>
     <string name="half_day">Half Day</string>
-     <string name="longdes">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source</string>
+    <string name="longdes">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source</string>
     <string name="reason">Reason</string>
     <string name="submit_request">Submit Request</string>
     <string name="fullday">Full Day</string>
@@ -125,7 +125,7 @@
     <string name="monthly">Monthly</string>
     <string name="weekly">Weekly</string>
     <string name="hello">Hello</string>
-     <string name="singleday">Single Day</string>
+    <string name="singleday">Single Day</string>
     <string name="multipleday">Multiple Day</string>
     <string name="shortleave">Short Leave</string>
     <string name="announcement_msg">Enter Announcement message</string>
@@ -135,6 +135,7 @@
     <string name="pending">Pending</string>
     <string name="accept">Accpet</string>
     <string name="reject">Reject</string>
+    <string name="leavemanagement">LeaveManagement</string>
 
 
 </resources>

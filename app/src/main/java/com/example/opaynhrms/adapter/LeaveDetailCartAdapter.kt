@@ -22,7 +22,9 @@ class LeaveDetailCartAdapter(val baseActivity: KotlinBaseActivity,val  itemClick
         holder.itemView.apply {
             leavetitle.text=list[position].user.name
 
-
+            cvContainer.setOnClickListener {
+                itemClick.onItemViewClicked(position,"3",)
+            }
 
             if (Home.rollname.equals(Utils.SUPERADMIN))
             {

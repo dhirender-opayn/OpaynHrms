@@ -3,17 +3,19 @@ package com.example.opaynhrms.viewmodel
 import android.app.Application
 import android.content.Context
 import android.os.Bundle
+import com.example.opaynhrms.R
 import com.example.opaynhrms.adapter.LeaveDetailCartAdapter
 import com.example.opaynhrms.adapter.TotalLeaveStatusAdapter
+import com.example.opaynhrms.base.AppViewModel
 import com.example.opaynhrms.base.KotlinBaseActivity
+import com.example.opaynhrms.common.CommonActivity
 import com.example.opaynhrms.databinding.ActivityLeaveManagementBinding
 import com.example.opaynhrms.extensions.showConfirmAlert
 import com.example.opaynhrms.model.LeaveListJson
 import com.example.opaynhrms.repository.UserRepository
-import com.example.opaynhrms.ui.Home
 import com.example.opaynhrms.utils.Keys
 import com.google.gson.JsonObject
-import com.ieltslearning.base.AppViewModel
+
 import com.ieltslearning.listner.ItemClick
 import kotlinx.android.synthetic.main.common_toolbar.view.*
 
@@ -83,6 +85,10 @@ class LeaveManagmentViewModel(application: Application) : AppViewModel(applicati
             }
             "2"->{
                 acceptreject(list[position].user_id.toString(),list[position].id.toString(),"2","Are you sure yoi want to cancel the leave")
+            }
+            "3"->{
+                bundle.putString(Keys.FROM,mContext.getString(R.string.leavemanagement))
+                baseActivity.openA(CommonActivity::class,bundle)
             }
         }
 
