@@ -2,28 +2,14 @@ package com.example.opaynhrms.viewmodel
 
 import android.app.Application
 import android.content.Context
-import android.util.Log
 import android.view.View
 import com.example.opaynhrms.R
-import com.example.opaynhrms.auth.ForgotPassword
-import com.example.opaynhrms.auth.OtpVerify
-import com.example.opaynhrms.auth.Signup
 import com.example.opaynhrms.base.KotlinBaseActivity
-import com.example.opaynhrms.databinding.ActivityForgotPasswordBinding
-import com.example.opaynhrms.databinding.ActivityLoginBinding
 import com.example.opaynhrms.databinding.ActivityOtpVerifyBinding
-import com.example.opaynhrms.extensions.isEmailValid
-import com.example.opaynhrms.extensions.isNotNull
 import com.example.opaynhrms.repository.LoginRepository
-import com.example.opaynhrms.ui.Home
 import com.example.opaynhrms.utils.Keys
-import com.example.opaynhrms.utils.Keys.TOKEN
-import com.example.opaynhrms.utils.Keys.USERDATA
-import com.google.gson.Gson
 import com.google.gson.JsonObject
-import com.ieltslearning.base.AppViewModel
-import com.ieltslearning.listner.ItemClick
-import kotlinx.android.synthetic.main.activity_login.*
+import com.example.opaynhrms.base.AppViewModel
 
 class VerifyOtpViewModel(application: Application) : AppViewModel(application),View.OnClickListener{
     var msg: String = ""

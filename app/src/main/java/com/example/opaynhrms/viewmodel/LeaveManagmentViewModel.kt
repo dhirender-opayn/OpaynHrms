@@ -3,11 +3,12 @@ package com.example.opaynhrms.viewmodel
 import android.app.Application
 import android.content.Context
 import android.os.Bundle
+import com.example.opaynhrms.R
 import com.example.opaynhrms.adapter.LeaveDetailCartAdapter
 import com.example.opaynhrms.adapter.TotalLeaveStatusAdapter
 import com.example.opaynhrms.base.KotlinBaseActivity
 import com.example.opaynhrms.databinding.ActivityLeaveManagementBinding
-import com.ieltslearning.base.AppViewModel
+import com.example.opaynhrms.base.AppViewModel
 import kotlinx.android.synthetic.main.common_toolbar.view.*
 
 
@@ -28,18 +29,20 @@ class LeaveManagmentViewModel(application: Application) : AppViewModel(applicati
         setAdapter()
         settoolbar()
 
+
     }
 
-    private fun settoolbar(){
-        binder.toolbar.tvtitle.text = "Leave Management"
+    private fun settoolbar() {
+        binder.toolbar.tvtitle.text = mContext.getString(R.string.leavemanagment)
     }
-    private fun setAdapter(){
-        val totalLeaveStatusAdapter = TotalLeaveStatusAdapter(baseActivity){
+
+    private fun setAdapter() {
+        val totalLeaveStatusAdapter = TotalLeaveStatusAdapter(baseActivity) {
 
         }
         binder.rvTotalleavestatus.adapter = totalLeaveStatusAdapter
 
-        val leaveDetailCartAdapter = LeaveDetailCartAdapter(baseActivity){
+        val leaveDetailCartAdapter = LeaveDetailCartAdapter(baseActivity) {
 
         }
         binder.rvLeaveDatailcart.adapter = leaveDetailCartAdapter
@@ -50,5 +53,8 @@ class LeaveManagmentViewModel(application: Application) : AppViewModel(applicati
             baseActivity.onBackPressed()
         }
     }
+
+
+
 
 }

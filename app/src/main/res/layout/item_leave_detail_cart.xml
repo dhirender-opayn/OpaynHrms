@@ -98,7 +98,7 @@
                     android:layout_marginStart="@dimen/_5sdp"
                     android:maxLength="50"
                     android:singleLine="true"
-                    android:text="Attendance"
+                    android:text="@string/leaves"
                     android:textColor="@color/grey_blue"
                     android:textSize="@dimen/_10sdp"
                     app:layout_constraintBottom_toBottomOf="parent"

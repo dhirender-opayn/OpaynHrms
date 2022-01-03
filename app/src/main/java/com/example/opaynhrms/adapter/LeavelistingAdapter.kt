@@ -15,7 +15,7 @@ import com.ieltslearning.base.BaseAdapter
 import kotlinx.android.synthetic.main.item_leave_detail_cart.view.*
 import kotlinx.android.synthetic.main.item_leave_request.view.*
 
-class LeaveDetailCartAdapter(val baseActivity: KotlinBaseActivity, val itemClick: (Int) -> Unit) :
+class LeavelistingAdapter(val baseActivity: KotlinBaseActivity, val itemClick: (Int) -> Unit) :
     BaseAdapter<ListingModel>(
         R.layout.item_leave_detail_cart
     ) {

@@ -1,6 +1,5 @@
 package com.example.opaynhrms.viewmodel
 
-import android.app.Activity
 import android.app.Application
 import android.content.Context
 import android.os.Bundle
@@ -13,14 +12,13 @@ import com.example.opaynhrms.extensions.gone
 import com.example.opaynhrms.extensions.invisible
 import com.example.opaynhrms.extensions.visible
 import com.example.opaynhrms.fragment.HomeFragement
-import com.example.opaynhrms.fragment.StatisticsFragment
 import com.example.opaynhrms.fragment.ProfileFragment
 import com.example.opaynhrms.model.LoginJson
 import com.example.opaynhrms.ui.Home.Companion.userModel
 import com.example.opaynhrms.utils.Keys
 import com.example.opaynhrms.utils.Utils.AUTHTOKEN
 import com.google.gson.Gson
-import com.ieltslearning.base.AppViewModel
+import com.example.opaynhrms.base.AppViewModel
 import kotlinx.android.synthetic.main.bottom_nav_bar.view.*
 import kotlinx.android.synthetic.main.nointernetconnection.view.*
 
@@ -50,6 +48,8 @@ class HomeViewModel(application: Application) : AppViewModel(application) {
             var jsondata: String = ""
             jsondata = it.toString()
             userModel = gson.fromJson(jsondata, LoginJson::class.java)
+
+            Log.e("tokeeenenne", userModel.toString())
 
 
         }

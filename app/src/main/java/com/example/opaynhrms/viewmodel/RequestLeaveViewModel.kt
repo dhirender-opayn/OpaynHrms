@@ -3,17 +3,13 @@ package com.example.opaynhrms.viewmodel
 import android.app.Application
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import com.example.opaynhrms.R
-import com.example.opaynhrms.adapter.LeaveDetailCartAdapter
-import com.example.opaynhrms.adapter.TotalLeaveStatusAdapter
 import com.example.opaynhrms.base.KotlinBaseActivity
-import com.example.opaynhrms.databinding.ActivityLeaveManagementBinding
 import com.example.opaynhrms.databinding.ActivityRequestLeaveBinding
 import com.example.opaynhrms.extensions.gone
 import com.example.opaynhrms.extensions.visible
@@ -21,7 +17,7 @@ import com.example.opaynhrms.ui.Home
 import com.example.opaynhrms.utils.Keys
 import com.example.opaynhrms.utils.TimePickerFragment
 import com.example.opaynhrms.utils.Utils
-import com.ieltslearning.base.AppViewModel
+import com.example.opaynhrms.base.AppViewModel
 import kotlinx.android.synthetic.main.common_toolbar.view.*
 import okhttp3.MultipartBody
 import java.text.SimpleDateFormat

@@ -4,15 +4,12 @@ import android.app.Application
 import android.content.Context
 import android.os.Bundle
 import com.example.opaynhrms.R
-import com.example.opaynhrms.auth.Login
 import com.example.opaynhrms.base.KotlinBaseActivity
 import com.example.opaynhrms.databinding.ActivityChangePasswordBinding
-import com.example.opaynhrms.databinding.ActivityEditProfileBinding
 import com.example.opaynhrms.repository.LoginRepository
 import com.example.opaynhrms.utils.Keys
-import com.example.opaynhrms.utils.Utils
 import com.google.gson.JsonObject
-import com.ieltslearning.base.AppViewModel
+import com.example.opaynhrms.base.AppViewModel
 
 class ChangePasswordViewModel(application: Application) : AppViewModel(application) {
     private lateinit var binder: ActivityChangePasswordBinding

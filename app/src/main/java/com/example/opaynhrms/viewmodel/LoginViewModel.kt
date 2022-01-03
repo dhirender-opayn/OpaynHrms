@@ -2,7 +2,6 @@ package com.example.opaynhrms.viewmodel
 
 import android.app.Application
 import android.content.Context
-import android.util.Log
 import android.view.View
 import com.example.opaynhrms.R
 import com.example.opaynhrms.auth.ForgotPassword
@@ -18,9 +17,8 @@ import com.example.opaynhrms.utils.Keys.TOKEN
 import com.example.opaynhrms.utils.Keys.USERDATA
 import com.google.gson.Gson
 import com.google.gson.JsonObject
-import com.ieltslearning.base.AppViewModel
+import com.example.opaynhrms.base.AppViewModel
 import com.ieltslearning.listner.ItemClick
-import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginViewModel(application: Application) : AppViewModel(application), ItemClick,
     View.OnClickListener {

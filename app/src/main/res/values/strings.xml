@@ -110,6 +110,7 @@
     <string name="attandancelist">Attendance List</string>
     <string name="distancerange">Attendance can me marked between 100 meters of distance</string>
     <string name="leave">Leave</string>
+    <string name="leaves">Leaves:</string>
     <string name="calendar">Calendar</string>
     <string name="employees">Employees</string>
     <string name="salary">Salary</string>
@@ -126,6 +127,10 @@
      <string name="singleday">Single Day</string>
     <string name="multipleday">Multiple Day</string>
     <string name="shortleave">Short Leave</string>
+    <string name="announcement_msg">Enter Announcement message</string>
+    <string name="titlefield">Title Field is empty</string>
+    <string name="notification">Notification</string>
+    <string name="leavemanagment">Leave Management</string>
 
 
 </resources>

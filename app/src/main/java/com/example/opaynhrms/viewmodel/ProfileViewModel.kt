@@ -6,13 +6,15 @@ import com.example.opaynhrms.R
 
 
 import com.example.opaynhrms.base.KotlinBaseActivity
-import com.example.opaynhrms.databinding.FragmentHomeFragementBinding
 import com.example.opaynhrms.databinding.FragmentProfileBinding
+import com.example.opaynhrms.extensions.gone
 import com.example.opaynhrms.extensions.isNotNull
+import com.example.opaynhrms.extensions.visible
 import com.example.opaynhrms.repository.HomeRepository
 import com.example.opaynhrms.ui.Home
+import com.example.opaynhrms.utils.Utils
 
-import com.ieltslearning.base.AppViewModel
+import com.example.opaynhrms.base.AppViewModel
 import com.squareup.picasso.Picasso
 
 
@@ -27,6 +29,7 @@ class ProfileViewModel(application: Application) : AppViewModel(application) {
         this.mContext = binder.root.context
         this.baseActivity = baseActivity
         setdata()
+        contentvisibily()
 
     }
 
@@ -39,6 +42,18 @@ class ProfileViewModel(application: Application) : AppViewModel(application) {
 
         }
 
+
+    }
+
+    private fun contentvisibily() {
+        if (Home.userModel?.data?.user!!.roles[0].name.equals(Utils.SUPERADMIN)) {
+            binder.ivcancel.gone()
+            binder.off.gone()
+
+        } else {
+            binder.ivcancel.visible()
+            binder.off.visible()
+        }
     }
 
 

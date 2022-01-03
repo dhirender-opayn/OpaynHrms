@@ -5,10 +5,8 @@ import android.content.Context
 import android.os.Bundle
 import com.example.opaynhrms.adapter.PaySlipListAdapter
 import com.example.opaynhrms.base.KotlinBaseActivity
-import com.example.opaynhrms.databinding.ActivityChangePasswordBinding
-import com.example.opaynhrms.databinding.ActivityEditProfileBinding
 import com.example.opaynhrms.databinding.ActivityPayslipBinding
-import com.ieltslearning.base.AppViewModel
+import com.example.opaynhrms.base.AppViewModel
 import kotlinx.android.synthetic.main.common_toolbar.view.*
 
 class PayslipViewModel(application: Application) : AppViewModel(application) {
