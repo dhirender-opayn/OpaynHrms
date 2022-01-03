@@ -130,6 +130,8 @@
     <string name="pending">Pending</string>
     <string name="accept">Accpet</string>
     <string name="reject">Reject</string>
+    <string name="edituser">Edit User</string>
+    <string name="update">Update</string>
 
 
 </resources>
