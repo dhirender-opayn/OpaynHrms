@@ -12,7 +12,7 @@
         android:top="-500dp">
         <shape>
             <corners android:radius="500dp" />
-            <solid android:color="@color/black" />
+            <solid android:color="@color/matt_black" />
 <!--            <solid android:color="#0a5688" />-->
         </shape>
     </item>

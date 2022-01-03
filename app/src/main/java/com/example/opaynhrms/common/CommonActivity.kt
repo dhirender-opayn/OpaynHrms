@@ -8,7 +8,7 @@ import com.example.opaynhrms.base.KotlinBaseActivity
 import com.example.opaynhrms.databinding.ActivityCommonBinding
 import com.example.opaynhrms.viewmodel.CommonActivityViewModel
 
-class CommonActivity : KotlinBaseActivity() {
+class CommonActivity : KotlinBaseActivity(R.id.containeractivity) {
     lateinit var binding: ActivityCommonBinding
     lateinit var viewModel: CommonActivityViewModel
 
