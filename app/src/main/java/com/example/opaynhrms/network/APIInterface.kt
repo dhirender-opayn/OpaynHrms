@@ -1,9 +1,6 @@
 package com.example.opaynhrms.network
 
- import com.example.opaynhrms.model.AttandanceListJson
- import com.example.opaynhrms.model.LeaveListJson
- import com.example.opaynhrms.model.LoginJson
- import com.example.opaynhrms.model.UserListJson
+ import com.example.opaynhrms.model.*
  import com.example.opaynhrms.repository.RolesJson
  import com.google.gson.JsonObject
  import okhttp3.MultipartBody
@@ -61,6 +58,9 @@ interface APIInterface
     @Headers("Accept: application/json")
     @GET("users")
     fun users(@Header("Authorization") token: String): Call<UserListJson>
+    @Headers("Accept: application/json")
+    @GET()
+    fun teamdata(@Url url: String,@Header("Authorization") token: String): Call<UserDetailJson>
 
     @Headers("Accept: application/json")
     @GET("")

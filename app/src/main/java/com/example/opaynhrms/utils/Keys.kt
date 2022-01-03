@@ -18,6 +18,7 @@ object Keys
     const val LEAVESTATUS="leave/status"
     const val DELTEUSER="user"
     const val UPDATEUSER="user/update"
+    const val TEAMDATA="team?user_id=";
     const val ATTANDANCELIST="attendance/listing"
     /*GUEST KEYS*/
     const val Coursetype = "coursetype"

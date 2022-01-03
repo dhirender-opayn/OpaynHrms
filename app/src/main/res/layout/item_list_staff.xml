@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/light_grey">
+    >
 
     <com.example.opaynhrms.utils.swipreval.SwipeRevealLayout
         android:layout_width="match_parent"
@@ -53,6 +53,7 @@
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="@dimen/_5sdp"
                 app:cardElevation="@dimen/_3sdp"
+                app:cardBackgroundColor="@color/white"
                 app:cardPreventCornerOverlap="true"
                 app:cardUseCompatPadding="true">
 

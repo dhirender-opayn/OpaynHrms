@@ -6,6 +6,7 @@ package com.example.opaynhrms.repository
 import com.example.opaynhrms.base.KotlinBaseActivity
  import com.example.opaynhrms.model.LeaveListJson
  import com.example.opaynhrms.model.LoginJson
+ import com.example.opaynhrms.model.UserDetailJson
  import com.example.opaynhrms.model.UserListJson
  import com.example.opaynhrms.network.APIInterface
 import com.example.opaynhrms.network.RetrofitClient
@@ -251,6 +252,53 @@ class UserRepository(private val baseActivity: Application)
                 }
 
                 override fun onFailure(call: Call<UserListJson?>, t: Throwable)
+                {
+                    baseActivity.stopProgressDialog()
+                   // signupmutableLiveData.setValue(null)
+                }
+            })
+        }
+
+
+
+
+    }
+    fun teamdata(baseActivity: KotlinBaseActivity, url: String,itemClick: (UserDetailJson) -> Unit)
+    {
+
+        if (!baseActivity.networkcheck.isNetworkAvailable())
+        {
+            baseActivity.nointernershowToast()
+        }
+        else{
+            baseActivity.startProgressDialog()
+            retrofitClient = RetrofitClient.with(this.baseActivity)?.client?.create(
+                APIInterface::class.java
+            )
+
+            retrofitClient?.teamdata(url,Utils.AUTHTOKEN)!!.enqueue(object : Callback<UserDetailJson>
+            {
+                override fun onResponse(
+                    call: Call<UserDetailJson?>,
+                    response: Response<UserDetailJson?>
+                ) {
+                    baseActivity.stopProgressDialog()
+                    when(response.code())
+                    {
+                        Keys.RESPONSE_SUCESS->{
+                            response.body()?.let { itemClick(it) }
+                         }
+                        Keys.ERRORCODE->{
+                             baseActivity.parseError(response)
+                        }
+                        Keys.UNAUTHoRISE->{
+                            //signupmutableLiveData.setValue(response.body())
+                        }
+                    }
+
+                }
+
+                override fun onFailure(call: Call<UserDetailJson?>, t: Throwable)
                 {
                     baseActivity.stopProgressDialog()
                    // signupmutableLiveData.setValue(null)
