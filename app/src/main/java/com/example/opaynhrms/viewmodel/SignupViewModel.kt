@@ -3,16 +3,13 @@ package com.example.opaynhrms.viewmodel
 import android.app.Application
 import android.content.Context
 import com.example.opaynhrms.R
-import com.example.opaynhrms.auth.Login
-import com.example.opaynhrms.auth.OtpVerify
 import com.example.opaynhrms.base.KotlinBaseActivity
 import com.example.opaynhrms.databinding.ActivitySignupBinding
 import com.example.opaynhrms.extensions.isEmailValid
 import com.example.opaynhrms.repository.LoginRepository
 import com.example.opaynhrms.utils.Keys
 import com.google.gson.JsonObject
-import com.ieltslearning.base.AppViewModel
-import com.ieltslearning.listner.ItemClick
+import com.example.opaynhrms.base.AppViewModel
 
 class SignupViewModel(application: Application) : AppViewModel(application) {
     var loginSigupRepository: LoginRepository = LoginRepository(application)

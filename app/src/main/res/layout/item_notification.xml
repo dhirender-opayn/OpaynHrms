@@ -9,7 +9,7 @@
         android:id="@+id/cvContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="@dimen/_10sdp"
+        app:cardCornerRadius="@dimen/_5sdp"
         app:cardElevation="@dimen/_2sdp"
         app:cardPreventCornerOverlap="true"
         app:cardUseCompatPadding="true"
@@ -20,66 +20,133 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="@dimen/_20sdp">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="@dimen/_5sdp"
+            android:paddingTop="@dimen/_15sdp"
+            android:paddingEnd="@dimen/_5sdp"
+            android:paddingBottom="@dimen/_15sdp">
 
-            <!--            <androidx.appcompat.widget.AppCompatImageView-->
-            <!--                android:id="@+id/img"-->
-            <!--                android:layout_width="@dimen/_40sdp"-->
-            <!--                android:layout_height="@dimen/_40sdp"-->
-            <!--                android:src="@drawable/userwhite"-->
-            <!--                app:layout_constraintBottom_toBottomOf="parent"-->
-            <!--                app:layout_constraintStart_toStartOf="parent"-->
-            <!--                app:layout_constraintTop_toTopOf="parent" />-->
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/msg"
-                style="@style/semiboldfont"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:maxWidth="@dimen/_200sdp"
-                android:singleLine="true"
-                android:text="Alex shaw is announcement somethings"
-                android:textColor="@color/light_gre1"
-                android:textSize="@dimen/_12sdp"
-                app:layout_constraintBottom_toTopOf="@+id/timing"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/timing"
-                style="@style/semiboldfont"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:maxWidth="@dimen/_200sdp"
-                android:singleLine="true"
-                android:text="8 Min ago"
-                android:textColor="@color/light_gre2"
-                android:textSize="@dimen/_8sdp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/msg" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/newnotification"
                 style="@style/semiboldfont"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:layout_marginEnd="@dimen/_5sdp"
+                android:layout_width="@dimen/_5sdp"
+                android:layout_height="@dimen/_5sdp"
                 android:background="@drawable/rectangle_border_fill"
-                android:maxWidth="@dimen/_200sdp"
                 android:padding="@dimen/_3sdp"
                 android:singleLine="true"
-                android:text="New"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_8sdp"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvtitle"
+                style="@style/mediumfont"
+                android:layout_width="0dp"
+                android:layout_marginTop="@dimen/_3sdp"
+                android:layout_height="wrap_content"
+                android:text="I Forgot my Password and don't have my phone right now to verfy user "
+                android:textColor="@color/black"
+                android:textSize="@dimen/_10sdp"
+                app:layout_constraintEnd_toStartOf="@id/ivdonwn"
+                app:layout_constraintStart_toEndOf="@+id/newnotification"
+                app:layout_constraintTop_toTopOf="parent" />
 
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivdonwn"
+                android:layout_width="@dimen/_14sdp"
+                android:layout_height="@dimen/_14sdp"
+                android:src="@drawable/ic_down_arrow"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="@dimen/_5sdp"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/view1"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@color/light_gre1"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@id/tvtitle" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvans"
+                style="@style/regularfont"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="@string/longdes"
+                android:textColor="@color/black_3"
+                android:textSize="@dimen/_10sdp"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@id/view1" />
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="match_parent"-->
+        <!--            android:padding="@dimen/_20sdp">-->
+
+        <!--            &lt;!&ndash;            <androidx.appcompat.widget.AppCompatImageView&ndash;&gt;-->
+        <!--            &lt;!&ndash;                android:id="@+id/img"&ndash;&gt;-->
+        <!--            &lt;!&ndash;                android:layout_width="@dimen/_40sdp"&ndash;&gt;-->
+        <!--            &lt;!&ndash;                android:layout_height="@dimen/_40sdp"&ndash;&gt;-->
+        <!--            &lt;!&ndash;                android:src="@drawable/userwhite"&ndash;&gt;-->
+        <!--            &lt;!&ndash;                app:layout_constraintBottom_toBottomOf="parent"&ndash;&gt;-->
+        <!--            &lt;!&ndash;                app:layout_constraintStart_toStartOf="parent"&ndash;&gt;-->
+        <!--            &lt;!&ndash;                app:layout_constraintTop_toTopOf="parent" />&ndash;&gt;-->
+
+        <!--            <androidx.appcompat.widget.AppCompatTextView-->
+        <!--                android:id="@+id/msg"-->
+        <!--                style="@style/semiboldfont"-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:maxWidth="@dimen/_200sdp"-->
+        <!--                android:singleLine="true"-->
+        <!--                android:text="Alex shaw is announcement somethings"-->
+        <!--                android:textColor="@color/light_gre1"-->
+        <!--                android:textSize="@dimen/_12sdp"-->
+        <!--                app:layout_constraintBottom_toTopOf="@+id/timing"-->
+        <!--                app:layout_constraintStart_toStartOf="parent"-->
+        <!--                app:layout_constraintTop_toTopOf="parent" />-->
+
+        <!--            <androidx.appcompat.widget.AppCompatTextView-->
+        <!--                android:id="@+id/timing"-->
+        <!--                style="@style/semiboldfont"-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_marginTop="@dimen/_5sdp"-->
+        <!--                android:maxWidth="@dimen/_200sdp"-->
+        <!--                android:singleLine="true"-->
+        <!--                android:text="8 Min ago"-->
+        <!--                android:textColor="@color/light_gre2"-->
+        <!--                android:textSize="@dimen/_8sdp"-->
+        <!--                app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--                app:layout_constraintStart_toStartOf="parent"-->
+        <!--                app:layout_constraintTop_toBottomOf="@+id/msg" />-->
+
+        <!--            <androidx.appcompat.widget.AppCompatTextView-->
+        <!--                android:id="@+id/newnotification"-->
+        <!--                style="@style/semiboldfont"-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_marginTop="@dimen/_5sdp"-->
+        <!--                android:layout_marginEnd="@dimen/_5sdp"-->
+        <!--                android:background="@drawable/rectangle_border_fill"-->
+        <!--                android:maxWidth="@dimen/_200sdp"-->
+        <!--                android:padding="@dimen/_3sdp"-->
+        <!--                android:singleLine="true"-->
+        <!--                android:text="New"-->
+        <!--                android:textColor="@color/white"-->
+        <!--                android:textSize="@dimen/_8sdp"-->
+        <!--                app:layout_constraintEnd_toEndOf="parent"-->
+        <!--                app:layout_constraintTop_toTopOf="parent" />-->
+
+
+        <!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
     </com.google.android.material.card.MaterialCardView>
 
 

@@ -2,24 +2,15 @@ package com.example.opaynhrms.viewmodel
 
 import android.app.Application
 import android.content.Context
-import android.content.LocusId
 import android.os.Bundle
-import androidx.core.content.ContextCompat
 import com.example.opaynhrms.R
-import com.example.opaynhrms.adapter.LeaveDetailCartAdapter
-import com.example.opaynhrms.adapter.StaffListingAdapter
-import com.example.opaynhrms.adapter.TotalLeaveStatusAdapter
+ import com.example.opaynhrms.adapter.StaffListingAdapter
+ import com.example.opaynhrms.base.AppViewModel
 import com.example.opaynhrms.base.KotlinBaseActivity
-import com.example.opaynhrms.databinding.ActivityLeaveManagementBinding
-import com.example.opaynhrms.databinding.ActivityRequestLeaveBinding
-import com.example.opaynhrms.databinding.ActivityStaffListingBinding
-import com.example.opaynhrms.extensions.showConfirmAlert
+  import com.example.opaynhrms.databinding.ActivityStaffListingBinding
 import com.example.opaynhrms.model.UserListJson
 import com.example.opaynhrms.repository.UserRepository
-import com.example.opaynhrms.utils.Keys
-import com.google.gson.JsonObject
-import com.ieltslearning.base.AppViewModel
-import kotlinx.android.synthetic.main.common_toolbar.view.*
+ import kotlinx.android.synthetic.main.common_toolbar.view.*
 
 
 class StaffListingViewModel(application: Application) : AppViewModel(application)
@@ -42,42 +33,29 @@ class StaffListingViewModel(application: Application) : AppViewModel(application
         setclicks()
         setAdapter()
         settoolbar()
-
+        callUserApi()
 
     }
 
 
-    private fun settoolbar()
-    {
-        binder.toolbar.tvtitle.setTextColor(ContextCompat.getColor(baseActivity,R.color.black))
+    private fun settoolbar(){
+        binder.toolbar.tvtitle.setTextColor(R.color.black)
         binder.toolbar.tvtitle.text = "Staff Listing"
         binder.toolbar.icmenu.setImageResource(R.drawable.icback_black)
     }
 
     private fun setAdapter(){
         val stafflistingview = StaffListingAdapter(baseActivity){
-            baseActivity.showConfirmAlert("Are you sure you want to delete the user","Ok","Cancel",onCancel = {
-            },onConfirmed = {
-                deletuser(userlist[it].id.toString())
-            })
+
         }
         stafflistingview.addNewList(userlist)
         binder.rvStaffList.adapter = stafflistingview
     }
-       fun callUserApi()
+    private  fun callUserApi()
     {
         userRepository.userslist(baseActivity){
             userlist.clear()
             userlist.addAll(it.data)
-            setAdapter()
-        }
-    }
-    private  fun deletuser( id: String)
-    {
-        val  jsonobject=JsonObject()
-        jsonobject.addProperty(Keys.id,id)
-        userRepository.deleteRequestBody(baseActivity,Keys.DELTEUSER,jsonobject){
-            callUserApi()
         }
     }
 

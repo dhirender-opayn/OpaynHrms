@@ -2,9 +2,6 @@ package com.example.opaynhrms.viewmodel
 
 import android.app.Application
 import android.content.Context
-import android.location.Location
-import com.example.easywaylocation.EasyWayLocation
-import com.example.easywaylocation.Listener
 import com.example.opaynhrms.R
 
 
@@ -12,18 +9,14 @@ import com.example.opaynhrms.base.KotlinBaseActivity
 import com.example.opaynhrms.databinding.FragmentHomeFragementBinding
 import com.example.opaynhrms.extensions.gone
 import com.example.opaynhrms.extensions.isNotNull
-import com.example.opaynhrms.extensions.visible
-import com.example.opaynhrms.model.ListingModel
 import com.example.opaynhrms.repository.HomeRepository
 import com.example.opaynhrms.ui.Home
 import com.example.opaynhrms.utils.Keys
-import com.example.opaynhrms.utils.Utils
 import com.google.gson.JsonObject
 
-import com.ieltslearning.base.AppViewModel
+import com.example.opaynhrms.base.AppViewModel
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.common_toolbar.view.*
-import kotlinx.android.synthetic.main.fragment_home_fragement.*
 
 
 class FragmentHomeViewModel(application: Application) : AppViewModel(application)
