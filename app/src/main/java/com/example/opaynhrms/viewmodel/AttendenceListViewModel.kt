@@ -41,7 +41,8 @@ class AttendenceListViewModel(application: Application) : AppViewModel(applicati
     var endate=""
     var type=""
 
-    fun setBinder(binder: ActivityAttendenceListBinding, baseActivity: KotlinBaseActivity) {
+    fun setBinder(binder: ActivityAttendenceListBinding, baseActivity: KotlinBaseActivity)
+    {
         this.binder = binder
         this.mContext = binder.root.context
         this.baseActivity = baseActivity
@@ -54,8 +55,10 @@ class AttendenceListViewModel(application: Application) : AppViewModel(applicati
         scrolllistner()
     }
 
-    private fun showskelton() {
-        if (baseActivity.networkcheck.isNetworkAvailable()) {
+    private fun showskelton()
+    {
+        if (baseActivity.networkcheck.isNetworkAvailable())
+        {
             skeleton2 = binder.skeletonLayout
             skeleton2 = binder.rvAttendenceList.applySkeleton(R.layout.item_attendance_list)
             //   skeleton = binding.packagesContainer.createSkeleton()
@@ -64,7 +67,8 @@ class AttendenceListViewModel(application: Application) : AppViewModel(applicati
         }
     }
 
-    private fun settoolbar() {
+    private fun settoolbar()
+    {
         binder.toolbar.tvtitle.setTextColor(ContextCompat.getColor(baseActivity, R.color.black))
         binder.toolbar.icmenu.setImageResource(R.drawable.icback_black)
         binder.toolbar.ivcart.visible()
@@ -72,12 +76,12 @@ class AttendenceListViewModel(application: Application) : AppViewModel(applicati
         binder.toolbar.tvtitle.text = baseActivity.getString(R.string.attandancelist)
     }
 
-    private fun setAdapter() {
+    private fun setAdapter()
+    {
         attandanceadapter = AttendanceListAdapter(baseActivity) {
 
         }
         binder.rvAttendenceList.adapter = attandanceadapter
-
 
     }
     private  fun resetdata()
@@ -86,10 +90,10 @@ class AttendenceListViewModel(application: Application) : AppViewModel(applicati
         endate=""
         type=""
         pastVisiblesItems = 0
-         visibleItemCount = 0
-         totalItemCount= 0
-         totalpage = 0
-         page = 1
+        visibleItemCount = 0
+        totalItemCount= 0
+        totalpage = 0
+        page = 1
     }
 
     private fun scrolllistner() {
@@ -150,7 +154,8 @@ class AttendenceListViewModel(application: Application) : AppViewModel(applicati
         skeleton2.showOriginal()
     }
 
-    private fun setclicks() {
+    private fun setclicks()
+    {
         binder.toolbar.icmenu.setOnClickListener {
             baseActivity.onBackPressed()
         }

@@ -17,10 +17,12 @@ import kotlinx.coroutines.async
 import java.io.File
 import id.zelory.compressor.Compressor
 
-class EditProfile : KotlinBaseActivity() {
+class EditProfile : KotlinBaseActivity()
+{
     lateinit var binding: ActivityEditProfileBinding
     lateinit var viewmodel: EditProfileViewModel
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?)
+    {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_edit_profile)
         viewmodel = ViewModelProvider(this).get(EditProfileViewModel::class.java)
@@ -50,15 +52,17 @@ class EditProfile : KotlinBaseActivity() {
                 }
             }
 
-        } else {
+        }
+        else
+        {
             // an error occurred
             val exception = result.error
 
         }
     }
 
-    private fun startCrop() {
-
+    private fun startCrop()
+    {
         // start picker to get image for cropping and then use the image in cropping activity
         cropImage.launch(
             options {
