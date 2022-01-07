@@ -99,12 +99,14 @@
         <entry key="..\:/Users/asus/AndroidStudioProjects/OpaynHrms/app/src/main/res/drawable-v24/icback.xml" value="0.33489583333333334" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/OpaynHrms/app/src/main/res/drawable/announcement_svg.xml" value="0.26851851851851855" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/OpaynHrms/app/src/main/res/drawable/background_auth.xml" value="0.30925925925925923" />
+        <entry key="..\:/Users/asus/AndroidStudioProjects/OpaynHrms/app/src/main/res/drawable/black_placeholder.xml" value="0.287962962962963" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/OpaynHrms/app/src/main/res/drawable/calendar_line_activie.xml" value="0.30925925925925923" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/OpaynHrms/app/src/main/res/drawable/fragement_clickifywork_listing.xml" value="0.30925925925925923" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/OpaynHrms/app/src/main/res/drawable/ic_attachment_active.xml" value="0.30925925925925923" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/OpaynHrms/app/src/main/res/drawable/ic_baseline_filter_alt_24.xml" value="0.33489583333333334" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/OpaynHrms/app/src/main/res/drawable/ic_baseline_keyboard_arrow_down_24.xml" value="0.31296296296296294" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/OpaynHrms/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.30925925925925923" />
+        <entry key="..\:/Users/asus/AndroidStudioProjects/OpaynHrms/app/src/main/res/drawable/ic_baseline_power_settings_new_24.xml" value="0.30925925925925923" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/OpaynHrms/app/src/main/res/drawable/ic_baseline_settings_power_24.xml" value="0.33489583333333334" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/OpaynHrms/app/src/main/res/drawable/ic_calendar_line.xml" value="0.33489583333333334" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/OpaynHrms/app/src/main/res/drawable/ic_calendar_line_small.xml" value="0.33489583333333334" />
@@ -115,19 +117,25 @@
         <entry key="..\:/Users/asus/AndroidStudioProjects/OpaynHrms/app/src/main/res/drawable/ic_download.xml" value="0.30925925925925923" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/OpaynHrms/app/src/main/res/drawable/ic_flight_ticket.xml" value="0.30925925925925923" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/OpaynHrms/app/src/main/res/drawable/ic_leavetype.xml" value="0.30925925925925923" />
+        <entry key="..\:/Users/asus/AndroidStudioProjects/OpaynHrms/app/src/main/res/drawable/ic_payroll_salary.xml" value="0.287962962962963" />
+        <entry key="..\:/Users/asus/AndroidStudioProjects/OpaynHrms/app/src/main/res/drawable/ic_support.xml" value="0.287962962962963" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/OpaynHrms/app/src/main/res/drawable/ic_travelling.xml" value="0.33489583333333334" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/OpaynHrms/app/src/main/res/drawable/ic_up_arrow.xml" value="0.1875" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/OpaynHrms/app/src/main/res/drawable/icback_black.xml" value="0.33489583333333334" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/OpaynHrms/app/src/main/res/drawable/person_active.xml" value="0.30925925925925923" />
+        <entry key="..\:/Users/asus/AndroidStudioProjects/OpaynHrms/app/src/main/res/drawable/rectangle_black_border.xml" value="0.30925925925925923" />
+        <entry key="..\:/Users/asus/AndroidStudioProjects/OpaynHrms/app/src/main/res/drawable/rectangle_red_borderfill.xml" value="0.30925925925925923" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/activity_add_announcement.xml" value="0.3145833333333333" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/activity_add_user.xml" value="0.3145833333333333" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/activity_attendence_list.xml" value="0.3145833333333333" />
+        <entry key="..\:/Users/asus/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/activity_calendar.xml" value="0.3145833333333333" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/activity_change_password.xml" value="0.3145833333333333" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/activity_common.xml" value="0.26979166666666665" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/activity_edit_profile.xml" value="0.3145833333333333" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/activity_emergency_leave_list.xml" value="0.3145833333333333" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/activity_filter_dailog.xml" value="0.3145833333333333" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/activity_forgot_password.xml" value="0.25" />
+        <entry key="..\:/Users/asus/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/activity_holiday_listing.xml" value="0.3145833333333333" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/activity_home.xml" value="0.26979166666666665" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/activity_leave_management.xml" value="0.3145833333333333" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/activity_login.xml" value="0.3145833333333333" />
@@ -141,24 +149,39 @@
         <entry key="..\:/Users/asus/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/activity_support.xml" value="0.3145833333333333" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/bg_layout.xml" value="0.2574074074074074" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/bottom_nav_bar.xml" value="0.3145833333333333" />
+        <entry key="..\:/Users/asus/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/calendar_day_layout.xml" value="0.3145833333333333" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/common_toolbar.xml" value="0.3145833333333333" />
+        <entry key="..\:/Users/asus/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/custom_drawer_layout.xml" value="0.29739583333333336" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/fragement_clockifywork_listing.xml" value="0.3145833333333333" />
+        <entry key="..\:/Users/asus/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/fragment_add_holiday.xml" value="0.3145833333333333" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/fragment_addticket.xml" value="0.3145833333333333" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/fragment_attandence.xml" value="0.3145833333333333" />
+        <entry key="..\:/Users/asus/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/fragment_attendace_listing_report.xml" value="0.3145833333333333" />
+        <entry key="..\:/Users/asus/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/fragment_emp_reproting_detail.xml" value="0.3145833333333333" />
+        <entry key="..\:/Users/asus/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/fragment_employeedetail.xml" value="0.3145833333333333" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/fragment_filter_dailog.xml" value="0.3145833333333333" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/fragment_home_fragement.xml" value="0.3145833333333333" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/fragment_leave.xml" value="0.3145833333333333" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/fragment_leave_detail.xml" value="0.25" />
+        <entry key="..\:/Users/asus/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/fragment_leavedownload.xml" value="0.3145833333333333" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/fragment_profile.xml" value="0.25" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/item_attendance_list.xml" value="0.3145833333333333" />
-        <entry key="..\:/Users/asus/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/item_clockifyworklisting.xml" value="0.2907949790794979" />
+        <entry key="..\:/Users/asus/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/item_checkin_list.xml" value="0.3145833333333333" />
+        <entry key="..\:/Users/asus/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/item_clockifyworklisting.xml" value="0.38450899031811897" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/item_emergency_list.xml" value="0.3145833333333333" />
+        <entry key="..\:/Users/asus/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/item_employeedetail.xml" value="0.25" />
+        <entry key="..\:/Users/asus/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/item_holiday_list.xml" value="0.3145833333333333" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/item_home_tab.xml" value="0.3145833333333333" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/item_images.xml" value="0.3145833333333333" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/item_leave_detail_cart.xml" value="0.3145833333333333" />
+        <entry key="..\:/Users/asus/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/item_leave_request.xml" value="0.3145833333333333" />
+        <entry key="..\:/Users/asus/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/item_month_attendance.xml" value="0.3145833333333333" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/item_notification.xml" value="0.3145833333333333" />
+        <entry key="..\:/Users/asus/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/item_reporting_detail.xml" value="0.3145833333333333" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/item_statistics_img.xml" value="0.3145833333333333" />
+        <entry key="..\:/Users/asus/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/item_statistics_request.xml" value="0.3145833333333333" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/item_support.xml" value="0.3145833333333333" />
+        <entry key="..\:/Users/asus/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/item_total_leaves.xml" value="0.3145833333333333" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/OpaynHrms/app/src/main/res/layout/statistics_notification.xml" value="0.3145833333333333" />
       </map>
     </option>

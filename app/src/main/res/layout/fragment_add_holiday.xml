@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.opaynhrms.viewmodel.AddHolidayViewModel" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".auth.Login">
+
+        <include layout="@layout/bg_layout" />
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/common_toolbar" />
+
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cvContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_50sdp"
+                    app:cardCornerRadius="@dimen/_10sdp"
+                    app:cardElevation="@dimen/_5sdp"
+                    app:cardPreventCornerOverlap="true"
+                    app:cardUseCompatPadding="true"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/clrequestleavecontainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:layout_marginEnd="@dimen/_15sdp"
+                        android:orientation="vertical"
+                        android:paddingTop="@dimen/_10sdp"
+                        android:paddingBottom="@dimen/_10sdp"
+                        app:layout_constraintTop_toTopOf="parent">
+
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/icedit"
+                            android:layout_width="@dimen/_20sdp"
+                            android:layout_height="@dimen/_20sdp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginStart="@dimen/_3sdp"
+                            android:layout_marginBottom="@dimen/_15sdp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_edit" />
+
+
+
+                        <com.makeramen.roundedimageview.RoundedImageView
+                            android:id="@+id/ivholiday"
+                            android:layout_width="@dimen/_50sdp"
+                            android:layout_height="@dimen/_50sdp"
+                            android:layout_centerInParent="true"
+                            android:layout_gravity="center"
+                            android:src="@drawable/meeting" />
+
+
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/tvLeaveTitle"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:hint="@string/title"
+                            android:textColorHint="@color/dark_grey"
+                            app:hintTextColor="@color/pinky_red"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/leavetypewrap"
+                            app:layout_goneMarginEnd="@dimen/_32sdp"
+                            app:layout_goneMarginStart="@dimen/_32sdp">
+
+                            <!--this is the actual edit text which takes the input-->
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/tvTitle"
+                                style="@style/edittextlogintitle"
+                                android:gravity="start"
+                                android:inputType="none"
+                                android:maxLength="500"
+                                android:singleLine="false"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_12sdp" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/leavetypewrap"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_10sdp">
+
+                            <!-- Inside text input layout add
+                                  an auto complete text view
+                                    and make its input type to none-->
+                            <AutoCompleteTextView
+                                android:id="@+id/leavetype"
+                                style="@style/mediumfont"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+
+                                android:inputType="none"
+                                android:text="@string/leave_type" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:id="@+id/datecontainer"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:orientation="horizontal"
+                            android:visibility="gone">
+
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/startdatewrap"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/_10sdp"
+                                android:layout_weight="1"
+                                android:hint="@string/start_date"
+                                android:textColorHint="@color/dark_grey"
+                                app:endIconDrawable="@drawable/ic_calendar_line"
+                                app:endIconMode="custom"
+                                app:hintTextColor="@color/pinky_red"
+                                app:layout_constraintEnd_toEndOf="parent">
+
+                                <!-- Inside text input layout add
+                                      an auto complete text view
+                                        and make its input type to none-->
+                                <AutoCompleteTextView
+                                    android:id="@+id/startdate"
+                                    style="@style/mediumfont"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:inputType="date"
+                                    android:paddingStart="@dimen/_10sdp"
+                                    android:paddingTop="@dimen/_10sdp"
+                                    android:paddingEnd="@dimen/_10sdp"
+                                    android:paddingBottom="@dimen/_10sdp"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/_12sdp" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/endwrap"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/_5sdp"
+                                android:layout_weight="1"
+                                android:hint="@string/end_date"
+                                android:textColorHint="@color/dark_grey"
+                                app:endIconDrawable="@drawable/ic_calendar_line"
+                                app:endIconMode="custom"
+                                app:hintTextColor="@color/pinky_red">
+
+                                <!-- Inside text input layout add
+                                      an auto complete text view
+                                        and make its input type to none-->
+                                <AutoCompleteTextView
+                                    android:id="@+id/enddate"
+                                    style="@style/mediumfont"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:inputType="date"
+                                    android:paddingStart="@dimen/_10sdp"
+                                    android:paddingTop="@dimen/_10sdp"
+                                    android:paddingEnd="@dimen/_10sdp"
+                                    android:paddingBottom="@dimen/_10sdp"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/_12sdp" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/dateWrap"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:hint="@string/select_date"
+                            android:textColorHint="@color/dark_grey"
+                            android:visibility="visible"
+                            app:endIconDrawable="@drawable/ic_calendar_line"
+                            app:endIconMode="custom"
+                            app:hintTextColor="@color/pinky_red">
+
+                            <!-- Inside text input layout add
+                                  an auto complete text view
+                                    and make its input type to none-->
+                            <AutoCompleteTextView
+                                android:id="@+id/date"
+                                style="@style/mediumfont"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:inputType="date"
+                                android:paddingStart="@dimen/_10sdp"
+                                android:paddingTop="@dimen/_10sdp"
+                                android:paddingEnd="@dimen/_10sdp"
+                                android:paddingBottom="@dimen/_10sdp"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_12sdp" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:id="@+id/timecontainer"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:orientation="horizontal"
+                            android:visibility="gone">
+
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/starttimewarp"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/_10sdp"
+                                android:layout_weight="1"
+                                android:hint="@string/start_tim"
+                                android:textColorHint="@color/dark_grey"
+                                app:endIconDrawable="@drawable/ic_calendar_line"
+                                app:endIconMode="custom"
+                                app:hintTextColor="@color/pinky_red"
+                                app:layout_constraintEnd_toEndOf="parent">
+
+                                <!-- Inside text input layout add
+                                      an auto complete text view
+                                        and make its input type to none-->
+                                <AutoCompleteTextView
+                                    android:id="@+id/startime"
+                                    style="@style/mediumfont"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:inputType="date"
+                                    android:paddingStart="@dimen/_10sdp"
+                                    android:paddingTop="@dimen/_10sdp"
+                                    android:paddingEnd="@dimen/_10sdp"
+                                    android:paddingBottom="@dimen/_10sdp"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/_12sdp" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/endtimewrap"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/_5sdp"
+                                android:layout_weight="1"
+                                android:hint="@string/end_time"
+                                android:textColorHint="@color/dark_grey"
+                                app:endIconDrawable="@drawable/ic_calendar_line"
+                                app:endIconMode="custom"
+                                app:hintTextColor="@color/pinky_red">
+
+                                <!-- Inside text input layout add
+                                      an auto complete text view
+                                        and make its input type to none-->
+                                <AutoCompleteTextView
+                                    android:id="@+id/endtim"
+                                    style="@style/mediumfont"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:inputType="date"
+                                    android:paddingStart="@dimen/_10sdp"
+                                    android:paddingTop="@dimen/_10sdp"
+                                    android:paddingEnd="@dimen/_10sdp"
+                                    android:paddingBottom="@dimen/_10sdp"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/_12sdp" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        <RadioGroup
+                            android:id="@+id/radiogrp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:orientation="horizontal"
+                            android:visibility="gone">
+
+                            <RadioButton
+                                android:id="@+id/rbFirst"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/first_half" />
+
+                            <RadioButton
+                                android:id="@+id/rbsecond"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/second_half" />
+
+                        </RadioGroup>
+
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/reasonwrap"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:hint="@string/reason"
+                            android:textColorHint="@color/dark_grey"
+                            app:boxCornerRadiusBottomEnd="@dimen/_10sdp"
+                            app:boxCornerRadiusBottomStart="@dimen/_10sdp"
+                            app:boxCornerRadiusTopEnd="@dimen/_10sdp"
+                            app:boxCornerRadiusTopStart="@dimen/_10sdp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_goneMarginEnd="@dimen/_32sdp"
+                            app:layout_goneMarginStart="@dimen/_32sdp">
+
+                            <!--this is the actual edit text which takes the input-->
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/tvreason"
+                                style="@style/regularfont"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_150sdp"
+                                android:gravity="start"
+                                android:inputType="none"
+                                android:lines="10"
+                                android:maxLength="500"
+                                android:scrollIndicators="none"
+                                android:singleLine="false"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_12sdp" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/loginbtn"
+                            style="@style/button_style2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_20sdp"
+                            android:backgroundTint="@color/pinky_red"
+                            android:paddingTop="@dimen/_10sdp"
+                            android:paddingBottom="@dimen/_10sdp"
+                            android:text="Add Holiday"
+                            app:cornerRadius="@dimen/_5sdp"
+                            app:layout_constraintTop_toBottomOf="@+id/supervisorwrap" />
+
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </com.google.android.material.card.MaterialCardView>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>

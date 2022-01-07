@@ -24,6 +24,7 @@ class ProfileFragment(var baseActivity: KotlinBaseActivity) : KotlinBaseFragment
     View.OnClickListener {
     lateinit var binding: FragmentProfileBinding
     lateinit var viewModel: ProfileViewModel
+    var getbundle = Bundle()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -78,7 +79,8 @@ class ProfileFragment(var baseActivity: KotlinBaseActivity) : KotlinBaseFragment
                 baseActivity.openA(ChangePassword::class)
             }
             R.id.notification -> {
-                baseActivity.openA(Notification::class)
+                bundle.putString(Keys.FROM,baseActivity.getString(R.string.notification))
+                baseActivity.openA(Notification::class,bundle)
             }
             R.id.support -> {
                 baseActivity.openA(Support::class)

@@ -1,30 +1,18 @@
 package com.example.opaynhrms.fragment
 
 import android.os.Bundle
-
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProvider
 import com.example.opaynhrms.R
+import com.example.opaynhrms.adapter.AttendanceListReportAdapter
 import com.example.opaynhrms.base.KotlinBaseActivity
-import com.example.opaynhrms.databinding.FragmentLeaveDetailBinding
-
-
-import com.example.opaynhrms.viewmodel.LeaveDetailViewModel
-
-
 import com.ieltslearning.base.KotlinBaseFragment
+import kotlinx.android.synthetic.main.fragment_attendace_listing_report.*
 
 
-
-class LeaveDetailFragment(var baseActivity: KotlinBaseActivity) : KotlinBaseFragment() {
-    lateinit var binding: FragmentLeaveDetailBinding
-    lateinit var viewModel: LeaveDetailViewModel
-
-
-
+class AttendaceListingReport(var baseActivity: KotlinBaseActivity) : KotlinBaseFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,21 +24,17 @@ class LeaveDetailFragment(var baseActivity: KotlinBaseActivity) : KotlinBaseFrag
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-
-        binding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_leave_detail, container, false)
-        return binding.root
-
+        return inflater.inflate(R.layout.fragment_attendace_listing_report, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProvider(this).get(LeaveDetailViewModel::class.java)
-        viewModel.setBinder(binding, baseActivity)
+        val attendaceListingReportView = AttendanceListReportAdapter(baseActivity){
+
+        }
+        rvAttendenceList.adapter = attendaceListingReportView
 
     }
-
-
 
 
 }

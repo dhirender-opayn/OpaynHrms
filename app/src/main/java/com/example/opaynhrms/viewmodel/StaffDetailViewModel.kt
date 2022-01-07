@@ -60,6 +60,8 @@ class StaffDetailViewModel(application: Application) : AppViewModel(application)
 
     private fun settoolbar() {
         binder.toolbar.tvtitle.text = "Staff Detail"
+        binder.toolbar.tvtitle.setTextColor(baseActivity.getColor(R.color.matt_black))
+        binder.toolbar.icmenu.setImageResource(R.drawable.icback_black)
     }
     private  fun setdata(data :UserListJson.Data)
     {
@@ -103,14 +105,14 @@ class StaffDetailViewModel(application: Application) : AppViewModel(application)
             binder.tvAttendance.setBackgroundResource(R.color.pinky_red)
             binder.tvAttendance.setTextColor(ContextCompat.getColor(baseActivity ,R.color.white))
             binder.tvLeave.setTextColor(ContextCompat.getColor(baseActivity ,R.color.light_gre1))
-            binder.tvLeave.setBackgroundResource(R.color.white)
+            binder.tvLeave.setBackgroundResource(R.drawable.rectangle_black_border)
             setattandanceadapter()
 
 
 
         }
         binder.tvLeave.setOnClickListener {
-            binder.tvAttendance.setBackgroundResource(R.color.white)
+            binder.tvAttendance.setBackgroundResource(R.drawable.rectangle_black_border)
             binder.tvLeave.setBackgroundResource(R.color.pinky_red)
             binder.tvLeave.setTextColor(ContextCompat.getColor(baseActivity ,R.color.white))
             binder.tvAttendance.setTextColor(ContextCompat.getColor(baseActivity ,R.color.light_gre1))

@@ -18,4 +18,9 @@ class LeaveManagement : KotlinBaseActivity()
         viewmodel = ViewModelProvider(this).get(LeaveManagmentViewModel::class.java)
         viewmodel.setBinder(binding, this)
     }
+
+    override fun onResume() {
+        super.onResume()
+        viewmodel.leavelist()
+    }
 }

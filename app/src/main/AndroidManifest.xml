@@ -44,7 +44,7 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.Calendar"
+            android:name=".ui.HolidayListing"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity

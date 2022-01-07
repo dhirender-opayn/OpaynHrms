@@ -10,7 +10,6 @@ import com.example.opaynhrms.base.KotlinBaseActivity
  import com.example.opaynhrms.model.ListingModel
  import com.example.opaynhrms.ui.*
  import com.example.opaynhrms.utils.Keys
- import com.google.android.gms.common.internal.service.Common
  import com.ieltslearning.base.BaseAdapter
  import kotlinx.android.synthetic.main.item_home_tab.view.*
 
@@ -18,6 +17,7 @@ import com.example.opaynhrms.base.KotlinBaseActivity
 class HomeTabAdapter (val baseActivity: KotlinBaseActivity, val itemClick: (Int) -> Unit) : BaseAdapter<ListingModel>(
     R.layout.item_home_tab)
 {
+    var bundle = Bundle()
     override fun onBindViewHolder(holder: IViewHolder, position: Int)
     {
         holder.itemView.apply {
@@ -32,9 +32,14 @@ class HomeTabAdapter (val baseActivity: KotlinBaseActivity, val itemClick: (Int)
                     baseActivity.getString(R.string.employees)->{
                         baseActivity.openA(StaffListing::class)
                     }
+
+                    baseActivity.getString(R.string.calendar)->{
+                        baseActivity.openA(HolidayListing::class)
+                    }
                     baseActivity.getString(R.string.leave)->{
                         baseActivity.openA(LeaveManagement::class)
                     }
+
                     baseActivity.getString(R.string.salary)->{
                         baseActivity.openA(Payslip::class)
                     }
@@ -47,10 +52,25 @@ class HomeTabAdapter (val baseActivity: KotlinBaseActivity, val itemClick: (Int)
                     baseActivity.getString(R.string.attandancelist)->{
                         baseActivity.openA(AttendanceList::class)
                     }
+
+                    baseActivity.getString(R.string.announcement)->{
+                        bundle.putString(Keys.FROM,baseActivity.getString(R.string.announcement))
+                        baseActivity.openA(Notification::class,bundle)
+                    }
+
+                    baseActivity.getString(R.string.addholiday)->{
+                        bundle.putString(Keys.FROM,baseActivity.getString(R.string.addholiday))
+                        baseActivity.openA(CommonActivity::class,bundle)
+                    }
                     baseActivity.getString(R.string.workhistory)->{
 
                         var bundle = Bundle()
                         bundle.putString(Keys.FROM,context.getString(R.string.work_history))
+                        baseActivity.openA(CommonActivity::class,bundle)
+                    }
+                    baseActivity.getString(R.string.reporting)->{
+                        var bundle = Bundle()
+                        bundle.putString(Keys.FROM,context.getString(R.string.reporting))
                         baseActivity.openA(CommonActivity::class,bundle)
                     }
                 }

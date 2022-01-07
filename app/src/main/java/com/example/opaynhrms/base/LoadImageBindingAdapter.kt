@@ -4,6 +4,7 @@ import androidx.appcompat.widget.AppCompatImageView
 import com.example.opaynhrms.R
 import com.makeramen.roundedimageview.RoundedImageView
 import com.squareup.picasso.Picasso
+import de.hdodenhof.circleimageview.CircleImageView
 
 
 class LoadImageBindingAdapter {
@@ -16,7 +17,7 @@ class LoadImageBindingAdapter {
             }
         }
         @JvmStatic
-         fun roundedloadImage(view: RoundedImageView, profileImage: String?, error: Int) {
+         fun roundedloadImage(view: CircleImageView, profileImage: String?, error: Int) {
             if (!profileImage.isNullOrEmpty()) {
                 Picasso.get().load(profileImage).placeholder(R.drawable.sliderplaceholder).into(view)
             }

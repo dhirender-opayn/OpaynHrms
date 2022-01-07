@@ -4,15 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.Calendar">
+    android:background="@color/light_gre3"
+    tools:context=".fragment.AttendaceListingReport">
 
 
-    <com.kizitonwose.calendarview.CalendarView
-        android:id="@+id/calendarView"
+
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvAttendenceList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:cv_dayViewResource="@layout/calendar_day_layout"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:spanCount="2"
+        tools:listitem="@layout/item_month_attendance" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,8 +3,6 @@ package com.example.opaynhrms.fragment
 import android.Manifest
 import android.location.Location
 import android.os.Bundle
-import android.util.Log
-
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,8 +21,6 @@ import com.example.opaynhrms.model.ListingModel
 import com.example.opaynhrms.ui.Home
 import com.example.opaynhrms.utils.Utils
 import com.example.opaynhrms.viewmodel.FragmentHomeViewModel
-import com.example.opaynhrms.viewmodel.HomeViewModel
-import com.example.opaynhrms.viewmodel.LoginViewModel
 import com.google.android.gms.maps.model.LatLng
 import com.google.maps.android.SphericalUtil
 import com.ieltslearning.base.KotlinBaseFragment
@@ -34,7 +30,6 @@ import io.github.g00fy2.quickie.QRResult
 import io.github.g00fy2.quickie.ScanQRCode
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.common_toolbar.view.*
-import kotlinx.android.synthetic.main.fragment_home_fragement.toolbar
 import kotlinx.android.synthetic.main.item_statistics_notification.*
 import kotlinx.android.synthetic.main.statistics_notification.*
 
@@ -87,13 +82,14 @@ class HomeFragement(var baseActivity: KotlinBaseActivity) : KotlinBaseFragment()
                 tablist.add(ListingModel(R.drawable.ic_calendar_line, false, getString(R.string.calendar)))
                 tablist.add(ListingModel(R.drawable.ic_employee, false, getString(R.string.employees)))
                 tablist.add(ListingModel(R.drawable.ic_emergency, false, getString(R.string.emergencyleave)))
+                tablist.add(ListingModel(R.drawable.holiday, false, getString(R.string.addholiday)))
+                tablist.add(ListingModel(R.drawable.ic_reporing, false, getString(R.string.reporting)))
             } else {
                 tablist.add(ListingModel(R.drawable.ic_booking_confirmed, false, getString(R.string.leave)))
                 tablist.add(ListingModel(R.drawable.ic_attendance_list, false, getString(R.string.attandancelist)))
                 tablist.add(ListingModel(R.drawable.ic_calendar_line, false, getString(R.string.calendar)))
                 tablist.add(ListingModel(R.drawable.ic_travelling, false, getString(R.string.requestleave)))
                 tablist.add(ListingModel(R.drawable.announcement_svg, false, getString(R.string.announcement)))
-//                tablist.add(ListingModel(R.drawable.ic_payroll_salary, false, getString(R.string.salary)))
                 tablist.add(ListingModel(R.drawable.ic_work_history, false, getString(R.string.workhistory)))
 
             }

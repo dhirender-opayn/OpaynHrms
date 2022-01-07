@@ -47,12 +47,16 @@ class ProfileViewModel(application: Application) : AppViewModel(application) {
 
     private fun contentvisibily() {
         if (Home.userModel?.data?.user!!.roles[0].name.equals(Utils.SUPERADMIN)) {
-            binder.ivcancel.gone()
-            binder.off.gone()
+            binder.off.setText(baseActivity.getString(R.string.logout))
+            binder.ivcancel.setOnClickListener {
+                baseActivity.logout()
+            }
+            binder.loginbtn.gone()
+
 
         } else {
-            binder.ivcancel.visible()
-            binder.off.visible()
+            binder.off.setText(baseActivity.getString(R.string.off_emergency))
+            binder.loginbtn.visible()
         }
     }
 

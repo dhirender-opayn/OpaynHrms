@@ -1,38 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <layout>
 
-    <data>
-
-        <variable
-            name="viewModel"
-            type="com.example.opaynhrms.viewmodel.NotificationViewModel" />
-    </data>
-
+<data>
+    <variable
+        name="viewModel"
+        type="com.example.opaynhrms.viewmodel.HolidayListingViewModel" />
+</data>
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.Notification"
-        android:background="@color/matt_black">
-
-<!--        <include layout="@layout/bg_layout" />-->
+        tools:context=".ui.HolidayListing">
 
         <include
             android:id="@+id/toolbar"
             layout="@layout/common_toolbar" />
 
-
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvNotification"
+            android:id="@+id/rv_holidaylist"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:orientation="vertical"
-            android:padding="@dimen/_10sdp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/toolbar"
-            tools:listitem="@layout/item_notification" />
+            tools:listitem="@layout/item_holiday_list" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
