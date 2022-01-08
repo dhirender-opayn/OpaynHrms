@@ -8,31 +8,30 @@
     tools:context=".fragment.AttendaceListingReport">
 
 
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/common_toolbar" />
 
-
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvAttendenceList"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:spanCount="2"
-        tools:listitem="@layout/item_month_attendance" />
-    
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvReportClockify"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rvAttendenceList"
-        app:spanCount="2"
-        tools:listitem="@layout/item_clockifyworklisting" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvReportClockify"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:spanCount="2"
+            tools:listitem="@layout/item_checkin_list" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

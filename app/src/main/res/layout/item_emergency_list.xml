@@ -123,6 +123,21 @@
                         app:layout_constraintStart_toEndOf="@+id/leave_date"
                         app:layout_constraintTop_toTopOf="parent" />
 
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/workingHours"
+                        style="@style/semiboldfont"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:maxLength="50"
+                        android:singleLine="true"
+                        android:text="( 3Hours Working )"
+                        android:textColor="@color/grey_blue"
+                        android:textSize="@dimen/_10sdp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/dateformat"
+                        app:layout_constraintTop_toTopOf="parent" />
+
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
