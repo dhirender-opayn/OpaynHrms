@@ -1,139 +1,151 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".fragment.StatisticsFragment">
 
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/common_toolbar" />
+<layout>
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.opaynhrms.viewmodel.ReportingViewModel" />
+    </data>
 
 
-    <androidx.core.widget.NestedScrollView
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar">
+        android:layout_height="match_parent"
+        tools:context=".fragment.StatisticsFragment">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/common_toolbar" />
+
+
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="@dimen/_10sdp">
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvleavereport"
-                style="@style/semiboldfont"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/leave_reporting"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_14sdp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <com.github.mikephil.charting.charts.BarChart
-                android:id="@+id/pc_leaveChart"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_200sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                app:layout_constraintTop_toBottomOf="@+id/tvleavereport" />
+                android:layout_height="match_parent"
+                android:padding="@dimen/_10sdp">
 
 
-            <include
-                android:id="@+id/leaveChart"
-                layout="@layout/reporting_checkboxs"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_5sdp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/pc_leaveChart" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvleavereport"
+                    style="@style/semiboldfont"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/leave_reporting"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <View
-                android:id="@+id/view"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_1sdp"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:background="@color/light_gre3"
-                app:layout_constraintTop_toBottomOf="@+id/leaveChart" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvAttendancereport"
-                style="@style/semiboldfont"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/attendance_reporting"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_14sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view" />
-
-            <com.github.mikephil.charting.charts.PieChart
-                android:id="@+id/pc_attendancereport"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_200sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                app:layout_constraintTop_toBottomOf="@+id/tvAttendancereport" />
-            <include
-                android:id="@+id/attendanceChart"
-                layout="@layout/reporting_checkboxs"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_5sdp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/pc_attendancereport" />
+                <com.github.mikephil.charting.charts.BarChart
+                    android:id="@+id/pc_leaveChart"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_200sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    app:layout_constraintTop_toBottomOf="@+id/tvleavereport" />
 
 
+                <include
+                    android:id="@+id/leaveChart"
+                    layout="@layout/reporting_checkboxs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/pc_leaveChart" />
 
-            <View
-                android:id="@+id/view1"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_1sdp"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:background="@color/light_gre3"
-                app:layout_constraintTop_toBottomOf="@+id/attendanceChart" />
+                <View
+                    android:id="@+id/view"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:background="@color/light_gre3"
+                    app:layout_constraintTop_toBottomOf="@+id/leaveChart" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvSalaryreport"
-                style="@style/semiboldfont"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/salary_report"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_14sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view1" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvAttendancereport"
+                    style="@style/semiboldfont"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:text="@string/attendance_reporting"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/view" />
 
+                <com.github.mikephil.charting.charts.PieChart
+                    android:id="@+id/pc_attendancereport"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_200sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    app:layout_constraintTop_toBottomOf="@+id/tvAttendancereport" />
 
-
-            <com.github.mikephil.charting.charts.PieChart
-                android:id="@+id/pc_salaryreport"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_200sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                app:layout_constraintTop_toBottomOf="@+id/tvSalaryreport" />
-
-            <include
-                android:id="@+id/salaryChart"
-                layout="@layout/reporting_checkboxs"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_5sdp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/pc_salaryreport" />
+                <include
+                    android:id="@+id/attendanceChart"
+                    layout="@layout/reporting_checkboxs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/pc_attendancereport" />
 
 
+                <View
+                    android:id="@+id/view1"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:background="@color/light_gre3"
+                    app:layout_constraintTop_toBottomOf="@+id/attendanceChart" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.core.widget.NestedScrollView>
-</androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvSalaryreport"
+                    style="@style/semiboldfont"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:text="@string/salary_report"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/view1" />
+
+
+                <com.github.mikephil.charting.charts.PieChart
+                    android:id="@+id/pc_salaryreport"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_200sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    app:layout_constraintTop_toBottomOf="@+id/tvSalaryreport" />
+
+                <include
+                    android:id="@+id/salaryChart"
+                    layout="@layout/reporting_checkboxs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/pc_salaryreport" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>
