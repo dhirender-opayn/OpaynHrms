@@ -9,17 +9,16 @@ import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
 import android.text.style.RelativeSizeSpan
 import android.text.style.StyleSpan
+import android.util.Log
 import android.view.MotionEvent
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.AutoCompleteTextView
+import android.widget.*
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.opaynhrms.R
 import com.example.opaynhrms.base.AppViewModel
 import com.example.opaynhrms.base.KotlinBaseActivity
- import com.example.opaynhrms.databinding.ActivityRequestLeaveBinding
+import com.example.opaynhrms.databinding.ActivityRequestLeaveBinding
 import com.example.opaynhrms.databinding.FragmentAddHolidayBinding
 import com.example.opaynhrms.databinding.StatisticsNotificationBinding
 import com.example.opaynhrms.extensions.gone
@@ -40,6 +39,7 @@ import com.github.mikephil.charting.listener.OnChartValueSelectedListener
 import com.github.mikephil.charting.utils.ColorTemplate
 import com.github.mikephil.charting.utils.MPPointF
 import kotlinx.android.synthetic.main.common_toolbar.view.*
+import kotlinx.android.synthetic.main.reporting_checkboxs.view.*
 import kotlinx.android.synthetic.main.statistics_notification.*
 import okhttp3.MultipartBody
 import java.io.File
@@ -57,61 +57,122 @@ class ReportingViewModel(application: Application) : AppViewModel(application),
     val bundle = Bundle()
     private var tf: Typeface? = null
     lateinit var bardataset: BarDataSet
+    var leavechartdata = ArrayList<BarEntry>()
 
 
-    fun setBinder(binder: StatisticsNotificationBinding, baseActivity: KotlinBaseActivity)
-    {
+    fun setBinder(binder: StatisticsNotificationBinding, baseActivity: KotlinBaseActivity) {
         this.binder = binder
         this.mContext = binder.root.context
         this.baseActivity = baseActivity
         this.binder.viewModel = this
         roundbardAttendance()
         salarypiechart()
-        barchart()
+
         settoolbar()
+        leaveChartRadioButton()
+        attendanceChartRadioButton()
+        salaryChartRadioButton()
 
 
     }
 
 
+    private fun leaveChartRadioButton() {
+        var radio: RadioButton ?=null
+        radio =  binder.leaveChart.cb_yearly
+        binder.leaveChart.radioGroup.setOnCheckedChangeListener(
+            RadioGroup.OnCheckedChangeListener { group, checkedId ->
+                  radio   = baseActivity.findViewById(checkedId)
+
+                Toast.makeText(
+                    mContext, " On checked change :" +
+                            " ${radio.text}",
+                    Toast.LENGTH_SHORT
+                ).show()
 
 
-    private fun barchart() {
-        //        var weekly = ArrayList<BarEntry>()
-//        weekly.add(BarEntry(1f,420f))
-//        weekly.add(BarEntry(2f,520f))
-//        weekly.add(BarEntry(3f,620f))
-//        weekly.add(BarEntry(4f,720f))
-//        weekly.add(BarEntry(5f,820f))
-//        weekly.add(BarEntry(6f,920f))
-//        weekly.add(BarEntry(7f,920f))
-//
-//        var monthly = ArrayList<BarEntry>()
-//        monthly.add(BarEntry(1f,420f))
-//        monthly.add(BarEntry(2f,520f))
-//        monthly.add(BarEntry(3f,620f))
-//        monthly.add(BarEntry(4f,720f))
-//        monthly.add(BarEntry(5f,820f))
-//        monthly.add(BarEntry(6f,920f))
-//        monthly.add(BarEntry(8f,920f))
-//        monthly.add(BarEntry(9f,920f))
-//        monthly.add(BarEntry(10f,920f))
-//        monthly.add(BarEntry(11f,920f))
-//        monthly.add(BarEntry(12f,920f))
+            })
+        Log.e("upperchecktool",radio.text.toString())
+        when (radio.text) {
+            baseActivity.getString(R.string.today) -> {
 
-        var yearly = java.util.ArrayList<BarEntry>()
-        yearly.add(BarEntry(2015f, 120f))
-        yearly.add(BarEntry(2016f, 220f))
-        yearly.add(BarEntry(2017f, 320f))
-        yearly.add(BarEntry(2018f, 420f))
-        yearly.add(BarEntry(2019f, 520f))
-        yearly.add(BarEntry(2020f, 820f))
-        yearly.add(BarEntry(2021f, 50f))
-        yearly.add(BarEntry(2022f, 90f))
+            }
+            baseActivity.getString(R.string.weekly) -> {
+                leavechartdata.clear()
+                leavechartdata.add(BarEntry(1f, 420f))
+                leavechartdata.add(BarEntry(2f, 520f))
+                leavechartdata.add(BarEntry(3f, 620f))
+                leavechartdata.add(BarEntry(4f, 720f))
+                leavechartdata.add(BarEntry(5f, 820f))
+                leavechartdata.add(BarEntry(6f, 920f))
+                leavechartdata.add(BarEntry(7f, 920f))
+                leavebarchart(leavechartdata)
+            }
+            baseActivity.getString(R.string.monthly) -> {
+                Log.e("upperchecktool",radio.text.toString()+"inneryearly")
+                leavechartdata.clear()
+                leavechartdata.add(BarEntry(1f, 420f))
+                leavechartdata.add(BarEntry(2f, 520f))
+                leavechartdata.add(BarEntry(3f, 620f))
+                leavechartdata.add(BarEntry(4f, 720f))
+                leavechartdata.add(BarEntry(5f, 820f))
+                leavechartdata.add(BarEntry(6f, 920f))
+                leavechartdata.add(BarEntry(8f, 920f))
+                leavechartdata.add(BarEntry(9f, 920f))
+                leavechartdata.add(BarEntry(10f, 920f))
+                leavechartdata.add(BarEntry(11f, 920f))
+                leavechartdata.add(BarEntry(12f, 920f))
+                leavebarchart(leavechartdata)
+
+            }
+            baseActivity.getString(R.string.yearly) -> {
+                leavechartdata.clear()
+                Toast.makeText(
+                    mContext, " On hange :" +
+                            " ${radio.text}",
+                    Toast.LENGTH_SHORT
+                ).show()
+                leavechartdata.add(BarEntry(2015f, 120f))
+                leavechartdata.add(BarEntry(2016f, 220f))
+                leavechartdata.add(BarEntry(2017f, 320f))
+                leavechartdata.add(BarEntry(2018f, 420f))
+                leavechartdata.add(BarEntry(2019f, 520f))
+                leavechartdata.add(BarEntry(2020f, 820f))
+                leavechartdata.add(BarEntry(2021f, 50f))
+                leavechartdata.add(BarEntry(2022f, 90f))
+                leavebarchart(leavechartdata)
+            }
+        }
+    }
+
+    private fun attendanceChartRadioButton() {
+        binder.attendanceChart.radioGroup.setOnCheckedChangeListener(
+            RadioGroup.OnCheckedChangeListener { group, checkedId ->
+                val radio: RadioButton = baseActivity.findViewById(checkedId)
+                Toast.makeText(
+                    mContext, " On checked change :" +
+                            " ${radio.text}",
+                    Toast.LENGTH_SHORT
+                ).show()
+            })
+    }
+
+    private fun salaryChartRadioButton() {
+        binder.salaryChart.radioGroup.setOnCheckedChangeListener(
+            RadioGroup.OnCheckedChangeListener { group, checkedId ->
+                val radio: RadioButton = baseActivity.findViewById(checkedId)
+                Toast.makeText(
+                    mContext, " On checked change :" +
+                            " ${radio.text}",
+                    Toast.LENGTH_SHORT
+                ).show()
+            })
+    }
 
 
+    private fun leavebarchart( leavedata:ArrayList<BarEntry>) {
 
-       bardataset = BarDataSet(yearly, "Leave Reporting")
+        bardataset = BarDataSet(leavedata, "Leave Reporting")
 
 //        if (cb_weekly.isChecked){
 //            bardataset = BarDataSet(weekly,"Leave Reporting")
@@ -123,14 +184,14 @@ class ReportingViewModel(application: Application) : AppViewModel(application),
 //            bardataset = BarDataSet(yearly,"Leave Reporting")
 //        }
 
-
         bardataset.setColor(baseActivity.getColor(R.color.violet_pink))
+
 //        bardataset.setValueTextColors(Color.BLACK)
         bardataset.valueTextSize = 12f
 
 
         val bardata = BarData(bardataset)
-       binder.pcLeaveChart.setFitBars(true)
+        binder.pcLeaveChart.setFitBars(true)
         binder.pcLeaveChart.data = bardata
         binder.pcLeaveChart.description.text = "bar chart exm"
         binder.pcLeaveChart.animateY(2000)
@@ -142,7 +203,7 @@ class ReportingViewModel(application: Application) : AppViewModel(application),
 
         setData(12, 180f)
 
-      binder.pcAttendancereport.setUsePercentValues(true)
+        binder.pcAttendancereport.setUsePercentValues(true)
         binder.pcAttendancereport.getDescription().setEnabled(false)
         binder.pcAttendancereport.setExtraOffsets(5f, 10f, 5f, 5f)
 
@@ -194,7 +255,7 @@ class ReportingViewModel(application: Application) : AppViewModel(application),
         // chart.spin(2000, 0, 360);
 
         // chart.spin(2000, 0, 360);
-        val l: Legend =  binder.pcAttendancereport.getLegend()
+        val l: Legend = binder.pcAttendancereport.getLegend()
         l.verticalAlignment = Legend.LegendVerticalAlignment.TOP
         l.horizontalAlignment = Legend.LegendHorizontalAlignment.RIGHT
         l.orientation = Legend.LegendOrientation.VERTICAL
@@ -205,7 +266,7 @@ class ReportingViewModel(application: Application) : AppViewModel(application),
 
     private fun salarypiechart() {
         setDatasalary(3, 7f)
-     binder.pcSalaryreport.setUsePercentValues(true)
+        binder.pcSalaryreport.setUsePercentValues(true)
         binder.pcSalaryreport.getDescription().setEnabled(false)
         binder.pcSalaryreport.setExtraOffsets(5f, 10f, 5f, 5f)
 
@@ -276,7 +337,7 @@ class ReportingViewModel(application: Application) : AppViewModel(application),
                 PieEntry(
                     (Math.random() * range + range / 5).toFloat(),
                     baseActivity.months[i % baseActivity.months.size],
-                   baseActivity.resources.getDrawable(R.drawable.star)
+                    baseActivity.resources.getDrawable(R.drawable.star)
                 )
             )
         }
@@ -318,7 +379,7 @@ class ReportingViewModel(application: Application) : AppViewModel(application),
             entries.add(
                 PieEntry(
                     (Math.random() * range).toFloat() + range / 5,
-                   baseActivity.parties.get(i % baseActivity.parties.size)
+                    baseActivity.parties.get(i % baseActivity.parties.size)
                 )
             )
         }
@@ -347,7 +408,7 @@ class ReportingViewModel(application: Application) : AppViewModel(application),
         data.setValueTextSize(11f)
         data.setValueTextColor(Color.BLACK)
         data.setValueTypeface(tf)
-      binder.pcAttendancereport.data = data
+        binder.pcAttendancereport.data = data
 
         // undo all highlights
         binder.pcAttendancereport.highlightValues(null)
@@ -367,9 +428,8 @@ class ReportingViewModel(application: Application) : AppViewModel(application),
     }
 
 
-
     private fun settoolbar() {
-       binder.toolbar.tvtitle.setTextColor(baseActivity.getColor(R.color.light_gre1))
+        binder.toolbar.tvtitle.setTextColor(baseActivity.getColor(R.color.light_gre1))
         binder.toolbar.tvtitle.text = baseActivity.getString(R.string.reporting)
     }
 

@@ -153,6 +153,9 @@
     <string name="support_tickets">Support Tickets</string>
     <string name="salary_report">Salary Report</string>
     <string name="clockify">Clockify</string>
+    <string name="today">Today</string>
+    <string name="month">Month</string>
+    <string name="yearly">Yearly</string>
 
 
 </resources>
