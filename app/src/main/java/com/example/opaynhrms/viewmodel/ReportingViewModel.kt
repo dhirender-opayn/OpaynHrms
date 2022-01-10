@@ -275,7 +275,7 @@ class ReportingViewModel(application: Application) : AppViewModel(application),
             entries.add(
                 PieEntry(
                     (Math.random() * range + range / 5).toFloat(),
-                    baseActivity.parties[i % baseActivity.parties.size],
+                    baseActivity.months[i % baseActivity.months.size],
                    baseActivity.resources.getDrawable(R.drawable.star)
                 )
             )

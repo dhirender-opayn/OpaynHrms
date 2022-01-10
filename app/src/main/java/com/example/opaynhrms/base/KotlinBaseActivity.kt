@@ -57,7 +57,7 @@ open class KotlinBaseActivity(@IdRes private val container: Int = 0) : AppCompat
 
     val gson= Gson()
 
-    protected val months = arrayOf(
+    val months = arrayOf(
         "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dec"
     )
     val parties = arrayOf(
