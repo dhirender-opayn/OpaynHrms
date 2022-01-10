@@ -13,19 +13,13 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.opaynhrms.R
 import com.example.opaynhrms.base.AppViewModel
 import com.example.opaynhrms.base.KotlinBaseActivity
- import com.example.opaynhrms.databinding.ActivityRequestLeaveBinding
-import com.example.opaynhrms.databinding.FragmentAddHolidayBinding
+ import com.example.opaynhrms.databinding.FragmentAddHolidayBinding
 import com.example.opaynhrms.extensions.gone
-import com.example.opaynhrms.extensions.isNull
-import com.example.opaynhrms.extensions.toast
+ import com.example.opaynhrms.extensions.toast
 import com.example.opaynhrms.extensions.visible
-import com.example.opaynhrms.repository.UserRepository
-import com.example.opaynhrms.ui.Home
-import com.example.opaynhrms.utils.Keys
 import com.example.opaynhrms.utils.TimePickerFragment
 import com.example.opaynhrms.utils.Utils
 import kotlinx.android.synthetic.main.common_toolbar.view.*
-import okhttp3.MultipartBody
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*

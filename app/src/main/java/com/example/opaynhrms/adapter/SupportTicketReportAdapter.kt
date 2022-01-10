@@ -8,9 +8,9 @@ import com.ieltslearning.base.BaseAdapter
 import kotlinx.android.synthetic.main.item_notification.view.*
 
 
-class AttendanceListReportAdapter(val baseActivity: KotlinBaseActivity, val itemClick: (Int) -> Unit) :
+class SupportTicketReportAdapter(val baseActivity: KotlinBaseActivity, val itemClick: (Int) -> Unit) :
     BaseAdapter<String>(
-        R.layout.item_attendance_list
+        R.layout.item_support_ticket
     ) {
 
     override fun onBindViewHolder(holder: IViewHolder, position: Int) {

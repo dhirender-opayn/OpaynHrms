@@ -8,14 +8,13 @@ import com.ieltslearning.base.BaseAdapter
 import kotlinx.android.synthetic.main.item_notification.view.*
 
 
-class AttendanceListReportAdapter(val baseActivity: KotlinBaseActivity, val itemClick: (Int) -> Unit) :
+class PaySlipReportingAdminAdapter(val baseActivity: KotlinBaseActivity, val itemClick: (Int) -> Unit) :
     BaseAdapter<String>(
-        R.layout.item_attendance_list
+        R.layout.item_payslip_list
     ) {
 
     override fun onBindViewHolder(holder: IViewHolder, position: Int) {
         holder.itemView.apply {
-
 
         }
     }

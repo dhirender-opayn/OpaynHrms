@@ -5,7 +5,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.opaynhrms.R
 import com.example.opaynhrms.base.KotlinBaseActivity
-import com.example.opaynhrms.fragment.AttendaceListingReport
+import com.example.opaynhrms.fragment.*
 import com.example.opaynhrms.model.ReportingListingModel
 import com.ieltslearning.base.BaseAdapter
 import kotlinx.android.synthetic.main.item_reporting_detail.view.*
@@ -33,22 +33,19 @@ class EmpReportingDetailAdapter(
 
                 when (list[position].subtitle) {
                     baseActivity.getString(R.string.leave) -> {
-                        Log.e("leaveclicknow", "000000000000000000000000000000000000")
-                    baseActivity.navigateToFragment(AttendaceListingReport(baseActivity),baseActivity.bundle,true)
                     }
 
                     baseActivity.getString(R.string.attandance) -> {
-
+                        baseActivity.navigateToFragment(AttendaceListingReport(baseActivity),baseActivity.bundle,true)
                     }
                     baseActivity.getString(R.string.clockify) -> {
-
+                        baseActivity.navigateToFragment(ClockifyWorkListing(baseActivity),baseActivity.bundle,true)
                     }
-
                     baseActivity.getString(R.string.contact_admin) -> {
-
+                        baseActivity.navigateToFragment(SupportTicketReporting(baseActivity),baseActivity.bundle,true)
                     }
                     baseActivity.getString(R.string.salary) -> {
-
+                        baseActivity.navigateToFragment(PaySlipReportingAdmin(baseActivity),baseActivity.bundle,true)
                     }
 
                 }

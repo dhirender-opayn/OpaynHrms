@@ -5,13 +5,13 @@ import com.example.opaynhrms.base.KotlinBaseActivity
  import com.example.opaynhrms.extensions.gone
  import com.example.opaynhrms.extensions.visible
  import com.example.opaynhrms.model.LeaveListJson
- import com.example.opaynhrms.model.ListingModel
+
  import com.example.opaynhrms.ui.Home
  import com.example.opaynhrms.utils.Utils
  import com.ieltslearning.base.BaseAdapter
  import com.ieltslearning.listner.ItemClick
  import kotlinx.android.synthetic.main.item_leave_detail_cart.view.*
- import kotlinx.android.synthetic.main.item_leave_request.view.*
+
  import kotlinx.android.synthetic.main.item_leave_request.view.leave_type
 
 class LeaveDetailCartAdapter(val baseActivity: KotlinBaseActivity,val  itemClick: ItemClick) : BaseAdapter<LeaveListJson.Data>(

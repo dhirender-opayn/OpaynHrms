@@ -115,6 +115,7 @@
     <string name="calendar">Calendar</string>
     <string name="employees">Employees</string>
     <string name="addholiday">Add Holiday</string>
+    <string name="leavereporting">Leave Reporting</string>
     <string name="emp_reporting">Empolyee Reporting</string>
     <string name="reporting">Reporting</string>
     <string name="salary">Salary</string>
