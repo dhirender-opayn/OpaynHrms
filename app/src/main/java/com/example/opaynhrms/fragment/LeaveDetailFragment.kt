@@ -15,7 +15,7 @@ import com.example.opaynhrms.databinding.FragmentLeaveDetailBinding
 import com.example.opaynhrms.viewmodel.LeaveDetailViewModel
 
 
-import com.ieltslearning.base.KotlinBaseFragment
+import com.example.opaynhrms.base.KotlinBaseFragment
 
 
 

@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import com.example.opaynhrms.R
 import com.example.opaynhrms.adapter.AttendanceListReportAdapter
 import com.example.opaynhrms.base.KotlinBaseActivity
-import com.ieltslearning.base.KotlinBaseFragment
+import com.example.opaynhrms.base.KotlinBaseFragment
 import kotlinx.android.synthetic.main.fragment_attendace_listing_report.*
 
 
@@ -31,7 +31,7 @@ class AttendaceListingReport(var baseActivity: KotlinBaseActivity) : KotlinBaseF
         val attendaceListingReportView = AttendanceListReportAdapter(baseActivity){
 
         }
-        rvAttendenceList.adapter = attendaceListingReportView
+        rvReportClockify.adapter = attendaceListingReportView
 
     }
 

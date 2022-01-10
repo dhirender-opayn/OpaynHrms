@@ -17,7 +17,7 @@ import com.example.opaynhrms.base.KotlinBaseActivity
 import com.example.opaynhrms.databinding.FragmentAddHolidayBinding
 import com.example.opaynhrms.extensions.isNotNull
 import com.example.opaynhrms.viewmodel.AddHolidayViewModel
-import com.ieltslearning.base.KotlinBaseFragment
+import com.example.opaynhrms.base.KotlinBaseFragment
 import id.zelory.compressor.Compressor
 import kotlinx.coroutines.async
 import java.io.File

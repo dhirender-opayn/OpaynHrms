@@ -11,7 +11,7 @@ import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
-import com.ieltslearning.base.KotlinBaseFragment
+import com.example.opaynhrms.base.KotlinBaseFragment
 import com.ieltslearning.navigator.FragmentAdd
 import com.ieltslearning.navigator.FragmentBehaviour
 import kotlin.reflect.KClass

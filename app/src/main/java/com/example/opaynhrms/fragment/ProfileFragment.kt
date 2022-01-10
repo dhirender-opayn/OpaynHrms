@@ -13,9 +13,8 @@ import com.example.opaynhrms.databinding.FragmentProfileBinding
 import com.example.opaynhrms.extensions.gone
 import com.example.opaynhrms.ui.*
 import com.example.opaynhrms.utils.Keys
-import com.example.opaynhrms.viewmodel.FragmentHomeViewModel
 import com.example.opaynhrms.viewmodel.ProfileViewModel
-import com.ieltslearning.base.KotlinBaseFragment
+import com.example.opaynhrms.base.KotlinBaseFragment
 import kotlinx.android.synthetic.main.common_toolbar.view.*
 import kotlinx.android.synthetic.main.fragment_profile.*
 

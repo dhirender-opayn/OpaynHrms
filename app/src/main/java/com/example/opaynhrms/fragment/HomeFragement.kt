@@ -23,7 +23,7 @@ import com.example.opaynhrms.utils.Utils
 import com.example.opaynhrms.viewmodel.FragmentHomeViewModel
 import com.google.android.gms.maps.model.LatLng
 import com.google.maps.android.SphericalUtil
-import com.ieltslearning.base.KotlinBaseFragment
+import com.example.opaynhrms.base.KotlinBaseFragment
 import com.permissionx.guolindev.PermissionX
 import kotlinx.android.synthetic.main.fragment_home_fragement.*
 import io.github.g00fy2.quickie.QRResult

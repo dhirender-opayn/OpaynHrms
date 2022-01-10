@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import com.example.opaynhrms.R
 import com.example.opaynhrms.adapter.StatictImageAdapter
  import com.example.opaynhrms.base.KotlinBaseActivity
-import com.ieltslearning.base.KotlinBaseFragment
+import com.example.opaynhrms.base.KotlinBaseFragment
 import kotlinx.android.synthetic.main.common_toolbar.view.*
  import kotlinx.android.synthetic.main.item_statistics_team.view.*
 import kotlinx.android.synthetic.main.statistics_notification.*
@@ -35,16 +35,16 @@ class StatisticsFragment (var baseActivity: KotlinBaseActivity) : KotlinBaseFrag
         val imageAdapterView = StatictImageAdapter(baseActivity){
 
         }
-        st_team.rv_image.adapter = imageAdapterView
-        settoolbar()
+//        st_team.rv_image.adapter = imageAdapterView
+//        settoolbar()
 
 
 
     }
 
-    private fun settoolbar(){
-        toolbar.tvtitle.text = "Statics"
-    }
+//    private fun settoolbar(){
+//        toolbar.tvtitle.text = "Statics"
+//    }
 
 
 

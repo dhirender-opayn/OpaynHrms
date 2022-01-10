@@ -10,7 +10,7 @@ import com.example.opaynhrms.R
 import com.example.opaynhrms.base.KotlinBaseActivity
 import com.example.opaynhrms.databinding.FragmentEmpReprotingDetailBinding
 import com.example.opaynhrms.viewmodel.EmpReportingDetailViewModell
-import com.ieltslearning.base.KotlinBaseFragment
+import com.example.opaynhrms.base.KotlinBaseFragment
 
 
 class EmpReprotingDetail(var baseActivity: KotlinBaseActivity) : KotlinBaseFragment() {

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+
+    <CheckBox
+        android:id="@+id/cb_day"
+        style="@style/mediumfont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Today"
+        android:textColor="@color/black_3"
+        android:textSize="@dimen/_10sdp" />
+
+    <CheckBox
+        android:id="@+id/cb_weekly"
+        style="@style/mediumfont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Weekly"
+        android:textColor="@color/black_3"
+        android:textSize="@dimen/_10sdp" />
+
+    <CheckBox
+        android:id="@+id/cb_monthly"
+        style="@style/mediumfont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Month"
+        android:textColor="@color/black_3"
+        android:textSize="@dimen/_10sdp" />
+
+    <CheckBox
+        android:id="@+id/cb_yearly"
+        style="@style/mediumfont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Yearly"
+        android:textColor="@color/black_3"
+        android:textSize="@dimen/_10sdp" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/download"
+        style="@style/mainbutton"
+        android:layout_width="@dimen/_80sdp"
+        android:backgroundTint="@color/pinky_red"
+        android:text="Download"
+        android:textAllCaps="false" />
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

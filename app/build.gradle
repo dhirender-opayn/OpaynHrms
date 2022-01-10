@@ -120,6 +120,10 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
 
 
+    //barchart
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+
+
 
 
 //// unbundled:

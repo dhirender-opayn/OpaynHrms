@@ -4,7 +4,6 @@ import android.app.Activity
 import android.app.Dialog
 import android.app.DownloadManager
 import android.content.Context
-import android.database.Cursor
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
@@ -13,7 +12,6 @@ import android.os.Bundle
 import android.os.Environment
 import android.text.Spannable
 import android.text.style.ImageSpan
-import android.text.style.QuoteSpan
 import android.text.style.URLSpan
 import android.util.Log
 import android.view.Gravity
@@ -38,8 +36,7 @@ import com.example.opaynhrms.listner.KotlinBaseListener
 import com.example.opaynhrms.navigator.Navigator
 import com.example.opaynhrms.utils.Keys
 import com.example.opaynhrms.utils.Utils
-import com.ieltslearning.base.KotlinBaseFragment
- import org.json.JSONObject
+import org.json.JSONObject
 import org.koin.android.ext.android.inject
 import retrofit2.Response
 import java.io.File
