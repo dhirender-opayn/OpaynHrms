@@ -47,9 +47,10 @@ class CommonActivityViewModel(application: Application) : AppViewModel(applicati
             }
             mContext.getString(R.string.addholiday) -> {
                 baseActivity.navigateToFragment(AddHoliday(baseActivity), bundle, false)
-            }mContext.getString(R.string.reporting) -> {
-                baseActivity.navigateToFragment(EmployeeFragment(baseActivity), bundle, false)
             }
+//            mContext.getString(R.string.reporting) -> {
+//                baseActivity.navigateToFragment(EmployeeFragment(baseActivity), bundle, false)
+//            }
 
         }
     }

@@ -10,26 +10,14 @@ import android.text.style.ForegroundColorSpan
 import android.text.style.RelativeSizeSpan
 import android.text.style.StyleSpan
 import android.util.Log
-import android.view.MotionEvent
 import android.view.View
 import android.widget.*
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.opaynhrms.R
 import com.example.opaynhrms.base.AppViewModel
 import com.example.opaynhrms.base.KotlinBaseActivity
-import com.example.opaynhrms.databinding.ActivityRequestLeaveBinding
-import com.example.opaynhrms.databinding.FragmentAddHolidayBinding
 import com.example.opaynhrms.databinding.StatisticsNotificationBinding
 import com.example.opaynhrms.extensions.gone
-import com.example.opaynhrms.extensions.isNull
-import com.example.opaynhrms.extensions.toast
-import com.example.opaynhrms.extensions.visible
-import com.example.opaynhrms.repository.UserRepository
-import com.example.opaynhrms.ui.Home
-import com.example.opaynhrms.utils.Keys
-import com.example.opaynhrms.utils.TimePickerFragment
-import com.example.opaynhrms.utils.Utils
+import com.example.opaynhrms.extensions.invisible
 import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.data.*
@@ -40,11 +28,6 @@ import com.github.mikephil.charting.utils.ColorTemplate
 import com.github.mikephil.charting.utils.MPPointF
 import kotlinx.android.synthetic.main.common_toolbar.view.*
 import kotlinx.android.synthetic.main.reporting_checkboxs.view.*
-import kotlinx.android.synthetic.main.statistics_notification.*
-import okhttp3.MultipartBody
-import java.io.File
-import java.text.SimpleDateFormat
-import java.util.*
 import kotlin.collections.ArrayList
 
 
@@ -58,6 +41,9 @@ class ReportingViewModel(application: Application) : AppViewModel(application),
     private var tf: Typeface? = null
     lateinit var bardataset: BarDataSet
     var leavechartdata = ArrayList<BarEntry>()
+    var yy = true
+    var mm = false
+    var week = false
 
 
     fun setBinder(binder: StatisticsNotificationBinding, baseActivity: KotlinBaseActivity) {
@@ -66,111 +52,118 @@ class ReportingViewModel(application: Application) : AppViewModel(application),
         this.baseActivity = baseActivity
         this.binder.viewModel = this
         roundbardAttendance()
-        salarypiechart()
-
+        // salarypiechart()
         settoolbar()
         leaveChartRadioButton()
         attendanceChartRadioButton()
-        salaryChartRadioButton()
+//        salaryChartRadioButton()
 
 
     }
 
 
     private fun leaveChartRadioButton() {
-        var radio: RadioButton ?=null
-        radio =  binder.leaveChart.cb_yearly
-        binder.leaveChart.radioGroup.setOnCheckedChangeListener(
-            RadioGroup.OnCheckedChangeListener { group, checkedId ->
-                  radio   = baseActivity.findViewById(checkedId)
+        dummyleavedata()
 
-                Toast.makeText(
-                    mContext, " On checked change :" +
-                            " ${radio.text}",
-                    Toast.LENGTH_SHORT
-                ).show()
-
-
-            })
-        Log.e("upperchecktool",radio.text.toString())
-        when (radio.text) {
-            baseActivity.getString(R.string.today) -> {
-
-            }
-            baseActivity.getString(R.string.weekly) -> {
-                leavechartdata.clear()
-                leavechartdata.add(BarEntry(1f, 420f))
-                leavechartdata.add(BarEntry(2f, 520f))
-                leavechartdata.add(BarEntry(3f, 620f))
-                leavechartdata.add(BarEntry(4f, 720f))
-                leavechartdata.add(BarEntry(5f, 820f))
-                leavechartdata.add(BarEntry(6f, 920f))
-                leavechartdata.add(BarEntry(7f, 920f))
-                leavebarchart(leavechartdata)
-            }
-            baseActivity.getString(R.string.monthly) -> {
-                Log.e("upperchecktool",radio.text.toString()+"inneryearly")
-                leavechartdata.clear()
-                leavechartdata.add(BarEntry(1f, 420f))
-                leavechartdata.add(BarEntry(2f, 520f))
-                leavechartdata.add(BarEntry(3f, 620f))
-                leavechartdata.add(BarEntry(4f, 720f))
-                leavechartdata.add(BarEntry(5f, 820f))
-                leavechartdata.add(BarEntry(6f, 920f))
-                leavechartdata.add(BarEntry(8f, 920f))
-                leavechartdata.add(BarEntry(9f, 920f))
-                leavechartdata.add(BarEntry(10f, 920f))
-                leavechartdata.add(BarEntry(11f, 920f))
-                leavechartdata.add(BarEntry(12f, 920f))
-                leavebarchart(leavechartdata)
-
-            }
-            baseActivity.getString(R.string.yearly) -> {
-                leavechartdata.clear()
-                Toast.makeText(
-                    mContext, " On hange :" +
-                            " ${radio.text}",
-                    Toast.LENGTH_SHORT
-                ).show()
-                leavechartdata.add(BarEntry(2015f, 120f))
-                leavechartdata.add(BarEntry(2016f, 220f))
-                leavechartdata.add(BarEntry(2017f, 320f))
-                leavechartdata.add(BarEntry(2018f, 420f))
-                leavechartdata.add(BarEntry(2019f, 520f))
-                leavechartdata.add(BarEntry(2020f, 820f))
-                leavechartdata.add(BarEntry(2021f, 50f))
-                leavechartdata.add(BarEntry(2022f, 90f))
-                leavebarchart(leavechartdata)
-            }
-        }
     }
+
 
     private fun attendanceChartRadioButton() {
-        binder.attendanceChart.radioGroup.setOnCheckedChangeListener(
-            RadioGroup.OnCheckedChangeListener { group, checkedId ->
-                val radio: RadioButton = baseActivity.findViewById(checkedId)
-                Toast.makeText(
-                    mContext, " On checked change :" +
-                            " ${radio.text}",
-                    Toast.LENGTH_SHORT
-                ).show()
-            })
+
+        dummyattendancedata()
+
     }
 
-    private fun salaryChartRadioButton() {
-        binder.salaryChart.radioGroup.setOnCheckedChangeListener(
-            RadioGroup.OnCheckedChangeListener { group, checkedId ->
-                val radio: RadioButton = baseActivity.findViewById(checkedId)
-                Toast.makeText(
-                    mContext, " On checked change :" +
-                            " ${radio.text}",
-                    Toast.LENGTH_SHORT
-                ).show()
-            })
+    private fun dummyleavedata() {
+        var radio2: String? = null
+        radio2 = binder.leaveChart.cb_yearly.text.toString()
+        leavechartdata.add(BarEntry(2015f, 120f))
+        leavechartdata.add(BarEntry(2016f, 220f))
+        leavechartdata.add(BarEntry(2017f, 320f))
+        leavechartdata.add(BarEntry(2018f, 420f))
+        leavechartdata.add(BarEntry(2019f, 520f))
+        leavechartdata.add(BarEntry(2020f, 820f))
+        leavechartdata.add(BarEntry(2021f, 50f))
+        leavechartdata.add(BarEntry(2022f, 90f))
+        leavebarchart(leavechartdata)
+
+        binder.leaveChart.cb_monthly.setOnClickListener {
+            Log.e("upperchecktool", radio2.toString() + "Clicked")
+            leavechartdata.clear()
+            leavechartdata.add(BarEntry(1f, 420f))
+            leavechartdata.add(BarEntry(2f, 520f))
+            leavechartdata.add(BarEntry(3f, 620f))
+            leavechartdata.add(BarEntry(4f, 720f))
+            leavechartdata.add(BarEntry(5f, 820f))
+            leavechartdata.add(BarEntry(6f, 920f))
+            leavechartdata.add(BarEntry(8f, 920f))
+            leavechartdata.add(BarEntry(9f, 920f))
+            leavechartdata.add(BarEntry(10f, 920f))
+            leavechartdata.add(BarEntry(11f, 920f))
+            leavechartdata.add(BarEntry(12f, 920f))
+            leavebarchart(leavechartdata)
+        }
+        binder.leaveChart.cb_weekly.setOnClickListener {
+            leavechartdata.clear()
+            leavechartdata.add(BarEntry(1f, 420f))
+            leavechartdata.add(BarEntry(2f, 520f))
+            leavechartdata.add(BarEntry(3f, 620f))
+            leavechartdata.add(BarEntry(4f, 720f))
+            leavechartdata.add(BarEntry(5f, 820f))
+            leavechartdata.add(BarEntry(6f, 920f))
+            leavechartdata.add(BarEntry(7f, 920f))
+            leavebarchart(leavechartdata)
+        }
+        binder.leaveChart.cb_yearly.setOnClickListener {
+            leavechartdata.clear()
+            leavechartdata.add(BarEntry(2015f, 120f))
+            leavechartdata.add(BarEntry(2016f, 220f))
+            leavechartdata.add(BarEntry(2017f, 320f))
+            leavechartdata.add(BarEntry(2018f, 420f))
+            leavechartdata.add(BarEntry(2019f, 520f))
+            leavechartdata.add(BarEntry(2020f, 820f))
+            leavechartdata.add(BarEntry(2021f, 50f))
+            leavechartdata.add(BarEntry(2022f, 90f))
+            leavebarchart(leavechartdata)
+        }
+
+        binder.leaveChart.download.setOnClickListener {
+            baseActivity.showtoast("ClickOnDownload on Reporting")
+        }
+
+    }
+
+    private fun dummyattendancedata() {
+
+
+        binder.attendanceChart.cb_monthly.setOnClickListener {
+            mm = true
+            yy = false
+            week = false
+            setData(12, 180f)
+
+        }
+        binder.attendanceChart.cb_weekly.setOnClickListener {
+            mm = false
+            yy = false
+            week = true
+
+            setData(7, 180f)
+        }
+        binder.attendanceChart.cb_yearly.setOnClickListener {
+            mm = false
+            yy = true
+            week = false
+            setData(8, 180f)
+        }
+        binder.attendanceChart.download.setOnClickListener {
+            baseActivity.showtoast("ClickOnDownload on Reporting")
+        }
+
     }
 
 
-    private fun leavebarchart( leavedata:ArrayList<BarEntry>) {
+    private fun leavebarchart(leavedata: ArrayList<BarEntry>) {
 
         bardataset = BarDataSet(leavedata, "Leave Reporting")
 
@@ -264,125 +257,53 @@ class ReportingViewModel(application: Application) : AppViewModel(application),
     }
 
 
-    private fun salarypiechart() {
-        setDatasalary(3, 7f)
-        binder.pcSalaryreport.setUsePercentValues(true)
-        binder.pcSalaryreport.getDescription().setEnabled(false)
-        binder.pcSalaryreport.setExtraOffsets(5f, 10f, 5f, 5f)
-
-        binder.pcSalaryreport.setDragDecelerationFrictionCoef(0.95f)
-
-
-        binder.pcSalaryreport.setCenterTextTypeface(baseActivity.tfLight)
-        binder.pcSalaryreport.setCenterText(generateCenterSpannableText())
-
-        binder.pcSalaryreport.setDrawHoleEnabled(true)
-        binder.pcSalaryreport.setHoleColor(Color.WHITE)
-
-        binder.pcSalaryreport.setTransparentCircleColor(Color.WHITE)
-        binder.pcSalaryreport.setTransparentCircleAlpha(110)
-
-        binder.pcSalaryreport.setHoleRadius(58f)
-        binder.pcSalaryreport.setTransparentCircleRadius(61f)
-
-        binder.pcSalaryreport.setDrawCenterText(true)
-
-        binder.pcSalaryreport.setRotationAngle(0f)
-        // enable rotation of the chart by touch
-        // enable rotation of the chart by touch
-        binder.pcSalaryreport.setRotationEnabled(true)
-        binder.pcSalaryreport.setHighlightPerTapEnabled(true)
-
-        // chart.setUnit(" €");
-        // chart.setDrawUnitsInChart(true);
-
-        // add a selection listener
-
-        // chart.setUnit(" €");
-        // chart.setDrawUnitsInChart(true);
-
-        // add a selection listener
-        binder.pcSalaryreport.setOnChartValueSelectedListener(this)
-
-
-        binder.pcSalaryreport.animateY(1400, Easing.EaseInOutQuad)
-        // chart.spin(2000, 0, 360);
-
-        // chart.spin(2000, 0, 360);
-        val l = binder.pcSalaryreport.legend
-        l.verticalAlignment = Legend.LegendVerticalAlignment.TOP
-        l.horizontalAlignment = Legend.LegendHorizontalAlignment.RIGHT
-        l.orientation = Legend.LegendOrientation.VERTICAL
-        l.setDrawInside(false)
-        l.xEntrySpace = 7f
-        l.yEntrySpace = 0f
-        l.yOffset = 0f
-
-        // entry label styling
-
-        // entry label styling
-        binder.pcSalaryreport.setEntryLabelColor(Color.WHITE)
-        binder.pcSalaryreport.setEntryLabelTypeface(baseActivity.tfRegular)
-        binder.pcSalaryreport.setEntryLabelTextSize(12f)
-    }
-
-    private fun setDatasalary(count: Int, range: Float) {
-
-        val entries = java.util.ArrayList<PieEntry>()
-
-        // NOTE: The order of the entries when being added to the entries array determines their position around the center of
-        // the chart.
-        for (i in 0 until count) {
-            entries.add(
-                PieEntry(
-                    (Math.random() * range + range / 5).toFloat(),
-                    baseActivity.months[i % baseActivity.months.size],
-                    baseActivity.resources.getDrawable(R.drawable.star)
-                )
-            )
-        }
-        val dataSet = PieDataSet(entries, "Election Results")
-        dataSet.setDrawIcons(false)
-        dataSet.sliceSpace = 3f
-        dataSet.iconsOffset = MPPointF(0f, 40f)
-        dataSet.selectionShift = 5f
-
-        // add a lot of colors
-        val colors = java.util.ArrayList<Int>()
-        for (c in ColorTemplate.VORDIPLOM_COLORS) colors.add(c)
-        for (c in ColorTemplate.JOYFUL_COLORS) colors.add(c)
-        for (c in ColorTemplate.COLORFUL_COLORS) colors.add(c)
-        for (c in ColorTemplate.LIBERTY_COLORS) colors.add(c)
-        for (c in ColorTemplate.PASTEL_COLORS) colors.add(c)
-        colors.add(ColorTemplate.getHoloBlue())
-        dataSet.colors = colors
-        //dataSet.setSelectionShift(0f);
-        val data = PieData(dataSet)
-        data.setValueFormatter(PercentFormatter())
-        data.setValueTextSize(11f)
-        data.setValueTextColor(Color.WHITE)
-        data.setValueTypeface(baseActivity.tfLight)
-        binder.pcSalaryreport.data = data
-
-        // undo all highlights
-        binder.pcSalaryreport.highlightValues(null)
-        binder.pcSalaryreport.invalidate()
-    }
-
-
     private fun setData(count: Int, range: Float) {
         val entries = java.util.ArrayList<PieEntry>()
 
         // NOTE: The order of the entries when being added to the entries array determines their position around the center of
         // the chart.
-        for (i in 0 until count) {
-            entries.add(
-                PieEntry(
-                    (Math.random() * range).toFloat() + range / 5,
-                    baseActivity.parties.get(i % baseActivity.parties.size)
+
+
+        if (yy) {
+            for (i in 0 until count) {
+                entries.add(
+                    PieEntry(
+                        (Math.random() * range).toFloat() + range / 5,
+                        baseActivity.yealy.get(i % baseActivity.yealy.size)
+                    )
+
                 )
-            )
+                Log.e("checkYearlydata", (i % baseActivity.yealy.size).toString())
+                Log.e("checkYearlydata", baseActivity.yealy.size.toString() + "Size")
+            }
+        } else if (mm) {
+            for (i in 0 until count) {
+                entries.add(
+                    PieEntry(
+                        (Math.random() * range).toFloat() + range / 5,
+                        baseActivity.months.get(i % baseActivity.months.size)
+                    )
+                )
+            }
+        } else if (week) {
+            for (i in 0 until count) {
+                entries.add(
+                    PieEntry(
+                        (Math.random() * range).toFloat() + range / 5,
+                        baseActivity.weekly.get(i % baseActivity.weekly.size)
+                    )
+                )
+            }
         }
+
+//        for (i in 0 until count) {
+//                entries.add(
+//                    PieEntry(
+//                        (Math.random() * range).toFloat() + range / 5,
+//                        baseActivity.yealy.get(i % baseActivity.yealy.size)
+//                    )
+//                )
+//            }
         val dataSet = PieDataSet(entries, "Election Results")
         dataSet.sliceSpace = 3f
         dataSet.selectionShift = 5f
@@ -417,19 +338,19 @@ class ReportingViewModel(application: Application) : AppViewModel(application),
 
 
     private fun generateCenterSpannableText(): SpannableString? {
-        val s = SpannableString("MPAndroidChart\ndeveloped by Philipp Jahoda")
-        s.setSpan(RelativeSizeSpan(1.5f), 0, 14, 0)
-        s.setSpan(StyleSpan(Typeface.NORMAL), 14, s.length - 15, 0)
-        s.setSpan(ForegroundColorSpan(Color.GRAY), 14, s.length - 15, 0)
-        s.setSpan(RelativeSizeSpan(.65f), 14, s.length - 15, 0)
-        s.setSpan(StyleSpan(Typeface.ITALIC), s.length - 14, s.length, 0)
-        s.setSpan(ForegroundColorSpan(ColorTemplate.getHoloBlue()), s.length - 14, s.length, 0)
+        val s = SpannableString("Reporting\ndeveloped by Opayn LLC")
+        s.setSpan(RelativeSizeSpan(1.5f), 0, 9, 0)
+        s.setSpan(StyleSpan(Typeface.NORMAL), 9, s.length - 12, 0)
+        s.setSpan(ForegroundColorSpan(Color.GRAY), 9, s.length - 12, 0)
+        s.setSpan(RelativeSizeSpan(.65f), 9, s.length - 12, 0)
+        s.setSpan(StyleSpan(Typeface.ITALIC), s.length - 9, s.length, 0)
+        s.setSpan(ForegroundColorSpan(ColorTemplate.getHoloBlue()), s.length - 9, s.length, 0)
         return s
     }
 
-
     private fun settoolbar() {
-        binder.toolbar.tvtitle.setTextColor(baseActivity.getColor(R.color.light_gre1))
+        binder.toolbar.icmenu.invisible()
+        binder.toolbar.tvtitle.setTextColor(baseActivity.getColor(R.color.white))
         binder.toolbar.tvtitle.text = baseActivity.getString(R.string.reporting)
     }
 
@@ -450,6 +371,113 @@ class ReportingViewModel(application: Application) : AppViewModel(application),
     override fun onNothingSelected() {
 
     }
+
+
+//salary bar graph
+//    private fun salarypiechart() {
+//        setDatasalary(3, 7f)
+//        binder.pcSalaryreport.setUsePercentValues(true)
+//        binder.pcSalaryreport.getDescription().setEnabled(false)
+//        binder.pcSalaryreport.setExtraOffsets(5f, 10f, 5f, 5f)
+//
+//        binder.pcSalaryreport.setDragDecelerationFrictionCoef(0.95f)
+//
+//
+//        binder.pcSalaryreport.setCenterTextTypeface(baseActivity.tfLight)
+//        binder.pcSalaryreport.setCenterText(generateCenterSpannableText())
+//
+//        binder.pcSalaryreport.setDrawHoleEnabled(true)
+//        binder.pcSalaryreport.setHoleColor(Color.WHITE)
+//
+//        binder.pcSalaryreport.setTransparentCircleColor(Color.WHITE)
+//        binder.pcSalaryreport.setTransparentCircleAlpha(110)
+//
+//        binder.pcSalaryreport.setHoleRadius(58f)
+//        binder.pcSalaryreport.setTransparentCircleRadius(61f)
+//
+//        binder.pcSalaryreport.setDrawCenterText(true)
+//
+//        binder.pcSalaryreport.setRotationAngle(0f)
+//        // enable rotation of the chart by touch
+//        // enable rotation of the chart by touch
+//        binder.pcSalaryreport.setRotationEnabled(true)
+//        binder.pcSalaryreport.setHighlightPerTapEnabled(true)
+//
+//        // chart.setUnit(" €");
+//        // chart.setDrawUnitsInChart(true);
+//
+//        // add a selection listener
+//
+//        // chart.setUnit(" €");
+//        // chart.setDrawUnitsInChart(true);
+//
+//        // add a selection listener
+//        binder.pcSalaryreport.setOnChartValueSelectedListener(this)
+//
+//
+//        binder.pcSalaryreport.animateY(1400, Easing.EaseInOutQuad)
+//        // chart.spin(2000, 0, 360);
+//
+//        // chart.spin(2000, 0, 360);
+//        val l = binder.pcSalaryreport.legend
+//        l.verticalAlignment = Legend.LegendVerticalAlignment.TOP
+//        l.horizontalAlignment = Legend.LegendHorizontalAlignment.RIGHT
+//        l.orientation = Legend.LegendOrientation.VERTICAL
+//        l.setDrawInside(false)
+//        l.xEntrySpace = 7f
+//        l.yEntrySpace = 0f
+//        l.yOffset = 0f
+//
+//        // entry label styling
+//
+//        // entry label styling
+//        binder.pcSalaryreport.setEntryLabelColor(Color.WHITE)
+//        binder.pcSalaryreport.setEntryLabelTypeface(baseActivity.tfRegular)
+//        binder.pcSalaryreport.setEntryLabelTextSize(12f)
+//    }
+//
+//    private fun setDatasalary(count: Int, range: Float) {
+//
+//        val entries = java.util.ArrayList<PieEntry>()
+//
+//        // NOTE: The order of the entries when being added to the entries array determines their position around the center of
+//        // the chart.
+//        for (i in 0 until count) {
+//            entries.add(
+//                PieEntry(
+//                    (Math.random() * range + range / 5).toFloat(),
+//                    baseActivity.months[i % baseActivity.months.size],
+//                    baseActivity.resources.getDrawable(R.drawable.star)
+//                )
+//            )
+//        }
+//        val dataSet = PieDataSet(entries, "Election Results")
+//        dataSet.setDrawIcons(false)
+//        dataSet.sliceSpace = 3f
+//        dataSet.iconsOffset = MPPointF(0f, 40f)
+//        dataSet.selectionShift = 5f
+//
+//        // add a lot of colors
+//        val colors = java.util.ArrayList<Int>()
+//        for (c in ColorTemplate.VORDIPLOM_COLORS) colors.add(c)
+//        for (c in ColorTemplate.JOYFUL_COLORS) colors.add(c)
+//        for (c in ColorTemplate.COLORFUL_COLORS) colors.add(c)
+//        for (c in ColorTemplate.LIBERTY_COLORS) colors.add(c)
+//        for (c in ColorTemplate.PASTEL_COLORS) colors.add(c)
+//        colors.add(ColorTemplate.getHoloBlue())
+//        dataSet.colors = colors
+//        //dataSet.setSelectionShift(0f);
+//        val data = PieData(dataSet)
+//        data.setValueFormatter(PercentFormatter())
+//        data.setValueTextSize(11f)
+//        data.setValueTextColor(Color.WHITE)
+//        data.setValueTypeface(baseActivity.tfLight)
+//        binder.pcSalaryreport.data = data
+//
+//        // undo all highlights
+//        binder.pcSalaryreport.highlightValues(null)
+//        binder.pcSalaryreport.invalidate()
+//    }
 
 
 }

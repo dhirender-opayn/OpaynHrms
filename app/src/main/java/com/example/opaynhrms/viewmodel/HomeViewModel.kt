@@ -21,6 +21,9 @@ import com.google.gson.Gson
 import com.example.opaynhrms.base.AppViewModel
 import com.example.opaynhrms.fragment.ReportingFragment
 import com.example.opaynhrms.fragment.StatisticsFragment
+import com.example.opaynhrms.model.ListingModel
+import com.example.opaynhrms.ui.Home
+import com.example.opaynhrms.utils.Utils
 import kotlinx.android.synthetic.main.bottom_nav_bar.view.*
 import kotlinx.android.synthetic.main.nointernetconnection.view.*
 
@@ -43,7 +46,26 @@ class HomeViewModel(application: Application) : AppViewModel(application) {
 
         setclicks()
         getuserdata()
+        checkuser()
     }
+
+
+    private fun checkuser(){
+        if (Home.userModel?.data?.user!!.roles.size > 0)
+        {
+            val admin = Home.userModel?.data?.user!!.roles[0].name
+
+            if (admin.equals(Utils.SUPERADMIN)) {
+               binder.bottomNav.statistics.visible()
+
+            }  else {
+                binder.bottomNav.statistics.gone()
+            }
+        }
+    }
+
+
+
     fun getuserdata() {
         baseActivity.preferencemanger.getString(Keys.USERDATA).let {
             val gson = Gson()

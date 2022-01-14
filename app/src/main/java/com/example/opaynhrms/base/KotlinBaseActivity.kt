@@ -60,6 +60,12 @@ open class KotlinBaseActivity(@IdRes private val container: Int = 0) : AppCompat
     val months = arrayOf(
         "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dec"
     )
+    val weekly = arrayOf(
+        "Sun", "Mon", "Tue", "Wed", "Thus", "Fri", "Stat"
+    )
+    val yealy = arrayOf(
+        "2022", "2021", "2020", "2019", "2018", "2017", "2016","2015"
+    )
     val parties = arrayOf(
         "Party A", "Party B", "Party C", "Party D", "Party E", "Party F", "Party G", "Party H",
         "Party I", "Party J", "Party K", "Party L", "Party M", "Party N", "Party O", "Party P",

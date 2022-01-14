@@ -12,14 +12,6 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:orientation="horizontal">
-        <RadioButton
-            android:id="@+id/cb_day"
-            style="@style/mediumfont"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/today"
-            android:textColor="@color/black_3"
-            android:textSize="@dimen/_8sdp" />
 
         <RadioButton
             android:id="@+id/cb_weekly"
@@ -35,7 +27,7 @@
             style="@style/mediumfont"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/month"
+            android:text="@string/monthly"
             android:textColor="@color/black_3"
             android:textSize="@dimen/_8sdp" />
 

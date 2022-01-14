@@ -68,11 +68,11 @@ class HomeTabAdapter (val baseActivity: KotlinBaseActivity, val itemClick: (Int)
                         bundle.putString(Keys.FROM,context.getString(R.string.work_history))
                         baseActivity.openA(CommonActivity::class,bundle)
                     }
-                    baseActivity.getString(R.string.reporting)->{
-                        var bundle = Bundle()
-                        bundle.putString(Keys.FROM,context.getString(R.string.reporting))
-                        baseActivity.openA(CommonActivity::class,bundle)
-                    }
+//                    baseActivity.getString(R.string.reporting)->{
+//                        var bundle = Bundle()
+//                        bundle.putString(Keys.FROM,context.getString(R.string.reporting))
+//                        baseActivity.openA(CommonActivity::class,bundle)
+//                    }
                 }
 
 

@@ -54,7 +54,7 @@
                     android:paddingEnd="@dimen/_6sdp"
                     android:paddingBottom="@dimen/_3sdp"
                     android:text="Pending"
-                    android:textColor="@color/golden_yellow"
+                    android:textColor="@color/white"
                     android:textSize="@dimen/_10sdp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />

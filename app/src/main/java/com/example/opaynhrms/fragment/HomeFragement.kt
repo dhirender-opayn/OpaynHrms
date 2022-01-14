@@ -83,7 +83,7 @@ class HomeFragement(var baseActivity: KotlinBaseActivity) : KotlinBaseFragment()
                 tablist.add(ListingModel(R.drawable.ic_employee, false, getString(R.string.employees)))
                 tablist.add(ListingModel(R.drawable.ic_emergency, false, getString(R.string.emergencyleave)))
                 tablist.add(ListingModel(R.drawable.holiday, false, getString(R.string.addholiday)))
-                tablist.add(ListingModel(R.drawable.ic_reporing, false, getString(R.string.reporting)))
+
             } else {
                 tablist.add(ListingModel(R.drawable.ic_booking_confirmed, false, getString(R.string.leave)))
                 tablist.add(ListingModel(R.drawable.ic_attendance_list, false, getString(R.string.attandancelist)))
