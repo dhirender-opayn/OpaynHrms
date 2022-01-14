@@ -111,6 +111,8 @@ dependencies {
     //barcode reader
 // bundled:
     implementation("io.github.g00fy2.quickie:quickie-bundled:1.3.3")
+    implementation "com.anggrayudi:storage:0.14.0"
+
 
     //swipe delete
     implementation 'com.chauthai.swipereveallayout:swipe-reveal-layout:1.4.1'

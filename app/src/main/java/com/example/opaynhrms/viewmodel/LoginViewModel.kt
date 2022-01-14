@@ -39,7 +39,7 @@ class LoginViewModel(application: Application) : AppViewModel(application), Item
     private fun click() {
         binder.createaccount.setOnClickListener(this)
         binder.forgotpassword.setOnClickListener(this)
-        binder.loginbtn.setOnClickListener(this)
+     //   binder.loginbtn.setOnClickListener(this)
 
     }
 
@@ -89,9 +89,7 @@ class LoginViewModel(application: Application) : AppViewModel(application), Item
                 baseActivity.openA(ForgotPassword::class)
             }
             R.id.loginbtn -> {
-                if (viewvalidations()) {
-                    loginApi()
-                }
+
 
             }
 

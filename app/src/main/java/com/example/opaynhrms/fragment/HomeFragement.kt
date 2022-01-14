@@ -32,6 +32,8 @@ import com.permissionx.guolindev.PermissionX
 import kotlinx.android.synthetic.main.fragment_home_fragement.*
 import io.github.g00fy2.quickie.QRResult
 import io.github.g00fy2.quickie.ScanQRCode
+import io.github.g00fy2.quickie.config.BarcodeFormat
+import io.github.g00fy2.quickie.config.ScannerConfig
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.common_toolbar.view.*
 import kotlinx.android.synthetic.main.fragment_home_fragement.toolbar
@@ -49,8 +51,6 @@ class HomeFragement(var baseActivity: KotlinBaseActivity) : KotlinBaseFragment()
     var inout=""
     var lat=""
     var lng=""
-
-
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
@@ -120,11 +120,19 @@ class HomeFragement(var baseActivity: KotlinBaseActivity) : KotlinBaseFragment()
             } else {
                 levaelist.add(ListingModel(R.drawable.enter, false, getString(R.string.checkIn)))
                 levaelist.add(ListingModel(R.drawable.logout, false, getString(R.string.checkout)))
+                levaelist.add(ListingModel(R.drawable.barcode, false, getString(R.string.scanqr)))
+
             }
             val leaveadapter = LeaveRequestAdapter(baseActivity) {
                 if (it.equals(-1)||it.equals(-2)) {
                     askpermission(it)
-                    //  scanQrCode.launch(null)
+
+                }
+                else if (it.equals(-3))
+                {
+                    scanQrCode.launch(
+                        null
+                    )
                 }
             }
             rv_request.adapter = leaveadapter
@@ -188,13 +196,15 @@ class HomeFragement(var baseActivity: KotlinBaseActivity) : KotlinBaseFragment()
             }
     }
 
-    override fun onResume() {
+    override fun onResume()
+    {
         super.onResume()
         location.startLocation()
 
     }
 
-    override fun onPause() {
+    override fun onPause()
+    {
         super.onPause()
         location.endUpdates()
 
@@ -203,7 +213,13 @@ class HomeFragement(var baseActivity: KotlinBaseActivity) : KotlinBaseFragment()
 
     fun handleResult(result: QRResult)
     {
-
+        val text = when (result) {
+            is QRResult.QRSuccess -> result.content.rawValue
+            QRResult.QRUserCanceled -> "User canceled"
+            QRResult.QRMissingPermission -> "Missing permission"
+            is QRResult.QRError -> "${result.exception.javaClass.simpleName}: ${result.exception.localizedMessage}"
+        }
+        Log.e("resultssssss",text)
     }
     private  fun calculateDistance():Int
     {

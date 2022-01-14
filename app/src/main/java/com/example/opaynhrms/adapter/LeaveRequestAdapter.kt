@@ -43,6 +43,9 @@ class LeaveRequestAdapter(val baseActivity: KotlinBaseActivity, val itemClick: (
                     baseActivity.getString(R.string.checkout)->{
                         itemClick(-2)
                     }
+                    baseActivity.getString(R.string.scanqr)->{
+                        itemClick(-3)
+                    }
                     else->{
                         baseActivity.openA(RequestLeave::class)
                     }

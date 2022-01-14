@@ -64,6 +64,7 @@
     <string name="status">Status</string>
     <string name="absent">Absent</string>
     <string name="checkIn">CheckIn</string>
+    <string name="scanqr">Scan QR Code</string>
     <string name="checkout">Check Out</string>
     <string name="basic_information">Basic information</string>
     <string name="designation">Designation</string>
