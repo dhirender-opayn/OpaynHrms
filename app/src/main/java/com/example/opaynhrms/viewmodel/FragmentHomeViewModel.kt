@@ -2,6 +2,7 @@ package com.example.opaynhrms.viewmodel
 
 import android.app.Application
 import android.content.Context
+import android.util.Log
 import com.example.opaynhrms.R
 
 
@@ -15,6 +16,10 @@ import com.example.opaynhrms.utils.Keys
 import com.google.gson.JsonObject
 
 import com.example.opaynhrms.base.AppViewModel
+import com.example.opaynhrms.common.CommonActivity
+import com.example.opaynhrms.model.LoginJson
+import com.example.opaynhrms.repository.LoginRepository
+import com.google.gson.Gson
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.common_toolbar.view.*
 
@@ -23,6 +28,8 @@ class FragmentHomeViewModel(application: Application) : AppViewModel(application
 {
     var msg: String = ""
     var homeRepository: HomeRepository = HomeRepository(application)
+    var loginSigupRepository: LoginRepository = LoginRepository(application)
+
     private lateinit var binder: FragmentHomeFragementBinding
     lateinit var baseActivity: KotlinBaseActivity
     private lateinit var mContext: Context
@@ -59,7 +66,22 @@ class FragmentHomeViewModel(application: Application) : AppViewModel(application
         jsonObject.addProperty(Keys.time,time)
         jsonObject.addProperty(Keys.type,inout)
         homeRepository.commonpostwithtoken(baseActivity,Keys.ATTANDANCE,jsonObject){
-
+            showToast("Attendance recorded successfully")
+        }
+    }
+    fun connectclockfy()
+    {
+        val jsonobj = JsonObject()
+        jsonobj.addProperty("", "")
+        homeRepository.commonpostwithtoken(baseActivity, Keys.CONNECTCLOCKIFY, jsonobj) {
+            if (it.isNotNull()) {
+                var model: LoginJson? = null
+                 baseActivity.preferencemanger.saveString(Keys.USERDATA, it.toString())
+                model = baseActivity.gson.fromJson(it.string(), LoginJson::class.java)
+                Home.userModel = model
+                baseActivity.bundle.putString(Keys.FROM,baseActivity.getString(R.string.work_history))
+                baseActivity.openA(CommonActivity::class,baseActivity.bundle)
+            }
         }
     }
 

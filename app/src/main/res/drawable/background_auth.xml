@@ -7,11 +7,11 @@
     </item>
     <item
         android:bottom="0dp"
-        android:left="-200dp"
-        android:right="-200dp"
+        android:left="-150dp"
+        android:right="-150dp"
         android:top="-500dp">
         <shape>
-            <corners android:radius="500dp" />
+            <corners android:radius="@dimen/_250sdp" />
             <solid android:color="@color/matt_black" />
 <!--            <solid android:color="#0a5688" />-->
         </shape>

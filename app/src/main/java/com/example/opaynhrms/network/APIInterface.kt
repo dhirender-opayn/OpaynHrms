@@ -49,7 +49,13 @@ interface APIInterface
 
     @Headers("Accept: application/json")
     @GET("roles")
+    fun connectclockify(@Header("Authorization") token: String): Call<RolesJson>
+
+    @Headers("Accept: application/json")
+    @GET("roles")
     fun roles(@Header("Authorization") token: String): Call<RolesJson>
+
+
 
     @Headers("Accept: application/json")
     @GET("leave/listing")
@@ -65,6 +71,9 @@ interface APIInterface
     @Headers("Accept: application/json")
     @GET("")
     fun attdancelist(@Header("Authorization") token: String,@Url url:String ): Call<AttandanceListJson>
+    @Headers("Accept: application/json")
+    @GET("")
+    fun clockifylist(@Header("Authorization") token: String,@Url url:String ): Call<ClockifyListJson>
 
     @Headers("Accept: application/json")
     @HTTP(method = "DELETE" , hasBody = true)

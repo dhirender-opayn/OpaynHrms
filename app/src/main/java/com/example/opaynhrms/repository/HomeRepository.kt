@@ -4,6 +4,7 @@ package com.example.opaynhrms.repository
 import androidx.lifecycle.MutableLiveData
 import com.example.opaynhrms.base.KotlinBaseActivity
  import com.example.opaynhrms.model.AttandanceListJson
+ import com.example.opaynhrms.model.ClockifyListJson
  import com.example.opaynhrms.model.LoginJson
  import com.example.opaynhrms.network.APIInterface
 import com.example.opaynhrms.network.RetrofitClient
@@ -154,6 +155,50 @@ class HomeRepository(private val baseActivity: Application)
 
                 }
                 override fun onFailure(call: Call<AttandanceListJson?>, t: Throwable)
+                {
+                    baseActivity.stopProgressDialog()
+                   // signupmutableLiveData.setValue(null)
+                }
+            })
+        }
+
+
+    }
+    fun clockfylisting(baseActivity: KotlinBaseActivity, page:String, itemClick: (ClockifyListJson) -> Unit)
+    {
+
+        if (!baseActivity.networkcheck.isNetworkAvailable())
+        {
+            baseActivity.nointernershowToast()
+        }
+        else{
+            if (page.equals("1"))
+            {
+                baseActivity.startProgressDialog()
+            }
+            retrofitClient = RetrofitClient.with(this.baseActivity)?.client?.create(APIInterface::class.java)
+            var  url=""
+
+
+            url=Keys.BASEURL+Keys.CLOCKIFYLIST+"$page"
+            retrofitClient?.clockifylist(Utils.AUTHTOKEN,url)!!.enqueue(object : Callback<ClockifyListJson>
+            {
+                override fun onResponse(call: Call<ClockifyListJson?>, response: Response<ClockifyListJson?>) { baseActivity.stopProgressDialog()
+                    when(response.code())
+                    {
+                        Keys.RESPONSE_SUCESS->{
+                            response.body()?.let { itemClick(it) }
+                         }
+                        Keys.ERRORCODE->{
+                             baseActivity.parseError(response)
+                        }
+                        Keys.UNAUTHoRISE->{
+                            //signupmutableLiveData.setValue(response.body())
+                        }
+                    }
+
+                }
+                override fun onFailure(call: Call<ClockifyListJson?>, t: Throwable)
                 {
                     baseActivity.stopProgressDialog()
                    // signupmutableLiveData.setValue(null)

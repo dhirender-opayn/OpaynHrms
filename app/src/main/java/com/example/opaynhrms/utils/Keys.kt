@@ -20,6 +20,9 @@ object Keys
     const val UPDATEUSER="user/update"
     const val TEAMDATA="team?user_id=";
     const val ATTANDANCELIST="attendance/listing"
+    const val CONNECTCLOCKIFY="connect-clockify"
+    const val CLOCKIFYLIST="clockify-entries?page="
+
     /*GUEST KEYS*/
     const val Coursetype = "coursetype"
 

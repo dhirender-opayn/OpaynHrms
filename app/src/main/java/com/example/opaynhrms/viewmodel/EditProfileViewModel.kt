@@ -46,6 +46,10 @@ class EditProfileViewModel(application: Application) : AppViewModel(application)
         binder.tvusername.setText(Home.userModel!!.data.user.name)
         binder.tvemail.setText(Home.userModel!!.data.user.email)
         binder.tvmobile.setText(Home.userModel!!.data.user.mobile)
+        if (Home.userModel!!.data.user.profile.isNotNull() && Home.userModel!!.data.user.profile.clockify_key.isNotNull()){
+            binder.tvclockify.setText(Home.userModel!!.data.user.profile.clockify_key)
+            binder.tvclockify.isEnabled=false
+        }
         if (Home.userModel!!.data.user.profile.isNotNull() && Home.userModel!!.data.user.profile.image.isNotNull()) {
             Picasso.get().load(Home.userModel!!.data.user.profile.image)
                 .placeholder(R.drawable.userwhite).into(binder.ivprofileimg)
@@ -76,7 +80,7 @@ class EditProfileViewModel(application: Application) : AppViewModel(application)
         getMultiPart(Keys.email, binder.tvemail.text.toString())?.let { fields.add(it) }
         getMultiPart(Keys.mobile, binder.tvmobile.text.toString())?.let { fields.add(it) }
         getMultiPart(Keys.id, Home.userModel!!.data.user.id.toString())?.let { fields.add(it) }
-        getMultiPart(Keys.clockify_key, Home.userModel!!.data.user.id.toString())?.let {
+        getMultiPart(Keys.clockify_key, binder.tvclockify.text.toString())?.let {
             fields.add(it)
         }
         if (file != null) {

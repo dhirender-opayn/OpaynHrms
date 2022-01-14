@@ -3,22 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/matt_black"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <include layout="@layout/bg_layout" />
 
-    <com.makeramen.roundedimageview.RoundedImageView
-        android:id="@+id/ivprofile"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/_150sdp"
-        android:layout_centerInParent="true"
-        android:layout_marginBottom="@dimen/_50sdp"
-        android:src="@drawable/logo"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:riv_corner_radius="@dimen/_10sdp" />
+
+
 
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -28,11 +19,13 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_20sdp"
         android:text="OPAYN HRMS"
+        app:layout_constraintBottom_toBottomOf="parent"
         android:textColor="@color/pinky_red"
         android:textSize="@dimen/_25sdp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivprofile" />
+         />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

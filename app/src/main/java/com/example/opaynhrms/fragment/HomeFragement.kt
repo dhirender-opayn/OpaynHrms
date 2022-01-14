@@ -8,8 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import com.example.easywaylocation.EasyWayLocation
-import com.example.easywaylocation.Listener
+
 import com.example.opaynhrms.R
 import com.example.opaynhrms.adapter.HomeTabAdapter
 import com.example.opaynhrms.adapter.LeaveRequestAdapter
@@ -24,12 +23,12 @@ import com.example.opaynhrms.viewmodel.FragmentHomeViewModel
 import com.google.android.gms.maps.model.LatLng
 import com.google.maps.android.SphericalUtil
 import com.example.opaynhrms.base.KotlinBaseFragment
+import com.example.opaynhrms.listner.Listener
+import com.example.opaynhrms.locations.EasyWayLocation2
 import com.permissionx.guolindev.PermissionX
 import kotlinx.android.synthetic.main.fragment_home_fragement.*
 import io.github.g00fy2.quickie.QRResult
 import io.github.g00fy2.quickie.ScanQRCode
-import io.github.g00fy2.quickie.config.BarcodeFormat
-import io.github.g00fy2.quickie.config.ScannerConfig
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.common_toolbar.view.*
 import kotlinx.android.synthetic.main.item_statistics_notification.*
@@ -42,7 +41,7 @@ class HomeFragement(var baseActivity: KotlinBaseActivity) : KotlinBaseFragment()
     lateinit var binding: FragmentHomeFragementBinding
     lateinit var viewModel: FragmentHomeViewModel
     val levaelist = ArrayList<ListingModel>()
-    lateinit var location: EasyWayLocation
+    lateinit var location: EasyWayLocation2
     var inout=""
     var lat=""
     var lng=""
@@ -62,7 +61,7 @@ class HomeFragement(var baseActivity: KotlinBaseActivity) : KotlinBaseFragment()
     {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this).get(FragmentHomeViewModel::class.java)
-        location = EasyWayLocation(baseActivity, false, false, this)
+        location = EasyWayLocation2(baseActivity, false, false, this)
         viewModel.setBinder(binding, baseActivity)
         setAdapter()
         setsubheaderAdapter()
@@ -95,7 +94,7 @@ class HomeFragement(var baseActivity: KotlinBaseActivity) : KotlinBaseFragment()
             }
         }
         val tabAdapter = HomeTabAdapter(baseActivity) {
-
+                viewModel.connectclockfy()
         }
         rv_tabs.adapter = tabAdapter
         tabAdapter.addNewList(tablist)
@@ -179,9 +178,9 @@ class HomeFragement(var baseActivity: KotlinBaseActivity) : KotlinBaseFragment()
                         showtoast("Location is needed")
                         return@request
                     }
-                    if (calculateDistance()<=30)
+                    if (calculateDistance()<=300)
                     {
-                        //showtoast("totaldistanceee${calculateDistance().toString()}")
+                       // showtoast("totaldistanceee${calculateDistance().toString()}")
                         viewModel.addorupdateAttandance(lat,lng,Utils.getcurrentdate(),inout)
                     }
                     else{
@@ -215,14 +214,13 @@ class HomeFragement(var baseActivity: KotlinBaseActivity) : KotlinBaseFragment()
             QRResult.QRMissingPermission -> "Missing permission"
             is QRResult.QRError -> "${result.exception.javaClass.simpleName}: ${result.exception.localizedMessage}"
         }
-        Log.e("resultssssss",text)
-    }
+     }
     private  fun calculateDistance():Int
     {
         val srclat=LatLng(lat.toDouble(),lng.toDouble())
         val deslat=LatLng(Utils.OPAYN_LAT.toDouble(),Utils.OPAYN_LNG.toDouble())
         val  distance= SphericalUtil.computeDistanceBetween(srclat, deslat);
-         return  distance.toInt()
+        return  distance.toInt()
     }
 
     override fun onClick(p0: View?) {

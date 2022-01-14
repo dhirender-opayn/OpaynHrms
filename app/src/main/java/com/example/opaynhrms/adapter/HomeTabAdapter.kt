@@ -7,6 +7,7 @@ package com.example.opaynhrms.adapter
  import com.example.opaynhrms.R
 import com.example.opaynhrms.base.KotlinBaseActivity
  import com.example.opaynhrms.common.CommonActivity
+ import com.example.opaynhrms.extensions.isNotNull
  import com.example.opaynhrms.model.ListingModel
  import com.example.opaynhrms.ui.*
  import com.example.opaynhrms.utils.Keys
@@ -63,10 +64,18 @@ class HomeTabAdapter (val baseActivity: KotlinBaseActivity, val itemClick: (Int)
                         baseActivity.openA(CommonActivity::class,bundle)
                     }
                     baseActivity.getString(R.string.workhistory)->{
+                        if (Home.userModel?.data?.user?.profile.isNotNull() &&Home.userModel?.data?.user?.profile?.clockify_workspace_id.isNotNull())
+                        {
 
-                        var bundle = Bundle()
-                        bundle.putString(Keys.FROM,context.getString(R.string.work_history))
-                        baseActivity.openA(CommonActivity::class,bundle)
+                            bundle.putString(Keys.FROM,context.getString(R.string.work_history))
+                            baseActivity.openA(CommonActivity::class,bundle)
+                        }
+                        else{
+                            itemClick(position)
+                         //   baseActivity.showtoast("Please connect with clockify  from profile")
+                        }
+
+
                     }
 //                    baseActivity.getString(R.string.reporting)->{
 //                        var bundle = Bundle()
@@ -76,7 +85,7 @@ class HomeTabAdapter (val baseActivity: KotlinBaseActivity, val itemClick: (Int)
                 }
 
 
-                itemClick(position)
+
 
             }
         }

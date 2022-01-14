@@ -73,7 +73,7 @@ class HomeViewModel(application: Application) : AppViewModel(application) {
             jsondata = it.toString()
             userModel = gson.fromJson(jsondata, LoginJson::class.java)
 
-            Log.e("tokeeenenne", userModel.toString())
+            Log.e("tokeeenenne", jsondata.toString())
 
 
         }
@@ -81,7 +81,7 @@ class HomeViewModel(application: Application) : AppViewModel(application) {
 
             if (AUTHTOKEN.isEmpty()) {
                 AUTHTOKEN = "Bearer "+it.toString()
-                 Log.e("tokeeenenne", AUTHTOKEN)
+
             }
         }
 
