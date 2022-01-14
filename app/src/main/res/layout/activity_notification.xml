@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
 
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.opaynhrms.viewmodel.NotificationViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.Notification"
-       >
+        android:background="@color/matt_black">
 
-        <include layout="@layout/bg_layout" />
+<!--        <include layout="@layout/bg_layout" />-->
 
         <include
             android:id="@+id/toolbar"

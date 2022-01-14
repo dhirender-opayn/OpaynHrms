@@ -4,8 +4,8 @@ import android.app.Activity
 import android.app.Dialog
 import android.app.DownloadManager
 import android.content.Context
-import android.database.Cursor
 import android.graphics.Color
+import android.graphics.Typeface
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Build
@@ -13,7 +13,6 @@ import android.os.Bundle
 import android.os.Environment
 import android.text.Spannable
 import android.text.style.ImageSpan
-import android.text.style.QuoteSpan
 import android.text.style.URLSpan
 import android.util.Log
 import android.view.Gravity
@@ -38,8 +37,7 @@ import com.example.opaynhrms.listner.KotlinBaseListener
 import com.example.opaynhrms.navigator.Navigator
 import com.example.opaynhrms.utils.Keys
 import com.example.opaynhrms.utils.Utils
-import com.ieltslearning.base.KotlinBaseFragment
- import org.json.JSONObject
+import org.json.JSONObject
 import org.koin.android.ext.android.inject
 import retrofit2.Response
 import java.io.File
@@ -58,6 +56,24 @@ open class KotlinBaseActivity(@IdRes private val container: Int = 0) : AppCompat
       var imageUrl = "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"
 
     val gson= Gson()
+
+    val months = arrayOf(
+        "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dec"
+    )
+    val weekly = arrayOf(
+        "Sun", "Mon", "Tue", "Wed", "Thus", "Fri", "Stat"
+    )
+    val yealy = arrayOf(
+        "2022", "2021", "2020", "2019", "2018", "2017", "2016","2015"
+    )
+    val parties = arrayOf(
+        "Party A", "Party B", "Party C", "Party D", "Party E", "Party F", "Party G", "Party H",
+        "Party I", "Party J", "Party K", "Party L", "Party M", "Party N", "Party O", "Party P",
+        "Party Q", "Party R", "Party S", "Party T", "Party U", "Party V", "Party W", "Party X",
+        "Party Y", "Party Z"
+    )
+    var tfRegular: Typeface? = null
+    var tfLight: Typeface? = null
     override fun showProgress() {
         hideProgress()
       //  isDialogShow = true
@@ -76,6 +92,8 @@ open class KotlinBaseActivity(@IdRes private val container: Int = 0) : AppCompat
         super.onCreate(savedInstanceState)
         initBackStackListener()
         initializeProgressDialog()
+        tfRegular = Typeface.createFromAsset(assets, "OpenSans-Regular.ttf")
+        tfLight = Typeface.createFromAsset(assets, "OpenSans-Light.ttf")
 
     }
       fun setFullscreen(activity: Activity) {

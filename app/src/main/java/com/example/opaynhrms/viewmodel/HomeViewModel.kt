@@ -19,6 +19,11 @@ import com.example.opaynhrms.utils.Keys
 import com.example.opaynhrms.utils.Utils.AUTHTOKEN
 import com.google.gson.Gson
 import com.example.opaynhrms.base.AppViewModel
+import com.example.opaynhrms.fragment.ReportingFragment
+import com.example.opaynhrms.fragment.StatisticsFragment
+import com.example.opaynhrms.model.ListingModel
+import com.example.opaynhrms.ui.Home
+import com.example.opaynhrms.utils.Utils
 import kotlinx.android.synthetic.main.bottom_nav_bar.view.*
 import kotlinx.android.synthetic.main.nointernetconnection.view.*
 
@@ -41,7 +46,26 @@ class HomeViewModel(application: Application) : AppViewModel(application) {
 
         setclicks()
         getuserdata()
+        checkuser()
     }
+
+
+    private fun checkuser(){
+        if (Home.userModel?.data?.user!!.roles.size > 0)
+        {
+            val admin = Home.userModel?.data?.user!!.roles[0].name
+
+            if (admin.equals(Utils.SUPERADMIN)) {
+               binder.bottomNav.statistics.visible()
+
+            }  else {
+                binder.bottomNav.statistics.gone()
+            }
+        }
+    }
+
+
+
     fun getuserdata() {
         baseActivity.preferencemanger.getString(Keys.USERDATA).let {
             val gson = Gson()
@@ -74,9 +98,9 @@ class HomeViewModel(application: Application) : AppViewModel(application) {
 
                         binder.bottomNav.home.performClick()
                     }
-//                    1 -> {
-//                        binder.bottomNav.statistics.performClick()
-//                    }
+                    1 -> {
+                        binder.bottomNav.statistics.performClick()
+                    }
                     2 -> {
                         binder.bottomNav.profile.performClick()
                     }
@@ -103,20 +127,20 @@ class HomeViewModel(application: Application) : AppViewModel(application) {
             }
 
         }
-//        binder.bottomNav.statistics.setOnClickListener {
-//            selpos = 1
-//            changeIcon(
-//                R.drawable.ic_dashboard,
-//                R.drawable.ic_statistics_active,
-//                R.drawable.ic_profile
-//            )
-//            if (baseActivity.networkcheck.isNetworkAvailable()) {
-//                baseActivity.navigateToFragment(StatisticsFragment(baseActivity), bundle, false)
-//
-//            } else {
-//                nointertnetview()
-//            }
-//        }
+        binder.bottomNav.statistics.setOnClickListener {
+            selpos = 1
+            changeIcon(
+                R.drawable.ic_dashboard,
+                R.drawable.ic_statistics_active,
+                R.drawable.ic_profile
+            )
+            if (baseActivity.networkcheck.isNetworkAvailable()) {
+                baseActivity.navigateToFragment(ReportingFragment(baseActivity), bundle, false)
+
+            } else {
+                nointertnetview()
+            }
+        }
 
 
         binder.bottomNav.profile.setOnClickListener {
@@ -145,7 +169,7 @@ class HomeViewModel(application: Application) : AppViewModel(application) {
     private fun changeIcon(home: Int, notification: Int, profile: Int) {
 
         binder.bottomNav.home.setImageResource(home)
-//        binder.bottomNav.statistics.setImageResource(notification)
+        binder.bottomNav.statistics.setImageResource(notification)
         binder.bottomNav.profile.setImageResource(profile)
 
 

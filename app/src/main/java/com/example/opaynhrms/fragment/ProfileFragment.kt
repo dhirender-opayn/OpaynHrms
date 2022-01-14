@@ -13,9 +13,8 @@ import com.example.opaynhrms.databinding.FragmentProfileBinding
 import com.example.opaynhrms.extensions.gone
 import com.example.opaynhrms.ui.*
 import com.example.opaynhrms.utils.Keys
-import com.example.opaynhrms.viewmodel.FragmentHomeViewModel
 import com.example.opaynhrms.viewmodel.ProfileViewModel
-import com.ieltslearning.base.KotlinBaseFragment
+import com.example.opaynhrms.base.KotlinBaseFragment
 import kotlinx.android.synthetic.main.common_toolbar.view.*
 import kotlinx.android.synthetic.main.fragment_profile.*
 
@@ -24,6 +23,7 @@ class ProfileFragment(var baseActivity: KotlinBaseActivity) : KotlinBaseFragment
     View.OnClickListener {
     lateinit var binding: FragmentProfileBinding
     lateinit var viewModel: ProfileViewModel
+    var getbundle = Bundle()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -78,7 +78,8 @@ class ProfileFragment(var baseActivity: KotlinBaseActivity) : KotlinBaseFragment
                 baseActivity.openA(ChangePassword::class)
             }
             R.id.notification -> {
-                baseActivity.openA(Notification::class)
+                bundle.putString(Keys.FROM,baseActivity.getString(R.string.notification))
+                baseActivity.openA(Notification::class,bundle)
             }
             R.id.support -> {
                 baseActivity.openA(Support::class)

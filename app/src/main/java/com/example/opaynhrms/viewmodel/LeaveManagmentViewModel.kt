@@ -20,16 +20,18 @@ import com.ieltslearning.listner.ItemClick
 import kotlinx.android.synthetic.main.common_toolbar.view.*
 
 
-class LeaveManagmentViewModel(application: Application) : AppViewModel(application),ItemClick {
+class LeaveManagmentViewModel(application: Application) : AppViewModel(application),ItemClick
+{
     private lateinit var binder: ActivityLeaveManagementBinding
     private lateinit var mContext: Context
     lateinit var baseActivity: KotlinBaseActivity
     var selpos = 0
-    val bundle = Bundle()
+
     var userRepository: UserRepository = UserRepository(application)
     var list=ArrayList<LeaveListJson.Data>()
 
-    fun setBinder(binder: ActivityLeaveManagementBinding, baseActivity: KotlinBaseActivity) {
+    fun setBinder(binder: ActivityLeaveManagementBinding, baseActivity: KotlinBaseActivity)
+    {
         this.binder = binder
         this.mContext = binder.root.context
         this.baseActivity = baseActivity
@@ -61,7 +63,7 @@ class LeaveManagmentViewModel(application: Application) : AppViewModel(applicati
     }
 
 
-    private  fun leavelist()
+       fun leavelist()
     {
         userRepository.leavelist(baseActivity){
             list.clear()
@@ -87,8 +89,10 @@ class LeaveManagmentViewModel(application: Application) : AppViewModel(applicati
                 acceptreject(list[position].user_id.toString(),list[position].id.toString(),"2","Are you sure yoi want to cancel the leave")
             }
             "3"->{
-                bundle.putString(Keys.FROM,mContext.getString(R.string.leavemanagement))
-                baseActivity.openA(CommonActivity::class,bundle)
+               baseActivity. bundle.putString(Keys.FROM,mContext.getString(R.string.leavemanagement))
+              baseActivity. bundle.putSerializable(Keys.data,list[position])
+//                bundle.putString(Keys.id, list[position].user_id.toString())
+                baseActivity.openA(CommonActivity::class,baseActivity.bundle)
             }
         }
 
