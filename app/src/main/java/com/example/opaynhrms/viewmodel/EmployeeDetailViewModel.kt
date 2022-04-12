@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.Context
 import android.os.Bundle
 import android.view.View
+import androidx.core.content.ContextCompat
 import com.example.opaynhrms.R
 import com.example.opaynhrms.adapter.EmpAdapter
 import com.example.opaynhrms.base.AppViewModel
@@ -51,7 +52,7 @@ class EmployeeViewModel(application: Application) : AppViewModel(application),
     private fun settoolbar() {
         binder.toolbar.icmenu.setImageResource(R.drawable.icback_black)
         binder.toolbar.tvtitle.text = baseActivity.getString(R.string.emp_reporting)
-        binder.toolbar.tvtitle.setTextColor(mContext.getColor(R.color.black_3))
+        binder.toolbar.tvtitle.setTextColor(ContextCompat.getColor(baseActivity,R.color.black_3))
     }
 
     private fun click(){

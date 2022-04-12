@@ -11,23 +11,22 @@
             type="com.example.opaynhrms.viewmodel.RequestLeaveViewModel" />
     </data>
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         tools:context=".auth.Login">
 
-        <include layout="@layout/bg_layout" />
+        <!--        <include layout="@layout/bg_layout" />-->
 
         <include
             android:id="@+id/toolbar"
             layout="@layout/common_toolbar" />
 
-
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:padding="@dimen/_10sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
@@ -36,186 +35,140 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/cvContainer"
+                <!--                <com.google.android.material.card.MaterialCardView-->
+                <!--                    android:id="@+id/cvContainer"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_marginStart="@dimen/_10sdp"-->
+                <!--                    android:layout_marginEnd="@dimen/_10sdp"-->
+                <!--                    android:layout_marginBottom="@dimen/_50sdp"-->
+                <!--                    app:cardCornerRadius="@dimen/_10sdp"-->
+                <!--                    app:cardElevation="@dimen/_5sdp"-->
+                <!--                    app:cardPreventCornerOverlap="true"-->
+                <!--                    app:cardUseCompatPadding="true"-->
+
+                <!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+                <!--                    app:layout_constraintEnd_toEndOf="parent"-->
+                <!--                    app:layout_constraintStart_toStartOf="parent"-->
+                <!--                    app:layout_constraintTop_toTopOf="parent">-->
+
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/clrequestleavecontainer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_10sdp"
-                    android:layout_marginEnd="@dimen/_10sdp"
-                    android:layout_marginBottom="@dimen/_50sdp"
-                    app:cardCornerRadius="@dimen/_10sdp"
-                    app:cardElevation="@dimen/_5sdp"
-                    app:cardPreventCornerOverlap="true"
-                    app:cardUseCompatPadding="true"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:orientation="vertical"
+                    android:paddingBottom="@dimen/_20sdp"
                     app:layout_constraintTop_toTopOf="parent">
 
-
-                    <androidx.appcompat.widget.LinearLayoutCompat
-                        android:id="@+id/clrequestleavecontainer"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tvLeaveTitle"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_marginStart="@dimen/_10sdp"
-                        android:layout_marginEnd="@dimen/_15sdp"
-                        android:layout_marginTop="@dimen/_15sdp"
-                        android:paddingTop="@dimen/_10sdp"
-                        android:paddingBottom="@dimen/_10sdp"
-                        app:layout_constraintTop_toTopOf="parent">
+                        android:hint="@string/title"
+                        android:textColorHint="@color/dark_grey"
+                        android:visibility="gone"
+                        app:hintTextColor="@color/pinky_red"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/leavetypewrap"
+                        app:layout_goneMarginEnd="@dimen/_32sdp"
+                        app:layout_goneMarginStart="@dimen/_32sdp">
+
+                        <!--this is the actual edit text which takes the input-->
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/tvTitle"
+                            style="@style/edittextlogintitle"
+                            android:gravity="start"
+                            android:inputType="none"
+                            android:maxLength="500"
+                            android:singleLine="false"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_12sdp" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/leavetypewrap"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <!-- Inside text input layout add
+                              an auto complete text view
+                                and make its input type to none-->
+                        <AutoCompleteTextView
+                            android:id="@+id/leavetype"
+                            style="@style/mediumfont"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:inputType="none"
+                            android:text="@string/leave_type" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/datecontainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:orientation="horizontal"
+                        android:visibility="gone">
 
                         <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/tvLeaveTitle"
+                            android:id="@+id/startdatewrap"
                             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                            android:layout_width="match_parent"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                              android:hint="@string/title"
+                            android:layout_marginEnd="@dimen/_10sdp"
+                            android:layout_weight="1"
+                            android:hint="@string/start_date"
                             android:textColorHint="@color/dark_grey"
+                            app:endIconDrawable="@drawable/ic_calendar_line"
+                            app:endIconMode="custom"
                             app:hintTextColor="@color/pinky_red"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/leavetypewrap"
-                            app:layout_goneMarginEnd="@dimen/_32sdp"
-                            app:layout_goneMarginStart="@dimen/_32sdp">
+                            app:layout_constraintEnd_toEndOf="parent">
 
-                            <!--this is the actual edit text which takes the input-->
-                            <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/tvTitle"
-                                style="@style/edittextlogintitle"
-                                android:gravity="start"
-                                android:inputType="none"
-                                android:maxLength="500"
-                                android:singleLine="false"
+                            <!-- Inside text input layout add
+                                  an auto complete text view
+                                    and make its input type to none-->
+                            <AutoCompleteTextView
+                                android:id="@+id/startdate"
+                                style="@style/mediumfont"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:inputType="date"
+                                android:paddingStart="@dimen/_10sdp"
+                                android:paddingTop="@dimen/_10sdp"
+                                android:paddingEnd="@dimen/_10sdp"
+                                android:paddingBottom="@dimen/_10sdp"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_12sdp" />
 
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/leavetypewrap"
-                            android:layout_marginTop="@dimen/_10sdp"
-                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                        >
-
-                            <!-- Inside text input layout add
-                                  an auto complete text view
-                                    and make its input type to none-->
-                            <AutoCompleteTextView
-                                android:id="@+id/leavetype"
-                                style="@style/mediumfont"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-
-                                android:inputType="none"
-                                android:text="@string/leave_type" />
-
-                        </com.google.android.material.textfield.TextInputLayout>
-
-
-
-
-                        <androidx.appcompat.widget.LinearLayoutCompat
-                            android:id="@+id/datecontainer"
-                            android:visibility="gone"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/_10sdp"
-                            android:orientation="horizontal"
-                            >
-
-
-                            <com.google.android.material.textfield.TextInputLayout
-                                android:id="@+id/startdatewrap"
-                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                 android:layout_marginEnd="@dimen/_10sdp"
-                                android:layout_weight="1"
-                                app:endIconMode="custom"
-                                app:endIconDrawable="@drawable/ic_calendar_line"
-                                android:hint="@string/start_date"
-                                android:textColorHint="@color/dark_grey"
-                                app:hintTextColor="@color/pinky_red"
-                                app:layout_constraintEnd_toEndOf="parent">
-
-                                <!-- Inside text input layout add
-                                      an auto complete text view
-                                        and make its input type to none-->
-                                <AutoCompleteTextView
-                                    android:id="@+id/startdate"
-                                    style="@style/mediumfont"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:inputType="date"
-                                    android:paddingStart="@dimen/_10sdp"
-                                    android:paddingTop="@dimen/_10sdp"
-                                    android:paddingEnd="@dimen/_10sdp"
-                                    android:paddingBottom="@dimen/_10sdp"
-                                    android:textColor="@color/black"
-                                    android:textSize="@dimen/_12sdp" />
-
-                            </com.google.android.material.textfield.TextInputLayout>
-
-                            <com.google.android.material.textfield.TextInputLayout
-                                android:id="@+id/endwrap"
-                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/_5sdp"
-                                 android:layout_weight="1"
-                                android:hint="@string/end_date"
-                                app:endIconMode="custom"
-                                app:endIconDrawable="@drawable/ic_calendar_line"
-                                android:textColorHint="@color/dark_grey"
-                                app:hintTextColor="@color/pinky_red"
-                                 >
-
-                                <!-- Inside text input layout add
-                                      an auto complete text view
-                                        and make its input type to none-->
-                                <AutoCompleteTextView
-                                    android:id="@+id/enddate"
-                                    style="@style/mediumfont"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:inputType="date"
-                                    android:paddingStart="@dimen/_10sdp"
-                                    android:paddingTop="@dimen/_10sdp"
-                                    android:paddingEnd="@dimen/_10sdp"
-                                    android:paddingBottom="@dimen/_10sdp"
-                                    android:textColor="@color/black"
-                                    android:textSize="@dimen/_12sdp" />
-
-                            </com.google.android.material.textfield.TextInputLayout>
-
-
-                        </androidx.appcompat.widget.LinearLayoutCompat>
-
-
-
-
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/dateWrap"
+                            android:id="@+id/endwrap"
                             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                            android:layout_width="match_parent"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                             android:layout_marginTop="@dimen/_10sdp"
-                             android:hint="@string/select_date"
-                            android:visibility="visible"
-                            app:endIconMode="custom"
-                            app:endIconDrawable="@drawable/ic_calendar_line"
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:layout_weight="1"
+                            android:hint="@string/end_date"
                             android:textColorHint="@color/dark_grey"
-                            app:hintTextColor="@color/pinky_red"
-                           >
+                            app:endIconDrawable="@drawable/ic_calendar_line"
+                            app:endIconMode="custom"
+                            app:hintTextColor="@color/pinky_red">
 
                             <!-- Inside text input layout add
                                   an auto complete text view
                                     and make its input type to none-->
                             <AutoCompleteTextView
-                                android:id="@+id/date"
+                                android:id="@+id/enddate"
                                 style="@style/mediumfont"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
@@ -230,157 +183,236 @@
                         </com.google.android.material.textfield.TextInputLayout>
 
 
-                        <androidx.appcompat.widget.LinearLayoutCompat
-                            android:id="@+id/timecontainer"
-                            android:visibility="gone"
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/leaveCategoryWrap"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp">
+
+                        <!-- Inside text input layout add
+                              an auto complete text view
+                                and make its input type to none-->
+                        <AutoCompleteTextView
+                            android:id="@+id/tvleaveCategory"
+                            style="@style/mediumfont"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/_10sdp"
-                            android:orientation="horizontal"
-                            >
+                            android:layout_height="match_parent"
+                            android:inputType="none"
+                            android:text="@string/select_leave_category" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
 
 
-                            <com.google.android.material.textfield.TextInputLayout
-                                android:id="@+id/starttimewarp"
-                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginEnd="@dimen/_10sdp"
-                                android:layout_weight="1"
-                                app:endIconMode="custom"
-                                app:endIconDrawable="@drawable/ic_calendar_line"
-                                android:hint="@string/start_tim"
-                                android:textColorHint="@color/dark_grey"
-                                app:hintTextColor="@color/pinky_red"
-                                app:layout_constraintEnd_toEndOf="parent">
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/dateWrap"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:hint="@string/select_date"
+                        android:textColorHint="@color/dark_grey"
+                        android:visibility="visible"
+                        app:endIconDrawable="@drawable/ic_calendar_line"
+                        app:endIconMode="custom"
+                        app:hintTextColor="@color/pinky_red">
 
-                                <!-- Inside text input layout add
-                                      an auto complete text view
-                                        and make its input type to none-->
-                                <AutoCompleteTextView
-                                    android:id="@+id/startime"
-                                    style="@style/mediumfont"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:inputType="date"
-                                    android:paddingStart="@dimen/_10sdp"
-                                    android:paddingTop="@dimen/_10sdp"
-                                    android:paddingEnd="@dimen/_10sdp"
-                                    android:paddingBottom="@dimen/_10sdp"
-                                    android:textColor="@color/black"
-                                    android:textSize="@dimen/_12sdp" />
-
-                            </com.google.android.material.textfield.TextInputLayout>
-
-                            <com.google.android.material.textfield.TextInputLayout
-                                android:id="@+id/endtimewrap"
-                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/_5sdp"
-                                android:layout_weight="1"
-                                android:hint="@string/end_time"
-                                app:endIconMode="custom"
-                                app:endIconDrawable="@drawable/ic_calendar_line"
-                                android:textColorHint="@color/dark_grey"
-                                app:hintTextColor="@color/pinky_red"
-                                >
-
-                                <!-- Inside text input layout add
-                                      an auto complete text view
-                                        and make its input type to none-->
-                                <AutoCompleteTextView
-                                    android:id="@+id/endtim"
-                                    style="@style/mediumfont"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:inputType="date"
-                                    android:paddingStart="@dimen/_10sdp"
-                                    android:paddingTop="@dimen/_10sdp"
-                                    android:paddingEnd="@dimen/_10sdp"
-                                    android:paddingBottom="@dimen/_10sdp"
-                                    android:textColor="@color/black"
-                                    android:textSize="@dimen/_12sdp" />
-
-                            </com.google.android.material.textfield.TextInputLayout>
-
-
-                        </androidx.appcompat.widget.LinearLayoutCompat>
-                        <RadioGroup
-                            android:layout_marginTop="@dimen/_10sdp"
-                            android:id="@+id/radiogrp"
-                            android:visibility="gone"
-                            android:orientation="horizontal"
+                        <!-- Inside text input layout add
+                              an auto complete text view
+                                and make its input type to none-->
+                        <AutoCompleteTextView
+                            android:id="@+id/date"
+                            style="@style/mediumfont"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-                            <RadioButton
-                                android:layout_weight="1"
-                                android:id="@+id/rbFirst"
-                                android:text="@string/first_half"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"/>
-                            <RadioButton
-                                android:id="@+id/rbsecond"
-                                android:layout_weight="1"
-                                android:text="@string/second_half"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"/>
+                            android:layout_height="match_parent"
+                            android:inputType="date"
+                            android:paddingStart="@dimen/_10sdp"
+                            android:paddingTop="@dimen/_10sdp"
+                            android:paddingEnd="@dimen/_10sdp"
+                            android:paddingBottom="@dimen/_10sdp"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_12sdp" />
 
-                        </RadioGroup>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/attachment"
+                        style="@style/mediumfont"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:background="@drawable/rectangle_black_border"
+                        android:drawableStart="@drawable/ic_attachment_active"
+                        android:drawableEnd="@drawable/ic_download"
+                        android:drawablePadding="@dimen/_10sdp"
+                        android:paddingStart="@dimen/_10sdp"
+                        android:paddingTop="@dimen/_10sdp"
+                        android:paddingEnd="@dimen/_10sdp"
+                        android:paddingBottom="@dimen/_10sdp"
+                        android:singleLine="true"
+                        android:text="attachment"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/light_gre1"
+                        android:textSize="@dimen/_12sdp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/application" />
+
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/timecontainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:orientation="horizontal"
+                        android:visibility="gone">
 
 
                         <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/reasonwrap"
+                            android:id="@+id/starttimewarp"
                             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                            android:layout_width="match_parent"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                             android:layout_marginTop="@dimen/_10sdp"
-                             android:hint="@string/reason"
+                            android:layout_marginEnd="@dimen/_10sdp"
+                            android:layout_weight="1"
+                            android:hint="@string/start_tim"
                             android:textColorHint="@color/dark_grey"
-                            app:boxCornerRadiusBottomEnd="@dimen/_10sdp"
-                            app:boxCornerRadiusBottomStart="@dimen/_10sdp"
-                            app:boxCornerRadiusTopEnd="@dimen/_10sdp"
-                            app:boxCornerRadiusTopStart="@dimen/_10sdp"
-                             app:layout_constraintEnd_toEndOf="parent"
-                              app:layout_goneMarginEnd="@dimen/_32sdp"
-                            app:layout_goneMarginStart="@dimen/_32sdp">
+                            app:endIconDrawable="@drawable/ic_calendar_line"
+                            app:endIconMode="custom"
+                            app:hintTextColor="@color/pinky_red"
+                            app:layout_constraintEnd_toEndOf="parent">
 
-                            <!--this is the actual edit text which takes the input-->
-                            <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/tvreason"
-                                style="@style/regularfont"
+                            <!-- Inside text input layout add
+                                  an auto complete text view
+                                    and make its input type to none-->
+                            <AutoCompleteTextView
+                                android:id="@+id/startime"
+                                style="@style/mediumfont"
                                 android:layout_width="match_parent"
-                                android:layout_height="@dimen/_150sdp"
-                                android:gravity="start"
-                                android:inputType="none"
-                                android:scrollIndicators="none"
-                                android:lines="10"
-                                android:maxLength="500"
-                                android:singleLine="false"
+                                android:layout_height="match_parent"
+                                android:inputType="date"
+                                android:paddingStart="@dimen/_10sdp"
+                                android:paddingTop="@dimen/_10sdp"
+                                android:paddingEnd="@dimen/_10sdp"
+                                android:paddingBottom="@dimen/_10sdp"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_12sdp" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/endtimewrap"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:layout_weight="1"
+                            android:hint="@string/end_time"
+                            android:textColorHint="@color/dark_grey"
+                            app:endIconDrawable="@drawable/ic_calendar_line"
+                            app:endIconMode="custom"
+                            app:hintTextColor="@color/pinky_red">
+
+                            <!-- Inside text input layout add
+                                  an auto complete text view
+                                    and make its input type to none-->
+                            <AutoCompleteTextView
+                                android:id="@+id/endtim"
+                                style="@style/mediumfont"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:inputType="date"
+                                android:paddingStart="@dimen/_10sdp"
+                                android:paddingTop="@dimen/_10sdp"
+                                android:paddingEnd="@dimen/_10sdp"
+                                android:paddingBottom="@dimen/_10sdp"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_12sdp" />
 
                         </com.google.android.material.textfield.TextInputLayout>
 
 
-
-                        <com.google.android.material.button.MaterialButton
-                            android:id="@+id/loginbtn"
-                            style="@style/button_style2"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                             android:layout_marginTop="@dimen/_20sdp"
-                             android:backgroundTint="@color/pinky_red"
-                            android:paddingTop="@dimen/_10sdp"
-                            android:paddingBottom="@dimen/_10sdp"
-                            android:text="@string/submit_request"
-                            app:cornerRadius="@dimen/_5sdp"
-                            app:layout_constraintTop_toBottomOf="@+id/supervisorwrap" />
-
-
                     </androidx.appcompat.widget.LinearLayoutCompat>
 
-                </com.google.android.material.card.MaterialCardView>
+                    <RadioGroup
+                        android:id="@+id/radiogrp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:orientation="horizontal"
+                        android:visibility="gone">
+
+                        <RadioButton
+                            android:id="@+id/rbFirst"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/first_half" />
+
+                        <RadioButton
+                            android:id="@+id/rbsecond"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/second_half" />
+
+                    </RadioGroup>
+
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/reasonwrap"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:hint="@string/reason"
+                        android:textColorHint="@color/dark_grey"
+                        app:boxCornerRadiusBottomEnd="@dimen/_10sdp"
+                        app:boxCornerRadiusBottomStart="@dimen/_10sdp"
+                        app:boxCornerRadiusTopEnd="@dimen/_10sdp"
+                        app:boxCornerRadiusTopStart="@dimen/_10sdp"
+                        app:hintTextColor="@color/purple"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_goneMarginEnd="@dimen/_32sdp"
+                        app:layout_goneMarginStart="@dimen/_32sdp">
+
+                        <!--this is the actual edit text which takes the input-->
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/tvreason"
+                            style="@style/regularfont"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_150sdp"
+                            android:gravity="start"
+                            android:inputType="none"
+                            android:lines="10"
+                            android:maxLength="500"
+                            android:scrollIndicators="none"
+                            android:singleLine="false"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_12sdp" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/loginbtn"
+                        style="@style/button_style2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:backgroundTint="@color/pinky_red"
+                        android:paddingTop="@dimen/_10sdp"
+                        android:paddingBottom="@dimen/_10sdp"
+                        android:text="@string/submit_request"
+                        app:cornerRadius="@dimen/_5sdp"
+                        app:layout_constraintTop_toBottomOf="@+id/supervisorwrap" />
+
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <!--                </com.google.android.material.card.MaterialCardView>-->
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.core.widget.NestedScrollView>

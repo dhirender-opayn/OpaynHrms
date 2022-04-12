@@ -35,6 +35,7 @@
             app:layout_constraintBottom_toTopOf="@id/rvprogress"
             android:layout_height="0dp"
             >
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvAttendenceList"
                 android:layout_width="match_parent"

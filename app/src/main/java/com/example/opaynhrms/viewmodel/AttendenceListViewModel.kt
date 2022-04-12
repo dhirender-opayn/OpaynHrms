@@ -55,6 +55,9 @@ class AttendenceListViewModel(application: Application) : AppViewModel(applicati
         scrolllistner()
     }
 
+
+
+
     private fun showskelton()
     {
         if (baseActivity.networkcheck.isNetworkAvailable())

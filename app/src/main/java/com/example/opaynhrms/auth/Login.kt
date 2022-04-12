@@ -71,7 +71,9 @@ class Login : KotlinBaseActivity() {
             .request { allGranted, grantedList, deniedList ->
                 if (!allGranted)
                 {
-                    showtoast(getString(R.string.permissiondenied))
+//                    showtoast(getString(R.string.permissiondenied))
+
+                    customSnackBar(getString(R.string.permissiondenied),true)
                 }
             }
     }

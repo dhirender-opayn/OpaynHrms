@@ -34,7 +34,7 @@ data class UserDetailJson(
             val user_id: String,
             val start_date: String,
             val end_date: String,
-            val leave_type: String,
+            val leave_type_id: String,
             val status: String,
             val file: String,
             val reason: String

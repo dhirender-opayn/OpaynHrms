@@ -102,12 +102,27 @@
                         android:layout_marginTop="@dimen/_3sdp"
                         android:maxLength="50"
                         android:singleLine="true"
-
                         android:textColor="@color/light_gre1"
                         android:textSize="@dimen/_10sdp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/ivStaffProfile"
                         app:layout_constraintTop_toBottomOf="@+id/tvStaffleave_days" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvjoiningDate"
+                        style="@style/semiboldfont"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_3sdp"
+                        android:maxLength="50"
+                        android:text="Joining Date : 20-05-2060"
+                        android:singleLine="true"
+                        android:textColor="@color/light_gre1"
+                        android:textSize="@dimen/_10sdp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/ivStaffProfile"
+                        app:layout_constraintTop_toBottomOf="@+id/tvStaffleave_type" />
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>

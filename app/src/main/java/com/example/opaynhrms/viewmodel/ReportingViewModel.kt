@@ -1,5 +1,6 @@
 package com.example.opaynhrms.viewmodel
 
+import android.app.Activity
 import android.app.Application
 import android.content.Context
 import android.graphics.Color
@@ -12,12 +13,16 @@ import android.text.style.StyleSpan
 import android.util.Log
 import android.view.View
 import android.widget.*
+import androidx.core.content.ContextCompat
+import androidx.core.view.GravityCompat
 import com.example.opaynhrms.R
 import com.example.opaynhrms.base.AppViewModel
 import com.example.opaynhrms.base.KotlinBaseActivity
 import com.example.opaynhrms.databinding.StatisticsNotificationBinding
 import com.example.opaynhrms.extensions.gone
 import com.example.opaynhrms.extensions.invisible
+import com.example.opaynhrms.extensions.visible
+import com.example.opaynhrms.ui.Home
 import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.data.*
@@ -26,6 +31,7 @@ import com.github.mikephil.charting.highlight.Highlight
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener
 import com.github.mikephil.charting.utils.ColorTemplate
 import com.github.mikephil.charting.utils.MPPointF
+import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.common_toolbar.view.*
 import kotlinx.android.synthetic.main.reporting_checkboxs.view.*
 import kotlin.collections.ArrayList
@@ -177,7 +183,7 @@ class ReportingViewModel(application: Application) : AppViewModel(application),
 //            bardataset = BarDataSet(yearly,"Leave Reporting")
 //        }
 
-        bardataset.setColor(baseActivity.getColor(R.color.violet_pink))
+        bardataset.setColor(ContextCompat.getColor(baseActivity,R.color.purple))
 
 //        bardataset.setValueTextColors(Color.BLACK)
         bardataset.valueTextSize = 12f
@@ -349,17 +355,22 @@ class ReportingViewModel(application: Application) : AppViewModel(application),
     }
 
     private fun settoolbar() {
-        binder.toolbar.icmenu.invisible()
-        binder.toolbar.tvtitle.setTextColor(baseActivity.getColor(R.color.white))
+        binder.toolbar.icmenu.gone()
+        binder.toolbar.icmenu2.visible()
+        binder.toolbar.icmenu2.setOnClickListener(this)
+//        binder.toolbar.tvtitle.setTextColor(baseActivity.getColor(R.color.white))
+        binder.toolbar.tvtitle.setTextColor(ContextCompat.getColor(baseActivity,R.color.white))
         binder.toolbar.tvtitle.text = baseActivity.getString(R.string.reporting)
+
     }
 
 
     override fun onClick(p0: View?) {
         when (p0!!.id) {
-            R.id.icmenu -> {
-                baseActivity.onBackPressed()
+            R.id.icmenu2 -> {
+                (baseActivity as Home).binding.drawerLayout.openDrawer(GravityCompat.START)
             }
+
 
         }
     }

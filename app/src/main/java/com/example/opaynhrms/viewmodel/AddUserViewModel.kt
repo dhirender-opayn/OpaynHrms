@@ -3,28 +3,40 @@ package com.example.opaynhrms.viewmodel
 import android.app.Application
 import android.content.Context
 import android.os.Bundle
- import android.view.View
+import android.util.Log
+import android.view.MotionEvent
+import android.view.View
+import android.view.View.OnTouchListener
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.opaynhrms.R
- import com.example.opaynhrms.base.AppViewModel
+import com.example.opaynhrms.adapter.CategoryLabelAdapter
+import com.example.opaynhrms.adapter.LeaveCategoryAdapter
+import com.example.opaynhrms.base.AppViewModel
 import com.example.opaynhrms.base.KotlinBaseActivity
 import com.example.opaynhrms.databinding.ActivityAddUserBinding
 import com.example.opaynhrms.extensions.*
+import com.example.opaynhrms.model.LeaveCategoryJson
+import com.example.opaynhrms.model.LoginJson
 import com.example.opaynhrms.model.UserListJson
- import com.example.opaynhrms.repository.RolesJson
+import com.example.opaynhrms.repository.AddUserRepository
+import com.example.opaynhrms.repository.RequestRepository
+import com.example.opaynhrms.repository.RolesJson
 import com.example.opaynhrms.repository.UserRepository
- import com.example.opaynhrms.utils.Keys
+import com.example.opaynhrms.ui.Home
+import com.example.opaynhrms.utils.Keys
 import com.example.opaynhrms.utils.Utils
-
+import com.google.gson.JsonObject
+import com.ieltslearning.listner.ItemClick
 import kotlinx.android.synthetic.main.common_toolbar.view.*
 import okhttp3.MultipartBody
 import java.io.File
 
-class AddUserViewModel(application: Application) : AppViewModel(application), View.OnClickListener
-{
+
+class AddUserViewModel(application: Application) : AppViewModel(application), View.OnClickListener,
+    ItemClick {
     private lateinit var binder: ActivityAddUserBinding
     private lateinit var mContext: Context
     var userRepository: UserRepository = UserRepository(application)
@@ -35,8 +47,18 @@ class AddUserViewModel(application: Application) : AppViewModel(application), Vi
     var roleid = ""
     var userid = ""
     var file: File? = null
-    fun setBinder(binder: ActivityAddUserBinding, baseActivity: KotlinBaseActivity)
-    {
+    var requestRepository: RequestRepository = RequestRepository(application)
+    val leaveCategorylist = ArrayList<LeaveCategoryJson.Data>()
+    val categorylist = ArrayList<String>()
+    var categoryid = ""
+    var flag = false
+    var position = 0
+    var addUserRepository: AddUserRepository = AddUserRepository(application)
+    var catId = ""
+    var arrayCatId: ArrayList<String> = ArrayList<String>()
+    var getuserData: LoginJson.Data? = null
+    var totalleave = 0
+    fun setBinder(binder: ActivityAddUserBinding, baseActivity: KotlinBaseActivity) {
         this.binder = binder
         this.mContext = binder.root.context
         this.baseActivity = baseActivity
@@ -49,10 +71,29 @@ class AddUserViewModel(application: Application) : AppViewModel(application), Vi
             binder.singupbtn.text = baseActivity.getString(R.string.update)
             setdata(userdata)
         }
+
         setclicks()
         getroles()
+//        leaveCategory()
+        leaveListing()
+//        leaveCategoryAdapter(categorylist)
+//        categoryadpterLabel(categorylist)
 
     }
+
+
+    private fun leaveListing() {
+
+        if (Home.categoryTypeListingJson?.data.isNotNull() && Home.categoryTypeListingJson?.data!!.size > 0) {
+
+            leaveCategorylist.addAll(Home.categoryTypeListingJson!!.data)
+            Home.categoryTypeListingJson!!.data.forEach {
+                categorylist.add(it.category)
+            }
+            categoryadpterLabel(Home.categoryTypeListingJson!!.data)
+        }
+    }
+
 
     private fun getroles() {
         userRepository.getroles(baseActivity) {
@@ -66,11 +107,11 @@ class AddUserViewModel(application: Application) : AppViewModel(application), Vi
     }
 
     private fun setdata(userdata: UserListJson.Data) {
-        userid=userdata.id.toString()
+        userid = userdata.id.toString()
         binder.tvName.setText(userdata.name)
         binder.tvEmail.setText(userdata.email)
         binder.tvMobile.setText(userdata.mobile)
-        roleid=userdata.roles[0].id.toString()
+        roleid = userdata.roles[0].id.toString()
         binder.passwordWrap.gone()
         binder.leavetypewrap.gone()
         binder.tvEmail.isEnabled = false
@@ -94,27 +135,21 @@ class AddUserViewModel(application: Application) : AppViewModel(application), Vi
             .skipMemoryCache(true).into(binder.ivprofileimg)
     }
 
-    private fun validations(): Boolean
-    {
-        if (binder.tvName.text!!.trim().isEmpty())
-        {
+    private fun validations(): Boolean {
+        if (binder.tvName.text!!.trim().isEmpty()) {
             baseActivity.showtoast(baseActivity.getString(R.string.v_entername))
             return false
-        }
-        else if (binder.tvEmail.text.toString().isEmpty())
-        {
+        } else if (binder.tvEmail.text.toString().isEmpty()) {
             showToast(mContext.getString(R.string.v_email))
             return false
-        }
-        else if (!isEmailValid(binder.tvEmail.text!!.trim().toString())) {
+        } else if (!isEmailValid(binder.tvEmail.text!!.trim().toString())) {
             showToast(mContext.getString(R.string.v_validemail))
             return false
         } else if (binder.tvMobile.text.toString().isEmpty()) {
             showToast(mContext.getString(R.string.v_phonenumber))
             return false
         }
-        if (!binder.tvtitle.text.toString().equals(baseActivity.getString(R.string.edituser)))
-        {
+        if (!binder.tvtitle.text.toString().equals(baseActivity.getString(R.string.edituser))) {
             if (binder.tvnewpassord.text.toString().isEmpty()) {
                 showToast(mContext.getString(R.string.v_password))
                 return false
@@ -123,8 +158,6 @@ class AddUserViewModel(application: Application) : AppViewModel(application), Vi
                     return false
                 }
             }
-
-
         }
         return true
     }
@@ -133,26 +166,41 @@ class AddUserViewModel(application: Application) : AppViewModel(application), Vi
         binder.toolbar.icmenu.setOnClickListener(this)
         binder.singupbtn.setOnClickListener(this)
         binder.clsingupcontainer.setOnClickListener(this)
+        binder.tvCategoryname.setOnClickListener(this)
+
+
+        binder.maincoantainer.setOnClickListener {
+            hideRvCategory()
+
+        }
+
+        binder.cvContainer.setOnClickListener {
+            hideRvCategory()
+
+        }
+
 
     }
 
+    private fun hideRvCategory() {
+        binder.rvCategory.gone()
+        flag = false
+    }
+
     private fun createUser() {
-        var  url=""
+        var url = ""
         val fields = java.util.ArrayList<MultipartBody.Part>()
         Utils.getMultiPart(Keys.name, binder.tvName.text.toString())?.let { fields.add(it) }
         Utils.getMultiPart(Keys.email, binder.tvEmail.text.toString())?.let { fields.add(it) }
         Utils.getMultiPart(Keys.mobile, binder.tvMobile.text.toString())?.let { fields.add(it) }
         // create user
-        if (!binder.tvtitle.text.toString().equals(baseActivity.getString(R.string.edituser)))
-        {
-            url=Keys.DELTEUSER
+        if (!binder.tvtitle.text.toString().equals(baseActivity.getString(R.string.edituser))) {
+            url = Keys.DELTEUSER
             Utils.getMultiPart(Keys.password, binder.tvnewpassord.text.toString())
                 ?.let { fields.add(it) }
             Utils.getMultiPart(Keys.role_id, roleid)?.let { fields.add(it) }
-        }
-        else
-        {
-            url=Keys.UPDATEUSER
+        } else {
+            url = Keys.UPDATEUSER
             Utils.getMultiPart(Keys.id, userid)?.let { fields.add(it) }
         }
 
@@ -160,14 +208,27 @@ class AddUserViewModel(application: Application) : AppViewModel(application), Vi
         if (file != null) {
             Utils.getMultiPart(Keys.image, file!!)?.let { fields.add(it) }
         }
-        userRepository.adduser(baseActivity, url,fields) {
+        userRepository.adduser(baseActivity, url, fields) {
             if (!it.data.isNull()) {
-                if (userid.isEmpty())
-                {
-                    baseActivity.showtoast("User added successfully")
-                }
-                else{
-                    baseActivity.showtoast("User update successfully")
+
+                getuserData = it.data
+
+                Log.e("ieieieiei", getuserData.toString())
+                Log.e("ieieieiei", getuserData?.user!!.id.toString())
+
+                if (userid.isEmpty()) {
+                    addleavecategoryapi()
+//                    baseActivity.showtoast(context.getString(R.string.user_added_successfully))
+                    baseActivity.customSnackBar(
+                        baseActivity.getString(R.string.user_added_successfully),
+                        false
+                    )
+                } else {
+//                    baseActivity.showtoast(context.getString(R.string.user_updated_successfully))
+                    baseActivity.customSnackBar(
+                        baseActivity.getString(R.string.user_updated_successfully),
+                        false
+                    )
                 }
                 baseActivity.finish()
             }
@@ -175,8 +236,103 @@ class AddUserViewModel(application: Application) : AppViewModel(application), Vi
         }
     }
 
-    override fun onClick(p0: View?)
-    {
+    private fun leaveCategory() {
+        requestRepository.leaveCategory(baseActivity) {
+            if (it.data.isNotNull()) {
+
+                leaveCategorylist.addAll(it.data)
+                it.data.forEach {
+                    categorylist.add(it.category)
+
+                }
+//                leaveCategoryAdapter(categorylist)
+                categoryadpterLabel(leaveCategorylist)
+
+
+            }
+        }
+    }
+
+    //custom category adaper
+//    private fun leaveCategoryAdapter(_categorylist: ArrayList<String>) {
+//        val adapter = LeaveCategoryAdapter(baseActivity) {
+//            hideRvCategory()
+////            categoryadpterLabel(_categorylist)
+//
+//
+////            binder.llcoantiner.visible()
+////            binder.tvcategory.setText(_categorylist[it])
+////            binder.tvCategoryname.setText(_categorylist[it])
+////            val catId = leaveCategorylist[it].id.toString()
+////
+////
+////
+////            binder.tvAddCateogry.setOnClickListener {
+////                binder.llcoantiner.gone()
+////                val text = binder.tvCategoryCount.text.toString()
+////                Log.e("Hellodata", text)
+////                binder.tvcategory.setText("")
+////                binder.tvCategoryname.setText("")
+////            }
+//
+//        }
+//        adapter.addNewList(_categorylist)
+//        binder.rvCategory.adapter = adapter
+//    }
+
+    private fun categoryadpterLabel(mCategorylist: List<LeaveCategoryJson.Data>) {
+        val adapter = CategoryLabelAdapter(baseActivity) {
+            position = it
+
+            catId = mCategorylist[it].id.toString()
+            arrayCatId.add(catId)
+
+
+
+//            Log.e("nulcheckerrnow", arrayCatId.toString())
+            Log.e("nulcheckerrnow", mCategorylist[it].count.toString())
+
+        }
+
+        adapter.addNewList(mCategorylist)
+
+        binder.rvCategoryEdit.adapter = adapter
+    }
+
+    private fun addleavecategoryapi() {
+        Log.e("categoryidnow", arrayCatId.toString())
+        Log.e("catLogId::", catId.toString())
+
+
+        val jsonObject = JsonObject()
+        jsonObject.addProperty(Keys.user_id, getuserData?.user!!.id.toString())
+//        jsonObject.addProperty(Keys.leave_category_id2, arrayCatId.toString())
+        jsonObject.addProperty(Keys.leave_category_id2, catId.toString())
+        jsonObject.addProperty(Keys.total_leaves, totalleave)
+        jsonObject.addProperty(Keys.available_leaves, totalleave)
+
+        addUserRepository.addleavecategory(baseActivity, "add-leave-details", jsonObject) {
+
+        }
+
+
+    }
+
+
+//default category adapter
+//    private fun leaveCategoryAdapter(_categorylist: ArrayList<String>) {
+//        val aa = ArrayAdapter(baseActivity, R.layout.spinner_layout, _categorylist)
+//        binder.tvleaveCategory.setAdapter(aa)
+//        binder.tvleaveCategory.setFocusable(false)
+//        binder.tvleaveCategory.setFocusableInTouchMode(false)
+//        binder.tvleaveCategory.setOnClickListener(this)
+//        binder.tvleaveCategory.setKeyListener(null)
+//        binder.tvleaveCategory.setOnItemClickListener(AdapterView.OnItemClickListener { adapterView, view, i, l ->
+//            categoryid = leaveCategorylist[i].id.toString()
+//        })
+//    }
+
+    override fun onClick(p0: View?) {
         when (p0!!.id) {
             R.id.icmenu -> {
                 baseActivity.onBackPressed()
@@ -185,6 +341,13 @@ class AddUserViewModel(application: Application) : AppViewModel(application), Vi
                 baseActivity.showDropDown(binder.autoRole)
             }
             R.id.singupbtn -> {
+                totalleave = 0
+                Home.categoryTypeListingJson?.data?.forEach {
+                    if (it.count.isNotNull() && !it.count.toString().isEmpty()) {
+                        totalleave = totalleave + it.count.toInt()
+
+                    }
+                }
                 if (validations()) {
                     createUser()
                 }
@@ -192,7 +355,30 @@ class AddUserViewModel(application: Application) : AppViewModel(application), Vi
             R.id.clsingupcontainer -> {
                 baseActivity.hideKeyboard()
             }
+            R.id.tvCategoryname -> {
+                if (!flag) {
+                    binder.imArrow.setImageResource(R.drawable.ic_up_arrow)
+                    binder.rvCategory.visible()
+                    flag = true
+                } else {
+                    binder.imArrow.setImageResource(R.drawable.ic_down_arrow)
+                    binder.rvCategory.gone()
+                    flag = false
+                }
+
+            }
+
+            R.id.clsingupcontainer -> {
+                flag = false
+                binder.rvCategory.gone()
+            }
+
+
         }
+
+    }
+
+    override fun onItemViewClicked(position: Int, type: String) {
 
     }
 }

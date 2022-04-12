@@ -74,6 +74,7 @@
         <item name="fontFamily">@font/asapsemibold</item>
 
         <item name="android:textSize">@dimen/_11sdp</item>
+        <item name="android:textColor">@color/black_4</item>
     </style>
 
     <style name="edittextlogintitle_regular">
@@ -239,6 +240,15 @@
         <item name="android:textSize">@dimen/_12sdp</item>
         <item name="fontFamily">@font/asap_semibold</item>
     </style>
+
+    <style name="hedertitle_semibold">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="fontFamily">@font/asap_semibold</item>
+        <item name="android:textColor">@color/black_2</item>
+        <item name="android:textSize">@dimen/_11sdp</item>
+    </style>
+
 
     <style name="title">
 

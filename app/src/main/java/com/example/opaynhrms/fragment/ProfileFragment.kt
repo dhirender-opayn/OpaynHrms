@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.GravityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.example.opaynhrms.R
@@ -15,6 +16,7 @@ import com.example.opaynhrms.ui.*
 import com.example.opaynhrms.utils.Keys
 import com.example.opaynhrms.viewmodel.ProfileViewModel
 import com.example.opaynhrms.base.KotlinBaseFragment
+import com.example.opaynhrms.extensions.visible
 import kotlinx.android.synthetic.main.common_toolbar.view.*
 import kotlinx.android.synthetic.main.fragment_profile.*
 
@@ -45,7 +47,6 @@ class ProfileFragment(var baseActivity: KotlinBaseActivity) : KotlinBaseFragment
         viewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
         viewModel.setBinder(binding, baseActivity)
         click()
-        settoolbar()
 
 
     }
@@ -60,11 +61,12 @@ class ProfileFragment(var baseActivity: KotlinBaseActivity) : KotlinBaseFragment
         binding.addTicket.setOnClickListener(this)
     }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.setdata()
 
-    private fun settoolbar() {
-       binding.toolbar.tvtitle.text = "Profile"
-        binding.toolbar.icmenu.gone()
     }
+
 
     override fun onClick(p0: View?) {
         when (p0?.id) {
@@ -79,7 +81,7 @@ class ProfileFragment(var baseActivity: KotlinBaseActivity) : KotlinBaseFragment
             }
             R.id.notification -> {
                 bundle.putString(Keys.FROM,baseActivity.getString(R.string.notification))
-                baseActivity.openA(Notification::class,bundle)
+                baseActivity.openA(CommonActivity::class,bundle)
             }
             R.id.support -> {
                 baseActivity.openA(Support::class)

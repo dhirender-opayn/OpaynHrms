@@ -2,217 +2,276 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/white">
+    android:layout_height="match_parent"
+    android:background="@color/offwhite">
 
-    <androidx.core.widget.NestedScrollView
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.appcompat.widget.LinearLayoutCompat
+
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_20sdp"
-            android:layout_marginEnd="@dimen/_15sdp"
-            android:orientation="vertical"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_6sdp"
-                android:padding="@dimen/_10sdp">
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:orientation="vertical"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/clprofile"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_6sdp"
+                    android:padding="@dimen/_10sdp">
 
-
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/ivprofile"
-                        android:layout_width="@dimen/_45sdp"
-                        android:layout_height="@dimen/_45sdp"
-                        android:padding="@dimen/_5sdp"
-                        android:src="@drawable/userwhite"
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/clprofile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/ivprofile"
+                            android:layout_width="@dimen/_45sdp"
+                            android:layout_height="@dimen/_45sdp"
+                            android:padding="@dimen/_5sdp"
+                            android:src="@drawable/userwhite"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    <View
+                        android:id="@+id/view"
+                        android:layout_width="1dp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:background="@color/black"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/clprofile"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_login"
+                        style="@style/hedertitle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:text="@string/login"
+                        android:textColor="@color/black_4"
+                        android:textSize="@dimen/_13sdp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/view"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        style="@style/hedertitle"
+                        android:layout_width="@dimen/_15sdp"
+                        android:layout_height="@dimen/_15sdp"
+                        android:layout_marginStart="@dimen/_8sdp"
+                        android:padding="@dimen/_3sdp"
+                        android:src="@drawable/ic_right"
+                        android:tint="@color/purple"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+
                         app:layout_constraintTop_toTopOf="parent" />
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-                <View
-                    android:id="@+id/view"
-                    android:layout_width="1dp"
-                    android:layout_height="@dimen/_20sdp"
-                    android:layout_marginStart="@dimen/_10sdp"
-                    android:background="@color/black"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/clprofile"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tv_login"
-                    style="@style/hedertitle"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_20sdp"
-                    android:text="@string/login"
-                    android:textSize="@dimen/_13sdp"
-
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/view"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <!--                <androidx.appcompat.widget.AppCompatImageView-->
-                <!--                    style="@style/hedertitle"-->
-                <!--                    android:layout_width="@dimen/_15sdp"-->
-                <!--                    android:layout_height="@dimen/_15sdp"-->
-                <!--                    android:layout_marginStart="@dimen/_8sdp"-->
-                <!--                    android:padding="@dimen/_3sdp"-->
-                <!--                    android:src="@drawable/ic_right"-->
-                <!--                    android:tint="@color/black_4"-->
-                <!--                    app:layout_constraintBottom_toBottomOf="parent"-->
-                <!--                    app:layout_constraintEnd_toEndOf="parent"-->
-
-                <!--                    app:layout_constraintTop_toTopOf="parent" />-->
-
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/llfreetrial"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_8sdp"
-                android:layout_marginTop="@dimen/_20sdp"
-                android:layout_marginEnd="@dimen/_8sdp">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/hedertitle_medium"
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/llfreetrial"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_10sdp"
-                    android:layout_weight="0.8"
-                    android:text="Free Trail" />
-
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/llfreetrial_container"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_16sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginEnd="@dimen/_8sdp"
-
-                android:orientation="vertical"
-                android:paddingStart="@dimen/_4sdp">
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_4sdp" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tvprepration"
-                    style="@style/subhedertitle"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_8sdp"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:text="Dummy" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tvbusinessenglish"
-                    style="@style/subhedertitle"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_8sdp"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:text="Dummy"
-
-                    />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tvinterviewprep"
-                    style="@style/subhedertitle"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_8sdp"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:text="Interviews Preparations" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tvieltspreference"
-                    style="@style/subhedertitle"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_8sdp"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:layout_marginBottom="@dimen/_10sdp"
-                    android:text="Dummy"
-
-                    />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_4sdp"
-                    android:visibility="gone" />
-
-
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/llservice"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_6sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginEnd="@dimen/_8sdp">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/hedertitle_medium"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_12sdp"
-                    android:layout_weight="0.8"
-                    android:text="Dummy"
-
-                    />
-
-
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/llmocktest"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_6sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginEnd="@dimen/_8sdp">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tv_mock_test"
-                    style="@style/hedertitle_medium"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
                     android:layout_marginEnd="@dimen/_8sdp"
-                    android:layout_weight="0.8"
-                    android:text="Mock Test" />
+                    android:visibility="gone"
+                   >
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/hedertitle_medium"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_weight="0.8"
+                        android:text="Free Trail" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/llfreetrial_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_16sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:orientation="vertical"
+                    android:paddingStart="@dimen/_4sdp">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_2sdp"
+                        android:background="@color/grey_1" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvhome"
+                        style="@style/subhedertitle"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_8sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:drawableStart="@drawable/ic_side_home"
+                        android:drawablePadding="@dimen/_7sdp"
+                        android:text="@string/home" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvprofile"
+                        style="@style/subhedertitle"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_8sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:drawableStart="@drawable/ic_side_profile"
+                        android:drawablePadding="@dimen/_7sdp"
+                        android:text="@string/profile"
+
+                        />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvAnnouncement"
+                        style="@style/subhedertitle"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_8sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:drawableStart="@drawable/ic_side_announcement"
+                        android:drawablePadding="@dimen/_7sdp"
+                        android:text="@string/announcement" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvsalary"
+                        style="@style/subhedertitle"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_8sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:drawableStart="@drawable/ic_side_money"
+                        android:drawablePadding="@dimen/_7sdp"
+                        android:text="@string/salary" />
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvfaq"
+                        style="@style/subhedertitle"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_8sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:drawableStart="@drawable/ic_side_faq"
+                        android:drawablePadding="@dimen/_7sdp"
+                        android:text="@string/faq" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvContactUs"
+                        style="@style/subhedertitle"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_8sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:drawableStart="@drawable/ic_side_contact_us"
+                        android:drawablePadding="@dimen/_7sdp"
+                        android:text="@string/contact_us" />
+
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvaboutus"
+                        style="@style/subhedertitle"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_8sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:drawableStart="@drawable/ic_side_about"
+                        android:drawablePadding="@dimen/_7sdp"
+                        android:text="@string/about_us" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvprivacy"
+                        style="@style/subhedertitle"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_8sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:drawableStart="@drawable/ic_side_privacy_policy"
+                        android:drawablePadding="@dimen/_7sdp"
+                        android:text="@string/about_us" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_2sdp"
+                        android:background="@color/grey_1" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
 
 
             </androidx.appcompat.widget.LinearLayoutCompat>
+        </androidx.core.widget.NestedScrollView>
 
+        <View
+            android:id="@+id/viewlogout"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/_25sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:background="@color/grey_1"
+            app:layout_constraintBottom_toTopOf="@id/tvlogout" />
 
-        </androidx.appcompat.widget.LinearLayoutCompat>
-    </androidx.core.widget.NestedScrollView>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvlogout"
+            style="@style/hedertitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:drawableStart="@drawable/ic_logout_active"
+            android:drawablePadding="@dimen/_8sdp"
+            android:padding="@dimen/_5sdp"
+            android:text="@string/logout"
+            android:fontFamily="@font/asap_bold"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:textSize="@dimen/_11sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toStartOf="parent" />
 
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvversion"
+            style="@style/regularfont"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:padding="@dimen/_5sdp"
+            android:text="v1.0.1"
+            android:textColor="@color/black_4"
+            android:textSize="@dimen/_10sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent "
+            app:layout_constraintHorizontal_weight="1" />
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

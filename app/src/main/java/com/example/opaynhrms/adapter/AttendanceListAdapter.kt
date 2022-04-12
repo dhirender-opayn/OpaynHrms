@@ -21,18 +21,38 @@ class AttendanceListAdapter(val baseActivity: KotlinBaseActivity, val itemClick:
     override fun onBindViewHolder(holder: IViewHolder, position: Int) {
         holder.itemView.apply {
 
+
+//             tvAttendanceStatus.text=Utils.formateDateFromstring(Utils.DATETIMEFORMAT,Utils.DATEFORMAT,list[position].timing.replace("T"," ").replace(".000000Z",""))
+//            if (list[position].type.equals("IN"))
+//            {
+////                llCheckoutContainer.gone()
+//                tvCheckInTime.text=Utils.formateDateFromstring(Utils.DATETIMEFORMAT,Utils.TIMEFORMAT,list[position].timing.replace("T"," ").replace(".000000Z",""))
+////                tvCheckOutTime.text ="Pending"
+//
+//            }
+//            else{
+////                llCheckoutContainer.visible()
+//                tvCheckInTime.text=Utils.formateDateFromstring(Utils.DATETIMEFORMAT,Utils.TIMEFORMAT,list[position].timing.replace("T"," ").replace(".000000Z",""))
+//
+//            }
+
+
+
+//   for single card view of checkin and checkout
             tvAttendanceStatus.text=Utils.formateDateFromstring(Utils.DATETIMEFORMAT,Utils.DATEFORMAT,list[position].timing.replace("T"," ").replace(".000000Z",""))
             if (list[position].type.equals("IN"))
             {
-                tvCheckIn.setText("Check In")
+                 tvCheckIn.setText("Check In")
                 tvCheckInTime.setTextColor(Color.GREEN)
             }
             else{
-                tvCheckIn.setText("Check Out")
+                 tvCheckIn.setText("Check Out")
                 tvCheckInTime.setTextColor(Color.RED)
             }
             tvCheckInTime.text=Utils.formateDateFromstring(Utils.DATETIMEFORMAT,Utils.TIMEFORMAT,list[position].timing.replace("T"," ").replace(".000000Z",""))
-            if (position>0)
+
+
+             if (position>0)
             {
                 if (Utils.formateDateFromstring(Utils.DATETIMEFORMAT,Utils.DATETIMEFORMAT,list[position].timing.replace("T"," ").replace(".000000Z","")).
                     equals(Utils.formateDateFromstring(Utils.DATETIMEFORMAT,Utils.DATETIMEFORMAT,list[position-1].timing.replace("T"," ").replace(".000000Z",""))))
@@ -52,5 +72,9 @@ class AttendanceListAdapter(val baseActivity: KotlinBaseActivity, val itemClick:
         }
 
     }
+//
+//    override fun getItemCount(): Int {
+//        return 5
+//    }
 
 }

@@ -2,13 +2,15 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:background="@color/light_grey">
+    android:layout_height="wrap_content">
 
 
     <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:cardElevation="@dimen/_3sdp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -34,11 +36,11 @@
                     android:layout_width="@dimen/_40sdp"
                     android:layout_height="@dimen/_40sdp"
                     android:layout_gravity="center"
-                    app:cpb_background_progressbar_color="#b6bbd8"
-                    app:cpb_background_progressbar_width="5dp"
+                    app:cpb_background_progressbar_color="@color/progress_grey"
+                    app:cpb_background_progressbar_width="@dimen/_3sdp"
                     app:cpb_progress_direction="to_right"
-                    app:cpb_progressbar_color="#3f51b5"
-                    app:cpb_progressbar_width="10dp"
+                    app:cpb_progressbar_color="@color/progress_blue"
+                    app:cpb_progressbar_width="@dimen/_3sdp"
                     app:cpb_round_border="false"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -46,16 +48,21 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
 
-                <com.makeramen.roundedimageview.RoundedImageView
-                    android:id="@+id/ivprofile"
-                    android:layout_width="@dimen/_20sdp"
-                    android:layout_height="@dimen/_20sdp"
-                    android:layout_centerInParent="true"
-                    android:src="@drawable/meeting"
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/leave_type"
+                    style="@style/semiboldfont"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLength="50"
+                    android:singleLine="true"
+                    android:text="Casual Leave"
+                    android:textColor="@color/light_gre1"
+                    android:textSize="@dimen/_5sdp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -65,34 +72,31 @@
                 style="@style/semiboldfont"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_5sdp"
                 android:maxLength="50"
                 android:singleLine="true"
-                android:text="18 Days"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:textColor="@color/dark_grey"
+                android:text="2 /"
+                android:textColor="@color/cherry_red"
                 android:textSize="@dimen/_10sdp"
-                android:layout_marginStart="@dimen/_10sdp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/progress_container"
-                app:layout_constraintTop_toTopOf="parent"
-                />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/progress_container" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/leave_type"
+                android:id="@+id/tvTotalLeaveDays"
                 style="@style/semiboldfont"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_3sdp"
+                android:layout_marginTop="@dimen/_7sdp"
                 android:maxLength="50"
                 android:singleLine="true"
-                android:layout_marginTop="@dimen/_3sdp"
-                android:text="Casual Leave"
-                android:textColor="@color/light_gre1"
+                android:text="5"
+                android:textColor="@color/dark_grey"
                 android:textSize="@dimen/_8sdp"
-                android:layout_marginStart="@dimen/_10sdp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/progress_container"
-                app:layout_constraintTop_toBottomOf="@+id/leave_days"
-                />
+                app:layout_constraintStart_toEndOf="@+id/leave_days"
+                app:layout_constraintTop_toBottomOf="@+id/progress_container" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

@@ -122,6 +122,8 @@ dependencies {
 
     //barchart
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+    // storage
+    implementation "com.anggrayudi:storage:1.1.0"
 
 
 

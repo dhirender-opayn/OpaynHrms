@@ -330,11 +330,25 @@
             </androidx.appcompat.widget.LinearLayoutCompat>
 
 
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvUserLeave"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintTop_toBottomOf="@+id/lltabcontainer"
+                tools:listitem="@layout/item_total_leaves" />
+
+
             <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lltabcontainer">
+                app:layout_constraintTop_toBottomOf="@+id/rvUserLeave">
+
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvtab"

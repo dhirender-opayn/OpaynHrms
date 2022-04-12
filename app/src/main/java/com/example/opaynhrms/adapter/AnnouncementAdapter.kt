@@ -15,16 +15,23 @@ class AnnouncementAdapter(val baseActivity: KotlinBaseActivity, val itemClick: (
     var flag = false
     override fun onBindViewHolder(holder: IViewHolder, position: Int) {
         holder.itemView.apply {
-            ivdonwn.setOnClickListener {
+
+            tvans.visible()
+            tvans.maxLines = 2
+            tvtitle.setText(list[position])
+
+            cvContainer.setOnClickListener {
                 if (!flag) {
                     ivdonwn.setImageResource(R.drawable.ic_up_arrow)
-                    tvans.visible()
+//                    tvans.visible()
                     view1.visible()
+                    tvans.maxLines = 10
                     flag = true
                 } else {
                     ivdonwn.setImageResource(R.drawable.ic_down_arrow)
                     view1.gone()
-                    tvans.gone()
+//                    tvans.gone()
+                    tvans.maxLines = 2
                     flag = false
                 }
 
@@ -34,7 +41,7 @@ class AnnouncementAdapter(val baseActivity: KotlinBaseActivity, val itemClick: (
     }
 
 
-    override fun getItemCount(): Int {
-        return 25
-    }
+//    override fun getItemCount(): Int {
+//        return 25
+//    }
 }

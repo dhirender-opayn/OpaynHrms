@@ -3,6 +3,7 @@ package com.example.opaynhrms.viewmodel
 import android.app.Application
 import android.content.Context
 import android.os.Bundle
+import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.opaynhrms.R
@@ -39,16 +40,24 @@ class EditProfileViewModel(application: Application) : AppViewModel(application)
         this.binder.viewModel = this
         setclicks()
         setData()
+        settoolbar()
+
+    }
+    private fun settoolbar(){
+        binder.toolbar.tvtitle.setText(baseActivity.getText(R.string.edit_profile))
 
     }
 
-    private fun setData() {
+      fun setData() {
         binder.tvusername.setText(Home.userModel!!.data.user.name)
         binder.tvemail.setText(Home.userModel!!.data.user.email)
         binder.tvmobile.setText(Home.userModel!!.data.user.mobile)
         if (Home.userModel!!.data.user.profile.isNotNull() && Home.userModel!!.data.user.profile.image.isNotNull()) {
-            Picasso.get().load(Home.userModel!!.data.user.profile.image)
-                .placeholder(R.drawable.userwhite).into(binder.ivprofileimg)
+//            Picasso.get().load(Home.userModel!!.data.user.profile.image)
+//                .placeholder(R.drawable.userwhite).into(binder.ivprofileimg)
+            Glide.with(baseActivity).load(Home.userModel!!.data.user.profile.image)
+                .diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true)
+                .into(binder.ivprofileimg)
         }
     }
 

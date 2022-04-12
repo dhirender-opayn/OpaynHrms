@@ -41,7 +41,9 @@ class HomeTabAdapter (val baseActivity: KotlinBaseActivity, val itemClick: (Int)
                     }
 
                     baseActivity.getString(R.string.salary)->{
-                        baseActivity.openA(Payslip::class)
+                        bundle.putString(Keys.FROM,baseActivity.getString(R.string.payslip))
+//                        baseActivity.openA(Payslip::class)
+                        baseActivity.openA(CommonActivity::class,bundle)
                     }
                     baseActivity.getString(R.string.requestleave)->{
                         baseActivity.openA(RequestLeave::class)
@@ -55,12 +57,12 @@ class HomeTabAdapter (val baseActivity: KotlinBaseActivity, val itemClick: (Int)
 
                     baseActivity.getString(R.string.announcement)->{
                         bundle.putString(Keys.FROM,baseActivity.getString(R.string.announcement))
-                        baseActivity.openA(Notification::class,bundle)
+                        baseActivity.openA(CommonActivity::class,bundle)
                     }
 
                     baseActivity.getString(R.string.addholiday)->{
                         bundle.putString(Keys.FROM,baseActivity.getString(R.string.addholiday))
-                        baseActivity.openA(CommonActivity::class,bundle)
+                         baseActivity.openA(CommonActivity::class,bundle)
                     }
                     baseActivity.getString(R.string.workhistory)->{
 

@@ -45,6 +45,7 @@
                 <View
                     android:background="@color/black"
                     android:layout_width="match_parent"
+                    android:visibility="gone"
                     android:layout_height="1dp"/>
 
                 <include
@@ -59,10 +60,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="start">
-
+<!--        withour login side menu name is custom_drawer_layout-->
                 <include
                     android:id="@+id/showDrawer"
-                    layout="@layout/custom_drawer_layout"
+                    layout="@layout/withlogin_layout"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:visibility="visible" />

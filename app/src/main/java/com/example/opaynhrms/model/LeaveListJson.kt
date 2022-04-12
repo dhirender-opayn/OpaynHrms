@@ -18,6 +18,7 @@ data class LeaveListJson(
         val reason: String,
         val start_date: String,
         val status: Int,
+        val leave_category_id : Int,
         val updated_at: String,
         val user: User,
         val user_id: Int

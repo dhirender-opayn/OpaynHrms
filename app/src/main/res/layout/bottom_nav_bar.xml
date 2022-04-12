@@ -2,17 +2,18 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-     android:layout_height="wrap_content">
 
+     android:layout_height="wrap_content">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="@dimen/_42sdp"
         android:gravity="center"
+        android:background="@drawable/shawdow_bottom_bar"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent">
 
-        <androidx.appcompat.widget.AppCompatImageView
+        <ImageView
             android:id="@+id/home"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -21,7 +22,7 @@
             android:paddingBottom="@dimen/_5sdp"
             android:src="@drawable/ic_dashboard" />
 
-        <androidx.appcompat.widget.AppCompatImageView
+        <ImageView
             android:id="@+id/statistics"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -29,7 +30,36 @@
             android:visibility="gone"
             android:src="@drawable/ic_statistics" />
 
-        <androidx.appcompat.widget.AppCompatImageView
+        <ImageView
+            android:id="@+id/ivannouncement"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_weight="1"
+            android:src="@drawable/ic_loudspeaker" />
+
+        <ImageView
+            android:id="@+id/salary"
+            android:layout_width="0dp"
+            android:paddingTop="@dimen/_5sdp"
+            android:paddingBottom="@dimen/_5sdp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:visibility="gone"
+            android:src="@drawable/ic_payroll_salary" />
+
+
+
+        <ImageView
+            android:id="@+id/addHoliday"
+            android:layout_width="0dp"
+            android:paddingTop="@dimen/_5sdp"
+            android:paddingBottom="@dimen/_5sdp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/ic_bottom_add_holiday" />
+
+        <ImageView
             android:id="@+id/profile"
             android:layout_width="0dp"
             android:paddingTop="@dimen/_5sdp"
@@ -37,6 +67,25 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:src="@drawable/ic_profile" />
+
+
+<!--        <androidx.appcompat.widget.AppCompatImageView-->
+<!--            android:id="@+id/ivannouncement"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:paddingTop="@dimen/_5sdp"-->
+<!--            android:paddingBottom="@dimen/_5sdp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            android:src="@drawable/announcement_svg" />-->
+
+<!--        <androidx.appcompat.widget.AppCompatImageView-->
+<!--            android:id="@+id/ivleave"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:paddingTop="@dimen/_5sdp"-->
+<!--            android:paddingBottom="@dimen/_5sdp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            android:src="@drawable/ic_profile" />-->
 
 
     </androidx.appcompat.widget.LinearLayoutCompat>

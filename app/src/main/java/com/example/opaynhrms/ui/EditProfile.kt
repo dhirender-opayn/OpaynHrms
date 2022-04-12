@@ -16,6 +16,7 @@ import com.example.opaynhrms.viewmodel.EditProfileViewModel
 import kotlinx.coroutines.async
 import java.io.File
 import id.zelory.compressor.Compressor
+import kotlinx.android.synthetic.main.drwable_menu.*
 
 class EditProfile : KotlinBaseActivity()
 {
@@ -59,6 +60,11 @@ class EditProfile : KotlinBaseActivity()
             val exception = result.error
 
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewmodel.setData()
     }
 
     private fun startCrop()

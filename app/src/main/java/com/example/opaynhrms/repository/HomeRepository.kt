@@ -1,9 +1,11 @@
 package com.example.opaynhrms.repository
  import android.app.Application
+ import android.util.Log
 
-import androidx.lifecycle.MutableLiveData
+ import androidx.lifecycle.MutableLiveData
 import com.example.opaynhrms.base.KotlinBaseActivity
  import com.example.opaynhrms.model.AttandanceListJson
+ import com.example.opaynhrms.model.CheckInCheckOutJson
  import com.example.opaynhrms.model.LoginJson
  import com.example.opaynhrms.network.APIInterface
 import com.example.opaynhrms.network.RetrofitClient
@@ -92,10 +94,18 @@ class HomeRepository(private val baseActivity: Application)
                     when(response.code())
                     {
                         Keys.RESPONSE_SUCESS->{
+
                             response.body()?.let { itemClick(it) }
+
+                            baseActivity.customSnackBar(response.toString(),true)
                          }
                         Keys.ERRORCODE->{
+
                              baseActivity.parseError(response)
+                            baseActivity.customSnackBar(response.errorBody().toString(),true)
+                        }
+                        412 -> {
+                            baseActivity.customSnackBar(response.body().toString(),true)
                         }
                         Keys.UNAUTHoRISE->{
                             //signupmutableLiveData.setValue(response.body())
@@ -105,6 +115,64 @@ class HomeRepository(private val baseActivity: Application)
                 }
 
                 override fun onFailure(call: Call<ResponseBody?>, t: Throwable)
+                {
+                    baseActivity.stopProgressDialog()
+                   // signupmutableLiveData.setValue(null)
+                }
+            })
+        }
+
+
+
+
+    }
+
+    fun checkInCeckOut(baseActivity: KotlinBaseActivity, url:String, jsonobject: JsonObject, itemClick: (CheckInCheckOutJson) -> Unit)
+    {
+
+        if (!baseActivity.networkcheck.isNetworkAvailable())
+        {
+            baseActivity.nointernershowToast()
+        }
+        else{
+            baseActivity.startProgressDialog()
+            retrofitClient = RetrofitClient.with(this.baseActivity)?.client?.create(
+                APIInterface::class.java
+            )
+
+            retrofitClient?.checkincheckout(url,Utils.AUTHTOKEN,jsonobject)!!.enqueue(object : Callback<CheckInCheckOutJson>
+            {
+                override fun onResponse(
+                    call: Call<CheckInCheckOutJson?>,
+                    response: Response<CheckInCheckOutJson?>
+                ) {
+                    baseActivity.stopProgressDialog()
+                    when(response.code())
+                    {
+                        Keys.RESPONSE_SUCESS->{
+
+                            response.body()?.let {
+                                baseActivity.customSnackBar(it.message,true)
+                                itemClick(it)
+                            }
+
+
+
+                         }
+                        Keys.ERRORCODE->{
+
+                             baseActivity.parseError(response)
+
+                         }
+
+                        Keys.UNAUTHoRISE->{
+                            //signupmutableLiveData.setValue(response.body())
+                        }
+                    }
+
+                }
+
+                override fun onFailure(call: Call<CheckInCheckOutJson?>, t: Throwable)
                 {
                     baseActivity.stopProgressDialog()
                    // signupmutableLiveData.setValue(null)

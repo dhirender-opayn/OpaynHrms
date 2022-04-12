@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.Context
 import android.os.Bundle
 import android.view.View
+import androidx.core.content.ContextCompat
 import com.example.opaynhrms.R
 import com.example.opaynhrms.adapter.ClockifyTaskListingAdapter
 import com.example.opaynhrms.adapter.HolidayListingAdapter
@@ -38,7 +39,7 @@ class HolidayListingViewModel(application: Application) : AppViewModel(applicati
 
 
     private fun settoolbar() {
-        binder.toolbar.tvtitle.setTextColor(mContext.getColor(R.color.light_gre1))
+        binder.toolbar.tvtitle.setTextColor(ContextCompat.getColor(baseActivity,R.color.light_gre1))
         binder.toolbar.tvtitle.text = mContext.getString(R.string.holidaylisting)
         binder.toolbar.icmenu.setImageResource(R.drawable.icback_black)
     }

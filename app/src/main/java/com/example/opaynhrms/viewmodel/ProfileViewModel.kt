@@ -2,6 +2,9 @@ package com.example.opaynhrms.viewmodel
 
 import android.app.Application
 import android.content.Context
+import androidx.core.view.GravityCompat
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.opaynhrms.R
 
 
@@ -16,6 +19,8 @@ import com.example.opaynhrms.utils.Utils
 
 import com.example.opaynhrms.base.AppViewModel
 import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.common_toolbar.view.*
+import kotlinx.android.synthetic.main.withlogin_layout.view.*
 
 
 class ProfileViewModel(application: Application) : AppViewModel(application) {
@@ -30,15 +35,32 @@ class ProfileViewModel(application: Application) : AppViewModel(application) {
         this.baseActivity = baseActivity
         setdata()
         contentvisibily()
+        settoolbar()
 
     }
 
-    private fun setdata() {
+
+
+    private fun settoolbar() {
+
+        binder.toolbar.tvtitle.text = baseActivity.getText(R.string.profile)
+        binder.toolbar.icmenu2.visible()
+        binder.toolbar.icmenu.gone()
+        binder.toolbar.icmenu2.setImageResource(R.drawable.ic_hamburger)
+        binder.toolbar.icmenu2.setOnClickListener {
+            (baseActivity as Home).binding.drawerLayout.openDrawer(GravityCompat.START)
+        }
+
+    }
+
+
+      fun setdata() {
         binder.name.text = Home.userModel?.data?.user!!.name
 
         if (Home.userModel!!.data.user.profile.isNotNull() && Home.userModel!!.data.user.profile.image.isNotNull()) {
-            Picasso.get().load(Home.userModel!!.data.user.profile.image)
-                .placeholder(R.drawable.userwhite).into(binder.ivprofile)
+            Glide.with(baseActivity).load(Home.userModel!!.data.user.profile.image)
+                .diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true)
+                .into(binder.ivprofile)
 
         }
 

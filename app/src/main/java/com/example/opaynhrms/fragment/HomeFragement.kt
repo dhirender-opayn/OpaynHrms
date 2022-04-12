@@ -28,10 +28,7 @@ import com.permissionx.guolindev.PermissionX
 import kotlinx.android.synthetic.main.fragment_home_fragement.*
 import io.github.g00fy2.quickie.QRResult
 import io.github.g00fy2.quickie.ScanQRCode
-import kotlinx.android.synthetic.main.activity_home.*
-import kotlinx.android.synthetic.main.common_toolbar.view.*
-import kotlinx.android.synthetic.main.item_statistics_notification.*
-import kotlinx.android.synthetic.main.statistics_notification.*
+
 
 
 class HomeFragement(var baseActivity: KotlinBaseActivity) : KotlinBaseFragment(), View.OnClickListener,
@@ -70,28 +67,26 @@ class HomeFragement(var baseActivity: KotlinBaseActivity) : KotlinBaseFragment()
 
     private fun setAdapter()
     {
-
         val tablist = ArrayList<ListingModel>()
         if (Home.userModel?.data?.user!!.roles.size > 0)
         {
             binding.postName.text = Home.userModel?.data?.user!!.roles[0].name
             binding.rvRequest.visible()
             if (binding.postName.text.toString().equals(Utils.SUPERADMIN)) {
-                tablist.add(ListingModel(R.drawable.ic_booking_confirmed, false, getString(R.string.leave)))
+                tablist.add(ListingModel(R.drawable.holiday_icon, false, getString(R.string.leave)))
                 //tablist.add(ListingModel(R.drawable.ic_attendance_list, false, "Attendance List"))
-                tablist.add(ListingModel(R.drawable.ic_calendar_line, false, getString(R.string.calendar)))
-                tablist.add(ListingModel(R.drawable.ic_employee, false, getString(R.string.employees)))
+                tablist.add(ListingModel(R.drawable.leave_icon2, false, getString(R.string.calendar)))
+                tablist.add(ListingModel(R.drawable.team_icon, false, getString(R.string.employees)))
                 tablist.add(ListingModel(R.drawable.ic_emergency, false, getString(R.string.emergencyleave)))
-                tablist.add(ListingModel(R.drawable.holiday, false, getString(R.string.addholiday)))
+                tablist.add(ListingModel(R.drawable.add_holiday_icon, false, getString(R.string.addholiday)))
 
             } else {
-                tablist.add(ListingModel(R.drawable.ic_booking_confirmed, false, getString(R.string.leave)))
-                tablist.add(ListingModel(R.drawable.ic_attendance_list, false, getString(R.string.attandancelist)))
-                tablist.add(ListingModel(R.drawable.ic_calendar_line, false, getString(R.string.calendar)))
-                tablist.add(ListingModel(R.drawable.ic_travelling, false, getString(R.string.requestleave)))
-                tablist.add(ListingModel(R.drawable.announcement_svg, false, getString(R.string.announcement)))
-                tablist.add(ListingModel(R.drawable.ic_work_history, false, getString(R.string.workhistory)))
-
+                tablist.add(ListingModel(R.drawable.holiday_icon, false, getString(R.string.leave)))
+                tablist.add(ListingModel(R.drawable.attendance_list_icon, false, getString(R.string.attandancelist)))
+                tablist.add(ListingModel(R.drawable.leave_icon2, false, getString(R.string.calendar)))
+                tablist.add(ListingModel(R.drawable.request_leave, false, getString(R.string.requestleave)))
+                tablist.add(ListingModel(R.drawable.announcement_icon, false, getString(R.string.announcement)))
+                tablist.add(ListingModel(R.drawable.work_icon, false, getString(R.string.workhistory)))
             }
         }
         val tabAdapter = HomeTabAdapter(baseActivity) {
@@ -99,7 +94,6 @@ class HomeFragement(var baseActivity: KotlinBaseActivity) : KotlinBaseFragment()
         }
         rv_tabs.adapter = tabAdapter
         tabAdapter.addNewList(tablist)
-
     }
     private fun setsubheaderAdapter()
     {
@@ -110,12 +104,12 @@ class HomeFragement(var baseActivity: KotlinBaseActivity) : KotlinBaseFragment()
             binding.rvRequest.visible()
             if (binding.postName.text.toString().equals(Utils.SUPERADMIN)) {
 
-                levaelist.add(ListingModel(R.drawable.ic_add_boy_user, false, getString(R.string.add_user)))
-                levaelist.add(ListingModel(R.drawable.announcement_svg, false, getString(R.string.add_announcement)))
+                levaelist.add(ListingModel(R.drawable.add_user_icon, false, getString(R.string.add_user)))
+                levaelist.add(ListingModel(R.drawable.announcement_icon, false, getString(R.string.add_announcement)))
 
             } else {
-                levaelist.add(ListingModel(R.drawable.enter, false, getString(R.string.checkIn)))
-                levaelist.add(ListingModel(R.drawable.logout, false, getString(R.string.checkout)))
+                levaelist.add(ListingModel(R.drawable.ic_login_button, false, getString(R.string.checkIn)))
+                levaelist.add(ListingModel(R.drawable.ic_logout_button, false, getString(R.string.checkout)))
             }
             val leaveadapter = LeaveRequestAdapter(baseActivity) {
                 if (it.equals(-1)||it.equals(-2)) {
@@ -158,26 +152,25 @@ class HomeFragement(var baseActivity: KotlinBaseActivity) : KotlinBaseFragment()
                         -1->{
                             inout="IN"
 
-
                         }
                         -2->{
                             inout="OUT"
-
-
                         }
                     }
                     if (lat.isEmpty())
                     {
-                        showtoast("Location is needed")
+//                        showtoast("Location is needed")
+                        baseActivity.customSnackBar(getString(R.string.location_is_needed),true)
                         return@request
                     }
-                    if (calculateDistance()<=30)
+                    if (calculateDistance() <= 30)
                     {
                         //showtoast("totaldistanceee${calculateDistance().toString()}")
                         viewModel.addorupdateAttandance(lat,lng,Utils.getcurrentdate(),inout)
                     }
                     else{
-                        showtoast(getString(R.string.distancerange))
+//                        showtoast(getString(R.string.distancerange))
+                        baseActivity.customSnackBar(getString(R.string.distancerange),true)
                     }
 
                 }
@@ -187,6 +180,8 @@ class HomeFragement(var baseActivity: KotlinBaseActivity) : KotlinBaseFragment()
     override fun onResume() {
         super.onResume()
         location.startLocation()
+        viewModel.setdata()
+
 
     }
 
@@ -216,6 +211,9 @@ class HomeFragement(var baseActivity: KotlinBaseActivity) : KotlinBaseFragment()
     override fun locationOn() {
 
     }
+
+
+
     override fun currentLocation(location: Location?)
     {
         if (location.isNotNull())

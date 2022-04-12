@@ -6,6 +6,7 @@ import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.core.content.ContextCompat
 import com.example.opaynhrms.R
 import com.example.opaynhrms.base.AppViewModel
 import com.example.opaynhrms.base.KotlinBaseActivity
@@ -32,12 +33,11 @@ class LeaveDetailViewModel(application: Application) : AppViewModel(application)
     private lateinit var mContext: Context
 
     var userRepository: UserRepository = UserRepository(application)
-    var list=ArrayList<LeaveListJson.Data>()
+    var list = ArrayList<LeaveListJson.Data>()
 
     lateinit var baseActivity: KotlinBaseActivity
     var bundle = Bundle()
-    var datauser : LeaveListJson.Data ? = null
-
+    var datauser: LeaveListJson.Data? = null
 
 
     fun setBinder(binder: FragmentLeaveDetailBinding, baseActivity: KotlinBaseActivity) {
@@ -48,143 +48,174 @@ class LeaveDetailViewModel(application: Application) : AppViewModel(application)
         Log.e("checknownownownow", bundle.getString(Keys.id).toString())
         settoolbar()
         setclick()
-        datauser =    bundle.getSerializable(Keys.data) as LeaveListJson.Data
-
+        datauser = bundle.getSerializable(Keys.data) as LeaveListJson.Data
         setdata()
+        attatchmentDownload()
+    }
 
+    private fun attatchmentDownload() {
+        if (!datauser?.file.isNullOrEmpty()) {
+            binder.attachment.setText(datauser!!.file.toString())
+            binder.attachment.setOnClickListener {
+
+
+                baseActivity.downloadImage(datauser!!.file)
+            }
+
+        }
+    }
+
+
+    private fun setdata() {
+        binder.leavesTitle.setText(datauser?.reason)
+        binder.application.setText(datauser?.reason)
+
+
+        if (Home.rollname.equals(Utils.SUPERADMIN)) {
+            when (datauser?.status) {
+                0 -> {
+                    binder.editbutton.setText(baseActivity.getString(R.string.approve))
+                    binder.editbutton.setOnClickListener {
+                        acceptreject(
+                            datauser?.user_id.toString(),
+                            datauser?.id.toString(),
+                            "1",
+                            "Are you sure you want to approve the leave"
+                        )
+                    }
+                    binder.cancelbutton.setOnClickListener {
+                        acceptreject(
+                            datauser?.user_id.toString(),
+                            datauser?.id.toString(),
+                            "2",
+                            "Are you sure yoi want to cancel the leave"
+                        )
+                    }
+                }
+                1 -> {
+                    binder.editbutton.setText(baseActivity.getString(R.string.approved))
+
+
+                }
+                2 -> {
+                    binder.editbutton.setText(baseActivity.getString(R.string.reject))
+
+
+                }
+            }
+
+        } else {
+            binder.editbutton.setText(baseActivity.getString(R.string.edit))
+            binder.editbutton.setOnClickListener {
+                if (datauser?.status!!.equals(0)) {
+
+                }
+            }
+        }
+
+
+
+        when (datauser?.status) {
+            0 -> {
+                if (Home.rollname.equals(Utils.SUPERADMIN)) {
+                    binder.clbutton.visible()
+                }
+                binder.tvStatus.text = baseActivity.getString(R.string.pending)
+                binder.tvStatus.setBackground(baseActivity.getDrawable(R.drawable.round_shape_yellow))
+            }
+            1 -> {
+                binder.tvStatus.text = baseActivity.getString(R.string.accept)
+                binder.clbutton.gone()
+                binder.tvStatus.setBackground(baseActivity.getDrawable(R.drawable.round_shape_green))
+            }
+            2 -> {
+                binder.tvStatus.text = baseActivity.getString(R.string.reject)
+                binder.tvStatus.setBackground(baseActivity.getDrawable(R.drawable.round_shape_red))
+                binder.clbutton.gone()
+            }
+        }
+
+
+        when (datauser?.leave_type) {
+            1 -> {
+                binder.leavesType.text = baseActivity.getString(R.string.singleday)
+                binder.leavesDate.text = Utils.formateDateFromstring(
+                    Utils.DATEFORMAT2,
+                    Utils.DATEFORMAT,
+                    datauser?.start_date!!.split(" ")[0]
+                )
+            }
+            2 -> {
+                val date1 = Utils.formateDateFromstring(
+                    Utils.DATEFORMAT2,
+                    Utils.DATEFORMAT,
+                    datauser?.start_date!!.split(" ")[0]
+                )
+                val date2 = Utils.formateDateFromstring(
+                    Utils.DATEFORMAT2,
+                    Utils.DATEFORMAT,
+                    datauser?.end_date!!.split(" ")[0]
+                )
+                binder.leavesDate.text = date1 + " " + date2
+                binder.leavesType.text = baseActivity.getString(R.string.multipleday)
+            }
+
+            4 -> {
+                binder.leavesDate.text = Utils.formateDateFromstring(
+                    Utils.DATETIMEFORMAT,
+                    Utils.DATEFORMATRIMEFORMAT2,
+                    datauser!!.start_date
+                )
+                binder.leavesType.text = baseActivity.getString(R.string.shortleave)
+            }
+            5 -> {
+                binder.leavesDate.text = Utils.formateDateFromstring(
+                    Utils.DATEFORMAT2,
+                    Utils.DATEFORMAT,
+                    datauser?.start_date!!.split(" ")[0]
+                )
+                binder.leavesType.text = baseActivity.getString(R.string.first_half)
+            }
+            6 -> {
+                binder.leavesDate.text = Utils.formateDateFromstring(
+                    Utils.DATEFORMAT2,
+                    Utils.DATEFORMAT,
+                    datauser?.start_date!!.split(" ")[0]
+                )
+                binder.leavesType.text = baseActivity.getString(R.string.second_half)
+            }
+
+        }
 
 
     }
 
 
-
-
-
-    private fun setdata(){
-             binder.leavesTitle.setText(datauser?.reason)
-              binder.application.setText(datauser?.reason)
-
-
-              if (Home.rollname.equals(Utils.SUPERADMIN))
-              {
-                  when(datauser?.status)
-                  {
-                      0->
-                      {
-                         binder.editbutton.setText(baseActivity.getString(R.string.approve))
-                          binder.editbutton.setOnClickListener {
-                              acceptreject(datauser?.user_id.toString(),datauser?.id.toString(),"1","Are you sure you want to approve the leave")
-                          }
-                         binder.cancelbutton.setOnClickListener {
-                             acceptreject(datauser?.user_id.toString(),datauser?.id.toString(),"2","Are you sure yoi want to cancel the leave")
-                          }
-                      }
-                      1->
-                      {
-                        binder.editbutton.setText(baseActivity.getString(R.string.approved))
-
-
-                      }
-                      2->{
-                          binder.editbutton.setText(baseActivity.getString(R.string.reject))
-
-
-                      }
-                  }
-
-              }
-              else
-              {
-                  binder.editbutton.setText(baseActivity.getString(R.string.edit))
-                  binder.editbutton.setOnClickListener {
-                      if (datauser?.status!!.equals(0))
-                      {
-
-                      }
-                  }
-              }
-
-
-
-              when(datauser?.status)
-              {
-                  0->{
-                      if (Home.rollname.equals(Utils.SUPERADMIN))
-                      {
-                         binder.clbutton.visible()
-                      }
-                      binder.tvStatus.text=baseActivity.getString(R.string.pending)
-                      binder.tvStatus.setBackground(baseActivity.getDrawable(R.drawable.round_shape_yellow))
-                  }
-                  1->{
-                      binder.tvStatus.text=baseActivity.getString(R.string.accept)
-                      binder.clbutton.gone()
-                      binder.tvStatus.setBackground(baseActivity.getDrawable(R.drawable.round_shape_green))
-                  }
-                  2->{
-                      binder.tvStatus.text=baseActivity.getString(R.string.reject)
-                      binder.tvStatus.setBackground(baseActivity.getDrawable(R.drawable.round_shape_red))
-                      binder.clbutton.gone()
-                  }
-              }
-
-
-              when(datauser?.leave_type){
-                  1->{
-                      binder.leavesType.text=baseActivity.getString(R.string.singleday)
-                     binder.leavesDate.text=Utils.formateDateFromstring(Utils.DATEFORMAT2,Utils.DATEFORMAT,datauser?.start_date!!.split(" ")[0])
-                  }
-                  2->{
-                      val  date1=Utils.formateDateFromstring(Utils.DATEFORMAT2,Utils.DATEFORMAT,datauser?.start_date!!.split(" ")[0])
-                      val  date2=Utils.formateDateFromstring(Utils.DATEFORMAT2,Utils.DATEFORMAT,datauser?.end_date!!.split(" ")[0])
-                      binder.leavesDate.text=date1+" "+date2
-                      binder.leavesType.text=baseActivity.getString(R.string.multipleday)
-                  }
-
-                  4->{
-                      binder.leavesDate.text=Utils.formateDateFromstring(Utils.DATETIMEFORMAT,Utils.DATEFORMATRIMEFORMAT2,datauser!!.start_date)
-                      binder.leavesType.text=baseActivity.getString(R.string.shortleave)
-                  }
-                  5->{
-                      binder.leavesDate.text=Utils.formateDateFromstring(Utils.DATEFORMAT2,Utils.DATEFORMAT,datauser?.start_date!!.split(" ")[0])
-                      binder.leavesType.text=baseActivity.getString(R.string.first_half)
-                  }
-                  6->{
-                      binder.leavesDate.text=Utils.formateDateFromstring(Utils.DATEFORMAT2,Utils.DATEFORMAT,datauser?.start_date!!.split(" ")[0])
-                      binder.leavesType.text=baseActivity.getString(R.string.second_half)
-                  }
-
-              }
-
-
-
-
-
-
-
-    }
-
-
-    private  fun acceptreject(  user_id:String,id:String,type:String,msg:String)
-    {
-        baseActivity.showConfirmAlert(msg,"Ok","Cancel",onConfirmed = {
+    private fun acceptreject(user_id: String, id: String, type: String, msg: String) {
+        baseActivity.showConfirmAlert(msg, "Ok", "Cancel", onConfirmed = {
             val jsonobj = JsonObject()
-            jsonobj.addProperty(Keys.user_id,user_id)
-            jsonobj.addProperty(Keys.id,id)
-            jsonobj.addProperty(Keys.status,type)
-            userRepository.commonpostwithtoken(baseActivity,Keys.LEAVESTATUS,jsonobj){
+            jsonobj.addProperty(Keys.user_id, user_id)
+            jsonobj.addProperty(Keys.id, id)
+            jsonobj.addProperty(Keys.status, type)
+            userRepository.commonpostwithtoken(baseActivity, Keys.LEAVESTATUS, jsonobj) {
 
-                 baseActivity.onBackPressed()
+                baseActivity.onBackPressed()
 
             }
 
-        },onCancel = {
+        }, onCancel = {
         })
 
     }
 
     private fun settoolbar() {
-        binder.toolbar.tvtitle.setTextColor(mContext.getColor(R.color.light_gre1))
+
+        binder.toolbar.tvtitle.setTextColor(
+            ContextCompat.getColor(
+                baseActivity,
+                R.color.light_gre1
+            )
+        )
         binder.toolbar.icmenu.setImageResource(R.drawable.icback_black)
         binder.toolbar.tvtitle.text = mContext.getString(R.string.leavedetails)
     }

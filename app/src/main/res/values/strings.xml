@@ -30,6 +30,7 @@
     <string name="arif_shaikh_joined_your_team_welcome_him">Arif Shaikh joined your team welcome him</string>
     <string name="cancel">Cancel</string>
     <string name="edit">Edit</string>
+    <string name="edit_profile">Edit Profile</string>
     <string name="save">Save</string>
     <string name="email_address">Email Address</string>
     <string name="username">Username</string>
@@ -120,6 +121,9 @@
     <string name="salary">Salary</string>
     <string name="requestleave">Request Leave</string>
     <string name="announcement">Announcement</string>
+    <string name="payslip">PaySlip</string>
+    <string name="home">Home</string>
+    <string name="announcementbottom">Announcementbottom</string>
     <string name="add_announcement">Add Announcement</string>
     <string name="attandance">Attendance</string>
     <string name="enter_the_message">Enter the message</string>
@@ -156,6 +160,26 @@
     <string name="today">Today</string>
     <string name="month">Month</string>
     <string name="yearly">Yearly</string>
+    <string name="select_leave_category">Select Leave Category</string>
+    <string name="count">Count</string>
+
+
+    //leave types
+    <string name="casual_Leave">Casual Leave (CL)</string>
+    <string name="sick_leave">Sick Leave (SL)</string>
+    <string name="maternity_leave">Maternity Leave (ML)</string>
+    <string name="marriage_leave">Marriage Leave.</string>
+    <string name="paternity_leave">Paternity Leave.</string>
+    <string name="bereavement_leave">Bereavement Leave.</string>
+    <string name="privilege_earned_annual_leave">Privilege Leave (PL) / Earned Leave (EL) / Annual Leave (AL)</string>
+    <string name="profile">Profile</string>
+    <string name="faq">FAQ</string>
+     <string name="about_us">About Us</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="location_is_needed">Location is needed</string>
+    <string name="user_added_successfully">User added successfully</string>
+    <string name="user_updated_successfully">User update successfully</string>
+    <string name="search">Search</string>
 
 
 </resources>

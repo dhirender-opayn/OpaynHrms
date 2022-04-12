@@ -35,7 +35,7 @@ class StaffListingViewModel(application: Application) : AppViewModel(application
         this.binder.viewModel = this
 
         setclicks()
-        setAdapter()
+//        setAdapter()
         settoolbar()
 
 

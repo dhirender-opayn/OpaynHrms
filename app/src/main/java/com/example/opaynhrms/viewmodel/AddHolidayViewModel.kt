@@ -1,19 +1,23 @@
 package com.example.opaynhrms.viewmodel
 
+import android.app.Activity
 import android.app.Application
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
+import androidx.core.content.ContextCompat
+import androidx.core.view.GravityCompat
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.opaynhrms.R
 import com.example.opaynhrms.base.AppViewModel
 import com.example.opaynhrms.base.KotlinBaseActivity
- import com.example.opaynhrms.databinding.ActivityRequestLeaveBinding
+import com.example.opaynhrms.databinding.ActivityRequestLeaveBinding
 import com.example.opaynhrms.databinding.FragmentAddHolidayBinding
 import com.example.opaynhrms.extensions.gone
 import com.example.opaynhrms.extensions.isNull
@@ -27,6 +31,7 @@ import com.example.opaynhrms.utils.Utils
 import kotlinx.android.synthetic.main.common_toolbar.view.*
 import okhttp3.MultipartBody
 import java.io.File
+import java.security.Key
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -39,31 +44,49 @@ class AddHolidayViewModel(application: Application) : AppViewModel(application),
     lateinit var baseActivity: KotlinBaseActivity
     var file: File? = null
 
-    val bundle = Bundle()
+    var bundle = Bundle()
     var ltype = ""
     var applyradio = ""
     var leaveid = ""
     var isdateshow = true
 
-    fun setBinder(binder: FragmentAddHolidayBinding, baseActivity: KotlinBaseActivity)
-    {
+    fun setBinder(binder: FragmentAddHolidayBinding, baseActivity: KotlinBaseActivity) {
         this.binder = binder
         this.mContext = binder.root.context
         this.baseActivity = baseActivity
         this.binder.viewModel = this
+
+        bundle = (mContext as Activity).intent.extras!!
+
         setclicks()
-        settoolbar()
+        Log.e("0000000000000000000000", bundle.getString(Keys.FROM).toString())
+        setToolbarFrom()
         leavetypeAdapter()
     }
 
+    private fun setToolbarFrom() {
+        Log.e("dfdffddddddddddd", bundle.getString(Keys.FROM).toString())
 
-    private fun leavetypeAdapter()
-    {
+        binder.toolbar.tvtitle.text = baseActivity.getString(R.string.addholiday)
+        if (bundle.getString(Keys.FROM) == baseActivity.getString(R.string.addholiday)) {
+            Log.e("dddddddddddddddd","0000000000000")
+            binder.toolbar.icmenu2.gone()
+            binder.toolbar.icmenu.visible()
+        } else{
+            Log.e("dddddddd","111111111111111111")
+            binder.toolbar.icmenu2.visible()
+            binder.toolbar.icmenu.gone()
+
+        }
+
+    }
+
+
+    private fun leavetypeAdapter() {
         val roleslist = ArrayList<String>()
-        roleslist.add(baseActivity.getString(R.string.singleday))
-        roleslist.add(baseActivity.getString(R.string.multipleday))
-        roleslist.add(baseActivity.getString(R.string.half_day))
-        roleslist.add(baseActivity.getString(R.string.shortleave))
+         Home.leaveTypeListingJson?.data!!.forEach {
+            roleslist.add(it.type)
+        }
         val aa = ArrayAdapter(baseActivity, R.layout.spinner_layout, roleslist)
         binder.leavetype.setAdapter(aa)
         binder.leavetype.setFocusable(false)
@@ -106,8 +129,7 @@ class AddHolidayViewModel(application: Application) : AppViewModel(application),
         })
     }
 
-    private fun validations(): Boolean
-    {
+    private fun validations(): Boolean {
         if (binder.tvTitle.text.toString().isEmpty()) {
             showToast("Please enter title")
             return false
@@ -151,14 +173,14 @@ class AddHolidayViewModel(application: Application) : AppViewModel(application),
             showToast("Please enter reason")
             return false
         }
-        if (ltype.equals(baseActivity.getString(R.string.half_day)) &&applyradio.isEmpty())
-        {
+        if (ltype.equals(baseActivity.getString(R.string.half_day)) && applyradio.isEmpty()) {
             showToast("Please select  half day type")
             return false
-        }
-        else{
-            if (ltype.equals(baseActivity.getString(R.string.singleday))||ltype.equals(baseActivity.getString(R.string.half_day)))
-            {
+        } else {
+            if (ltype.equals(baseActivity.getString(R.string.singleday)) || ltype.equals(
+                    baseActivity.getString(R.string.half_day)
+                )
+            ) {
                 if (binder.date.text.toString().isEmpty()) {
                     showToast("Please select date")
                     return false
@@ -169,11 +191,6 @@ class AddHolidayViewModel(application: Application) : AppViewModel(application),
         }
 
         return true
-    }
-
-
-    private fun settoolbar() {
-        binder.toolbar.tvtitle.text = baseActivity.getString(R.string.addholiday)
     }
 
 
@@ -215,9 +232,10 @@ class AddHolidayViewModel(application: Application) : AppViewModel(application),
         binder.toolbar.icmenu.setOnClickListener(this)
         binder.leavetype.setOnClickListener(this)
         binder.loginbtn.setOnClickListener(this)
+        binder.toolbar.icmenu2.setOnClickListener(this)
         binder.rbFirst.setOnCheckedChangeListener { compoundButton, b ->
             if (b) {
-                applyradio="5"
+                applyradio = "5"
                 binder.rbFirst.isChecked = true
                 binder.rbsecond.isChecked = false
             }
@@ -225,7 +243,7 @@ class AddHolidayViewModel(application: Application) : AppViewModel(application),
 
         binder.rbsecond.setOnCheckedChangeListener { compoundButton, b ->
             if (b) {
-                applyradio="6"
+                applyradio = "6"
                 binder.rbFirst.isChecked = false
                 binder.rbsecond.isChecked = true
             }
@@ -281,8 +299,7 @@ class AddHolidayViewModel(application: Application) : AppViewModel(application),
 
     }
 
-    private fun showtimepicker(autoCompleteTextView: AutoCompleteTextView)
-    {
+    private fun showtimepicker(autoCompleteTextView: AutoCompleteTextView) {
         TimePickerFragment(baseActivity, object : TimePickerFragment.TimePickerInterface {
             override fun onTimeSelected(calendar: Calendar) {
                 autoCompleteTextView.setText(SimpleDateFormat(Utils.TIMEFORMAT).format(calendar.time))
@@ -360,19 +377,26 @@ class AddHolidayViewModel(application: Application) : AppViewModel(application),
 
     override fun onClick(p0: View?) {
         when (p0?.id) {
+
             R.id.icmenu -> {
                 baseActivity.onBackPressed()
             }
+            R.id.icmenu2 -> {
+                (baseActivity as Home).binding.drawerLayout.openDrawer(GravityCompat.START)
+            }
+
+
             R.id.leavetype -> {
                 baseActivity.showDropDown(binder.leavetype)
             }
             R.id.loginbtn -> {
                 if (validations()) {
 //                    callApi()
-                    baseActivity.toast("Dummy Add Holiday Successfully")
+//                    baseActivity.toast("Dummy Add Holiday Successfully")
                     baseActivity.onBackPressed()
                 }
             }
+
 
         }
     }

@@ -3,12 +3,12 @@ package com.example.opaynhrms.adapter
 
 import com.example.opaynhrms.R
 import com.example.opaynhrms.base.KotlinBaseActivity
+import com.example.opaynhrms.common.CommonActivity
 import com.example.opaynhrms.extensions.gone
-import com.example.opaynhrms.extensions.toast
-import com.example.opaynhrms.extensions.visible
-import com.example.opaynhrms.model.ListingModel
+
 import com.example.opaynhrms.model.UserDetailJson
 import com.example.opaynhrms.ui.Home
+import com.example.opaynhrms.utils.Keys
 
 import com.example.opaynhrms.utils.Utils
 import com.ieltslearning.base.BaseAdapter
@@ -24,7 +24,7 @@ class LeavelistingAdapter(var name:String,val baseActivity: KotlinBaseActivity, 
             leavetitle.text= name
 
             cvContainer.setOnClickListener {
-
+                itemClick(position)
             }
             if (Home.rollname.equals(Utils.SUPERADMIN))
             {
@@ -88,7 +88,7 @@ class LeavelistingAdapter(var name:String,val baseActivity: KotlinBaseActivity, 
                 }
             }
 
-            when(list[position].leave_type.toInt())
+            when(list[position]?.leave_type_id.toInt())
             {
                 1->{
                     leave_type.text=baseActivity.getString(R.string.singleday)
