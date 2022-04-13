@@ -18,4 +18,9 @@ class StaffDetail : KotlinBaseActivity() {
         viewmodel.setBinder(binding, this)
 
     }
+
+    override fun onResume() {
+        super.onResume()
+        viewmodel.leavelist()
+    }
 }

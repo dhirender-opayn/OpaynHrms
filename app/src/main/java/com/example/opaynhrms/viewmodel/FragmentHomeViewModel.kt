@@ -78,6 +78,4 @@ class FragmentHomeViewModel(application: Application) : AppViewModel(application
         }
     }
 
-
-
 }

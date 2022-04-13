@@ -19,6 +19,7 @@ import com.example.opaynhrms.utils.Keys
 import com.example.opaynhrms.utils.Utils.AUTHTOKEN
 import com.google.gson.Gson
 import com.example.opaynhrms.base.AppViewModel
+import com.example.opaynhrms.common.CommonActivity
 import com.example.opaynhrms.extensions.*
 import com.example.opaynhrms.fragment.AddHoliday
 import com.example.opaynhrms.fragment.ReportingFragment
@@ -178,6 +179,12 @@ class HomeViewModel(application: Application) : AppViewModel(application) {
         binder.showDrawer.tvsalary.setOnClickListener {
             binder.drawerLayout.closeDrawers()
             binder.bottomNav.salary.performClick()
+        }
+        binder.showDrawer.tvfaq.setOnClickListener {
+            binder.drawerLayout.closeDrawers()
+            bundle.putString(Keys.FROM,Keys.FAQ)
+            baseActivity.openA(CommonActivity::class, this.bundle)
+
         }
 
         binder.showDrawer.tvlogout.setOnClickListener {

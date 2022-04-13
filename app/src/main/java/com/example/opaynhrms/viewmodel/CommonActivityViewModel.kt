@@ -60,6 +60,7 @@ class CommonActivityViewModel(application: Application) : AppViewModel(applicati
                 baseActivity.navigateToFragment(Payslip(baseActivity), bundle, false)
             }
 
+
 //            mContext.getString(R.string.reporting) -> {
 //                baseActivity.navigateToFragment(EmployeeFragment(baseActivity), bundle, false)
 //            }

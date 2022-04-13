@@ -40,6 +40,7 @@ class LeaveDetailViewModel(application: Application) : AppViewModel(application)
     var datauser: LeaveListJson.Data? = null
 
 
+
     fun setBinder(binder: FragmentLeaveDetailBinding, baseActivity: KotlinBaseActivity) {
         this.binder = binder
         this.mContext = binder.root.context
@@ -75,10 +76,12 @@ class LeaveDetailViewModel(application: Application) : AppViewModel(application)
             when (datauser?.status) {
                 0 -> {
                     binder.editbutton.setText(baseActivity.getString(R.string.approve))
+
                     binder.editbutton.setOnClickListener {
                         acceptreject(
                             datauser?.user_id.toString(),
                             datauser?.id.toString(),
+                           datauser?.leave_category_id.toString(),
                             "1",
                             "Are you sure you want to approve the leave"
                         )
@@ -87,6 +90,7 @@ class LeaveDetailViewModel(application: Application) : AppViewModel(application)
                         acceptreject(
                             datauser?.user_id.toString(),
                             datauser?.id.toString(),
+                            datauser?.leave_category_id.toString(),
                             "2",
                             "Are you sure yoi want to cancel the leave"
                         )
@@ -191,13 +195,15 @@ class LeaveDetailViewModel(application: Application) : AppViewModel(application)
     }
 
 
-    private fun acceptreject(user_id: String, id: String, type: String, msg: String) {
+    private fun acceptreject(user_id: String, id: String,cateogory_id:String, type: String, msg: String) {
         baseActivity.showConfirmAlert(msg, "Ok", "Cancel", onConfirmed = {
             val jsonobj = JsonObject()
             jsonobj.addProperty(Keys.user_id, user_id)
             jsonobj.addProperty(Keys.id, id)
             jsonobj.addProperty(Keys.status, type)
+            jsonobj.addProperty(Keys.leave_category_id2, cateogory_id)
             userRepository.commonpostwithtoken(baseActivity, Keys.LEAVESTATUS, jsonobj) {
+                Log.e("eddddddddddddd","eeeeeeeeeeeeeeeeeeeeeee")
 
                 baseActivity.onBackPressed()
 

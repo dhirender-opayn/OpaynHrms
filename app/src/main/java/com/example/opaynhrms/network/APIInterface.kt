@@ -117,6 +117,14 @@ interface APIInterface {
     @Headers("Accept: application/json")
     @GET("leave-details ")
     fun user_leave_detail( @Header("Authorization") token: String ): Call<UserLeaveDetailJson>?
+
+    @Headers("Accept: application/json")
+    @POST("connect-clockify")
+    fun connect_clockify( @Header("Authorization") token: String ): Call<ClockifyConnectJson>?
+
+    @Headers("Accept: application/json")
+    @GET("clockify-entries")
+    fun clockify_entries( @Header("Authorization") token: String ): Call<ClockifyEntriesJson>?
 //
 //    @Headers("Accept: application/json")
 //    @GET("leave-details")

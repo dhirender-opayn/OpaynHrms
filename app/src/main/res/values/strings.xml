@@ -174,7 +174,7 @@
     <string name="privilege_earned_annual_leave">Privilege Leave (PL) / Earned Leave (EL) / Annual Leave (AL)</string>
     <string name="profile">Profile</string>
     <string name="faq">FAQ</string>
-     <string name="about_us">About Us</string>
+    <string name="about_us">About Us</string>
     <string name="privacy_policy">Privacy Policy</string>
     <string name="location_is_needed">Location is needed</string>
     <string name="user_added_successfully">User added successfully</string>

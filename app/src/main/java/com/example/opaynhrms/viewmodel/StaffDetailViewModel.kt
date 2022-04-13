@@ -7,6 +7,7 @@ import android.util.Log
 import androidx.core.content.ContextCompat
 import com.example.opaynhrms.R
 import com.example.opaynhrms.adapter.DetailAttendanceListAdapter
+import com.example.opaynhrms.adapter.LeaveCategoryAdapter
 import com.example.opaynhrms.adapter.LeavelistingAdapter
 import com.example.opaynhrms.adapter.TotalLeaveStatusAdapter
 import com.example.opaynhrms.base.KotlinBaseActivity
@@ -37,6 +38,7 @@ class StaffDetailViewModel(application: Application) : AppViewModel(application)
     private   var leavelist=ArrayList<UserDetailJson.Data.Leaves>()
      var username=""
     var list = ArrayList<LeaveListJson.Data>()
+    var leaveadatper :LeavelistingAdapter? = null
     fun setBinder(binder: ActivityStaffDetailBinding, baseActivity: KotlinBaseActivity) {
         this.binder = binder
         this.mContext = binder.root.context
@@ -66,28 +68,33 @@ class StaffDetailViewModel(application: Application) : AppViewModel(application)
         userRepository.leavelist(baseActivity) {
             list.clear()
             list.addAll(it.data)
+            leaveadapter()
 
         }
     }
-
-
 
     private  fun calluserdata(userid:String)
     {
         val urlEncoded = Keys.BASEURL+Keys.TEAMDATA+userid
         userRepository.teamdata(baseActivity,urlEncoded)
         {
-            if (!it.data.attandances.isNull() ){
+
+            if (it.data.isNotNull()){
                 attandancelist.addAll(it.data.attandances)
-            }
-            if (!it.data.leaves.isNull()){
-//                Log.e("popopopopp",it.data.leaves.toString())
                 leavelist.addAll(it.data.leaves)
             }
+//            if (!it.data.attandances.isNull() ){
+//                attandancelist.addAll(it.data.attandances)
+//            }
+//            if (!it.data.leaves.isNull()){
+////                Log.e("popopopopp",it.data.leaves.toString())
+//                leavelist.addAll(it.data.leaves)
+//            }
 
             setattandanceadapter()
         }
     }
+
 
     private fun settoolbar() {
         binder.toolbar.tvtitle.text = "Staff Detail"
@@ -118,7 +125,7 @@ class StaffDetailViewModel(application: Application) : AppViewModel(application)
     private  fun leaveadapter()
     {
 //        Log.e("eeededededeeeeee",list.toString())
-        val adapter=LeavelistingAdapter(username,baseActivity){
+        leaveadatper=LeavelistingAdapter(username,baseActivity){
             val _position = it
             baseActivity.bundle.putString(
                 Keys.FROM,
@@ -128,21 +135,20 @@ class StaffDetailViewModel(application: Application) : AppViewModel(application)
             baseActivity.bundle.putSerializable(Keys.data, list[_position])
 //                bundle.putString(Keys.id, list[position].user_id.toString())
             baseActivity.openA(CommonActivity::class, baseActivity.bundle)
+
         }
 //        adapter.addNewList(leavelist)
-        adapter.addNewList(leavelist)
-        binder.rvtab.adapter =  adapter
+        leaveadatper?.addNewList(list)
+        binder.rvtab.adapter =  leaveadatper
     }
 
     private fun setUserLeaveAdapter(){
-
 
         val totalLeaveStatusAdapter = TotalLeaveStatusAdapter(baseActivity){
 
         }
 
         binder.rvUserLeave.adapter = totalLeaveStatusAdapter
-
 
     }
 
@@ -175,6 +181,7 @@ class StaffDetailViewModel(application: Application) : AppViewModel(application)
         }
 
     }
+
     override fun onItemViewClicked(position: Int, type: String)
     {
         Log.e("dsdfsdfdsf",type.toString())

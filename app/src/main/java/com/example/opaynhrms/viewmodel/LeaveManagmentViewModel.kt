@@ -52,6 +52,7 @@ class LeaveManagmentViewModel(application: Application) : AppViewModel(applicati
 
     }
 
+
     private fun settoolbar() {
         binder.toolbar.tvtitle.text = mContext.getString(R.string.leavemanagment)
     }

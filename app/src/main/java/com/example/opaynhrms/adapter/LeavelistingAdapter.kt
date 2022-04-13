@@ -5,6 +5,7 @@ import com.example.opaynhrms.R
 import com.example.opaynhrms.base.KotlinBaseActivity
 import com.example.opaynhrms.common.CommonActivity
 import com.example.opaynhrms.extensions.gone
+import com.example.opaynhrms.model.LeaveListJson
 
 import com.example.opaynhrms.model.UserDetailJson
 import com.example.opaynhrms.ui.Home
@@ -16,7 +17,7 @@ import kotlinx.android.synthetic.main.item_leave_detail_cart.view.*
 
 
 class LeavelistingAdapter(var name:String,val baseActivity: KotlinBaseActivity, val itemClick: (Int) -> Unit) :
-    BaseAdapter<UserDetailJson.Data.Leaves>(
+    BaseAdapter<LeaveListJson.Data>(
         R.layout.item_leave_detail_cart
     ) {
     override fun onBindViewHolder(holder: IViewHolder, position: Int) {

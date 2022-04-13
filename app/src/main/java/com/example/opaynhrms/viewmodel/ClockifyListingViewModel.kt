@@ -3,6 +3,7 @@ package com.example.opaynhrms.viewmodel
 import android.app.Application
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
 import com.example.opaynhrms.R
@@ -10,35 +11,70 @@ import com.example.opaynhrms.adapter.ClockifyTaskListingAdapter
 import com.example.opaynhrms.base.AppViewModel
 import com.example.opaynhrms.base.KotlinBaseActivity
 import com.example.opaynhrms.databinding.FragementClockifyworkListingBinding
+import com.example.opaynhrms.model.ClockifyEntriesJson
+import com.example.opaynhrms.repository.AddUserRepository
+import com.example.opaynhrms.repository.ClockifyWorkRepository
 import kotlinx.android.synthetic.main.common_toolbar.view.*
 
-class ClockifyListingViewModel(application: Application) : AppViewModel(application),View.OnClickListener
-{
+class ClockifyListingViewModel(application: Application) : AppViewModel(application),
+    View.OnClickListener {
     private lateinit var binder: FragementClockifyworkListingBinding
     private lateinit var mContext: Context
     lateinit var baseActivity: KotlinBaseActivity
     val bundle = Bundle()
+    var clockifyWorkRepository: ClockifyWorkRepository = ClockifyWorkRepository(application)
+    val clockifyEntriresList = ArrayList<ClockifyEntriesJson.Data>()
 
-    fun setBinder(binder: FragementClockifyworkListingBinding, baseActivity: KotlinBaseActivity)
-    {
+
+    fun setBinder(binder: FragementClockifyworkListingBinding, baseActivity: KotlinBaseActivity) {
         this.binder = binder
         this.mContext = binder.root.context
         this.baseActivity = baseActivity
         settoolbar()
         setclick()
-        setAdapter()
+        connectClockify()
+        baseActivity.startProgressDialog()
+
+
+    }
+
+
+    private fun connectClockify() {
+        clockifyWorkRepository.connectClockify(baseActivity) {
+            clockifyentries()
+        }
+    }
+
+    private fun clockifyentries() {
+        clockifyWorkRepository.clockify_entries(baseActivity) {
+            if (it.data.size > 0) {
+                clockifyEntriresList.addAll(it.data)
+                setAdapter()
+
+
+            }
+        }
+
     }
 
     private fun setAdapter() {
+
         val clockifyAdapterView = ClockifyTaskListingAdapter(baseActivity) {
 
         }
+        clockifyAdapterView.addNewList(clockifyEntriresList)
         binder.rvClockify.adapter = clockifyAdapterView
+        baseActivity.stopProgressDialog()
 
     }
 
     private fun settoolbar() {
-        binder.toolbar.tvtitle.setTextColor(ContextCompat.getColor(baseActivity,R.color.light_gre1))
+        binder.toolbar.tvtitle.setTextColor(
+            ContextCompat.getColor(
+                baseActivity,
+                R.color.light_gre1
+            )
+        )
         binder.toolbar.icmenu.setImageResource(R.drawable.icback_black)
         binder.toolbar.tvtitle.text = mContext.getString(R.string.work_history)
     }
