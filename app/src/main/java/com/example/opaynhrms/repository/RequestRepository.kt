@@ -54,7 +54,7 @@ class RequestRepository(private val baseActivity: Application) {
         }
     }
 
-    fun leaveCategory(baseActivity: KotlinBaseActivity, itemClick: (LeaveCategoryJson) -> Unit) {
+    fun leaveCategory( baseActivity: KotlinBaseActivity, itemClick: (LeaveCategoryJson) -> Unit) {
         if (!baseActivity.networkcheck.isNetworkAvailable()) {
             baseActivity.nointernershowToast()
         } else {

@@ -114,8 +114,6 @@ class LeaveManagmentViewModel(application: Application) : AppViewModel(applicati
                 Log.e("dfdsfdsfsdfsdfsd","user")
                 userCategorybyidApi()
             }
-
-
             //for matching data
 //            Home.categoryTypeListingJson?.data!!.forEach {
 //                if (it.id.equals(leaveID)){

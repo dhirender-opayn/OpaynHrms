@@ -102,10 +102,10 @@ interface APIInterface {
 
     @Headers("Accept: application/json")
 
-
-
     @GET("leave-categories")
     fun leaveCategory(@Header("Authorization") token: String): Call<LeaveCategoryJson>
+
+
 
     @Headers("Accept: application/json")
     @GET("")
