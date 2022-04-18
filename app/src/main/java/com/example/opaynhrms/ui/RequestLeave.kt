@@ -29,7 +29,6 @@ class RequestLeave : KotlinBaseActivity() {
         viewmodel = ViewModelProvider(this).get(RequestLeaveViewModel::class.java)
         viewmodel.setBinder(binding, this)
         storagehelper()
-
         binding.attachment.setOnClickListener {
             val permissonList = ArrayList<String>()
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {

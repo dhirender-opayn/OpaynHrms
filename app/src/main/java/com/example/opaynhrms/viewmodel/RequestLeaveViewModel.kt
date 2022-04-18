@@ -1,8 +1,8 @@
 package com.example.opaynhrms.viewmodel
 
- import android.app.Application
+import android.app.Application
 import android.content.Context
- import android.os.Bundle
+import android.os.Bundle
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
@@ -23,11 +23,11 @@ import com.example.opaynhrms.model.LeaveTypeJson
 import com.example.opaynhrms.repository.RequestRepository
 import com.example.opaynhrms.repository.UserRepository
 import com.example.opaynhrms.ui.Home
- import com.example.opaynhrms.utils.Keys
+import com.example.opaynhrms.utils.Keys
 import com.example.opaynhrms.utils.TimePickerFragment
 import com.example.opaynhrms.utils.Utils
- import com.google.gson.JsonObject
- import kotlinx.android.synthetic.main.common_toolbar.view.*
+import com.google.gson.JsonObject
+import kotlinx.android.synthetic.main.common_toolbar.view.*
 import okhttp3.MultipartBody
 import java.io.File
 import java.text.SimpleDateFormat
@@ -64,11 +64,10 @@ class RequestLeaveViewModel(application: Application) : AppViewModel(application
         leaveListing()
 
 
-
-
     }
-    private fun leaveListing(){
-        if (Home.leaveTypeListingJson?.data.isNotNull() && Home.leaveTypeListingJson?.data!!.size > 0){
+
+    private fun leaveListing() {
+        if (Home.leaveTypeListingJson?.data.isNotNull() && Home.leaveTypeListingJson?.data!!.size > 0) {
 
             leaveTypelist.addAll(Home.leaveTypeListingJson!!.data)
             Home.leaveTypeListingJson!!.data.forEach {
@@ -78,7 +77,7 @@ class RequestLeaveViewModel(application: Application) : AppViewModel(application
             leavetypeAdapter(typelisting)
         }
 
-        if (Home.categoryTypeListingJson?.data.isNotNull() && Home.categoryTypeListingJson?.data!!.size > 0){
+        if (Home.categoryTypeListingJson?.data.isNotNull() && Home.categoryTypeListingJson?.data!!.size > 0) {
 
             leaveCategorylist.addAll(Home.categoryTypeListingJson!!.data)
             Home.categoryTypeListingJson!!.data.forEach {
@@ -104,8 +103,6 @@ class RequestLeaveViewModel(application: Application) : AppViewModel(application
 //            }
 //        }
 //    }
-
-
 
 
 //    private fun checkpersion () {
@@ -268,7 +265,7 @@ class RequestLeaveViewModel(application: Application) : AppViewModel(application
         return true
     }
 
-    private fun leaveCategoryAdapter( _categorylist:ArrayList<String> ) {
+    private fun leaveCategoryAdapter(_categorylist: ArrayList<String>) {
         val aa = ArrayAdapter(baseActivity, R.layout.spinner_layout, _categorylist)
         binder.tvleaveCategory.setAdapter(aa)
         binder.tvleaveCategory.setFocusable(false)
@@ -416,7 +413,7 @@ class RequestLeaveViewModel(application: Application) : AppViewModel(application
         } else {
             Utils.getMultiPart(Keys.leave_type_id, leaveid)?.let { fields.add(it) }
         }
-        Utils.getMultiPart(Keys.leave_category_id,categoryid)
+        Utils.getMultiPart(Keys.leave_category_id, categoryid)
             ?.let { fields.add(it) }
 
         when (leaveid.toInt()) {
@@ -516,7 +513,7 @@ class RequestLeaveViewModel(application: Application) : AppViewModel(application
 
 
 
-        Log.e("eeeeeeeeeeeeeeeeeeeeee",fields.toString())
+        Log.e("eeeeeeeeeeeeeeeeeeeeee", fields.toString())
 
         userRepository.addleave(baseActivity, fields) {
             if (!it.data.isNull()) {

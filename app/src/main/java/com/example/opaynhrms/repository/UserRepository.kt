@@ -377,6 +377,53 @@ class UserRepository(private val baseActivity: Application) {
 
 
 
+   fun userCategoryByID(
+        baseActivity: KotlinBaseActivity,
+        endpoint: String,
+        itemClick: (UserLeaveDetailJson) -> Unit
+    ) {
+
+        if (!baseActivity.networkcheck.isNetworkAvailable()) {
+            baseActivity.nointernershowToast()
+        } else {
+            baseActivity.startProgressDialog()
+            retrofitClient = RetrofitClient.with(this.baseActivity)?.client?.create(
+                APIInterface::class.java
+            )
+            retrofitClient?.user_category_by_id(Utils.AUTHTOKEN,endpoint)!!
+                .enqueue(object : Callback<UserLeaveDetailJson> {
+                    override fun onResponse(
+                        call: Call<UserLeaveDetailJson?>,
+                        response: Response<UserLeaveDetailJson?>
+                    ) {
+                        baseActivity.stopProgressDialog()
+                        when (response.code()) {
+                            Keys.RESPONSE_SUCESS -> {
+                                response.body()?.let { itemClick(it) }
+
+                            }
+                            Keys.ERRORCODE -> {
+                                baseActivity.parseError(response)
+                            }
+                            Keys.UNAUTHoRISE -> {
+                                baseActivity.unauthrizeddialog()
+                                //signupmutableLiveData.setValue(response.body())
+                            }
+                        }
+
+                    }
+
+                    override fun onFailure(call: Call<UserLeaveDetailJson?>, t: Throwable) {
+                        baseActivity.stopProgressDialog()
+
+                    }
+                })
+        }
+
+
+    }
+
+
 
 
     fun commonpostwithouttoken(

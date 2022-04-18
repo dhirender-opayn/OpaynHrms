@@ -1,5 +1,6 @@
 package com.example.opaynhrms.viewmodel
 
+import android.app.Activity
 import android.app.Application
 import android.content.Context
 import android.os.Bundle
@@ -19,12 +20,11 @@ import com.example.opaynhrms.extensions.gone
 import com.example.opaynhrms.extensions.isNotNull
 import com.example.opaynhrms.extensions.isNull
 import com.example.opaynhrms.extensions.visible
-import com.example.opaynhrms.model.LeaveListJson
-import com.example.opaynhrms.model.UserDetailJson
-import com.example.opaynhrms.model.UserListJson
+import com.example.opaynhrms.model.*
 import com.example.opaynhrms.repository.UserRepository
 import com.example.opaynhrms.ui.Home
 import com.example.opaynhrms.utils.Keys
+import com.google.gson.JsonObject
 import com.ieltslearning.listner.ItemClick
 import kotlinx.android.synthetic.main.common_toolbar.view.*
 
@@ -33,31 +33,40 @@ class StaffDetailViewModel(application: Application) : AppViewModel(application)
     private lateinit var mContext: Context
     lateinit var baseActivity: KotlinBaseActivity
     var userRepository: UserRepository = UserRepository(application)
-    val bundle = Bundle()
+    var bundle = Bundle()
     private   var attandancelist=ArrayList<UserDetailJson.Data.Attandance>()
     private   var leavelist=ArrayList<UserDetailJson.Data.Leaves>()
      var username=""
     var list = ArrayList<LeaveListJson.Data>()
     var leaveadatper :LeavelistingAdapter? = null
+    var userdata : UserListJson.Data? = null
+    var userCategoryByIdList:ArrayList<UserLeaveDetailJson.Data>? = ArrayList<UserLeaveDetailJson.Data>()
     fun setBinder(binder: ActivityStaffDetailBinding, baseActivity: KotlinBaseActivity) {
         this.binder = binder
         this.mContext = binder.root.context
         this.baseActivity = baseActivity
         this.binder.viewModel = this
+
         setclicks()
         setAdapter()
         settoolbar()
 //        setUserLeaveAdapter()
         leavelist()
+        bundle = (mContext as Activity).intent.extras!!
+
+        Log.e("dfdsfdsfsd",bundle.getString(Keys.USERDATA).toString())
+
+
+
 
 
 
         if (baseActivity.intent.getSerializableExtra(Keys.USERDATA).isNotNull()) {
 
-            val userdata =
+              userdata =
                 baseActivity.intent.getSerializableExtra(Keys.USERDATA) as UserListJson.Data
-            setdata(userdata)
-            calluserdata(userdata.id.toString())
+            setdata(userdata!!)
+            calluserdata(userdata?.id.toString())
         }
         binder.rvtab.adapter = DetailAttendanceListAdapter(baseActivity){
 
@@ -142,15 +151,17 @@ class StaffDetailViewModel(application: Application) : AppViewModel(application)
         binder.rvtab.adapter =  leaveadatper
     }
 
-    private fun setUserLeaveAdapter(){
+    private fun setUserLeaveAdapter( ){
 
         val totalLeaveStatusAdapter = TotalLeaveStatusAdapter(baseActivity){
 
         }
-
+        totalLeaveStatusAdapter.addNewList(userCategoryByIdList)
         binder.rvUserLeave.adapter = totalLeaveStatusAdapter
 
     }
+
+
 
     private fun setclicks() {
         binder.toolbar.icmenu.setOnClickListener {
@@ -160,7 +171,6 @@ class StaffDetailViewModel(application: Application) : AppViewModel(application)
         binder.tvAttendance.setOnClickListener{
 
             binder.rvUserLeave.gone()
-
             binder.tvAttendance.setBackgroundResource(R.color.purple)
             binder.tvAttendance.setTextColor(ContextCompat.getColor(baseActivity ,R.color.white))
             binder.tvLeave.setTextColor(ContextCompat.getColor(baseActivity ,R.color.light_gre1))
@@ -177,9 +187,23 @@ class StaffDetailViewModel(application: Application) : AppViewModel(application)
             binder.tvLeave.setTextColor(ContextCompat.getColor(baseActivity ,R.color.white))
             binder.tvAttendance.setTextColor(ContextCompat.getColor(baseActivity ,R.color.light_gre1))
             leaveadapter()
-
+            userCategorybyidApi()
+//            setUserLeaveAdapter()
         }
 
+    }
+    private fun userCategorybyidApi(){
+
+        val userid = userdata?.id.toString()
+
+        userRepository.userCategoryByID(baseActivity,Keys.USER_LEAVE_INFO+userid){
+             if (it.data.isNotNull()){
+                 userCategoryByIdList?.addAll(it.data)
+                 setUserLeaveAdapter()
+            }
+
+
+        }
     }
 
     override fun onItemViewClicked(position: Int, type: String)
@@ -187,8 +211,6 @@ class StaffDetailViewModel(application: Application) : AppViewModel(application)
         Log.e("dsdfsdfdsf",type.toString())
         when(type)
         {
-
-
 //            "3"->{
 //                baseActivity. bundle.putString(Keys.FROM,mContext.getString(R.string.leavemanagement))
 //                userRepository.leavelist(baseActivity) {

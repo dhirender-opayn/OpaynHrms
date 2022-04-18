@@ -2,7 +2,7 @@ package com.example.opaynhrms.utils
 
 object Keys {
     //     const val  BASEURL="http://3.22.185.42/hrms-api/public/api/"
-    const val BASEURL = "http://ab34-210-89-39-142.ngrok.io/api/"
+    const val BASEURL = "http://bb34-210-89-39-142.ngrok.io/hrms-api/public/api/"
 
     //const val  IMAGEBASEURL= BASEURL
     /*RESPONSE CODE*/
@@ -23,6 +23,8 @@ object Keys {
     const val UPDATEUSER = "user/update"
     const val TEAMDATA = "team?user_id=";
     const val ATTANDANCELIST = "attendance/listing"
+    const val USER_LEAVE_INFO = "user-leave-info/"
+    const val USER_LEAVE_DETAILS = "user-leave-details/"
 
     /*GUEST KEYS*/
     const val Coursetype = "coursetype"
@@ -74,4 +76,5 @@ object Keys {
     const val data = "user_date"
     const val attachment = "attachment"
     const val file = "file"
+    const val leaves = "leaves"
 }

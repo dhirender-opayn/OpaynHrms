@@ -17,6 +17,7 @@ import com.example.opaynhrms.utils.Keys
 import com.example.opaynhrms.viewmodel.ProfileViewModel
 import com.example.opaynhrms.base.KotlinBaseFragment
 import com.example.opaynhrms.extensions.visible
+import com.example.opaynhrms.utils.Utils
 import kotlinx.android.synthetic.main.common_toolbar.view.*
 import kotlinx.android.synthetic.main.fragment_profile.*
 
@@ -51,6 +52,7 @@ class ProfileFragment(var baseActivity: KotlinBaseActivity) : KotlinBaseFragment
 
     }
 
+
     private fun click() {
         binding.leavemangement.setOnClickListener(this)
         binding.ivedit.setOnClickListener(this)
@@ -58,7 +60,7 @@ class ProfileFragment(var baseActivity: KotlinBaseActivity) : KotlinBaseFragment
         binding.notification.setOnClickListener(this)
         binding.loginbtn.setOnClickListener(this)
         binding.support.setOnClickListener(this)
-        binding.addTicket.setOnClickListener(this)
+//        binding.addTicket.setOnClickListener(this)
     }
 
     override fun onResume() {
@@ -80,17 +82,17 @@ class ProfileFragment(var baseActivity: KotlinBaseActivity) : KotlinBaseFragment
                 baseActivity.openA(ChangePassword::class)
             }
             R.id.notification -> {
-                bundle.putString(Keys.FROM,baseActivity.getString(R.string.notification))
-                baseActivity.openA(CommonActivity::class,bundle)
+                bundle.putString(Keys.FROM, baseActivity.getString(R.string.notification))
+                baseActivity.openA(CommonActivity::class, bundle)
             }
             R.id.support -> {
                 baseActivity.openA(Support::class)
             }
-            R.id.add_ticket -> {
-                var bundle = Bundle()
-                bundle.putString(Keys.FROM,baseActivity.getString(R.string.add_ticket))
-                baseActivity.openA(CommonActivity::class,bundle)
-            }
+//            R.id.add_ticket -> {
+//                var bundle = Bundle()
+//                bundle.putString(Keys.FROM, baseActivity.getString(R.string.add_ticket))
+//                baseActivity.openA(CommonActivity::class, bundle)
+//            }
             R.id.loginbtn -> {
                 baseActivity.logout()
             }

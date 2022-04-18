@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cvContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cardCornerRadius="@dimen/_3sdp"
+        app:cardElevation="@dimen/_3sdp"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/_10sdp">
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/ticketsubject"
+                style="@style/boldfont"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_15sdp"
+                android:text="Subject Here"
+                android:textAlignment="center"
+                android:textColor="@color/dark_grey"
+                android:textSize="@dimen/_14sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvStatus"
+                style="@style/semiboldfont"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/round_shape_yellow"
+                android:drawableLeft="@drawable/ic_clock_line"
+                android:drawablePadding="@dimen/_5sdp"
+                android:gravity="center"
+                android:paddingStart="@dimen/_6sdp"
+                android:paddingTop="@dimen/_5sdp"
+                android:paddingEnd="@dimen/_6sdp"
+                android:paddingBottom="@dimen/_5sdp"
+                android:text="Pending"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_10sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvname"
+                style="@style/semiboldfont"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_15sdp"
+                android:text="name"
+                android:textAlignment="center"
+                android:textColor="@color/dark_grey"
+                android:textSize="@dimen/_10sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ticketsubject" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvemail"
+                style="@style/semiboldfont"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_15sdp"
+                android:text="email"
+                android:textAlignment="center"
+                android:textColor="@color/dark_grey"
+                android:textSize="@dimen/_10sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvname" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvmobile"
+                style="@style/semiboldfont"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_15sdp"
+                android:text="mobile"
+                android:textAlignment="center"
+                android:textColor="@color/dark_grey"
+                android:textSize="@dimen/_10sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvemail" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/datecontainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                app:layout_constraintTop_toBottomOf="@+id/tvmobile">
+
+
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/ivprofile"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_centerInParent="true"
+                    android:padding="@dimen/_5sdp"
+                    android:src="@drawable/ic_calendar_line"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/leave_date"
+                    style="@style/semiboldfont"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:maxLength="50"
+                    android:singleLine="true"
+                    android:text="@string/leaves"
+                    android:textColor="@color/grey_blue"
+                    android:textSize="@dimen/_10sdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/ivprofile"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvDate"
+                    style="@style/semiboldfont"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLength="50"
+                    android:singleLine="true"
+                    android:text="29th Jan - 05th Feb"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="@dimen/_10sdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/leave_date"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clpersonalcontainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@+id/datecontainer">
+
+
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/ivmanagerimg"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/userwhite"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvpost"
+                    style="@style/semiboldfont"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:maxLength="50"
+                    android:singleLine="true"
+                    android:text="Manager: "
+                    android:textColor="@color/grey_blue"
+                    android:textSize="@dimen/_10sdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/ivmanagerimg"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvname2"
+                    style="@style/semiboldfont"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:maxLength="50"
+                    android:singleLine="true"
+                    android:text="Alex Shaw"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="@dimen/_10sdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/tvpost"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvmsg"
+                style="@style/semiboldfont"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:lines="2"
+                android:text="I am going for a trip to Goa with my Firends, Kindley grant me leave for same  "
+                android:textColor="@color/grey_blue"
+                android:textSize="@dimen/_10sdp"
+                app:layout_constraintTop_toBottomOf="@+id/clpersonalcontainer" />
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clbutton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@+id/tvmsg">
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/cancelbutton"
+                    style="@style/semiboldfont"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:background="@drawable/rectangle_black_border"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:paddingTop="@dimen/_5sdp"
+                    android:paddingEnd="@dimen/_10sdp"
+                    android:paddingBottom="@dimen/_5sdp"
+                    android:text="@string/cancel"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/_14sdp"
+                    app:layout_constraintEnd_toStartOf="@+id/editbutton"
+                    app:layout_constraintHorizontal_weight="1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/editbutton"
+                    style="@style/semiboldfont"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:background="@drawable/rectangle_black_border"
+                    android:backgroundTint="@color/cool_green"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:paddingTop="@dimen/_5sdp"
+                    android:paddingEnd="@dimen/_10sdp"
+                    android:paddingBottom="@dimen/_5sdp"
+                    android:text="@string/edit"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_14sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_weight="1"
+                    app:layout_constraintStart_toEndOf="@+id/cancelbutton"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

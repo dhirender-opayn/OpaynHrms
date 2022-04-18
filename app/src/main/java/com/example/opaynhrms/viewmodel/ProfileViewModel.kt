@@ -2,6 +2,8 @@ package com.example.opaynhrms.viewmodel
 
 import android.app.Application
 import android.content.Context
+import android.os.Bundle
+import android.util.Log
 import androidx.core.view.GravityCompat
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -18,6 +20,9 @@ import com.example.opaynhrms.ui.Home
 import com.example.opaynhrms.utils.Utils
 
 import com.example.opaynhrms.base.AppViewModel
+import com.example.opaynhrms.common.CommonActivity
+import com.example.opaynhrms.ui.TicketListing
+import com.example.opaynhrms.utils.Keys
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.common_toolbar.view.*
 import kotlinx.android.synthetic.main.withlogin_layout.view.*
@@ -41,6 +46,8 @@ class ProfileViewModel(application: Application) : AppViewModel(application) {
 
 
 
+
+
     private fun settoolbar() {
 
         binder.toolbar.tvtitle.text = baseActivity.getText(R.string.profile)
@@ -57,7 +64,31 @@ class ProfileViewModel(application: Application) : AppViewModel(application) {
       fun setdata() {
         binder.name.text = Home.userModel?.data?.user!!.name
 
-        if (Home.userModel!!.data.user.profile.isNotNull() && Home.userModel!!.data.user.profile.image.isNotNull()) {
+              if (Home.userModel?.data?.user!!.roles.size > 0) {
+
+                  if (Home.userModel?.data?.user!!.roles[0].name.equals(Utils.SUPERADMIN)) {
+                      Log.e("ddfdfdfdf","ddfdfdfdfdfd")
+                      binder.addTicket.setText(baseActivity.getString(R.string.ticket_listing))
+                      binder.addTicket.setOnClickListener {
+                          baseActivity.openA(TicketListing::class)
+                      }
+
+                  } else{
+                      Log.e("ddfdfdfdf","545545454545")
+                      binder.addTicket.setText(baseActivity.getString(R.string.add_ticket))
+                      var bundle = Bundle()
+                      bundle.putString(Keys.FROM, baseActivity.getString(R.string.add_ticket))
+                      binder.addTicket.setOnClickListener {
+                          baseActivity.openA(CommonActivity::class, bundle)
+                      }
+
+                  }
+
+              }
+
+
+
+          if (Home.userModel!!.data.user.profile.isNotNull() && Home.userModel!!.data.user.profile.image.isNotNull()) {
             Glide.with(baseActivity).load(Home.userModel!!.data.user.profile.image)
                 .diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true)
                 .into(binder.ivprofile)

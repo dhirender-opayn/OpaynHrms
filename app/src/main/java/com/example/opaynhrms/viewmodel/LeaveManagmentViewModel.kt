@@ -2,9 +2,7 @@ package com.example.opaynhrms.viewmodel
 
 import android.app.Application
 import android.content.Context
-import android.os.Bundle
 import android.util.Log
-import com.bumptech.glide.util.Util
 import com.example.opaynhrms.R
 import com.example.opaynhrms.adapter.LeaveDetailCartAdapter
 import com.example.opaynhrms.adapter.TotalLeaveStatusAdapter
@@ -12,6 +10,7 @@ import com.example.opaynhrms.base.AppViewModel
 import com.example.opaynhrms.base.KotlinBaseActivity
 import com.example.opaynhrms.common.CommonActivity
 import com.example.opaynhrms.databinding.ActivityLeaveManagementBinding
+import com.example.opaynhrms.extensions.isNotNull
 import com.example.opaynhrms.extensions.showConfirmAlert
 import com.example.opaynhrms.model.LeaveListJson
 import com.example.opaynhrms.model.UserLeaveDetailJson
@@ -35,7 +34,7 @@ class LeaveManagmentViewModel(application: Application) : AppViewModel(applicati
         LeaveManagementRepository(application)
     var userRepository: UserRepository = UserRepository(application)
     var list = ArrayList<LeaveListJson.Data>()
-    var userLeaveJson = ArrayList<UserLeaveDetailJson.Data.Original.Data>()
+    var userLeaveJson = ArrayList<UserLeaveDetailJson.Data>()
 
 
     fun setBinder(binder: ActivityLeaveManagementBinding, baseActivity: KotlinBaseActivity) {
@@ -57,11 +56,29 @@ class LeaveManagmentViewModel(application: Application) : AppViewModel(applicati
         binder.toolbar.tvtitle.text = mContext.getString(R.string.leavemanagment)
     }
 
-    private fun setAdapter() {
+
+    private fun userCategorybyidApi() {
+
+        val userid = Home.userModel?.data?.user!!.id
+
+        userRepository.userCategoryByID(baseActivity, Keys.USER_LEAVE_DETAILS + userid) {
+            if (it.data.isNotNull())
+            {
+                userLeaveJson.addAll(it.data)
+                settotalAdapter()
+
+            }
+
+        }
+    }
+
+
+    private fun settotalAdapter() {
+
         val totalLeaveStatusAdapter = TotalLeaveStatusAdapter(baseActivity) {
 
         }
-        Log.e("checkTotalLeave",userLeaveJson.toString())
+        Log.e("checkTotalLeave", userLeaveJson.toString())
         totalLeaveStatusAdapter.addNewList(userLeaveJson)
         binder.rvTotalleavestatus.adapter = totalLeaveStatusAdapter
 
@@ -86,16 +103,16 @@ class LeaveManagmentViewModel(application: Application) : AppViewModel(applicati
     private fun userLeaveDetailApi() {
 //        val jsonObject = JsonObject()
 //        jsonObject.addProperty(Keys.user_id, Home.userModel?.data?.user?.id)
-        leaveManagementRepository.getLeaveByUser(baseActivity, Utils.AUTHTOKEN, ) {
-            val leaveID = it.data.original.data.forEach { it.leave_Category_id }
-            userLeaveJson.addAll(it.data.original.data)
-            Log.e("checkMatchHolidas", it.data.original.data.toString())
+        leaveManagementRepository.getLeaveByUser(baseActivity, Utils.AUTHTOKEN) {
+            val leaveID = it.data.forEach { it.leave_Category_id }
+//            userLeaveJson.addAll(it.data)
+            Log.e("checkMatchHolidas", it.data.toString())
+            if (Home.userModel?.data?.user!!.roles[0].name.equals(Utils.SUPERADMIN)) {
+                Log.e("dfdsfdsfsdfsdfsd","ADmimn")
 
-            if (Home.userModel?.data?.user!!.roles[0].name.equals(Utils.SUPERADMIN)){
-
-            } else{
-
-                setAdapter()
+            } else {
+                Log.e("dfdsfdsfsdfsdfsd","user")
+                userCategorybyidApi()
             }
 
 

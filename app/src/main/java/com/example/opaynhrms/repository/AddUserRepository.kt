@@ -11,7 +11,8 @@ import com.example.opaynhrms.network.RetrofitClient
 import com.example.opaynhrms.utils.Keys
 import com.example.opaynhrms.utils.Utils
 import com.google.gson.JsonObject
- import retrofit2.Call
+import org.json.JSONObject
+import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
@@ -20,7 +21,7 @@ class AddUserRepository (private val baseActivity: Application)
 
     var retrofitClient: APIInterface? = null
 
-    fun addleavecategory(baseActivity: KotlinBaseActivity, url:String, jsonobject: JsonObject, itemClick: (AddLeaveCategoryJson) -> Unit)
+    fun addleavecategory(baseActivity: KotlinBaseActivity, url:String, jsonobject: JSONObject, itemClick: (AddLeaveCategoryJson) -> Unit)
     {
 
         if (!baseActivity.networkcheck.isNetworkAvailable())

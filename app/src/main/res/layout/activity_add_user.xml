@@ -165,7 +165,8 @@
                                         android:id="@+id/tvMobile"
                                         style="@style/edittextlogintitle"
                                         android:drawableStart="@drawable/ic_baseline_local_phone_24"
-                                        android:inputType="phone" />
+                                        android:inputType="phone"
+                                        android:maxLength="10" />
 
                                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -228,10 +229,10 @@
                                     android:layout_marginEnd="@dimen/_20sdp"
                                     android:background="@drawable/rectangle_black_border"
                                     android:gravity="center"
-                                    android:visibility="gone"
                                     android:hint="Select Category"
                                     android:paddingEnd="@dimen/_10sdp"
                                     android:textSize="@dimen/_12sdp"
+                                    android:visibility="gone"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toBottomOf="@+id/leavetypewrap" />
@@ -240,9 +241,9 @@
                                     android:id="@+id/imArrow"
                                     android:layout_width="@dimen/_15sdp"
                                     android:layout_height="@dimen/_20sdp"
-                                    android:visibility="gone"
                                     android:layout_marginEnd="@dimen/_10sdp"
                                     android:src="@drawable/ic_down_arrow"
+                                    android:visibility="gone"
                                     app:layout_constraintBottom_toBottomOf="@+id/tvCategoryname"
                                     app:layout_constraintEnd_toEndOf="@+id/tvCategoryname"
                                     app:layout_constraintTop_toTopOf="@+id/tvCategoryname" />
@@ -271,21 +272,19 @@
                                 </androidx.cardview.widget.CardView>
 
 
-
                                 <androidx.recyclerview.widget.RecyclerView
+                                    android:id="@+id/rvCategoryEdit"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginStart="@dimen/_22sdp"
                                     android:layout_marginTop="@dimen/_10sdp"
                                     android:layout_marginEnd="@dimen/_22sdp"
-                                    android:id="@+id/rvCategoryEdit"
-                                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                                     android:orientation="vertical"
+                                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                                    app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toBottomOf="@+id/tvCategoryname"
-                                    tools:listitem="@layout/item_category_lables"
-                                   app:layout_constraintBottom_toBottomOf="parent"
-                                    />
+                                    tools:listitem="@layout/item_category_lables" />
 
 
                             </androidx.constraintlayout.widget.ConstraintLayout>

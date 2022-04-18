@@ -11,6 +11,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.util.Util
 import com.example.opaynhrms.R
 import com.example.opaynhrms.adapter.CategoryLabelAdapter
 import com.example.opaynhrms.adapter.LeaveCategoryAdapter
@@ -28,10 +29,15 @@ import com.example.opaynhrms.repository.UserRepository
 import com.example.opaynhrms.ui.Home
 import com.example.opaynhrms.utils.Keys
 import com.example.opaynhrms.utils.Utils
+import com.google.gson.JsonArray
 import com.google.gson.JsonObject
 import com.ieltslearning.listner.ItemClick
 import kotlinx.android.synthetic.main.common_toolbar.view.*
 import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.toRequestBody
+import org.json.JSONArray
+import org.json.JSONObject
+import retrofit2.http.Multipart
 import java.io.File
 
 
@@ -58,6 +64,12 @@ class AddUserViewModel(application: Application) : AppViewModel(application), Vi
     var arrayCatId: ArrayList<String> = ArrayList<String>()
     var getuserData: LoginJson.Data? = null
     var totalleave = 0
+    var categoryIdString = ""
+    var ansarray = JSONArray()
+    var ansarrayObj = JSONObject()
+    var hashMap = HashMap<String, String>()
+    var r = ArrayList<String>()
+    var jsonloop = ArrayList<JSONObject>()
     fun setBinder(binder: ActivityAddUserBinding, baseActivity: KotlinBaseActivity) {
         this.binder = binder
         this.mContext = binder.root.context
@@ -90,7 +102,10 @@ class AddUserViewModel(application: Application) : AppViewModel(application), Vi
             Home.categoryTypeListingJson!!.data.forEach {
                 categorylist.add(it.category)
             }
-            categoryadpterLabel(Home.categoryTypeListingJson!!.data)
+            Home.categoryTypeListingJson?.data.let {
+                it?.let { it1 -> categoryadpterLabel(it1) }
+            }
+
         }
     }
 
@@ -188,11 +203,33 @@ class AddUserViewModel(application: Application) : AppViewModel(application), Vi
     }
 
     private fun createUser() {
+
+
         var url = ""
         val fields = java.util.ArrayList<MultipartBody.Part>()
         Utils.getMultiPart(Keys.name, binder.tvName.text.toString())?.let { fields.add(it) }
         Utils.getMultiPart(Keys.email, binder.tvEmail.text.toString())?.let { fields.add(it) }
         Utils.getMultiPart(Keys.mobile, binder.tvMobile.text.toString())?.let { fields.add(it) }
+        val leaveArray = JSONArray()
+        Home.categoryTypeListingJson?.data?.forEach {
+            if (it.count.isNotNull() && !it.count.isEmpty()) {
+                val jsonObject = JSONObject()
+                jsonObject.put("id", it.id.toString())
+                jsonObject.put("leave", it.count)
+                leaveArray.put(jsonObject)
+            }
+        }
+        Log.e("jsonarray", leaveArray.toString())
+
+
+//
+//        Utils.getMultiPart(Keys.leaves, categoryIdString)?.let {
+//            fields.add(it) }
+
+        Utils.getMultiPart(Keys.leaves, leaveArray.toString())?.let {
+            fields.add(it)
+        }
+
         // create user
         if (!binder.tvtitle.text.toString().equals(baseActivity.getString(R.string.edituser))) {
             url = Keys.DELTEUSER
@@ -208,6 +245,7 @@ class AddUserViewModel(application: Application) : AppViewModel(application), Vi
         if (file != null) {
             Utils.getMultiPart(Keys.image, file!!)?.let { fields.add(it) }
         }
+
         userRepository.adduser(baseActivity, url, fields) {
             if (!it.data.isNull()) {
 
@@ -217,7 +255,7 @@ class AddUserViewModel(application: Application) : AppViewModel(application), Vi
                 Log.e("ieieieiei", getuserData?.user!!.id.toString())
 
                 if (userid.isEmpty()) {
-                    addleavecategoryapi()
+//                    addleavecategoryapi()
 //                    baseActivity.showtoast(context.getString(R.string.user_added_successfully))
                     baseActivity.customSnackBar(
                         baseActivity.getString(R.string.user_added_successfully),
@@ -236,22 +274,22 @@ class AddUserViewModel(application: Application) : AppViewModel(application), Vi
         }
     }
 
-    private fun leaveCategory() {
-        requestRepository.leaveCategory(baseActivity) {
-            if (it.data.isNotNull()) {
-
-                leaveCategorylist.addAll(it.data)
-                it.data.forEach {
-                    categorylist.add(it.category)
-
-                }
-//                leaveCategoryAdapter(categorylist)
-                categoryadpterLabel(leaveCategorylist)
-
-
-            }
-        }
-    }
+//    private fun leaveCategory() {
+//        requestRepository.leaveCategory(baseActivity) {
+//            if (it.data.isNotNull()) {
+//
+//                leaveCategorylist.addAll(it.data)
+//                it.data.forEach {
+//                    categorylist.add(it.category)
+//
+//                }
+////                leaveCategoryAdapter(categorylist)
+//                categoryadpterLabel(leaveCategorylist)
+//
+//
+//            }
+//        }
+//    }
 
     //custom category adaper
 //    private fun leaveCategoryAdapter(_categorylist: ArrayList<String>) {
@@ -282,17 +320,25 @@ class AddUserViewModel(application: Application) : AppViewModel(application), Vi
 
     private fun categoryadpterLabel(mCategorylist: List<LeaveCategoryJson.Data>) {
         val adapter = CategoryLabelAdapter(baseActivity) {
-            position = it
+//            position = it
+//
+//            catId = mCategorylist[it].id.toString()
+//            arrayCatId.add(catId)
+//
+//
+//            hashMap.put("id", catId)
+//            hashMap.put("value", mCategorylist[it].count)
+//
+//
+//
+//            categoryIdString += mCategorylist[it].count.toString() + ","
+//
+//            r.add(mCategorylist[it].count)
 
-            catId = mCategorylist[it].id.toString()
-            arrayCatId.add(catId)
 
-
-
-//            Log.e("nulcheckerrnow", arrayCatId.toString())
-            Log.e("nulcheckerrnow", mCategorylist[it].count.toString())
-
+//            categoryIdString += map
         }
+
 
         adapter.addNewList(mCategorylist)
 
@@ -304,12 +350,13 @@ class AddUserViewModel(application: Application) : AppViewModel(application), Vi
         Log.e("catLogId::", catId.toString())
 
 
-        val jsonObject = JsonObject()
-        jsonObject.addProperty(Keys.user_id, getuserData?.user!!.id.toString())
-//        jsonObject.addProperty(Keys.leave_category_id2, arrayCatId.toString())
-        jsonObject.addProperty(Keys.leave_category_id2, catId.toString())
-        jsonObject.addProperty(Keys.total_leaves, totalleave)
-        jsonObject.addProperty(Keys.available_leaves, totalleave)
+        val jsonObject = JSONObject()
+
+        jsonObject.put(Keys.user_id, getuserData?.user!!.id.toString())
+        jsonObject.put(Keys.leave_category_id2, ansarray.toString())
+//        jsonObject.addProperty(Keys.leave_category_id2, catId.toString())
+        jsonObject.put(Keys.total_leaves, totalleave)
+        jsonObject.put(Keys.available_leaves, totalleave)
 
         addUserRepository.addleavecategory(baseActivity, "add-leave-details", jsonObject) {
 

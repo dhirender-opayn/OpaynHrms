@@ -8,7 +8,6 @@ import com.example.opaynhrms.network.APIInterface
 import com.example.opaynhrms.network.RetrofitClient
 import com.example.opaynhrms.utils.Keys
 import com.example.opaynhrms.utils.Utils
-import com.google.gson.JsonObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -20,7 +19,6 @@ class LeaveManagementRepository(private val baseActivity: Application) {
     fun getLeaveByUser(
         baseActivity: KotlinBaseActivity,
         url: String,
-
          itemClick: (UserLeaveDetailJson) -> Unit
     ) {
 
