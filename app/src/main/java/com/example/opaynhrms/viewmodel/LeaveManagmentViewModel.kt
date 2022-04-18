@@ -35,6 +35,8 @@ class LeaveManagmentViewModel(application: Application) : AppViewModel(applicati
     var userRepository: UserRepository = UserRepository(application)
     var list = ArrayList<LeaveListJson.Data>()
     var userLeaveJson = ArrayList<UserLeaveDetailJson.Data>()
+    val categorylist = ArrayList<UserLeaveDetailJson.Data>()
+    var categoryAvaliableListingJson: UserLeaveDetailJson? = null
 
 
     fun setBinder(binder: ActivityLeaveManagementBinding, baseActivity: KotlinBaseActivity) {
@@ -47,9 +49,18 @@ class LeaveManagmentViewModel(application: Application) : AppViewModel(applicati
 //        setAdapter()
         settoolbar()
         leavelist()
+
+        if (Home.userModel?.data?.user!!.roles[0].name.equals(Utils.SUPERADMIN)){
+
+        } else {
+            userCategorybyidApi()
+        }
+
+
         userLeaveDetailApi()
 
     }
+
 
 
     private fun settoolbar() {
@@ -140,7 +151,8 @@ class LeaveManagmentViewModel(application: Application) : AppViewModel(applicati
                     list[position].id.toString(),
                     list[position].leave_category_id.toString(),
                     "1",
-                    "Are you sure you want to approve the leave"
+                    "Are you sure you want to approve the leave",
+                    list[position].reason_for_rejection
                 )
             }
             "2" -> {
@@ -149,7 +161,8 @@ class LeaveManagmentViewModel(application: Application) : AppViewModel(applicati
                     list[position].id.toString(),
                     list[position].leave_category_id.toString(),
                     "2",
-                    "Are you sure yoi want to cancel the leave"
+                    "Are you sure yoi want to cancel the leave",
+                    list[position].reason_for_rejection
                 )
             }
             "3" -> {
@@ -170,7 +183,8 @@ class LeaveManagmentViewModel(application: Application) : AppViewModel(applicati
         id: String,
         cateogory_id: String,
         type: String,
-        msg: String
+        msg: String,
+        reason:String
     ) {
         baseActivity.showConfirmAlert(msg, "Ok", "Cancel", onConfirmed = {
             val jsonobj = JsonObject()
@@ -178,6 +192,8 @@ class LeaveManagmentViewModel(application: Application) : AppViewModel(applicati
             jsonobj.addProperty(Keys.id, id)
             jsonobj.addProperty(Keys.status, type)
             jsonobj.addProperty(Keys.leave_category_id2, cateogory_id)
+            jsonobj.addProperty(Keys.reject_reason,reason)
+            Log.e("erererer",jsonobj.toString())
 
             userRepository.commonpostwithtoken(baseActivity, Keys.LEAVESTATUS, jsonobj) {
                 leavelist()

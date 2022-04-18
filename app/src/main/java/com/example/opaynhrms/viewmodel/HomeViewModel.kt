@@ -24,6 +24,7 @@ import com.example.opaynhrms.extensions.*
 import com.example.opaynhrms.fragment.AddHoliday
 import com.example.opaynhrms.fragment.ReportingFragment
 import com.example.opaynhrms.repository.RequestRepository
+import com.example.opaynhrms.repository.UserRepository
 import com.example.opaynhrms.ui.EditProfile
 import com.example.opaynhrms.ui.Home
 import com.example.opaynhrms.ui.Notification
@@ -36,6 +37,7 @@ import kotlinx.android.synthetic.main.withlogin_layout.view.*
 
 class HomeViewModel(application: Application) : AppViewModel(application) {
     var requestRepository: RequestRepository = RequestRepository(application)
+    var userRepository: UserRepository = UserRepository(application)
     private lateinit var binder: ActivityHomeBinding
     private lateinit var mContext: Context
     lateinit var baseActivity: KotlinBaseActivity
@@ -58,13 +60,14 @@ class HomeViewModel(application: Application) : AppViewModel(application) {
             R.drawable.ic_bottom_add_holiday,
             R.drawable.ic_profile,
 
-        )
+            )
         setclicks()
         getuserdata()
         checkuser()
         setSideMenuClick()
         leaveTypeApi()
         leaveCategory()
+
     }
 
     private fun leaveTypeApi() {
@@ -86,6 +89,9 @@ class HomeViewModel(application: Application) : AppViewModel(application) {
             }
         }
     }
+
+
+
 
 
     private fun checkuser() {
@@ -118,7 +124,7 @@ class HomeViewModel(application: Application) : AppViewModel(application) {
             jsondata = it.toString()
             userModel = gson.fromJson(jsondata, LoginJson::class.java)
             binder.showDrawer.tvname.text = userModel?.data!!.user.name.capitalizedFirstLetter()
-            if (userModel!!.data.user.isNotNull()){
+            if (userModel!!.data.user.isNotNull()) {
                 binder.showDrawer.tvrank.text = userModel?.data!!.user.roles[0].name
             } else {
                 binder.showDrawer.tvrank.text = userModel?.data!!.user.email
@@ -126,14 +132,12 @@ class HomeViewModel(application: Application) : AppViewModel(application) {
 
             Log.e("tokeeenenne", userModel.toString())
 
-            if (userModel!!.data.user.profile.isNotNull() && userModel!!.data.user.profile.image.isNotNull())
-            {
+            if (userModel!!.data.user.profile.isNotNull() && userModel!!.data.user.profile.image.isNotNull()) {
 //                Picasso.get().load(Home.userModel!!.data.user.profile.image).placeholder(R.drawable.userwhite).into(binder.ivprofile)
                 Glide.with(baseActivity).load(userModel!!.data.user.profile.image)
                     .diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true)
                     .into(binder.showDrawer.ivuserprofile)
             }
-
 
 
         }
@@ -146,8 +150,6 @@ class HomeViewModel(application: Application) : AppViewModel(application) {
         }
 
     }
-
-
 
 
     private fun setSideMenuClick() {
@@ -182,7 +184,7 @@ class HomeViewModel(application: Application) : AppViewModel(application) {
         }
         binder.showDrawer.tvfaq.setOnClickListener {
             binder.drawerLayout.closeDrawers()
-            bundle.putString(Keys.FROM,Keys.FAQ)
+            bundle.putString(Keys.FROM, Keys.FAQ)
             baseActivity.openA(CommonActivity::class, this.bundle)
 
         }
@@ -190,7 +192,6 @@ class HomeViewModel(application: Application) : AppViewModel(application) {
         binder.showDrawer.tvlogout.setOnClickListener {
             baseActivity.logout()
         }
-
 
 
     }
@@ -240,7 +241,7 @@ class HomeViewModel(application: Application) : AppViewModel(application) {
                 R.drawable.ic_bottom_add_holiday,
                 R.drawable.ic_profile,
 
-            )
+                )
             if (baseActivity.networkcheck.isNetworkAvailable()) {
                 Log.e("chedkdfjhdf", "165615451")
                 baseActivity.navigateToFragment(HomeFragement(baseActivity), bundle, false)
@@ -261,7 +262,7 @@ class HomeViewModel(application: Application) : AppViewModel(application) {
                 R.drawable.ic_bottom_add_holiday,
                 R.drawable.ic_profile,
 
-            )
+                )
             if (baseActivity.networkcheck.isNetworkAvailable()) {
                 bundle.putString(Keys.FROM, baseActivity.getString(R.string.notification))
                 baseActivity.navigateToFragment(Notification(baseActivity), bundle, false)
@@ -320,8 +321,8 @@ class HomeViewModel(application: Application) : AppViewModel(application) {
                 R.drawable.ic_profile
             )
             if (baseActivity.networkcheck.isNetworkAvailable()) {
-                bundle.putString(Keys.FROM,baseActivity.getString(R.string.home))
-                 baseActivity.navigateToFragment(AddHoliday(baseActivity), bundle, false)
+                bundle.putString(Keys.FROM, baseActivity.getString(R.string.home))
+                baseActivity.navigateToFragment(AddHoliday(baseActivity), bundle, false)
 
             } else {
                 nointertnetview()
@@ -354,7 +355,14 @@ class HomeViewModel(application: Application) : AppViewModel(application) {
         binder.container.invisible()
     }
 
-    private fun changeIcon(home: Int, notification: Int, announcement: Int,salary:Int,addholiday:Int,  profile: Int) {
+    private fun changeIcon(
+        home: Int,
+        notification: Int,
+        announcement: Int,
+        salary: Int,
+        addholiday: Int,
+        profile: Int
+    ) {
 
         binder.bottomNav.home.setImageResource(home)
         binder.bottomNav.statistics.setImageResource(notification)

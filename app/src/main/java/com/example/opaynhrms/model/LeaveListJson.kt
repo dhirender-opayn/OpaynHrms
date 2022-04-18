@@ -22,7 +22,9 @@ data class LeaveListJson(
         val leave_type_id : Int,
         val updated_at: String,
         val user: User,
-        val user_id: Int
+        val user_id: Int,
+        val reject_reason:String,
+        var reason_for_rejection:String = ""
     ) :Serializable {
         data class User(
             val created_at: String,

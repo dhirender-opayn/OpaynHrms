@@ -83,8 +83,9 @@ class LeaveDetailViewModel(application: Application) : AppViewModel(application)
                             datauser?.id.toString(),
                            datauser?.leave_category_id.toString(),
                             "1",
-                            "Are you sure you want to approve the leave"
-                        )
+                            "Are you sure you want to approve the leave",
+                            datauser?.reason_for_rejection.toString()
+                         )
                     }
                     binder.cancelbutton.setOnClickListener {
                         acceptreject(
@@ -92,7 +93,8 @@ class LeaveDetailViewModel(application: Application) : AppViewModel(application)
                             datauser?.id.toString(),
                             datauser?.leave_category_id.toString(),
                             "2",
-                            "Are you sure yoi want to cancel the leave"
+                            "Are you sure yoi want to cancel the leave",
+                            datauser?.reason_for_rejection.toString()
                         )
                     }
                 }
@@ -123,6 +125,8 @@ class LeaveDetailViewModel(application: Application) : AppViewModel(application)
             0 -> {
                 if (Home.rollname.equals(Utils.SUPERADMIN)) {
                     binder.clbutton.visible()
+                    binder.tvlabel.visible()
+                    binder.reasonwrap.visible()
                 }
                 binder.tvStatus.text = baseActivity.getString(R.string.pending)
                 binder.tvStatus.setBackground(baseActivity.getDrawable(R.drawable.round_shape_yellow))
@@ -130,10 +134,14 @@ class LeaveDetailViewModel(application: Application) : AppViewModel(application)
             1 -> {
                 binder.tvStatus.text = baseActivity.getString(R.string.accept)
                 binder.clbutton.gone()
+               binder.tvlabel.gone()
+               binder.reasonwrap.gone()
                 binder.tvStatus.setBackground(baseActivity.getDrawable(R.drawable.round_shape_green))
             }
             2 -> {
                 binder.tvStatus.text = baseActivity.getString(R.string.reject)
+                binder.tvlabel.gone()
+                binder.reasonwrap.gone()
                 binder.tvStatus.setBackground(baseActivity.getDrawable(R.drawable.round_shape_red))
                 binder.clbutton.gone()
             }
@@ -195,13 +203,15 @@ class LeaveDetailViewModel(application: Application) : AppViewModel(application)
     }
 
 
-    private fun acceptreject(user_id: String, id: String,cateogory_id:String, type: String, msg: String) {
+    private fun acceptreject(user_id: String, id: String,cateogory_id:String, type: String, msg: String,reason:String) {
         baseActivity.showConfirmAlert(msg, "Ok", "Cancel", onConfirmed = {
             val jsonobj = JsonObject()
             jsonobj.addProperty(Keys.user_id, user_id)
             jsonobj.addProperty(Keys.id, id)
             jsonobj.addProperty(Keys.status, type)
             jsonobj.addProperty(Keys.leave_category_id2, cateogory_id)
+            jsonobj.addProperty(Keys.reject_reason,reason)
+
             userRepository.commonpostwithtoken(baseActivity, Keys.LEAVESTATUS, jsonobj) {
                 Log.e("eddddddddddddd","eeeeeeeeeeeeeeeeeeeeeee")
 

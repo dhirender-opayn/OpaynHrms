@@ -37,6 +37,7 @@
                     android:layout_width="@dimen/_100sdp"
                     android:layout_height="@dimen/_100sdp"
                     android:layout_gravity="center"
+                    android:visibility="gone"
                     app:cpb_background_progressbar_color="@color/progress_grey"
                     app:cpb_background_progressbar_width="@dimen/_3sdp"
                     app:cpb_progress_direction="to_right"

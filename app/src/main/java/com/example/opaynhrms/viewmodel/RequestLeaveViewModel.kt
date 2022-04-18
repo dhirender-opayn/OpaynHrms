@@ -1,5 +1,6 @@
 package com.example.opaynhrms.viewmodel
 
+import RequestCategoryAdapter
 import android.app.Application
 import android.content.Context
 import android.os.Bundle
@@ -18,8 +19,8 @@ import com.example.opaynhrms.extensions.gone
 import com.example.opaynhrms.extensions.isNotNull
 import com.example.opaynhrms.extensions.isNull
 import com.example.opaynhrms.extensions.visible
-import com.example.opaynhrms.model.LeaveCategoryJson
 import com.example.opaynhrms.model.LeaveTypeJson
+import com.example.opaynhrms.model.UserLeaveDetailJson
 import com.example.opaynhrms.repository.RequestRepository
 import com.example.opaynhrms.repository.UserRepository
 import com.example.opaynhrms.ui.Home
@@ -32,7 +33,6 @@ import okhttp3.MultipartBody
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
 
 
 class RequestLeaveViewModel(application: Application) : AppViewModel(application),
@@ -49,11 +49,13 @@ class RequestLeaveViewModel(application: Application) : AppViewModel(application
     var leaveid = ""
     var categoryid = ""
     var isdateshow = true
+    var flag = false
     var requestRepository: RequestRepository = RequestRepository(application)
     val typelisting = ArrayList<String>()
     val leaveTypelist = ArrayList<LeaveTypeJson.Data>()
-    val leaveCategorylist = ArrayList<LeaveCategoryJson.Data>()
-    val categorylist = ArrayList<String>()
+    val leaveCategorylist = ArrayList<UserLeaveDetailJson.Data>()
+    val categorylist = ArrayList<UserLeaveDetailJson.Data>()
+    var categoryAvaliableListingJson: UserLeaveDetailJson? = null
     fun setBinder(binder: ActivityRequestLeaveBinding, baseActivity: KotlinBaseActivity) {
         this.binder = binder
         this.mContext = binder.root.context
@@ -62,9 +64,24 @@ class RequestLeaveViewModel(application: Application) : AppViewModel(application
         setclicks()
         settoolbar()
         leaveListing()
-
-
+        userLeaveCategory()
     }
+
+    private fun userLeaveCategory() {
+        val userid = Home.userModel?.data?.user!!.id
+
+        userRepository.userCategoryByID(baseActivity, Keys.USER_LEAVE_DETAILS + userid) {
+            if (it.data.isNotNull()) {
+                categoryAvaliableListingJson = it
+                categoryAvaliableListingJson!!.data.forEach {
+                    categorylist.add(it)
+                }
+                leaveCategoryAdapter()
+
+            }
+        }
+    }
+
 
     private fun leaveListing() {
         if (Home.leaveTypeListingJson?.data.isNotNull() && Home.leaveTypeListingJson?.data!!.size > 0) {
@@ -76,16 +93,16 @@ class RequestLeaveViewModel(application: Application) : AppViewModel(application
             }
             leavetypeAdapter(typelisting)
         }
+    }
 
-        if (Home.categoryTypeListingJson?.data.isNotNull() && Home.categoryTypeListingJson?.data!!.size > 0) {
-
-            leaveCategorylist.addAll(Home.categoryTypeListingJson!!.data)
-            Home.categoryTypeListingJson!!.data.forEach {
-                categorylist.add(it.category)
-
-            }
-            leaveCategoryAdapter(categorylist)
+    private fun leaveCategoryAdapter() {
+        val adapter = RequestCategoryAdapter(baseActivity) {
+            binder.tvCategoryname.setText(categorylist[it].catgeory.category)
+            categoryid = categorylist[it].leave_Category_id.toString()
+            hideRvCategory()
         }
+        adapter.addNewList(categorylist)
+        binder.rvleaveCategory.adapter = adapter
     }
 
     // for calling leave catgogry API
@@ -200,6 +217,7 @@ class RequestLeaveViewModel(application: Application) : AppViewModel(application
                     binder.radiogrp.gone()
                     binder.datecontainer.gone()
                     binder.dateWrap.visible()
+
                     binder.timecontainer.visible()
                 }
             }
@@ -265,18 +283,18 @@ class RequestLeaveViewModel(application: Application) : AppViewModel(application
         return true
     }
 
-    private fun leaveCategoryAdapter(_categorylist: ArrayList<String>) {
-        val aa = ArrayAdapter(baseActivity, R.layout.spinner_layout, _categorylist)
-        binder.tvleaveCategory.setAdapter(aa)
-        binder.tvleaveCategory.setFocusable(false)
-        binder.tvleaveCategory.setFocusableInTouchMode(false)
-        binder.tvleaveCategory.setOnClickListener(this)
-        binder.tvleaveCategory.setKeyListener(null)
-        binder.tvleaveCategory.setOnItemClickListener(AdapterView.OnItemClickListener { adapterView, view, i, l ->
-            categoryid = leaveCategorylist[i].id.toString()
-
-        })
-    }
+//    private fun leaveCategoryAdapter(_categorylist: ArrayList<String>) {
+//        val aa = ArrayAdapter(baseActivity, R.layout.spinner_layout, _categorylist)
+//        binder.tvleaveCategory.setAdapter(aa)
+//        binder.tvleaveCategory.setFocusable(false)
+//        binder.tvleaveCategory.setFocusableInTouchMode(false)
+//        binder.tvleaveCategory.setOnClickListener(this)
+//        binder.tvleaveCategory.setKeyListener(null)
+//        binder.tvleaveCategory.setOnItemClickListener(AdapterView.OnItemClickListener { adapterView, view, i, l ->
+//            categoryid = leaveCategorylist[i].id.toString()
+//
+//        })
+//    }
 
     private fun settoolbar() {
         binder.toolbar.tvtitle.setTextColor(ContextCompat.getColor(baseActivity, R.color.black_4))
@@ -286,7 +304,25 @@ class RequestLeaveViewModel(application: Application) : AppViewModel(application
     }
 
 
+    private fun hideRvCategory() {
+        binder.rvleaveCategory.gone()
+        flag = false
+    }
+
     private fun setclicks() {
+
+        binder.tvCategoryname.setOnClickListener {
+            if (!flag) {
+
+                binder.rvleaveCategory.visible()
+                flag = true
+            } else {
+                binder.rvleaveCategory.gone()
+                flag = false
+            }
+
+        }
+
 
         binder.date.setOnTouchListener(object : View.OnTouchListener {
             override fun onTouch(p0: View?, p1: MotionEvent?): Boolean {
@@ -347,6 +383,11 @@ class RequestLeaveViewModel(application: Application) : AppViewModel(application
                 showToast("Please select start date first")
                 return@setEndIconOnClickListener
             }
+
+            val r = binder.startdate.text.toString()
+            Log.e("ddfdfsdfdsfeee", r.toString())
+
+
             if (isdateshow) {
                 isdateshow = false
                 Utils.shoedatepicker(baseActivity, binder.enddate, onConfirmed = {
@@ -356,7 +397,6 @@ class RequestLeaveViewModel(application: Application) : AppViewModel(application
 
         }
         binder.startdatewrap.setEndIconOnClickListener {
-
 
             if (isdateshow) {
                 isdateshow = false

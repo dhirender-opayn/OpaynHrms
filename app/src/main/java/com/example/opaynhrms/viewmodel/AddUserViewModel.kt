@@ -4,14 +4,11 @@ import android.app.Application
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
-import android.view.MotionEvent
 import android.view.View
-import android.view.View.OnTouchListener
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.util.Util
 import com.example.opaynhrms.R
 import com.example.opaynhrms.adapter.CategoryLabelAdapter
 import com.example.opaynhrms.adapter.LeaveCategoryAdapter
@@ -29,15 +26,11 @@ import com.example.opaynhrms.repository.UserRepository
 import com.example.opaynhrms.ui.Home
 import com.example.opaynhrms.utils.Keys
 import com.example.opaynhrms.utils.Utils
-import com.google.gson.JsonArray
-import com.google.gson.JsonObject
 import com.ieltslearning.listner.ItemClick
 import kotlinx.android.synthetic.main.common_toolbar.view.*
 import okhttp3.MultipartBody
-import okhttp3.RequestBody.Companion.toRequestBody
 import org.json.JSONArray
 import org.json.JSONObject
-import retrofit2.http.Multipart
 import java.io.File
 
 
@@ -88,7 +81,7 @@ class AddUserViewModel(application: Application) : AppViewModel(application), Vi
         getroles()
 //        leaveCategory()
         leaveListing()
-//        leaveCategoryAdapter(categorylist)
+        leaveCategoryAdapter(categorylist)
 //        categoryadpterLabel(categorylist)
 
     }
@@ -292,31 +285,31 @@ class AddUserViewModel(application: Application) : AppViewModel(application), Vi
 //    }
 
     //custom category adaper
-//    private fun leaveCategoryAdapter(_categorylist: ArrayList<String>) {
-//        val adapter = LeaveCategoryAdapter(baseActivity) {
-//            hideRvCategory()
-////            categoryadpterLabel(_categorylist)
+    private fun leaveCategoryAdapter(_categorylist: ArrayList<String>) {
+        val adapter = LeaveCategoryAdapter(baseActivity) {
+            hideRvCategory()
+//            categoryadpterLabel(_categorylist)
+
+
+//            binder.llcoantiner.visible()
+//            binder.tvcategory.setText(_categorylist[it])
+//            binder.tvCategoryname.setText(_categorylist[it])
+//            val catId = leaveCategorylist[it].id.toString()
 //
 //
-////            binder.llcoantiner.visible()
-////            binder.tvcategory.setText(_categorylist[it])
-////            binder.tvCategoryname.setText(_categorylist[it])
-////            val catId = leaveCategorylist[it].id.toString()
-////
-////
-////
-////            binder.tvAddCateogry.setOnClickListener {
-////                binder.llcoantiner.gone()
-////                val text = binder.tvCategoryCount.text.toString()
-////                Log.e("Hellodata", text)
-////                binder.tvcategory.setText("")
-////                binder.tvCategoryname.setText("")
-////            }
 //
-//        }
-//        adapter.addNewList(_categorylist)
-//        binder.rvCategory.adapter = adapter
-//    }
+//            binder.tvAddCateogry.setOnClickListener {
+//                binder.llcoantiner.gone()
+//                val text = binder.tvCategoryCount.text.toString()
+//                Log.e("Hellodata", text)
+//                binder.tvcategory.setText("")
+//                binder.tvCategoryname.setText("")
+//            }
+
+        }
+        adapter.addNewList(_categorylist)
+        binder.rvCategory.adapter = adapter
+    }
 
     private fun categoryadpterLabel(mCategorylist: List<LeaveCategoryJson.Data>) {
         val adapter = CategoryLabelAdapter(baseActivity) {

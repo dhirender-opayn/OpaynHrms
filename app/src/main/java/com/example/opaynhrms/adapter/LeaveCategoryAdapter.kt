@@ -18,7 +18,4 @@ class LeaveCategoryAdapter(val baseActivity: KotlinBaseActivity, val itemClick: 
            }
         }
     }
-
-
-
 }

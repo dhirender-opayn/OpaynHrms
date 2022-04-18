@@ -142,6 +142,7 @@
     <string name="pending">Pending</string>
     <string name="accept">Accpet</string>
     <string name="reject">Reject</string>
+    <string name="rejection_reason">Rejection Reason</string>
     <string name="leavemanagement">LeaveManagement</string>
     <string name="edituser">Edit User</string>
     <string name="update">Update</string>
@@ -181,6 +182,8 @@
     <string name="user_updated_successfully">User update successfully</string>
     <string name="search">Search</string>
     <string name="ticket_listing">Ticket Listing</string>
+    <string name="note_if_you_want_to_reject_leave_please_give_reason">NOTE: If You want to Reject Leave, Please give Reason</string>
+    <string name="apply_date">Apply Date:</string>
 
 
 </resources>

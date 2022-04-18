@@ -6,14 +6,9 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.opaynhrms.R
 import com.example.opaynhrms.base.KotlinBaseActivity
 import com.example.opaynhrms.databinding.ActivityHomeBinding
-import com.example.opaynhrms.extensions.isNotNull
 import com.example.opaynhrms.fragment.HomeFragement
-import com.example.opaynhrms.model.LeaveCategoryJson
-import com.example.opaynhrms.model.LeaveTypeJson
-import com.example.opaynhrms.model.LoginJson
-import com.example.opaynhrms.repository.RequestRepository
+import com.example.opaynhrms.model.*
 import com.example.opaynhrms.viewmodel.HomeViewModel
-import com.google.gson.Gson
 
 class Home : KotlinBaseActivity(R.id.container) {
     lateinit var binding: ActivityHomeBinding
@@ -40,6 +35,7 @@ class Home : KotlinBaseActivity(R.id.container) {
         var rollname = ""
         var leaveTypeListingJson:  LeaveTypeJson? = null
         var categoryTypeListingJson: LeaveCategoryJson? = null
+
 
     }
 

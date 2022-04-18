@@ -5,7 +5,7 @@ package com.example.opaynhrms.adapter
 import com.example.opaynhrms.base.KotlinBaseActivity
  import com.example.opaynhrms.extensions.gone
  import com.example.opaynhrms.model.LeaveCategoryJson
-import com.ieltslearning.base.BaseAdapter
+ import com.ieltslearning.base.BaseAdapter
 import kotlinx.android.synthetic.main.item_category_lables.view.*
 
 

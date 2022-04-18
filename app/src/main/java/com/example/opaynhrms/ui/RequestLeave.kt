@@ -113,8 +113,10 @@ class RequestLeave : KotlinBaseActivity() {
                                 val cR: ContentResolver = getContentResolver()
                                 val mime = MimeTypeMap.getSingleton()
                                 val type: String? = mime.getExtensionFromMimeType(cR.getType(uri))
-                                if (type.equals("pdf") || type.equals("doc") || type.equals("png") ||
-                                    type.equals("jpeg") || type.equals("xlsx") || type.equals("jpg")
+//                                if (type.equals("pdf") || type.equals("doc") || type.equals("png") ||
+//                                    type.equals("jpeg") || type.equals("xlsx") || type.equals("jpg")
+                                if (  type.equals("doc") || type.equals("png") ||
+                                    type.equals("jpeg") ||  type.equals("jpg")
                                 ) {
                                     val fileSizeInBytes: Long = tempfile.length()
                                     val fileSizeInKB = fileSizeInBytes / 1024

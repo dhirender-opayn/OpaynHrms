@@ -129,6 +129,60 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/leavesDate" />
 
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/applydate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        app:layout_constraintTop_toBottomOf="@+id/hrname">
+
+
+                        <com.makeramen.roundedimageview.RoundedImageView
+                            android:id="@+id/ivprofile2"
+                            android:layout_width="@dimen/_20sdp"
+                            android:layout_height="@dimen/_20sdp"
+                            android:layout_centerInParent="true"
+                            android:padding="@dimen/_5sdp"
+                            android:src="@drawable/ic_calendar_line"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvapplydate"
+                            style="@style/semiboldfont"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:maxLength="50"
+                            android:singleLine="true"
+                            android:text="@string/apply_date"
+                            android:textColor="@color/grey_blue"
+                            android:textSize="@dimen/_10sdp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/ivprofile2"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvapplyDate"
+                            style="@style/semiboldfont"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:maxLength="50"
+                            android:layout_marginStart="@dimen/_3sdp"
+                            android:singleLine="true"
+                            android:text="29th Jan - 05th Feb"
+                            android:textColor="@color/dark_grey"
+                            android:textSize="@dimen/_10sdp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/tvapplydate"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
                     <View
                         android:id="@+id/view3"
@@ -136,7 +190,7 @@
                         android:layout_height="@dimen/_1sdp"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:background="@color/light_gre1"
-                        app:layout_constraintTop_toBottomOf="@+id/hrname" />
+                        app:layout_constraintTop_toBottomOf="@+id/applydate" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/application"
@@ -174,12 +228,59 @@
                         app:layout_constraintTop_toBottomOf="@+id/application" />
 
 
+
+                    <TextView
+                        android:id="@+id/tvlabel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:text="@string/note_if_you_want_to_reject_leave_please_give_reason"
+                        android:textColor="@color/cool_red"
+                        app:layout_constraintTop_toBottomOf="@+id/attachment" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/reasonwrap"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:hint="@string/reason"
+                        android:textColorHint="@color/dark_grey"
+                        app:boxCornerRadiusBottomEnd="@dimen/_10sdp"
+                        app:boxCornerRadiusBottomStart="@dimen/_10sdp"
+                        app:boxCornerRadiusTopEnd="@dimen/_10sdp"
+                        app:boxCornerRadiusTopStart="@dimen/_10sdp"
+                        app:hintTextColor="@color/purple"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvlabel"
+                        app:layout_goneMarginEnd="@dimen/_32sdp"
+                        app:layout_goneMarginStart="@dimen/_32sdp">
+
+                        <!--this is the actual edit text which takes the input-->
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/tvreason"
+                            style="@style/regularfont"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_80sdp"
+                            android:gravity="start"
+                            android:inputType="none"
+                            android:lines="5"
+                            android:maxLength="500"
+                            android:scrollIndicators="none"
+                            android:singleLine="false"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_12sdp" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/clbutton"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_15sdp"
-                        app:layout_constraintTop_toBottomOf="@+id/attachment">
+                        app:layout_constraintTop_toBottomOf="@+id/reasonwrap">
 
 
                         <androidx.appcompat.widget.AppCompatTextView

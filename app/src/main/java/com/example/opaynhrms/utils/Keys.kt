@@ -64,6 +64,7 @@ object Keys {
     const val available_leaves = "available_leaves"
     const val role_id = "role_id"
     const val reason = "reason"
+    const val reject_reason = "reject_reason"
     const val id = "id"
     const val image = "image"
     const val status = "status"

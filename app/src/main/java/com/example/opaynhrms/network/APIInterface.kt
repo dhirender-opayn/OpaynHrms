@@ -100,10 +100,15 @@ interface APIInterface {
     @GET("leave-types")
     fun leaveType(@Header("Authorization") token: String): Call<LeaveTypeJson>
 
-    @Headers("Accept: application/json")
 
+
+    @Headers("Accept: application/json")
     @GET("leave-categories")
     fun leaveCategory(@Header("Authorization") token: String): Call<LeaveCategoryJson>
+
+    @Headers("Accept: application/json")
+    @GET("")
+    fun leaveCategory2(@Header("Authorization") token: String,@Url url: String): Call<LeaveCategoryJson>
 
 
 

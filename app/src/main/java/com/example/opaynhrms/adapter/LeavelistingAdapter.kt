@@ -5,6 +5,8 @@ import com.example.opaynhrms.R
 import com.example.opaynhrms.base.KotlinBaseActivity
 import com.example.opaynhrms.common.CommonActivity
 import com.example.opaynhrms.extensions.gone
+import com.example.opaynhrms.extensions.isNotNull
+import com.example.opaynhrms.extensions.visible
 import com.example.opaynhrms.model.LeaveListJson
 
 import com.example.opaynhrms.model.UserDetailJson
@@ -23,6 +25,8 @@ class LeavelistingAdapter(var name:String,val baseActivity: KotlinBaseActivity, 
     override fun onBindViewHolder(holder: IViewHolder, position: Int) {
         holder.itemView.apply {
             leavetitle.text= name
+
+
 
             cvContainer.setOnClickListener {
                 itemClick(position)
@@ -57,6 +61,7 @@ class LeavelistingAdapter(var name:String,val baseActivity: KotlinBaseActivity, 
             }
             else
             {
+
                 editbutton.setText(baseActivity.getString(R.string.edit))
                 editbutton.setOnClickListener {
                     if (list[position].status.equals(0))
@@ -64,7 +69,9 @@ class LeavelistingAdapter(var name:String,val baseActivity: KotlinBaseActivity, 
 
                     }
                 }
+
             }
+
             tvmsg.text=list[position].reason
             when(list[position].status.toInt())
             {
