@@ -161,6 +161,19 @@ interface APIInterface {
     @GET("faqs")
     fun faq():Call<FAQJson>
 
+    @Headers("Accept: application/json")
+    @POST("")
+    fun addHoliday(@Header("Authorization") token:String,@Url url:String, @Body jsonObject: JsonObject?):Call<AddHolidayJson>
+
+
+    @Headers("Accept: application/json")
+    @GET("holiday-listing")
+    fun holidayListing(@Header("Authorization") token:String):Call<HolidayListingJson>
+
+    @Headers("Accept: application/json")
+    @GET("")
+    fun leavelistbyuser(@Header("Authorization") token: String,@Url url:String): Call<LeaveListJson>
+
 
 
 //

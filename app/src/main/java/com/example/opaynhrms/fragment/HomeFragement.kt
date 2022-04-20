@@ -121,7 +121,7 @@ class HomeFragement(var baseActivity: KotlinBaseActivity) : KotlinBaseFragment()
             leaveadapter.addNewList(levaelist)
         }
     }
-    private fun   askpermission(type:Int)
+    private fun askpermission(type:Int)
     {
         val permissonList = ArrayList<String>()
         permissonList.add(Manifest.permission.ACCESS_FINE_LOCATION)

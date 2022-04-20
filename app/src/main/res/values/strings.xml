@@ -87,6 +87,7 @@
     <string name="v_validemail">Please enter valid email</string>
     <string name="v_password">Please enter password</string>
     <string name="opayn_hrms">Opayn HRMS</string>
+    <string name="opayn_llc">Opayn LLC</string>
     <string name="v_otp">Please enter otp</string>
     <string name="v_otp_length">Otp length must be four characters</string>
     <string name="otpverified_sucess">Otp Verified Successfully</string>
@@ -184,6 +185,9 @@
     <string name="ticket_listing">Ticket Listing</string>
     <string name="note_if_you_want_to_reject_leave_please_give_reason">NOTE: If You want to Reject Leave, Please give Reason</string>
     <string name="apply_date">Apply Date:</string>
+    <string name="no_reason">No Reason</string>
+    <string name="title_error">Please Enter the Title</string>
+    <string name="description_error">Please Enter the Description</string>
 
 
 </resources>

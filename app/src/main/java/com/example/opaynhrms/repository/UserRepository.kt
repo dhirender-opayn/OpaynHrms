@@ -153,8 +153,6 @@ class UserRepository(private val baseActivity: Application) {
                 }
             })
         }
-
-
     }
 
     fun leavelist(baseActivity: KotlinBaseActivity, itemClick: (LeaveListJson) -> Unit) {
@@ -168,6 +166,47 @@ class UserRepository(private val baseActivity: Application) {
             )
 
             retrofitClient?.leavelist(Utils.AUTHTOKEN)!!.enqueue(object : Callback<LeaveListJson> {
+                override fun onResponse(
+                    call: Call<LeaveListJson?>,
+                    response: Response<LeaveListJson?>
+                ) {
+                    baseActivity.stopProgressDialog()
+                    when (response.code()) {
+                        Keys.RESPONSE_SUCESS -> {
+                            response.body()?.let { itemClick(it) }
+                        }
+                        Keys.ERRORCODE -> {
+                            baseActivity.parseError(response)
+                        }
+                        Keys.UNAUTHoRISE -> {
+                            //signupmutableLiveData.setValue(response.body())
+                        }
+                    }
+
+                }
+
+                override fun onFailure(call: Call<LeaveListJson?>, t: Throwable) {
+                    baseActivity.stopProgressDialog()
+                    // signupmutableLiveData.setValue(null)
+                }
+            })
+        }
+
+
+    }
+
+
+    fun leavelistbyUser(baseActivity: KotlinBaseActivity,url: String ,itemClick: (LeaveListJson) -> Unit) {
+
+        if (!baseActivity.networkcheck.isNetworkAvailable()) {
+            baseActivity.nointernershowToast()
+        } else {
+            baseActivity.startProgressDialog()
+            retrofitClient = RetrofitClient.with(this.baseActivity)?.client?.create(
+                APIInterface::class.java
+            )
+
+            retrofitClient?.leavelistbyuser(Utils.AUTHTOKEN,url)!!.enqueue(object : Callback<LeaveListJson> {
                 override fun onResponse(
                     call: Call<LeaveListJson?>,
                     response: Response<LeaveListJson?>
@@ -376,8 +415,7 @@ class UserRepository(private val baseActivity: Application) {
     }
 
 
-
-   fun userCategoryByID(
+    fun userCategoryByID(
         baseActivity: KotlinBaseActivity,
         endpoint: String,
         itemClick: (UserLeaveDetailJson) -> Unit
@@ -390,7 +428,7 @@ class UserRepository(private val baseActivity: Application) {
             retrofitClient = RetrofitClient.with(this.baseActivity)?.client?.create(
                 APIInterface::class.java
             )
-            retrofitClient?.user_category_by_id(Utils.AUTHTOKEN,endpoint)!!
+            retrofitClient?.user_category_by_id(Utils.AUTHTOKEN, endpoint)!!
                 .enqueue(object : Callback<UserLeaveDetailJson> {
                     override fun onResponse(
                         call: Call<UserLeaveDetailJson?>,
@@ -424,8 +462,6 @@ class UserRepository(private val baseActivity: Application) {
     }
 
 
-
-
     fun commonpostwithouttoken(
         baseActivity: KotlinBaseActivity,
         url: String,
@@ -440,7 +476,7 @@ class UserRepository(private val baseActivity: Application) {
                 APIInterface::class.java
             )
 
-            retrofitClient?.commonpostwithouttoken(url )!!
+            retrofitClient?.commonpostwithouttoken(url)!!
                 .enqueue(object : Callback<ResponseBody> {
                     override fun onResponse(
                         call: Call<ResponseBody?>,

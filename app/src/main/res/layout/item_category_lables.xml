@@ -26,7 +26,8 @@
         android:background="@drawable/rectangle_black_border"
         android:gravity="center"
         android:hint="0"
-         android:inputType="number"
+        android:inputType="number"
+        android:layout_marginEnd="@dimen/_10sdp"
         android:padding="@dimen/_2sdp"
         android:textColor="@color/black_3"
         android:textSize="@dimen/_10sdp"
@@ -34,9 +35,5 @@
         app:layout_constraintHorizontal_weight="0.2"
         app:layout_constraintStart_toEndOf="@+id/tvcaseueleave"
         app:layout_constraintTop_toTopOf="parent" />
-
-
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

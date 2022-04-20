@@ -1,5 +1,6 @@
 package com.example.opaynhrms.adapter
 
+import android.util.Log
 import com.example.opaynhrms.R
 import com.example.opaynhrms.base.KotlinBaseActivity
 import com.example.opaynhrms.extensions.isNotNull
@@ -20,6 +21,8 @@ class StaffListingAdapter(val baseActivity: KotlinBaseActivity, val itemClick: (
     {
         holder.itemView.apply {
             tvStaffleave_days.text=list[position].name
+            Log.e("ppppppppppppppppppppp",list[position].created_at.toString())
+            tvjoiningDate.setText(list[position].created_at.replace("T", " ").replace(".000000Z", " "))
             if (list[position].roles.size>0)
             {
                 tvStaffleave_type.text=list[position].roles[0].name
@@ -33,9 +36,11 @@ class StaffListingAdapter(val baseActivity: KotlinBaseActivity, val itemClick: (
             }
             ivedit.setOnClickListener {
                 baseActivity.bundle.putSerializable(Keys.USERDATA,list[position])
+                Log.e("eeeee333333333333333",list[position].toString())
                 baseActivity.openA(AddUser::class,baseActivity.bundle)
             }
             clstaftListcontainer.setOnClickListener {
+                Log.e("eeeee22222222222222",list[position].toString())
                 baseActivity.bundle.putSerializable(Keys.USERDATA,list[position])
                 baseActivity.openA(StaffDetail::class,baseActivity.bundle)
             }

@@ -11,7 +11,7 @@ class RequestCategoryAdapter(val baseActivity: KotlinBaseActivity, val itemClick
 
     override fun onBindViewHolder(holder: IViewHolder, position: Int) {
         holder.itemView.apply {
-            tvcategory.setText(list[position].catgeory.category)
+            tvcategory.setText(list[position].leave_category.category)
             categroycound.setText(list[position].available_leaves.toString())
             holder.itemView.setOnClickListener {
                 itemClick(position)

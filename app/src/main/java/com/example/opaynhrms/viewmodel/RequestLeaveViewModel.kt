@@ -74,6 +74,7 @@ class RequestLeaveViewModel(application: Application) : AppViewModel(application
             if (it.data.isNotNull()) {
                 categoryAvaliableListingJson = it
                 categoryAvaliableListingJson!!.data.forEach {
+                    Log.e("ppppppppppppppppp",it.toString())
                     categorylist.add(it)
                 }
                 leaveCategoryAdapter()
@@ -89,7 +90,6 @@ class RequestLeaveViewModel(application: Application) : AppViewModel(application
             leaveTypelist.addAll(Home.leaveTypeListingJson!!.data)
             Home.leaveTypeListingJson!!.data.forEach {
                 typelisting.add(it.type)
-
             }
             leavetypeAdapter(typelisting)
         }
@@ -97,8 +97,10 @@ class RequestLeaveViewModel(application: Application) : AppViewModel(application
 
     private fun leaveCategoryAdapter() {
         val adapter = RequestCategoryAdapter(baseActivity) {
-            binder.tvCategoryname.setText(categorylist[it].catgeory.category)
-            categoryid = categorylist[it].leave_Category_id.toString()
+            binder.tvCategoryname.setText(categorylist[it].leave_category.category)
+            Log.e("dfsdfsfdsfdsfsdf",categoryid.toString())
+            Log.e("dfsdfsfdsfdsfsdf",categorylist[it].toString())
+            categoryid = categorylist[it].leave_category_id.toString()
             hideRvCategory()
         }
         adapter.addNewList(categorylist)
@@ -323,7 +325,6 @@ class RequestLeaveViewModel(application: Application) : AppViewModel(application
 
         }
 
-
         binder.date.setOnTouchListener(object : View.OnTouchListener {
             override fun onTouch(p0: View?, p1: MotionEvent?): Boolean {
 
@@ -415,18 +416,45 @@ class RequestLeaveViewModel(application: Application) : AppViewModel(application
                 })
             }
         }
-        binder.endtimewrap.setEndIconOnClickListener {
-            if (binder.startime.text.toString().trim().isEmpty()) {
-                showToast("Please select start time first")
+
+
+//
+//        binder.endtimewrap.setEndIconOnClickListener {
+//            if (binder.startime.text.toString().trim().isEmpty()) {
+//                showToast("Please select start time first")
+//                return@setEndIconOnClickListener
+//            }
+//
+//            showtimepicker(binder.endtim)
+//        }
+
+        binder.starttimewarp.setEndIconOnClickListener {
+            if (binder.date.text.toString().trim().isEmpty()) {
+                showToast("Please select start Date first")
                 return@setEndIconOnClickListener
             }
-            showtimepicker(binder.endtim)
-
-        }
-        binder.starttimewarp.setEndIconOnClickListener {
-
             showtimepicker(binder.startime)
+
+
         }
+
+    }
+
+    private fun endTimeFormate(mCombinDatetime: String): String {
+        try {
+            val simpleDateFormat = SimpleDateFormat("dd-MM-yyyy hh:mm a")
+            val date = simpleDateFormat.parse(mCombinDatetime)
+            val calnder = Calendar.getInstance()
+            calnder.time = date
+            calnder.add(Calendar.HOUR, 2)
+            val simpleDateFormat2 = SimpleDateFormat("hh:mm a")
+            val newtime = simpleDateFormat2.format(calnder.time)
+            return newtime
+
+        } catch (e: Exception) {
+            baseActivity.customSnackBar(e.toString(), true)
+        }
+        return ""
 
     }
 
@@ -435,7 +463,15 @@ class RequestLeaveViewModel(application: Application) : AppViewModel(application
             override fun onTimeSelected(calendar: Calendar) {
                 autoCompleteTextView.setText(SimpleDateFormat(Utils.TIMEFORMAT).format(calendar.time))
 
-
+                // TODO: for setting end time by default 2 hours on the behalf selected date and start time
+                if (binder.startime.text.toString().isNotNull()) {
+                    val mDate = binder.date.text.toString().trim()
+                    val mTime = binder.startime.text.toString().trim()
+                    Log.e("ddfsddsfsfsdf", mDate + " ||| " + mTime)
+                    val combintdatetime = mDate + " " + mTime
+                    val endTime = endTimeFormate(combintdatetime)
+                    binder.endtim.setText(endTime)
+                }
             }
         }).showPicker()
     }

@@ -11,7 +11,9 @@ import com.example.opaynhrms.base.KotlinBaseActivity
 import com.example.opaynhrms.common.CommonActivity
 import com.example.opaynhrms.databinding.ActivityLeaveManagementBinding
 import com.example.opaynhrms.extensions.isNotNull
+import com.example.opaynhrms.extensions.isNull
 import com.example.opaynhrms.extensions.showConfirmAlert
+import com.example.opaynhrms.extensions.visible
 import com.example.opaynhrms.model.LeaveListJson
 import com.example.opaynhrms.model.UserLeaveDetailJson
 import com.example.opaynhrms.repository.LeaveManagementRepository
@@ -57,6 +59,7 @@ class LeaveManagmentViewModel(application: Application) : AppViewModel(applicati
         }
 
 
+
         userLeaveDetailApi()
 
     }
@@ -97,6 +100,12 @@ class LeaveManagmentViewModel(application: Application) : AppViewModel(applicati
     }
 
     private fun leavelistAdapter() {
+
+        if (list.isEmpty()){
+            binder.tvNoData.visible()
+
+        }
+
         val leaveDetailCartAdapter = LeaveDetailCartAdapter(baseActivity, this)
         leaveDetailCartAdapter.addNewList(list)
         binder.rvLeaveDatailcart.adapter = leaveDetailCartAdapter

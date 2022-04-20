@@ -1,8 +1,8 @@
 package com.example.opaynhrms.utils
 
 object Keys {
-    //     const val  BASEURL="http://3.22.185.42/hrms-api/public/api/"
-    const val BASEURL = "http://bb34-210-89-39-142.ngrok.io/hrms-api/public/api/"
+//         const val  BASEURL="http://0fd5-210-89-39-142.ngrok.io/hrms-api/public/api/"
+    const val BASEURL = "https://542e-210-89-39-94.in.ngrok.io/api/"
 
     //const val  IMAGEBASEURL= BASEURL
     /*RESPONSE CODE*/
@@ -25,6 +25,9 @@ object Keys {
     const val ATTANDANCELIST = "attendance/listing"
     const val USER_LEAVE_INFO = "user-leave-info/"
     const val USER_LEAVE_DETAILS = "user-leave-details/"
+    const val ADD_HOLIDAY = "create-holiday"
+    const val LEAVES_LISTING = "leave/listing"
+    const val USERLEAVELISTING = "user-leave-listing"
 
     /*GUEST KEYS*/
     const val Coursetype = "coursetype"
@@ -50,7 +53,7 @@ object Keys {
     const val lng = "lng"
     const val time = "timing"
     const val password = "password"
-    const val type = "type"
+    const val type = "type" //checkin checkout
     const val leave_type_id = "type_id"
     const val confirm_password = "confirm_password"
     const val rememberMe = "rememberMe"
@@ -75,7 +78,10 @@ object Keys {
     const val start_date = "start_date"
     const val end_date = "end_date"
     const val data = "user_date"
+    const val date = "date"
     const val attachment = "attachment"
     const val file = "file"
     const val leaves = "leaves"
+    const val title = "title"
+
 }

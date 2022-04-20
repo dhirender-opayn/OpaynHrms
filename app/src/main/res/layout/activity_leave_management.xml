@@ -48,8 +48,23 @@
                 android:layout_marginTop="@dimen/_10sdp"
                 android:layout_marginEnd="@dimen/_5sdp"
                 android:orientation="vertical"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rv_totalleavestatus"
+                tools:listitem="@layout/item_leave_detail_cart" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvNoData"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:text="You Haven't apply any leaves"
+                android:gravity="center"
+                android:textSize="@dimen/_14sdp"
+                android:visibility="gone"
+                android:textColor="@color/cherry_red"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_5sdp"
+                  app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/rv_totalleavestatus"
                 tools:listitem="@layout/item_leave_detail_cart" />
 

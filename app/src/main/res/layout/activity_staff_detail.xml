@@ -101,6 +101,21 @@
                 app:layout_constraintStart_toEndOf="@+id/ivprofile"
                 app:layout_constraintTop_toBottomOf="@+id/post" />
 
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvCompanyname"
+                style="@style/semiboldfont"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:maxLength="50"
+                android:singleLine="true"
+                android:text="@string/opayn_llc"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:textColor="@color/light_gre1"
+                android:textSize="@dimen/_11sdp"
+                app:layout_constraintStart_toEndOf="@+id/tvCompanyTitle"
+                app:layout_constraintTop_toBottomOf="@+id/post" />
+
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvbasicInfo"

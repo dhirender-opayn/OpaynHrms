@@ -3,6 +3,7 @@ package com.example.opaynhrms.viewmodel
 import android.app.Application
 import android.content.Context
  import android.os.Bundle
+import android.util.Log
 import androidx.core.content.ContextCompat
 import com.example.opaynhrms.R
  import com.example.opaynhrms.adapter.StaffListingAdapter
@@ -38,7 +39,6 @@ class StaffListingViewModel(application: Application) : AppViewModel(application
 //        setAdapter()
         settoolbar()
 
-
     }
 
 
@@ -50,6 +50,8 @@ class StaffListingViewModel(application: Application) : AppViewModel(application
     }
 
     private fun setAdapter(){
+
+        Log.e("eeeeeeeeeeeeeeeeettttttttttttttttttttt",userlist.toString())
         val stafflistingview = StaffListingAdapter(baseActivity){
             baseActivity.showConfirmAlert("Are you sure you want to delete the user","Ok","Cancel",onCancel = {
             },onConfirmed = {

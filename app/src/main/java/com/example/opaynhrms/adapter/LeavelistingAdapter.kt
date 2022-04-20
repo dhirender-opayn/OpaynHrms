@@ -25,6 +25,8 @@ class LeavelistingAdapter(var name:String,val baseActivity: KotlinBaseActivity, 
     override fun onBindViewHolder(holder: IViewHolder, position: Int) {
         holder.itemView.apply {
             leavetitle.text= name
+            tvlabel.gone()
+            reasonwrap.gone()
 
 
 
@@ -113,6 +115,7 @@ class LeavelistingAdapter(var name:String,val baseActivity: KotlinBaseActivity, 
                     tvDate.text=Utils.formateDateFromstring(Utils.DATETIMEFORMAT,Utils.DATEFORMATRIMEFORMAT2,list[position].start_date)
                     leave_type.text=baseActivity.getString(R.string.shortleave)
                 }
+
                 5->{
                     tvDate.text=Utils.formateDateFromstring(Utils.DATEFORMAT2,Utils.DATEFORMAT,list[position].start_date.split(" ")[0])
                     leave_type.text=baseActivity.getString(R.string.first_half)

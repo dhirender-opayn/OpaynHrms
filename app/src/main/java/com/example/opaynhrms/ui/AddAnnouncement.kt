@@ -15,11 +15,10 @@ class AddAnnouncement : KotlinBaseActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_add_announcement)
-
         setclicks()
-
-
     }
+
+
 
 
     private fun validation(): Boolean {
@@ -33,8 +32,6 @@ class AddAnnouncement : KotlinBaseActivity(), View.OnClickListener {
             return false
         }
         return true
-
-
     }
 
 

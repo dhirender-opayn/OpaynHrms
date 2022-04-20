@@ -49,15 +49,15 @@
 
 
             <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/llcaontiner"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-               android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:gravity="center"
                 android:layout_marginTop="@dimen/_10sdp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/ivholiday"
                 app:layout_constraintTop_toBottomOf="@+id/tvtitle">
-
 
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -72,7 +72,7 @@
 
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tvdateto"
+                    android:id="@+id/tvdate"
                     style="@style/semiboldfont"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -80,7 +80,6 @@
                     android:text="20 May 2022 - 25 May 2022"
                     android:textColor="@color/matt_black"
                     android:textSize="@dimen/_10sdp" />
-
 
 
             </androidx.appcompat.widget.LinearLayoutCompat>
@@ -97,10 +96,9 @@
                 android:text="@string/longdes"
                 android:textColor="@color/matt_black"
                 android:textSize="@dimen/_8sdp"
-                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/ivholiday"
-                app:layout_constraintTop_toBottomOf="@+id/tvdateto" />
+                app:layout_constraintTop_toBottomOf="@+id/llcaontiner" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

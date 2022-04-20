@@ -16,9 +16,7 @@ class StaffDetail : KotlinBaseActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_staff_detail)
         viewmodel = ViewModelProvider(this).get(StaffDetailViewModel::class.java)
         viewmodel.setBinder(binding, this)
-
     }
-
     override fun onResume() {
         super.onResume()
         viewmodel.leavelist()

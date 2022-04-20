@@ -16,6 +16,7 @@ import com.example.opaynhrms.base.AppViewModel
 import com.example.opaynhrms.base.KotlinBaseActivity
 import com.example.opaynhrms.databinding.ActivityAddUserBinding
 import com.example.opaynhrms.extensions.*
+import com.example.opaynhrms.model.CommonModelCategoryList
 import com.example.opaynhrms.model.LeaveCategoryJson
 import com.example.opaynhrms.model.LoginJson
 import com.example.opaynhrms.model.UserListJson
@@ -61,31 +62,58 @@ class AddUserViewModel(application: Application) : AppViewModel(application), Vi
     var ansarray = JSONArray()
     var ansarrayObj = JSONObject()
     var hashMap = HashMap<String, String>()
-    var r = ArrayList<String>()
+    var editCategorylist = ArrayList<String>()
     var jsonloop = ArrayList<JSONObject>()
+    var cateogryListnow: List<LeaveCategoryJson.Data>? = null
+    var categorylistnow: ArrayList<CommonModelCategoryList>? = ArrayList()
     fun setBinder(binder: ActivityAddUserBinding, baseActivity: KotlinBaseActivity) {
         this.binder = binder
         this.mContext = binder.root.context
         this.baseActivity = baseActivity
         this.binder.viewModel = this
-        if (baseActivity.intent.getSerializableExtra(Keys.USERDATA).isNotNull()) {
 
+        leaveListing()
+        if (baseActivity.intent.getSerializableExtra(Keys.USERDATA).isNotNull()) {
             val userdata =
                 baseActivity.intent.getSerializableExtra(Keys.USERDATA) as UserListJson.Data
+            Log.e("eeeee0202220202", userdata.toString())
             binder.tvtitle.text = baseActivity.getString(R.string.edituser)
             binder.singupbtn.text = baseActivity.getString(R.string.update)
             setdata(userdata)
+            if (userdata.leave_details.isNotNull()) {
+                categorylistnow?.clear()
+                Log.e("0000000000000000000000",userdata.leave_details.size.toString())
+                userdata.leave_details.forEach {
+//                    Log.e("8888888888888888888888",it.leave_category.category.toString())
+
+                    if (!it.leave_category?.category.isNull()){
+                        categorylistnow?.add(
+                            CommonModelCategoryList(
+                                it.leave_category?.category!!,
+                                it.leave_category_id,
+                                it.total_leaves.toString(),
+                                it.total_leaves.toString(),
+                                true
+                            )
+                        )
+
+                    }
+
+                }
+                categoryadpterLabel()
+
+            }
+
+//            categoryadpterLabel(cateogryListnow!!)
         }
 
         setclicks()
         getroles()
 //        leaveCategory()
-        leaveListing()
+
         leaveCategoryAdapter(categorylist)
 //        categoryadpterLabel(categorylist)
-
     }
-
 
     private fun leaveListing() {
 
@@ -96,12 +124,30 @@ class AddUserViewModel(application: Application) : AppViewModel(application), Vi
                 categorylist.add(it.category)
             }
             Home.categoryTypeListingJson?.data.let {
-                it?.let { it1 -> categoryadpterLabel(it1) }
+                it?.let { it1 ->
+                    cateogryListnow = it1
+//                    categoryadpterLabel(it1)
+
+                    it1.forEach {
+                        Log.e("02020202020202020", it.toString())
+
+                        categorylistnow?.add(
+                            CommonModelCategoryList(
+                                it.category.toString(),
+                                it.id,
+                                "",
+                                it.count,
+                                false
+                            )
+                        )
+
+                    }
+                    categoryadpterLabel()
+                }
             }
 
         }
     }
-
 
     private fun getroles() {
         userRepository.getroles(baseActivity) {
@@ -123,6 +169,8 @@ class AddUserViewModel(application: Application) : AppViewModel(application), Vi
         binder.passwordWrap.gone()
         binder.leavetypewrap.gone()
         binder.tvEmail.isEnabled = false
+
+
     }
 
     private fun testtypeadapter() {
@@ -175,18 +223,13 @@ class AddUserViewModel(application: Application) : AppViewModel(application), Vi
         binder.singupbtn.setOnClickListener(this)
         binder.clsingupcontainer.setOnClickListener(this)
         binder.tvCategoryname.setOnClickListener(this)
-
-
         binder.maincoantainer.setOnClickListener {
             hideRvCategory()
-
         }
-
         binder.cvContainer.setOnClickListener {
             hideRvCategory()
 
         }
-
 
     }
 
@@ -196,25 +239,33 @@ class AddUserViewModel(application: Application) : AppViewModel(application), Vi
     }
 
     private fun createUser() {
-
-
         var url = ""
         val fields = java.util.ArrayList<MultipartBody.Part>()
         Utils.getMultiPart(Keys.name, binder.tvName.text.toString())?.let { fields.add(it) }
         Utils.getMultiPart(Keys.email, binder.tvEmail.text.toString())?.let { fields.add(it) }
         Utils.getMultiPart(Keys.mobile, binder.tvMobile.text.toString())?.let { fields.add(it) }
         val leaveArray = JSONArray()
-        Home.categoryTypeListingJson?.data?.forEach {
-            if (it.count.isNotNull() && !it.count.isEmpty()) {
-                val jsonObject = JSONObject()
+
+
+        categorylistnow?.forEach {
+            Log.e("msgmsgmsmgsmgmgsmsgm",it.toString())
+            val jsonObject = JSONObject()
+            if (it.count.isNotNull() && !it.count?.isEmpty()!!) {
+
                 jsonObject.put("id", it.id.toString())
                 jsonObject.put("leave", it.count)
                 leaveArray.put(jsonObject)
             }
+            else{
+                jsonObject.put("id", it.id.toString())
+                jsonObject.put("leave", "0")
+                leaveArray.put(jsonObject)
+
+            }
         }
+
+
         Log.e("jsonarray", leaveArray.toString())
-
-
 //
 //        Utils.getMultiPart(Keys.leaves, categoryIdString)?.let {
 //            fields.add(it) }
@@ -233,7 +284,6 @@ class AddUserViewModel(application: Application) : AppViewModel(application), Vi
             url = Keys.UPDATEUSER
             Utils.getMultiPart(Keys.id, userid)?.let { fields.add(it) }
         }
-
         Utils.getMultiPart(Keys.clockify_key, "")?.let { fields.add(it) }
         if (file != null) {
             Utils.getMultiPart(Keys.image, file!!)?.let { fields.add(it) }
@@ -267,110 +317,30 @@ class AddUserViewModel(application: Application) : AppViewModel(application), Vi
         }
     }
 
-//    private fun leaveCategory() {
-//        requestRepository.leaveCategory(baseActivity) {
-//            if (it.data.isNotNull()) {
-//
-//                leaveCategorylist.addAll(it.data)
-//                it.data.forEach {
-//                    categorylist.add(it.category)
-//
-//                }
-////                leaveCategoryAdapter(categorylist)
-//                categoryadpterLabel(leaveCategorylist)
-//
-//
-//            }
-//        }
-//    }
+
 
     //custom category adaper
     private fun leaveCategoryAdapter(_categorylist: ArrayList<String>) {
+
+
         val adapter = LeaveCategoryAdapter(baseActivity) {
             hideRvCategory()
-//            categoryadpterLabel(_categorylist)
 
-
-//            binder.llcoantiner.visible()
-//            binder.tvcategory.setText(_categorylist[it])
-//            binder.tvCategoryname.setText(_categorylist[it])
-//            val catId = leaveCategorylist[it].id.toString()
-//
-//
-//
-//            binder.tvAddCateogry.setOnClickListener {
-//                binder.llcoantiner.gone()
-//                val text = binder.tvCategoryCount.text.toString()
-//                Log.e("Hellodata", text)
-//                binder.tvcategory.setText("")
-//                binder.tvCategoryname.setText("")
-//            }
 
         }
         adapter.addNewList(_categorylist)
         binder.rvCategory.adapter = adapter
     }
 
-    private fun categoryadpterLabel(mCategorylist: List<LeaveCategoryJson.Data>) {
+    private fun categoryadpterLabel( ) {
         val adapter = CategoryLabelAdapter(baseActivity) {
-//            position = it
-//
-//            catId = mCategorylist[it].id.toString()
-//            arrayCatId.add(catId)
-//
-//
-//            hashMap.put("id", catId)
-//            hashMap.put("value", mCategorylist[it].count)
-//
-//
-//
-//            categoryIdString += mCategorylist[it].count.toString() + ","
-//
-//            r.add(mCategorylist[it].count)
 
-
-//            categoryIdString += map
         }
-
-
-        adapter.addNewList(mCategorylist)
-
+        adapter.addNewList(categorylistnow)
         binder.rvCategoryEdit.adapter = adapter
     }
 
-    private fun addleavecategoryapi() {
-        Log.e("categoryidnow", arrayCatId.toString())
-        Log.e("catLogId::", catId.toString())
 
-
-        val jsonObject = JSONObject()
-
-        jsonObject.put(Keys.user_id, getuserData?.user!!.id.toString())
-        jsonObject.put(Keys.leave_category_id2, ansarray.toString())
-//        jsonObject.addProperty(Keys.leave_category_id2, catId.toString())
-        jsonObject.put(Keys.total_leaves, totalleave)
-        jsonObject.put(Keys.available_leaves, totalleave)
-
-        addUserRepository.addleavecategory(baseActivity, "add-leave-details", jsonObject) {
-
-        }
-
-
-    }
-
-
-//default category adapter
-//    private fun leaveCategoryAdapter(_categorylist: ArrayList<String>) {
-//        val aa = ArrayAdapter(baseActivity, R.layout.spinner_layout, _categorylist)
-//        binder.tvleaveCategory.setAdapter(aa)
-//        binder.tvleaveCategory.setFocusable(false)
-//        binder.tvleaveCategory.setFocusableInTouchMode(false)
-//        binder.tvleaveCategory.setOnClickListener(this)
-//        binder.tvleaveCategory.setKeyListener(null)
-//        binder.tvleaveCategory.setOnItemClickListener(AdapterView.OnItemClickListener { adapterView, view, i, l ->
-//            categoryid = leaveCategorylist[i].id.toString()
-//        })
-//    }
 
     override fun onClick(p0: View?) {
         when (p0!!.id) {
@@ -382,12 +352,8 @@ class AddUserViewModel(application: Application) : AppViewModel(application), Vi
             }
             R.id.singupbtn -> {
                 totalleave = 0
-                Home.categoryTypeListingJson?.data?.forEach {
-                    if (it.count.isNotNull() && !it.count.toString().isEmpty()) {
-                        totalleave = totalleave + it.count.toInt()
 
-                    }
-                }
+
                 if (validations()) {
                     createUser()
                 }

@@ -23,11 +23,14 @@ import com.example.opaynhrms.extensions.gone
 import com.example.opaynhrms.extensions.isNull
 import com.example.opaynhrms.extensions.toast
 import com.example.opaynhrms.extensions.visible
+import com.example.opaynhrms.repository.AddHolidayRepository
+import com.example.opaynhrms.repository.HomeRepository
 import com.example.opaynhrms.repository.UserRepository
 import com.example.opaynhrms.ui.Home
 import com.example.opaynhrms.utils.Keys
 import com.example.opaynhrms.utils.TimePickerFragment
 import com.example.opaynhrms.utils.Utils
+import com.google.gson.JsonObject
 import kotlinx.android.synthetic.main.common_toolbar.view.*
 import okhttp3.MultipartBody
 import java.io.File
@@ -43,12 +46,12 @@ class AddHolidayViewModel(application: Application) : AppViewModel(application),
     private lateinit var mContext: Context
     lateinit var baseActivity: KotlinBaseActivity
     var file: File? = null
-
     var bundle = Bundle()
     var ltype = ""
     var applyradio = ""
     var leaveid = ""
     var isdateshow = true
+    var addHolidayRepository: AddHolidayRepository = AddHolidayRepository(application)
 
     fun setBinder(binder: FragmentAddHolidayBinding, baseActivity: KotlinBaseActivity) {
         this.binder = binder
@@ -57,11 +60,9 @@ class AddHolidayViewModel(application: Application) : AppViewModel(application),
         this.binder.viewModel = this
 
         bundle = (mContext as Activity).intent.extras!!
-
         setclicks()
         Log.e("0000000000000000000000", bundle.getString(Keys.FROM).toString())
         setToolbarFrom()
-        leavetypeAdapter()
     }
 
     private fun setToolbarFrom() {
@@ -69,124 +70,40 @@ class AddHolidayViewModel(application: Application) : AppViewModel(application),
 
         binder.toolbar.tvtitle.text = baseActivity.getString(R.string.addholiday)
         if (bundle.getString(Keys.FROM) == baseActivity.getString(R.string.addholiday)) {
-            Log.e("dddddddddddddddd","0000000000000")
+            Log.e("dddddddddddddddd", "0000000000000")
             binder.toolbar.icmenu2.gone()
             binder.toolbar.icmenu.visible()
-        } else{
-            Log.e("dddddddd","111111111111111111")
+        } else {
+            Log.e("dddddddd", "111111111111111111")
             binder.toolbar.icmenu2.visible()
             binder.toolbar.icmenu.gone()
+        }
+    }
 
+
+    private fun addHolidayapi() {
+        val jsonObject = JsonObject()
+        jsonObject.addProperty(Keys.title, binder.tvTitle.text.toString().trim())
+        jsonObject.addProperty(Keys.description, binder.tvreason.text.toString().trim())
+        jsonObject.addProperty(Keys.date, binder.date.text.toString().trim())
+        addHolidayRepository.addHoliday(baseActivity, Keys.ADD_HOLIDAY, jsonObject) {
         }
 
     }
 
-
-    private fun leavetypeAdapter() {
-        val roleslist = ArrayList<String>()
-         Home.leaveTypeListingJson?.data!!.forEach {
-            roleslist.add(it.type)
-        }
-        val aa = ArrayAdapter(baseActivity, R.layout.spinner_layout, roleslist)
-        binder.leavetype.setAdapter(aa)
-        binder.leavetype.setFocusable(false)
-        binder.leavetype.setFocusableInTouchMode(false)
-        binder.leavetype.setOnClickListener(this)
-        binder.leavetype.setKeyListener(null)
-        binder.leavetype.setOnItemClickListener(AdapterView.OnItemClickListener { adapterView, view, i, l ->
-            ltype = roleslist[i]
-            var pos = i
-            ++pos
-            leaveid = pos.toString()
-            when (ltype) {
-                baseActivity.getString(R.string.singleday) -> {
-                    binder.datecontainer.gone()
-                    binder.dateWrap.visible()
-                    binder.timecontainer.gone()
-                    binder.radiogrp.gone()
-                }
-                baseActivity.getString(R.string.multipleday) -> {
-                    binder.dateWrap.gone()
-                    binder.datecontainer.visible()
-                    binder.timecontainer.gone()
-                    binder.radiogrp.gone()
-                }
-                baseActivity.getString(R.string.half_day) -> {
-                    binder.datecontainer.gone()
-                    binder.dateWrap.visible()
-                    binder.radiogrp.visible()
-                    binder.timecontainer.gone()
-                }
-                baseActivity.getString(R.string.shortleave) -> {
-                    binder.radiogrp.gone()
-                    binder.datecontainer.gone()
-                    binder.dateWrap.visible()
-                    binder.timecontainer.visible()
-                }
-            }
-
-
-        })
-    }
 
     private fun validations(): Boolean {
         if (binder.tvTitle.text.toString().isEmpty()) {
             showToast("Please enter title")
             return false
         }
-
-        if (ltype.isEmpty()) {
-            showToast("Please select leave type")
-            return false
-        }
-
-        if (ltype.equals(baseActivity.getString(R.string.multipleday))) {
-            if (binder.startdate.text.toString().isEmpty()) {
-                showToast("Please select start date")
-                return false
-
-            }
-            if (binder.enddate.text.toString().isEmpty()) {
-                showToast("Please select start date")
-                return false
-
-            }
-        }
-        if (ltype.equals(baseActivity.getString(R.string.shortleave))) {
-            if (binder.date.text.toString().isEmpty()) {
-                showToast("Please select date")
-                return false
-
-            }
-            if (binder.startime.text.toString().isEmpty()) {
-                showToast("Please select start time")
-                return false
-
-            }
-            if (binder.endtim.text.toString().isEmpty()) {
-                showToast("Please select end time")
-                return false
-
-            }
-        }
         if (binder.tvreason.text.toString().isEmpty()) {
             showToast("Please enter reason")
             return false
         }
-        if (ltype.equals(baseActivity.getString(R.string.half_day)) && applyradio.isEmpty()) {
-            showToast("Please select  half day type")
+        if (binder.date.text.toString().isEmpty()) {
+            showToast("Please select date")
             return false
-        } else {
-            if (ltype.equals(baseActivity.getString(R.string.singleday)) || ltype.equals(
-                    baseActivity.getString(R.string.half_day)
-                )
-            ) {
-                if (binder.date.text.toString().isEmpty()) {
-                    showToast("Please select date")
-                    return false
-
-                }
-            }
 
         }
 
@@ -265,7 +182,6 @@ class AddHolidayViewModel(application: Application) : AppViewModel(application),
 
         }
         binder.startdatewrap.setEndIconOnClickListener {
-
 
             if (isdateshow) {
                 isdateshow = false
@@ -391,6 +307,7 @@ class AddHolidayViewModel(application: Application) : AppViewModel(application),
             }
             R.id.loginbtn -> {
                 if (validations()) {
+                    addHolidayapi()
 //                    callApi()
 //                    baseActivity.toast("Dummy Add Holiday Successfully")
                     baseActivity.onBackPressed()

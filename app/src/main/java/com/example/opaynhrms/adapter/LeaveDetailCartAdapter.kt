@@ -26,14 +26,14 @@ class LeaveDetailCartAdapter(val baseActivity: KotlinBaseActivity, val itemClick
     ) {
     override fun onBindViewHolder(holder: IViewHolder, position: Int) {
         holder.itemView.apply {
-
-
-
             cvContainer.setOnClickListener {
                 itemClick.onItemViewClicked(position, "3")
             }
-
-             val date = Utils.formateDateFromstring(Utils.DATETIMEFORMAT,Utils.DATEFORMAT,list[position].created_at.replace("T"," ").replace(".000000Z",""))
+            val date = Utils.formateDateFromstring(
+                Utils.DATETIMEFORMAT,
+                Utils.DATEFORMAT,
+                list[position].created_at.replace("T", " ").replace(".000000Z", "")
+            )
             tvapplyDate.setText(date)
 
             if (Home.rollname.equals(Utils.SUPERADMIN)) {
@@ -69,22 +69,24 @@ class LeaveDetailCartAdapter(val baseActivity: KotlinBaseActivity, val itemClick
                 }
 
             } else {
-                leavetitle.text =  list[position].reason
+                leavetitle.text = list[position].reason
                 editbutton.setText(baseActivity.getString(R.string.edit))
-                if ( list[position].reject_reason.isNotNull() ) {
+
+
+                if (list[position].reject_reason.isNotNull()) {
                     rejection_reasonTitle.visible()
                     tvlabel.gone()
                     reasonwrap.gone()
                     rejection_reason.visible()
                     rejection_reason.setText(list[position].reject_reason.toString())
-                } else{
+                } else {
                     tvlabel.gone()
                     reasonwrap.gone()
-                    rejection_reasonTitle.gone()
-                    rejection_reason.gone()
-                    rejection_reason.setText("")
+                    reasonwrap.gone()
+                    rejection_reason.visible()
+                    rejection_reasonTitle.visible()
+                    rejection_reason.setText(context.getString(R.string.no_reason))
                 }
-
                 editbutton.setOnClickListener {
                     if (list[position].status.equals(0)) {
 

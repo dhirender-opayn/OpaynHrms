@@ -52,6 +52,8 @@ class LeaveDetailViewModel(application: Application) : AppViewModel(application)
         datauser = bundle.getSerializable(Keys.data) as LeaveListJson.Data
         setdata()
         attatchmentDownload()
+        binder.tvapplyDate.setText(datauser?.created_at!!.replace("T", " ").replace(".000000Z", ""))
+
     }
 
     private fun attatchmentDownload() {
@@ -148,8 +150,9 @@ class LeaveDetailViewModel(application: Application) : AppViewModel(application)
         }
 
 
-        when (datauser?.leave_type) {
+        when (datauser?.leave_type_id) {
             1 -> {
+
                 binder.leavesType.text = baseActivity.getString(R.string.singleday)
                 binder.leavesDate.text = Utils.formateDateFromstring(
                     Utils.DATEFORMAT2,
@@ -198,7 +201,6 @@ class LeaveDetailViewModel(application: Application) : AppViewModel(application)
             }
 
         }
-
 
     }
 
